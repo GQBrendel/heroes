@@ -139,9 +139,13 @@ public class Actor : MonoBehaviour
         currentTile.toggleWalkable();
         checkActions();
         if (finishedAllActions())
-            TileManager.Instance.SendMessage("endAction");
+        {
+         //   TileManager.Instance.EndAction();
+        }
         else if (!mainAction)
-            GetComponent<HeroController>().showWays(posX,posY);
+        {
+            GetComponent<HeroController>().showWays(posX, posY);
+        }
     }
     public bool finishedAllActions()
     {

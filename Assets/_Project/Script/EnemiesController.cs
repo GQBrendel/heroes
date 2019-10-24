@@ -7,8 +7,9 @@ using AStar_2D.Pathfinding;
 using System;
 using AStar_2D.Demo;
 
-public class EnemiesController : MonoBehaviour {
-
+public class EnemiesController : MonoBehaviour
+{
+    private WaitForSeconds _waitForOneSecond = new WaitForSeconds(1f);
     public static EnemiesController Instance;
     public int enemyUnits = 0;
     public int heroUnits = 0;
@@ -127,11 +128,9 @@ public class EnemiesController : MonoBehaviour {
 
             if(euclidianDistance(GetClosestHero().GetComponent<Actor>(), activeEnemy) < activeEnemy.attackRange && !activeEnemy.mainAction)
             {
-                //Ataca
-                Debug.Log("Ataca");
-                activeEnemy.GetComponent<Enemy>().Attack(closestHero.GetComponent<Actor>());
-
+                activeEnemy.Attack(closestHero.GetComponent<Actor>());
                 activeEnemy.mainAction = true;
+                yield return _waitForOneSecond;
             }
             else
             {
@@ -142,6 +141,7 @@ public class EnemiesController : MonoBehaviour {
                 if (!activeEnemy.finishedAllActions()) //Se não terminou todas as ações entra no loop do mesmo inimigo
                     i--;
             }
+
         }
         endOfIAturn();
         

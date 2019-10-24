@@ -145,7 +145,7 @@ namespace AStar_2D.Demo
                 if (tile.getPos().x == heroScript.posX && tile.getPos().y == heroScript.posY) {
                     cancelAction();
                 } else {
-                    selectedHero.GetComponent<HeroController>().act(tile);
+                    selectedHero.GetComponent<HeroController>().Act(tile);
                 }
             } else if (mouseButton == 1) {
                 tile.toggleWalkable();
@@ -242,8 +242,12 @@ namespace AStar_2D.Demo
             }
         }
 
-        void endAction()
+        public void EndAction()
         {
+            if (!selectedHero)
+            {
+                return;
+            }
             selectedHero.GetComponent<Actor>().rotate = true;
            // tiles[selectedHero.GetComponent<Actor>().posX, selectedHero.GetComponent<Actor>().posY].toggleWalkable();
             aHeroIsSelected = false;
@@ -313,7 +317,7 @@ namespace AStar_2D.Demo
                             cancelAction();
                         else
                         {
-                            selectedHero.GetComponent<HeroController>().act(tile);
+                            selectedHero.GetComponent<HeroController>().Act(tile);
                         }
                     }
                 }

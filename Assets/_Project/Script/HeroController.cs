@@ -35,10 +35,11 @@ public class HeroController : Actor
         }
     }
    
-    public void act(Tile tile)
+    public void Act(Tile tile)
     {
         if (tile.tileActor == null) {
             tryMove(tile);
+            StartCoroutine(EndActionRoutine());
             return;
         }
 
@@ -72,8 +73,17 @@ public class HeroController : Actor
                 showWays(posX, posY);
             }
         }
-        if(mainAction && moveAction)
-        TileManager.Instance.SendMessage("endAction");
+        StartCoroutine(EndActionRoutine());
+    }
+    private IEnumerator EndActionRoutine()
+    {
+        if (!mainAction || !moveAction)
+        {
+            yield break;
+        }
+        yield return new WaitForSeconds(1.5f);
+        TileManager.Instance.EndAction();
+        
     }
 
     public void showWays(int x, int y)
