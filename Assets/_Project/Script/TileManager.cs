@@ -151,82 +151,6 @@ namespace AStar_2D.Demo
                 tile.toggleWalkable();
             }
         }
-        public void attackByVoice()
-        {
-            if (!aHeroIsSelected)
-                return;
-            Tile tile;
-            Ray ray = Camera.main.ScreenPointToRay(UiIcon.transform.position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                if (hit.transform.gameObject.tag.Contains("Tile"))
-                {
-                    tile = hit.collider.gameObject.GetComponent<Tile>();
-                    selectedHero.GetComponent<HeroController>().AttackVoice(tile);
-                }
-            }
-        }
-        public void moveByVoice()
-        {
-            if (!aHeroIsSelected)
-                return;
-            Tile tile;
-            Ray ray = Camera.main.ScreenPointToRay(UiIcon.transform.position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                if (hit.transform.gameObject.tag.Contains("Tile"))
-                {
-                    tile = hit.collider.gameObject.GetComponent<Tile>();
-                    selectedHero.GetComponent<HeroController>().moveVoice(tile);                    
-                }
-            }
-        }
-
-        public void selectByVoice()
-        {
-            if(!aHeroIsSelected)
-            {
-                foreach (GameObject hero in heroesList)
-                {
-                    if (hero.name.Contains("Hero") && !hero.GetComponent<Actor>().acted)
-                    {
-                        selectedHero = hero;
-                        selectedHero.GetComponent<HeroController>().selectHero();
-                        aHeroIsSelected = true;
-                        break;
-                    }
-                }
-                if (selectedHero == null)
-                {
-                    return;
-                }
-            }
-        }
-        public void selectByVoiceArcher()
-        {
-            if (!aHeroIsSelected)
-            {
-                foreach (GameObject hero in heroesList)
-                {
-                    if (hero.name.Contains("Archer") && !hero.GetComponent<Actor>().acted)
-                    {
-                        selectedHero = hero;
-                        selectedHero.GetComponent<HeroController>().selectHero();
-                        aHeroIsSelected = true;
-                        break;
-                    }
-                }
-                if (selectedHero == null)
-                {
-                    return;
-                }
-            }
-        }
-
         public void RemoveHeroFromList(HeroController hero)
         {
             heroesList.Remove(hero.gameObject);
@@ -368,7 +292,6 @@ namespace AStar_2D.Demo
         {
             Tile tile;
             Ray ray = Camera.main.ScreenPointToRay(UiIcon.transform.position);
-            //Ray ray = new Ray(Vector3.zero, ARCamera.transform.position);
 
             RaycastHit hit;
 
@@ -392,7 +315,6 @@ namespace AStar_2D.Demo
                         {
                             selectedHero.GetComponent<HeroController>().act(tile);
                         }
- //                           tryMove(tile);
                     }
                 }
             }

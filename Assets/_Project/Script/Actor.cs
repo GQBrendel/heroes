@@ -10,8 +10,7 @@ using System;
 using AStar_2D.Demo;
 
 public class Actor : MonoBehaviour
-{
-    
+{    
     public Animator anim;
     private AStar_2D.Demo.AnimatedAgent animatedAgent;
     public AStar_2D.Demo.Tile currentTile;
@@ -56,15 +55,15 @@ public class Actor : MonoBehaviour
     }
 
     public void HighLight()
-    {
-       // transform.GetChild(2).gameObject.SetActive(true);
-       // transform.GetChild(1).gameObject.SetActive(false);
+    {/*
+        transform.GetChild(2).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);*/
     }
 
     public void UnLight()
-    {
-      //  transform.GetChild(1).gameObject.SetActive(true);
-      //  transform.GetChild(2).gameObject.SetActive(false);
+    {/*
+        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(2).gameObject.SetActive(false);*/
     }
 
     public void setPos(int x, int y)

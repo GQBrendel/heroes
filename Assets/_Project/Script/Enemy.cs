@@ -27,7 +27,7 @@ public class Enemy : Actor {
             Quaternion targetRotation;
             targetRotation = Quaternion.LookRotation(FindClosestObjWithTag("Hero").transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
-            StartCoroutine(wait());
+            //StartCoroutine(wait());
         }
     }
     public void Attack(Actor target)

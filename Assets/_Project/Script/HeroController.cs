@@ -6,33 +6,20 @@ using UnityEngine;
 
 public class HeroController : Actor
 {
-    public GameObject textRef;
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
-    public ArrayList possibleCommands = new ArrayList();
 
     public int id = 0;
 
-    // private float sizeAdj = 0.6f;
 
     void Start () {
-          textRef = GameObject.FindGameObjectWithTag("DebugText");
-
-          possibleCommands.Add("Attack");
-          possibleCommands.Add("Walk");
-          possibleCommands.Add("Idle");
-
           parentStart();
     }
 	
 	void Update () {
 
         parentUpdate();
-
-        if (Input.GetKey(KeyCode.K)) {
-            HeroActions("id");
-        }
 
         if (rotate) {
             float speed = 5;
@@ -47,50 +34,7 @@ public class HeroController : Actor
             }            
         }
     }
-
-    
-    /** 
-     * Gerencia ações que o herois pode fazer em seu turno
-     */
-    public void moveVoice(Tile tile)
-    {
-        if (tile.tileActor == null)
-        {
-            tryMove(tile);
-            return;
-        }
-        if (mainAction && moveAction)
-            TileManager.Instance.SendMessage("endAction");
-    }
-    public void AttackVoice(Tile tile)
-    {
-        if (mainAction)
-            return;
-        if (tile.tileActor == null)
-            return;
-
-        string otherTag = tile.tileActor.tag;
-        if (otherTag.Contains("Enemy"))
-        {
-
-            if (euclidianDistance(this, tile.tileActor) > attackRange)
-            {
-                Debug.Log("Enemy out of Range");
-                return;
-            }
-            else
-            {
-                transform.LookAt(tile.tileActor.transform);
-                anim.SetTrigger("Attack");
-                mainAction = true;
-                HideWays();
-                fight(tile.tileActor);
-                showWays(posX, posY);
-            }
-        }
-        if (mainAction && moveAction)
-            TileManager.Instance.SendMessage("endAction");
-    }
+   
     public void act(Tile tile)
     {
         if (tile.tileActor == null) {
@@ -130,50 +74,6 @@ public class HeroController : Actor
         }
         if(mainAction && moveAction)
         TileManager.Instance.SendMessage("endAction");
-    }
-
-    public void HeroActions(string ActionCommands)
-    {
-        if (isSelected)
-        {
-            Debug.Log(name + " recebeu o comando " + ActionCommands);
-
-            Debug.Log("Before Filter " + ActionCommands);
-            ActionCommands = wordFilter(ActionCommands);
-            Debug.Log("After Filter " + ActionCommands);
-            textRef.GetComponent<CanvasManager>().showMessage(ActionCommands);
-
-            if (possibleCommands.Contains(ActionCommands))
-            {
-                anim.Play(ActionCommands);
-            }
-        }
-    }
-
-    string wordFilter(string command)
-    {
-        if(command.Contains("attack"))
-        {
-            return "Attack";
-        }
-        else if (command.Contains("back"))
-        {
-            return "Attack";
-        }
-        else if (command.Contains("pack"))
-        {
-            return "Attack";
-        }
-        else if (command.Contains("walk"))
-        {
-            return "Walk";
-        }
-        else if (command.Contains("move"))
-        {
-            return "Walk";
-        }
-
-        return command;
     }
 
     public void showWays(int x, int y)
