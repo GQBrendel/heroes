@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1370520254187354}
+  m_IsPrefabParent: 1
+--- !u!1 &1370520254187354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4175228721713394}
+  - component: {fileID: 114488001083568512}
+  m_Layer: 0
+  m_Name: TileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4175228721713394
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370520254187354}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.0100828735, z: 0}
+  m_LocalScale: {x: 0.10082879, y: 0.10082873, z: 0.10082879}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114488001083568512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370520254187354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f6178d731d2f4f428ce182831424019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowThreading: 1
+  diagonalMovement: 1
+  nodeSpacing: 1
+  maxPathLength: -1
+  alliesNumber: 0
+  enemiesNumber: 0
+  knight: {fileID: 1181729813753890, guid: 5235cbed4440a2c41a50a16d3186cfe6, type: 2}
+  archer: {fileID: 1072721318551778, guid: ecccf96c9e575124fa362cb097eb9a22, type: 2}
+  imp: {fileID: 1925957946624150, guid: 9898e7f3facdbde43a09f78be6a1baf7, type: 2}
+  selectedHero: {fileID: 0}
+  UiIcon: {fileID: 0}
+  heroesList: []
+  myCamera: {fileID: 0}
+  gridX: 8
+  gridY: 8
+  tilePrefab: {fileID: 1767493689686188, guid: 112885323af6edf4b8646ef52644cf77, type: 2}
+  showPreviewPath: 1
