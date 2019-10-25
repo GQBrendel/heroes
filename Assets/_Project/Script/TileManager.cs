@@ -346,28 +346,9 @@ namespace AStar_2D.Demo
         {
             return gridY * 2;
         }
-        public Vector2 ValidMovement(int x, int y)
+        public bool IsMovementValid(int x, int y)
         {
-            if(tiles[x,y].IsWalkable)
-            {
-                foreach (GameObject hero in heroesList)
-                {
-                    if (hero.GetComponent<Actor>().checkPos(x, y))
-                    {
-                        x++;
-                        ValidMovement(x, y);
-                        break;
-                    }
-                }
-                return new Vector2(x, y);
-            }
-            else
-            {
-                x++;
-                ValidMovement(x, y);
-                return new Vector2(x,y);
-            }
+            return tiles[x, y].IsWalkable;
         }
-
     }
 }

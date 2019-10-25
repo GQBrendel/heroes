@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Import the AStar_2D namespace
-using AStar_2D;
-using AStar_2D.Pathfinding;
 using System;
 using AStar_2D.Demo;
 
@@ -185,12 +182,12 @@ public class EnemiesController : MonoBehaviour
         
         return closestHero;
     }
-    void findRoute(float distance)
+    void FindRoute(float distance, Vector2 heroPostion)
     {
         bestX = activeEnemy.posX;
         bestY = activeEnemy.posY;
-        int heroPosX = closestHero.GetComponent<Actor>().posX;
-        int heroPosY = closestHero.GetComponent<Actor>().posY;
+        int heroPosX = (int)heroPostion.x;
+        int heroPosY = (int)heroPostion.y;
 
         for (int i = 1; i <= activeEnemy.getMoveDis(); i++)
         {
@@ -222,10 +219,6 @@ public class EnemiesController : MonoBehaviour
                     bestY++;
             }
         }
-        Vector2 destination =  TileManager.Instance.ValidMovement(bestX, bestY);
-        bestX = (int)destination.x;
-        bestY = (int)destination.y;
-
         Debug.Log("Best X excolhido foi " + bestX);
         Debug.Log("Best Y escolhido foi " + bestY);
 
@@ -258,11 +251,67 @@ public class EnemiesController : MonoBehaviour
         else
         {
             Debug.Log("Maior que 1.5f - A Distancia Euclidiana entre o inimigo e o heroi mais próximo é " + euclidianDistance(activeEnemy.GetComponent<Actor>(), closestHero.GetComponent<Actor>()));
-            findRoute(distance);
+
+
+            int heroPosX = closestHero.GetComponent<Actor>().posX;
+            int heroPosY = closestHero.GetComponent<Actor>().posY;
+
+            Vector2 heroPos = new Vector2(heroPosX, heroPosY);
+
+
+            ReValidateMovement(distance, heroPos);
+
             commandToMove(bestX, bestY);
         }
     }
+    private void ReValidateMovement(float distance, Vector2 heroPos)
+    {
+        FindRoute(distance, heroPos);
+        int x = (int)heroPos.x;
+        int y = (int)heroPos.y;
 
+        if (!TileManager.Instance.IsMovementValid(bestX, bestY))
+        {
+            if (TileManager.Instance.IsMovementValid(x, y + 1))
+            {
+                y += 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x + 1, y + 1))
+            {
+                x += 1;
+                y += 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x + 1, y))
+            {
+                x += 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x + 1, y - 1))
+            {
+                x += 1;
+                y -= 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x, y - 1))
+            {
+                y -= 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x - 1, y - 1))
+            {
+                x -= 1;
+                y -= 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x - 1, y))
+            {
+                x -= 1;
+            }
+            else if (TileManager.Instance.IsMovementValid(x - 1, y + 1))
+            {
+                x -= 1;
+                y += 1;
+            }
+            bestX = x;
+            bestY = y;
+        }
+    }
     public void RemoveHeroFromList(HeroController hero)
     {
         heroList.Remove(hero.gameObject);
