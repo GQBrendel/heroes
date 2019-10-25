@@ -35,12 +35,6 @@ public class Enemy : Actor {
         transform.LookAt(target.transform);
         anim.SetTrigger("Attack");
         mainAction = true;
-        StartCoroutine(Fight(target));     
-    }
-
-    private IEnumerator Fight(Actor target)
-    {
-        yield return new WaitForSeconds(1.5f);       
         fight(target);
     }
 

@@ -43,7 +43,7 @@ public class EnemiesController : MonoBehaviour
     {
         ActiveIA = true;
         IdentifyEnemies();
-        StartCoroutine(controlMovement());
+        StartCoroutine(ControlMovement());
     }
 
     void commandToMove(int posX, int posY)
@@ -121,14 +121,16 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
-    IEnumerator controlMovement()
+    IEnumerator ControlMovement()
     {
-        for (int i = 0; i < enemyUnits; i++) {
+        yield return _waitForOneSecond;
+        for (int i = 0; i < enemyUnits; i++)
+        {
             activeEnemy = enemiesList[i].GetComponent<Enemy>();
 
             if(euclidianDistance(GetClosestHero().GetComponent<Actor>(), activeEnemy) < activeEnemy.attackRange && !activeEnemy.mainAction)
             {
-                activeEnemy.Attack(closestHero.GetComponent<Actor>());
+                activeEnemy.GetComponent<Enemy>().Attack(closestHero.GetComponent<Actor>());
                 activeEnemy.mainAction = true;
                 yield return _waitForOneSecond;
             }
@@ -139,10 +141,16 @@ public class EnemiesController : MonoBehaviour
                 activeEnemy.currentTile.toggleWalkable();
                 activeEnemy.rotate = true;
                 if (!activeEnemy.finishedAllActions()) //Se não terminou todas as ações entra no loop do mesmo inimigo
+                {
                     i--;
+                }
+                else
+                {
+                    yield return _waitForOneSecond;
+                }
             }
-
         }
+        yield return _waitForOneSecond;
         endOfIAturn();
         
     }
