@@ -10,11 +10,17 @@ public class HeroController : Actor
     public GameObject friendMark;
     public GameObject enemyMark;
 
+    [SerializeField] private Interactable _emptyTileInteractiblePrefab;
+    private Interactable _interactibleMenu;
+
     public int id = 0;
 
 
-    void Start () {
-          parentStart();
+    private void Start ()
+    {
+        parentStart();
+        var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject, this.transform);
+        _interactibleMenu = interactibleObject.GetComponent<Interactable>();
     }
 	
 	void Update () {
@@ -34,11 +40,24 @@ public class HeroController : Actor
             }            
         }
     }
-   
+
+
+
+    private void OpenEmptyTileOptions(Tile tile)
+    {
+        RadialMenuSpawner.instance.SpawnMenu(_interactibleMenu, this, tile);
+    }
+    public void CommandToMove(Tile tile)
+    {
+        tryMove(tile);
+    }
+
     public void act(Tile tile)
     {
-        if (tile.tileActor == null) {
-            tryMove(tile);
+        if (tile.tileActor == null)
+        {
+            OpenEmptyTileOptions(tile);
+//            tryMove(tile);
             return;
         }
 
