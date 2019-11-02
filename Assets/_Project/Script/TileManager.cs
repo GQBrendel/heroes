@@ -18,13 +18,13 @@ namespace AStar_2D.Demo
     /// </summary>
 	public class TileManager : AStarGrid
     {
-        //Variaveis nossas:
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
         public GameObject knight;
         public GameObject archer;
         public GameObject imp;
         public GameObject selectedHero;
+        [SerializeField] private GameObject _feedbackMessage;
 
         public GameObject UiIcon;
         public List<GameObject> heroesList;
@@ -100,6 +100,7 @@ namespace AStar_2D.Demo
             if(GameObject.Find("TacticalAgent") != null)
             tacticalAgent = GameObject.Find("TacticalAgent").GetComponent<EnemiesController>();
             spawnActors();
+            _feedbackMessage.gameObject.SetActive(false);
         }
 
         void spawnActors()
@@ -111,6 +112,12 @@ namespace AStar_2D.Demo
 
             tacticalAgent.IdentifyEnemies();
             tacticalAgent.IdentifyPlayers();
+        }
+        public void ShowFeedbackMesage(Tile tile, string message)
+        {
+            _feedbackMessage.GetComponentInChildren<TMPro.TextMeshPro>().text  = message;
+            _feedbackMessage.transform.position = tile.transform.position;
+            _feedbackMessage.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -145,7 +152,7 @@ namespace AStar_2D.Demo
                 if (tile.getPos().x == heroScript.posX && tile.getPos().y == heroScript.posY) {
                     cancelAction();
                 } else {
-                    selectedHero.GetComponent<HeroController>().act(tile);
+                    selectedHero.GetComponent<HeroController>().Act(tile);
                 }
             } else if (mouseButton == 1) {
                 tile.toggleWalkable();
@@ -159,7 +166,7 @@ namespace AStar_2D.Demo
         private void tryMove(Tile tile)
         {
             // tiles[selectedHero.GetComponent<Actor>().posX, selectedHero.GetComponent<Actor>().posY].toggleWalkable();         //Marca o tile Origem como n�o caminh�vel
-            selectedHero.GetComponent<Actor>().tryMove(tile);
+            selectedHero.GetComponent<Actor>().TryMove(tile);
         } 
 
         private void onTileHover(Tile tile)
@@ -244,7 +251,7 @@ namespace AStar_2D.Demo
 
         void endAction()
         {
-            selectedHero.GetComponent<Actor>().rotate = true;
+           // selectedHero.GetComponent<Actor>().rotate = true;
            // tiles[selectedHero.GetComponent<Actor>().posX, selectedHero.GetComponent<Actor>().posY].toggleWalkable();
             aHeroIsSelected = false;
             selectedHero.GetComponent<HeroController>().unSelect();
@@ -313,7 +320,7 @@ namespace AStar_2D.Demo
                             cancelAction();
                         else
                         {
-                            selectedHero.GetComponent<HeroController>().act(tile);
+                            selectedHero.GetComponent<HeroController>().Act(tile);
                         }
                     }
                 }

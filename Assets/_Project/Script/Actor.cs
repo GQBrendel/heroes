@@ -91,7 +91,7 @@ public class Actor : MonoBehaviour
         Destroy(gameObject);
     }
        
-    public void tryMove(AStar_2D.Demo.Tile tileDestino)
+    public void TryMove(AStar_2D.Demo.Tile tileDestino)
     {
         animatedAgent = GetComponent<AStar_2D.Demo.AnimatedAgent>();
 
@@ -139,17 +139,32 @@ public class Actor : MonoBehaviour
         currentTile.toggleWalkable();
         checkActions();
         if (finishedAllActions())
+        {
             TileManager.Instance.SendMessage("endAction");
+            rotate = true;
+            StartCoroutine(SetRotateToFalse());
+
+        }
         else if (!mainAction)
             GetComponent<HeroController>().showWays(posX,posY);
     }
     public bool finishedAllActions()
     {
         if (mainAction && moveAction)
+        {
             return true;
+        }
         else
+        {
             return false;
+        }
     }
+    private IEnumerator SetRotateToFalse()
+    {
+        yield return new WaitForSeconds(1);
+        rotate = false;
+    }
+
     public void checkActions()
     {
         if (!moveAction)
@@ -201,12 +216,6 @@ public class Actor : MonoBehaviour
     public void setCurrentTile(AStar_2D.Demo.Tile tile)
     {
             currentTile = tile;
-    }
-
-    protected IEnumerator wait()
-    {
-        yield return new WaitForSeconds(2);
-        rotate = false;
     }
 
     protected void fight (Actor opponent)

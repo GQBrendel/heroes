@@ -50,7 +50,8 @@ public class RadialMenu : MonoBehaviour {
                     case "Move":
                         _currentHero.CommandToMove(_currentTile);
                         break;
-                    case "Cancel":
+                    case "Attack":
+                        _currentHero.CommandToAttack(_currentTile);
                         break;
                     case "EditDialogue":
                         break;

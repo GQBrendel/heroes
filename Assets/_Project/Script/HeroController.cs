@@ -6,28 +6,49 @@ using UnityEngine;
 
 public class HeroController : Actor
 {
+    private Actor _currentEnemy;
+
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
 
     [SerializeField] private Interactable _emptyTileInteractiblePrefab;
-    private Interactable _interactibleMenu;
+    [SerializeField] private Interactable _enemyTileInteractiblePrefab;
+    [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
+
+    private Interactable _emptyTileMenu;
+    private Interactable _enemyTileMenu;
+    private Interactable _friendlyTileMenu;
 
     public int id = 0;
+
+    private bool _canControl = true;
 
 
     private void Start ()
     {
         parentStart();
         var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject, this.transform);
-        _interactibleMenu = interactibleObject.GetComponent<Interactable>();
+        _emptyTileMenu = interactibleObject.GetComponent<Interactable>();
+
+        interactibleObject = Instantiate(_enemyTileInteractiblePrefab.gameObject, this.transform);
+        _enemyTileMenu = interactibleObject.GetComponent<Interactable>();
+
+        interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject, this.transform);
+        _friendlyTileMenu = interactibleObject.GetComponent<Interactable>();
     }
 	
-	void Update () {
+	void Update ()
+    {
+        if (!_canControl)
+        {
+            return;
+        }
 
         parentUpdate();
 
-        if (rotate) {
+        if (rotate)
+        {
             float speed = 5;
 
             GameObject closestEnemy = FindClosestObjWithTag("Enemy");
@@ -36,28 +57,30 @@ public class HeroController : Actor
                 Quaternion targetRotation;
                 targetRotation = Quaternion.LookRotation(closestEnemy.transform.position - transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
-                StartCoroutine(wait());
+               // StartCoroutine(wait());
             }            
         }
     }
 
-
-
-    private void OpenEmptyTileOptions(Tile tile)
+    private void OpenTileOptions(Tile tile, Interactable interactableType)
     {
-        RadialMenuSpawner.instance.SpawnMenu(_interactibleMenu, this, tile);
+        RadialMenuSpawner.instance.SpawnMenu(interactableType, this, tile);
     }
+
     public void CommandToMove(Tile tile)
     {
-        tryMove(tile);
+        TryMove(tile);
+    }
+    public void CommandToAttack(Tile tile)
+    {
+        TryAttack(tile);
     }
 
-    public void act(Tile tile)
+    public void Act(Tile tile)
     {
         if (tile.tileActor == null)
         {
-            OpenEmptyTileOptions(tile);
-//            tryMove(tile);
+            OpenTileOptions(tile, _emptyTileMenu);
             return;
         }
 
@@ -66,34 +89,49 @@ public class HeroController : Actor
         if (otherTag.Contains("Hero"))
         {
             Debug.Log("Clique em aliado");
+            OpenTileOptions(tile, _friendlyTileMenu);
             return;
         }
         else if (otherTag.Contains("Enemy"))
         {
-            
-            if(euclidianDistance(this,tile.tileActor) > attackRange)
-            {
-                Debug.Log("Enemy out of Range");
-                return;
-            }
-            if(mainAction)
-            {
-                Debug.Log("Ja atacaou neste turno");
-                return;
-            }
-            else
-            {
-                transform.LookAt(tile.tileActor.transform);
-                anim.SetTrigger("Attack");
-                mainAction = true;
-                HideWays();
-                fight(tile.tileActor);
-                showWays(posX, posY);
-            }
+            OpenTileOptions(tile, _enemyTileMenu);       
         }
         if(mainAction && moveAction)
         TileManager.Instance.SendMessage("endAction");
     }
+
+    private void TryAttack(Tile tile)
+    {
+        if (euclidianDistance(this, tile.tileActor) > attackRange)
+        {
+            TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
+            Debug.Log("Enemy out of Range");
+            return;
+        }
+        if (mainAction)
+        {
+            Debug.Log("Ja atacaou neste turno");
+            return;
+        }
+        else
+        {
+            _canControl = false;
+            _currentEnemy = tile.tileActor;
+            transform.LookAt(_currentEnemy.transform);
+            HideWays();
+            anim.SetTrigger("Attack");
+
+        }
+    }
+
+    public void FinishedAttack()
+    {
+        _canControl = true;
+        mainAction = true;
+        fight(_currentEnemy);
+        showWays(posX, posY);
+    }
+
 
     public void showWays(int x, int y)
     {
@@ -120,10 +158,12 @@ public class HeroController : Actor
         int spawnX = posX;
         int spawnZ = posY + defaultZ;
 
-        if (axis == "x") {
+        if (axis == "x")
+        {
             spawnX += pos;
-
-        } else if (axis == "z") {
+        }
+        else if (axis == "z")
+        {
             spawnBlueMark("x", getMoveDis(), pos);
             spawnBlueMark("x", -getMoveDis(), pos);
 

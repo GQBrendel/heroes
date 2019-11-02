@@ -47,7 +47,7 @@ public class EnemiesController : MonoBehaviour
     {
         chooseDestination(posX, posY);                                  //Verifica o destino
         activeEnemy.GetComponent<AStar_2D.Demo.AnimatedAgent>().moved = false;
-        activeEnemy.tryMove(destinyTile.GetComponent<AStar_2D.Demo.Tile>());  //manda mover
+        activeEnemy.TryMove(destinyTile.GetComponent<AStar_2D.Demo.Tile>());  //manda mover
         activeEnemy.GetComponent<Actor>().checkActions();
     }
 

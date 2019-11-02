@@ -313,6 +313,10 @@ MonoBehaviour:
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
+  _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: 7edd1664df5a8c54591509df3b6ba081,
+    type: 3}
+  _friendlyTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 0de273b1ea35ed348afa5dbfeaaa1896,
+    type: 3}
   id: 0
 --- !u!114 &114060124658714802
 MonoBehaviour:
