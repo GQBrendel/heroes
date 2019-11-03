@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.AI;
-// Import the AStar_2D namespace
-using AStar_2D;
-using AStar_2D.Pathfinding;
-using System;
 using AStar_2D.Demo;
 
 public class Actor : MonoBehaviour
-{    
+{
+    public delegate void ActorAttackHandler(Actor actor);
+    public ActorAttackHandler OnActorStartAttack;
+    public ActorAttackHandler OnActorFinishAttack;
+
+    [SerializeField] private Camera m_Camera;
+
     public Animator anim;
-    private AStar_2D.Demo.AnimatedAgent animatedAgent;
-    public AStar_2D.Demo.Tile currentTile;
+    private AnimatedAgent animatedAgent;
+    public Tile currentTile;
     public bool isSelected = false;
     public bool acted = false;
     public int posX, posY;
@@ -31,6 +32,11 @@ public class Actor : MonoBehaviour
 
     public bool moveAction, mainAction;
     public float attackRange = 1.5f;
+    public Camera Camera
+    {
+        get { return m_Camera; }
+        set { m_Camera = value; }
+    }
 
     protected void parentStart()
     {

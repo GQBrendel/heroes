@@ -18,6 +18,9 @@ namespace AStar_2D.Demo
     /// </summary>
 	public class TileManager : AStarGrid
     {
+        public delegate void HeroSpawnHandler(List<Actor> actors);
+        public HeroSpawnHandler OnAllHeroesSpawned;
+
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
         public GameObject knight;
@@ -28,6 +31,7 @@ namespace AStar_2D.Demo
 
         public GameObject UiIcon;
         public List<GameObject> heroesList;
+        private List<Actor> _heroes;
         private EnemiesController tacticalAgent;
         bool aHeroIsSelected;
         public GameObject myCamera;
@@ -64,6 +68,7 @@ namespace AStar_2D.Demo
         {
             base.Awake();
 
+            _heroes = new List<Actor>();
             Instance = this;
             tiles = new Tile[gridX, gridY];
 
@@ -99,16 +104,22 @@ namespace AStar_2D.Demo
             
             if(GameObject.Find("TacticalAgent") != null)
             tacticalAgent = GameObject.Find("TacticalAgent").GetComponent<EnemiesController>();
-            spawnActors();
+           
             _feedbackMessage.gameObject.SetActive(false);
         }
+        private void Start()
+        {
+            spawnActors();
+        }
 
-        void spawnActors()
+        private void spawnActors()
         {
             GenerateActor(knight, 2, 0);
             GenerateActor(archer, 5, 0);
             GenerateActor(imp, 2, 7);
             GenerateActor(imp, 5, 7);
+
+            OnAllHeroesSpawned?.Invoke(_heroes);
 
             tacticalAgent.IdentifyEnemies();
             tacticalAgent.IdentifyPlayers();
@@ -214,6 +225,7 @@ namespace AStar_2D.Demo
                 }
                 alliesNumber++;
                 heroesList.Add(go);
+                _heroes.Add(go.GetComponent<Actor>());
             }
 
             go.transform.SetParent(transform);

@@ -7,6 +7,7 @@ using UnityEngine;
 public class HeroController : Actor
 {
     private Actor _currentEnemy;
+    
 
     public GameObject blueMark;
     public GameObject friendMark;
@@ -36,6 +37,15 @@ public class HeroController : Actor
 
         interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject, this.transform);
         _friendlyTileMenu = interactibleObject.GetComponent<Interactable>();
+
+
+        AnimatorEventListener[] animationEventListener = anim.GetBehaviours<AnimatorEventListener>();
+
+        for (int i = 0; i < animationEventListener.Length; i++)
+        {
+            animationEventListener[i].Hero = this;
+        }
+        
     }
 	
 	void Update ()
@@ -120,6 +130,7 @@ public class HeroController : Actor
             transform.LookAt(_currentEnemy.transform);
             HideWays();
             anim.SetTrigger("Attack");
+            OnActorStartAttack?.Invoke(this);
 
         }
     }
@@ -130,6 +141,7 @@ public class HeroController : Actor
         mainAction = true;
         fight(_currentEnemy);
         showWays(posX, posY);
+        OnActorFinishAttack?.Invoke(this);
     }
 
 
