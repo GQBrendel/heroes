@@ -53,7 +53,8 @@ public class RadialMenu : MonoBehaviour {
                     case "Attack":
                         _currentHero.CommandToAttack(_currentTile);
                         break;
-                    case "EditDialogue":
+                    case "Cancel":
+                        _currentHero.CommandToCancelAction();
                         break;
                 }
                 Debug.Log(selected.title + " is selected");

@@ -319,6 +319,8 @@ MonoBehaviour:
     type: 3}
   _friendlyTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 0de273b1ea35ed348afa5dbfeaaa1896,
     type: 3}
+  _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: f2e505315bb5b0f4ba4125d22444cf35,
+    type: 3}
   id: 0
 --- !u!114 &114060124658714802
 MonoBehaviour:

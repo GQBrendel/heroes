@@ -16,10 +16,12 @@ public class HeroController : Actor
     [SerializeField] private Interactable _emptyTileInteractiblePrefab;
     [SerializeField] private Interactable _enemyTileInteractiblePrefab;
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
+    [SerializeField] private Interactable _selfTileInteractiblePrefab;
 
     private Interactable _emptyTileMenu;
     private Interactable _enemyTileMenu;
     private Interactable _friendlyTileMenu;
+    private Interactable _selfTileMenu;
 
     public int id = 0;
 
@@ -37,6 +39,9 @@ public class HeroController : Actor
 
         interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject, this.transform);
         _friendlyTileMenu = interactibleObject.GetComponent<Interactable>();
+
+        interactibleObject = Instantiate(_selfTileInteractiblePrefab.gameObject, this.transform);
+        _selfTileMenu = interactibleObject.GetComponent<Interactable>();
 
 
         AnimatorEventListener[] animationEventListener = anim.GetBehaviours<AnimatorEventListener>();
@@ -77,6 +82,11 @@ public class HeroController : Actor
         RadialMenuSpawner.instance.SpawnMenu(interactableType, this, tile);
     }
 
+    public void CommandToCancelAction()
+    {
+        TileManager.Instance.cancelAction();
+    }
+
     public void CommandToMove(Tile tile)
     {
         TryMove(tile);
@@ -96,6 +106,11 @@ public class HeroController : Actor
 
         string otherTag = tile.tileActor.tag;
 
+        if(tile == currentTile)
+        {
+            OpenTileOptions(tile, _selfTileMenu);
+        }
+
         if (otherTag.Contains("Hero"))
         {
             Debug.Log("Clique em aliado");
@@ -106,8 +121,10 @@ public class HeroController : Actor
         {
             OpenTileOptions(tile, _enemyTileMenu);       
         }
-        if(mainAction && moveAction)
-        TileManager.Instance.SendMessage("endAction");
+        if (mainAction && moveAction)
+        {
+            TileManager.Instance.SendMessage("endAction");
+        }
     }
 
     private void TryAttack(Tile tile)
@@ -131,7 +148,6 @@ public class HeroController : Actor
             HideWays();
             anim.SetTrigger("Attack");
             OnActorStartAttack?.Invoke(this);
-
         }
     }
 
@@ -142,6 +158,11 @@ public class HeroController : Actor
         fight(_currentEnemy);
         showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
+
+        if (mainAction && moveAction)
+        {
+            TileManager.Instance.SendMessage("endAction");
+        }
     }
 
 
@@ -237,7 +258,7 @@ public class HeroController : Actor
         HighLight();
         showWays(posX,posY);
     }
-
+       
     public void unSelect()
     {
         HideWays();

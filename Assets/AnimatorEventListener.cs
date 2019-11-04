@@ -12,7 +12,6 @@ public class AnimatorEventListener : StateMachineBehaviour
         {
             if (Hero != null)
             {
-                Debug.Log("Finished Attack");
                 Hero.FinishedAttack();
             }
 

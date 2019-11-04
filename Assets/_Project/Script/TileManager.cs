@@ -160,9 +160,12 @@ namespace AStar_2D.Demo
             {
                 HeroController heroScript = selectedHero.GetComponent<HeroController>();
 
-                if (tile.getPos().x == heroScript.posX && tile.getPos().y == heroScript.posY) {
-                    cancelAction();
-                } else {
+             //   if (tile.getPos().x == heroScript.posX && tile.getPos().y == heroScript.posY)
+                {
+
+                }
+              //  else
+                {
                     selectedHero.GetComponent<HeroController>().Act(tile);
                 }
             } else if (mouseButton == 1) {
@@ -263,8 +266,6 @@ namespace AStar_2D.Demo
 
         void endAction()
         {
-           // selectedHero.GetComponent<Actor>().rotate = true;
-           // tiles[selectedHero.GetComponent<Actor>().posX, selectedHero.GetComponent<Actor>().posY].toggleWalkable();
             aHeroIsSelected = false;
             selectedHero.GetComponent<HeroController>().unSelect();
             selectedHero.GetComponent<Actor>().acted = true;
@@ -306,43 +307,7 @@ namespace AStar_2D.Demo
 
             }
         }
-
-        void onTileSelected()
-        {
-            Tile tile;
-            Ray ray = Camera.main.ScreenPointToRay(UiIcon.transform.position);
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                Debug.Log(hit.collider.name);
-                if (hit.transform.gameObject.tag.Contains("Tile"))
-                {
-                    tile = hit.collider.gameObject.GetComponent<Tile>();
-                    if (!aHeroIsSelected)
-                    {
-                        pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posi��o
-                        if (selectedHero == null) //Retorna se n�o tem her�i selecionado
-                            return;
-                    }
-                    else if (aHeroIsSelected)
-                    {
-                        if (tile.getPos().x == selectedHero.GetComponent<Actor>().posX && tile.getPos().y == selectedHero.GetComponent<Actor>().posY)
-                            cancelAction();
-                        else
-                        {
-                            selectedHero.GetComponent<HeroController>().Act(tile);
-                        }
-                    }
-                }
-            }
-        }
             
-        public void Action()
-        {
-            onTileSelected();
-        }
         public void toggleTile(Tile tile)
         {
             tile.toggleWalkable();

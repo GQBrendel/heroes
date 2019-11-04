@@ -1103,6 +1103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad18b60ad88c5747b3defd372a7f3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _taunted: 0
   enemyUnits: 0
   heroUnits: 0
   enemiesList: []

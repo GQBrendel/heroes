@@ -7,6 +7,10 @@ using AStar_2D.Demo;
 public class EnemiesController : MonoBehaviour
 {
     private WaitForSeconds _waitForOneSecond = new WaitForSeconds(1f);
+
+    private Actor _targetHero;
+    public bool _taunted;
+
     public static EnemiesController Instance;
     public int enemyUnits = 0;
     public int heroUnits = 0;
@@ -15,7 +19,8 @@ public class EnemiesController : MonoBehaviour
     [HideInInspector]
     public List<GameObject> tilesList;
     GameObject destinyTile;
-    GameObject closestHero;
+
+
 
     Enemy activeEnemy;
     Vector3 boardOffset;
@@ -124,10 +129,11 @@ public class EnemiesController : MonoBehaviour
         for (int i = 0; i < enemyUnits; i++)
         {
             activeEnemy = enemiesList[i].GetComponent<Enemy>();
+            _targetHero = GetTargetHero();
 
-            if(euclidianDistance(GetClosestHero().GetComponent<Actor>(), activeEnemy) < activeEnemy.attackRange && !activeEnemy.mainAction)
+            if(euclidianDistance(_targetHero, activeEnemy) < activeEnemy.attackRange && !activeEnemy.mainAction)
             {
-                activeEnemy.GetComponent<Enemy>().Attack(closestHero.GetComponent<Actor>());
+                activeEnemy.GetComponent<Enemy>().Attack(_targetHero);
                 activeEnemy.mainAction = true;
                 yield return _waitForOneSecond;
             }
@@ -147,9 +153,7 @@ public class EnemiesController : MonoBehaviour
                 }
             }
         }
-        yield return _waitForOneSecond;
-        endOfIAturn();
-        
+        endOfIAturn();        
     }
 
     void endOfIAturn()
@@ -163,24 +167,28 @@ public class EnemiesController : MonoBehaviour
         ActiveIA = false;
     }
 
-    GameObject GetClosestHero()
+    private Actor GetTargetHero()
     {
+        Actor target = null;
 
-        float minDistance = 100;
-
-        foreach(GameObject hero in heroList)
+        if (_taunted)
         {
-            float heroDis = euclidianDistance(hero.GetComponent<Actor>(), activeEnemy);
-            if (minDistance > heroDis)
+        }
+        else
+        {
+            float minDistance = 100;
+
+            foreach (GameObject hero in heroList)
             {
-                minDistance = heroDis;
-                closestHero = hero;
+                float heroDis = euclidianDistance(hero.GetComponent<Actor>(), activeEnemy);
+                if (minDistance > heroDis)
+                {
+                    minDistance = heroDis;
+                    target = hero.GetComponent<Actor>();
+                }
             }
         }
-     //  Debug.Log("A posição do heroi mais proximo é " + closestHero.GetComponent<Actor>().getPos());
-
-        
-        return closestHero;
+        return target;
     }
     void FindRoute(float distance, Vector2 heroPostion)
     {
@@ -241,20 +249,16 @@ public class EnemiesController : MonoBehaviour
     void moveNextToClosestHero()
     {
         float distance;
-        GetClosestHero();
-        distance = (euclidianDistance(activeEnemy.GetComponent<Actor>(), closestHero.GetComponent<Actor>()));
+        _targetHero = GetTargetHero();
+        distance = (euclidianDistance(activeEnemy.GetComponent<Actor>(), _targetHero));
         if (distance < 1.5f)
         {
-           // Debug.Log("Menor que 1.5f - A Distancia Euclidiana entre o inimigo e o heroi mais próximo é " + euclidianDistance(activeEnemy.GetComponent<Actor>(), closestHero.GetComponent<Actor>()));
             return;
         }
         else
         {
-            Debug.Log("Maior que 1.5f - A Distancia Euclidiana entre o inimigo e o heroi mais próximo é " + euclidianDistance(activeEnemy.GetComponent<Actor>(), closestHero.GetComponent<Actor>()));
-
-
-            int heroPosX = closestHero.GetComponent<Actor>().posX;
-            int heroPosY = closestHero.GetComponent<Actor>().posY;
+            int heroPosX = _targetHero.posX;
+            int heroPosY = _targetHero.posY;
 
             Vector2 heroPos = new Vector2(heroPosX, heroPosY);
 
