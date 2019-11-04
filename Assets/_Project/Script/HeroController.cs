@@ -18,6 +18,10 @@ public class HeroController : Actor
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
 
+    [SerializeField] private int _tauntDuration;
+
+    private int _turnToEndTaunt;
+
     private Interactable _emptyTileMenu;
     private Interactable _enemyTileMenu;
     private Interactable _friendlyTileMenu;
@@ -87,6 +91,13 @@ public class HeroController : Actor
         TileManager.Instance.cancelAction();
     }
 
+    public void CommandToTaunt()
+    {
+        mainAction = true;
+        _turnToEndTaunt = _tauntDuration + TileManager.Instance.CurrentTurn;
+        OnActorTaunt?.Invoke(this);
+    }
+
     public void CommandToMove(Tile tile)
     {
         TryMove(tile);
@@ -111,7 +122,7 @@ public class HeroController : Actor
             OpenTileOptions(tile, _selfTileMenu);
         }
 
-        if (otherTag.Contains("Hero"))
+        else if (otherTag.Contains("Hero"))
         {
             Debug.Log("Clique em aliado");
             OpenTileOptions(tile, _friendlyTileMenu);
@@ -148,6 +159,15 @@ public class HeroController : Actor
             HideWays();
             anim.SetTrigger("Attack");
             OnActorStartAttack?.Invoke(this);
+        }
+    }
+
+    public override void ResetActions()
+    {
+        base.ResetActions();
+        if(_turnToEndTaunt == TileManager.Instance.CurrentTurn)
+        {
+
         }
     }
 

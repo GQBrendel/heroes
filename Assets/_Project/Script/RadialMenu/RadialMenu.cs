@@ -53,6 +53,9 @@ public class RadialMenu : MonoBehaviour {
                     case "Attack":
                         _currentHero.CommandToAttack(_currentTile);
                         break;
+                    case "Taunt":
+                        _currentHero.CommandToTaunt();
+                        break;
                     case "Cancel":
                         _currentHero.CommandToCancelAction();
                         break;

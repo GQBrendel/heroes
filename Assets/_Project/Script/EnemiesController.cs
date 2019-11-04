@@ -9,6 +9,8 @@ public class EnemiesController : MonoBehaviour
     private WaitForSeconds _waitForOneSecond = new WaitForSeconds(1f);
 
     private Actor _targetHero;
+    private Actor _tauntHero;
+
     public bool _taunted;
 
     public static EnemiesController Instance;
@@ -39,6 +41,16 @@ public class EnemiesController : MonoBehaviour
     {
         boardOffset = _board;
         unitsOffset = _units;
+    }
+
+    public void HeroTaunted(Actor tauntUnit)
+    {
+        _taunted = true;
+        _tauntHero = tauntUnit;
+    }
+    public void EndTaunt(Actor tauntUnit)
+    {
+        _taunted = false;
     }
 
     public void enemiesTurn()
@@ -161,7 +173,7 @@ public class EnemiesController : MonoBehaviour
         foreach(GameObject enemy in enemiesList)
         {
             enemy.GetComponent<AStar_2D.Demo.AnimatedAgent>().moved = false;
-            enemy.GetComponent<Actor>().resetActions();
+            enemy.GetComponent<Actor>().ResetActions();
         }
 
         ActiveIA = false;
@@ -173,6 +185,7 @@ public class EnemiesController : MonoBehaviour
 
         if (_taunted)
         {
+            target = _tauntHero;
         }
         else
         {

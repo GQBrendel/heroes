@@ -19,7 +19,10 @@ namespace AStar_2D.Demo
 	public class TileManager : AStarGrid
     {
         public delegate void HeroSpawnHandler(List<Actor> actors);
+        public delegate void TurnOverHandler();
+
         public HeroSpawnHandler OnAllHeroesSpawned;
+        public TurnOverHandler OnTurnOver;
 
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
@@ -36,9 +39,11 @@ namespace AStar_2D.Demo
         bool aHeroIsSelected;
         public GameObject myCamera;
         //RaycastHit hit;
-        int turnCounter = 1;
         int nActions = 0;
         bool soDeTesteMudarDepois = false;
+
+        public int CurrentTurn { get; set; }
+
 
         //Variaveis do Asset:
         private Tile[,] tiles;
@@ -68,6 +73,7 @@ namespace AStar_2D.Demo
         {
             base.Awake();
 
+            CurrentTurn = 1;
             _heroes = new List<Actor>();
             Instance = this;
             tiles = new Tile[gridX, gridY];
@@ -159,16 +165,11 @@ namespace AStar_2D.Demo
             else if (mouseButton == 0 && aHeroIsSelected)
             {
                 HeroController heroScript = selectedHero.GetComponent<HeroController>();
+               selectedHero.GetComponent<HeroController>().Act(tile);
 
-             //   if (tile.getPos().x == heroScript.posX && tile.getPos().y == heroScript.posY)
-                {
-
-                }
-              //  else
-                {
-                    selectedHero.GetComponent<HeroController>().Act(tile);
-                }
-            } else if (mouseButton == 1) {
+            }
+            else if (mouseButton == 1)
+            {
                 tile.toggleWalkable();
             }
         }
@@ -287,13 +288,14 @@ namespace AStar_2D.Demo
         {
             yield return new WaitUntil(() => tacticalAgent.ActiveIA == false);
             nActions = 0;
-            turnCounter++;
-            Debug.Log("Turno: " + turnCounter);
+            CurrentTurn++;
+            OnTurnOver?.Invoke();
+            Debug.Log("Turno: " + CurrentTurn);
             GameObject[] activeHeroes;
             activeHeroes = GameObject.FindGameObjectsWithTag("Hero");
             foreach (GameObject hero in activeHeroes)
             {
-                hero.GetComponent<Actor>().resetActions();
+                hero.GetComponent<Actor>().ResetActions();
             }
         }
 

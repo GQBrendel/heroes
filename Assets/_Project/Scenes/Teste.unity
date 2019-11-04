@@ -889,6 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasManager: {fileID: 1180326809}
   _tileManager: {fileID: 1075779671}
+  _enemiesController: {fileID: 2027231985}
   _mainCamera: {fileID: 138302694}
 --- !u!1 &1466620978
 GameObject:

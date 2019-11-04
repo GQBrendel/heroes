@@ -10,16 +10,42 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private CanvasManager _canvasManager;
     [SerializeField] private TileManager _tileManager;
+    [SerializeField] private EnemiesController _enemiesController;
     [SerializeField] private Camera _mainCamera;
+
+    private int _currentTurn;
+    private int _turnToEndTaunt;
 
     private void Awake()
     {
         _heroes = new List<Actor>();
 
         _tileManager.OnAllHeroesSpawned += HandleAllHeroesSpawned;
+        _tileManager.OnTurnOver += HandleTurnOver;
     }
     private void Start()
     {
+    }
+
+    private void HandleActorTaunt(Actor tauntUnit)
+    {
+        if (tauntUnit.CompareTag("Hero"))
+        {
+            _enemiesController.HeroTaunted(tauntUnit);
+        }
+        else
+        {
+            //Enemy taunt
+        }
+    }
+    private void HandleActorEndTaunt(Actor tauntUnit)
+    {
+        //TODO
+    }
+
+    private void HandleTurnOver()
+    {
+        _currentTurn++;
     }
 
     private void HandleAllHeroesSpawned(List<Actor> actors)
@@ -29,6 +55,7 @@ public class GameManager : MonoBehaviour
         {
             actor.OnActorStartAttack += HandleActorAttack;
             actor.OnActorFinishAttack += HandleActorFinishedAttack;
+            actor.OnActorTaunt += HandleActorTaunt;
         }
     }
     private void HandleActorAttack(Actor actor)
@@ -45,6 +72,7 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         _tileManager.OnAllHeroesSpawned -= HandleAllHeroesSpawned;
+        _tileManager.OnTurnOver -= HandleTurnOver;
 
         foreach(Actor actor in _heroes)
         {

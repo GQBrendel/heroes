@@ -10,6 +10,9 @@ public class Actor : MonoBehaviour
     public ActorAttackHandler OnActorStartAttack;
     public ActorAttackHandler OnActorFinishAttack;
 
+    public delegate void TauntHandler(Actor actor);
+    public TauntHandler OnActorTaunt;
+
     [SerializeField] private Camera m_Camera;
 
     public Animator anim;
@@ -242,7 +245,7 @@ public class Actor : MonoBehaviour
         healthBar.transform.localScale = new Vector3(scaleX, 1f,1f);
     }
 
-    public void resetActions()
+    public virtual void ResetActions()
     {
         acted = false;
         moveAction = false;
