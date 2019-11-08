@@ -18,7 +18,7 @@ public class HeroController : Actor
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
 
-    [SerializeField] private int _tauntDuration;
+    [Range(1, 5), SerializeField] private int _tauntDuration;
 
     private int _turnToEndTaunt;
 
@@ -35,16 +35,16 @@ public class HeroController : Actor
     private void Start ()
     {
         parentStart();
-        var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject, this.transform);
+        var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
         _emptyTileMenu = interactibleObject.GetComponent<Interactable>();
 
-        interactibleObject = Instantiate(_enemyTileInteractiblePrefab.gameObject, this.transform);
+        interactibleObject = Instantiate(_enemyTileInteractiblePrefab.gameObject);
         _enemyTileMenu = interactibleObject.GetComponent<Interactable>();
 
-        interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject, this.transform);
+        interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject);
         _friendlyTileMenu = interactibleObject.GetComponent<Interactable>();
 
-        interactibleObject = Instantiate(_selfTileInteractiblePrefab.gameObject, this.transform);
+        interactibleObject = Instantiate(_selfTileInteractiblePrefab.gameObject);
         _selfTileMenu = interactibleObject.GetComponent<Interactable>();
 
 
@@ -81,6 +81,23 @@ public class HeroController : Actor
         }
     }
 
+    internal void CommandToSpinAttack()
+    {
+        if (mainAction)
+        {
+            Debug.LogError("Spin Attack being called but this unity already used main action");
+            return;
+        }
+
+        _canControl = false;
+
+
+        HideWays();
+        anim.SetTrigger("Spin");
+        OnActorStartAttack?.Invoke(this);
+
+    }
+
     private void OpenTileOptions(Tile tile, Interactable interactableType)
     {
         RadialMenuSpawner.instance.SpawnMenu(interactableType, this, tile);
@@ -93,9 +110,17 @@ public class HeroController : Actor
 
     public void CommandToTaunt()
     {
-        mainAction = true;
-        _turnToEndTaunt = _tauntDuration + TileManager.Instance.CurrentTurn;
+        if (mainAction)
+        {
+            Debug.LogError("Taunt being called but this unity already used main action");
+            return;
+        }
+
+        _canControl = false;
+        HideWays();
         OnActorTaunt?.Invoke(this);
+        anim.SetTrigger("Taunt");
+        _turnToEndTaunt = _tauntDuration + TileManager.Instance.CurrentTurn;
     }
 
     public void CommandToMove(Tile tile)
@@ -109,6 +134,10 @@ public class HeroController : Actor
 
     public void Act(Tile tile)
     {
+        if (!_canControl)
+        {
+            return;
+        }
         if (tile.tileActor == null)
         {
             OpenTileOptions(tile, _emptyTileMenu);
@@ -167,8 +196,36 @@ public class HeroController : Actor
         base.ResetActions();
         if(_turnToEndTaunt == TileManager.Instance.CurrentTurn)
         {
-
+            OnActorEndTaunt?.Invoke(this);
         }
+    }
+
+    public void FinishedSpin()
+    {
+        _canControl = true;
+        mainAction = true;
+        SpinDamage();
+
+        showWays(posX, posY);
+
+        OnActorFinishAttack?.Invoke(this);
+
+        if (mainAction && moveAction)
+        {
+            TileManager.Instance.SendMessage("endAction");
+        }
+
+    }
+
+    private void SpinDamage()
+    {
+        Debug.Log(currentTile.posX);
+        List<Actor> adjacentActors = TileManager.Instance.GetAdjacentActors(currentTile);
+        foreach (var actor in adjacentActors)
+        {
+            fight(actor);
+        }
+
     }
 
     public void FinishedAttack()
@@ -178,6 +235,20 @@ public class HeroController : Actor
         fight(_currentEnemy);
         showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
+
+        if (mainAction && moveAction)
+        {
+            TileManager.Instance.SendMessage("endAction");
+        }
+    }
+
+    public void FinishedTaunt()
+    {
+        _canControl = true;
+        mainAction = true;
+        showWays(posX, posY);
+
+        OnActorEndTauntAnimation?.Invoke(this);
 
         if (mainAction && moveAction)
         {

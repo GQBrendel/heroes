@@ -12,6 +12,8 @@ public class Actor : MonoBehaviour
 
     public delegate void TauntHandler(Actor actor);
     public TauntHandler OnActorTaunt;
+    public TauntHandler OnActorEndTaunt;
+    public TauntHandler OnActorEndTauntAnimation;
 
     [SerializeField] private Camera m_Camera;
 
@@ -111,7 +113,16 @@ public class Actor : MonoBehaviour
         if (tileDestino.posX > posX + moveDis)
         {
             Debug.Log("Não posso mover pois o destino é " + tileDestino.posX + " minha pos em X é " + posX + " e meu movimento é " + moveDis);
-            return;
+            animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
+            currentTile.toggleWalkable();                               //Marca o tile como não caminhável
+            currentTile = tileDestino;                                  //Altera o tile atual do personagem
+            setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor  
+            if (tag.Contains("Hero"))
+            {
+                GetComponent<AnimatedAgent>().moved = false;
+                StartCoroutine(controlMovement());
+            }
+//            return;
         }
 
         if (tileDestino.posX < posX - moveDis) {
@@ -224,7 +235,7 @@ public class Actor : MonoBehaviour
 
     public void setCurrentTile(AStar_2D.Demo.Tile tile)
     {
-            currentTile = tile;
+        currentTile = tile;
     }
 
     protected void fight (Actor opponent)

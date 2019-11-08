@@ -327,6 +327,7 @@ MonoBehaviour:
     type: 3}
   _selfTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 0de273b1ea35ed348afa5dbfeaaa1896,
     type: 3}
+  _tauntDuration: 1
   id: 0
 --- !u!114 &114383684668466450
 MonoBehaviour:

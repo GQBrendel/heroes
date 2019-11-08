@@ -51,6 +51,7 @@ public class EnemiesController : MonoBehaviour
     public void EndTaunt(Actor tauntUnit)
     {
         _taunted = false;
+        _tauntHero = null;
     }
 
     public void enemiesTurn()
@@ -201,6 +202,7 @@ public class EnemiesController : MonoBehaviour
                 }
             }
         }
+        activeEnemy.TargetToLookAt = target;
         return target;
     }
     void FindRoute(float distance, Vector2 heroPostion)

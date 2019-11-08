@@ -27,22 +27,6 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    private void HandleActorTaunt(Actor tauntUnit)
-    {
-        if (tauntUnit.CompareTag("Hero"))
-        {
-            _enemiesController.HeroTaunted(tauntUnit);
-        }
-        else
-        {
-            //Enemy taunt
-        }
-    }
-    private void HandleActorEndTaunt(Actor tauntUnit)
-    {
-        //TODO
-    }
-
     private void HandleTurnOver()
     {
         _currentTurn++;
@@ -56,6 +40,8 @@ public class GameManager : MonoBehaviour
             actor.OnActorStartAttack += HandleActorAttack;
             actor.OnActorFinishAttack += HandleActorFinishedAttack;
             actor.OnActorTaunt += HandleActorTaunt;
+            actor.OnActorEndTaunt += HandleActorEndTaunt;
+            actor.OnActorEndTauntAnimation += HandleActorEndTauntAnimation;
         }
     }
     private void HandleActorAttack(Actor actor)
@@ -68,6 +54,33 @@ public class GameManager : MonoBehaviour
         _mainCamera.gameObject.SetActive(true);
         actor.Camera.gameObject.SetActive(false);
     }
+    private void HandleActorTaunt(Actor actor)
+    {
+        if (actor.CompareTag("Hero"))
+        {
+            _enemiesController.HeroTaunted(actor);
+            _mainCamera.gameObject.SetActive(false);
+            actor.Camera.gameObject.SetActive(true);
+        }
+        else
+        {
+            //Enemy taunt
+        }
+    }
+
+    private void HandleActorEndTauntAnimation(Actor actor)
+    {
+        _mainCamera.gameObject.SetActive(true);
+        actor.Camera.gameObject.SetActive(false);
+    }
+
+    private void HandleActorEndTaunt(Actor tauntUnit)
+    {
+        if (tauntUnit.CompareTag("Hero"))
+        {
+            _enemiesController.EndTaunt(tauntUnit);
+        }
+    }
 
     private void OnDestroy()
     {
@@ -78,6 +91,7 @@ public class GameManager : MonoBehaviour
         {
             actor.OnActorStartAttack -= HandleActorAttack;
             actor.OnActorFinishAttack -= HandleActorFinishedAttack;
+            actor.OnActorEndTaunt -= HandleActorEndTaunt;
         }
     }
     private void Update ()

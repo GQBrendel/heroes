@@ -173,6 +173,58 @@ namespace AStar_2D.Demo
                 tile.toggleWalkable();
             }
         }
+
+        public List<Actor> GetAdjacentActors(Tile tileReference)
+        {
+            List<Actor> result = new List<Actor>();
+            int x = tileReference.posX;
+            int y = tileReference.posY;
+            
+            foreach (var tile in tiles)
+            {
+                Actor tileActor = null;
+
+                if (tile.getPos() == new Vector2(x-1, y+1))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x, y+1))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x+1, y+1))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x + 1, y))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x + 1, y - 1))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x , y - 1))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x - 1, y - 1))
+                {
+                    tileActor = tile.tileActor;
+                }
+                else if (tile.getPos() == new Vector2(x - 1, y))
+                {
+                    tileActor = tile.tileActor;
+                }
+
+                if (tileActor)
+                {
+                    result.Add(tileActor);
+                }
+            }
+            return result;
+        }
+
         public void RemoveHeroFromList(HeroController hero)
         {
             heroesList.Remove(hero.gameObject);

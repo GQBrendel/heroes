@@ -46,5 +46,5 @@ MonoBehaviour:
   title: 
   options:
   - color: {r: 0, g: 0, b: 0, a: 0}
-    sprite: {fileID: 21300000, guid: b95019530a21aee418c408e3ab9685b8, type: 3}
+    sprite: {fileID: 21300000, guid: a9492d0b621308e4e85a99fc1a447359, type: 3}
     title: Move

@@ -10,6 +10,8 @@ public class Enemy : Actor {
 
     CursorManager mouseCursor;
 
+    public Actor TargetToLookAt { get; set; }
+
     void Start()
     {
         parentStart();
@@ -20,14 +22,13 @@ public class Enemy : Actor {
     {
         parentUpdate();
 
-        if (rotate)
+        if (rotate && TargetToLookAt)
         {
             float speed = 5;
 
             Quaternion targetRotation;
-            targetRotation = Quaternion.LookRotation(FindClosestObjWithTag("Hero").transform.position - transform.position);
+            targetRotation = Quaternion.LookRotation(TargetToLookAt.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
-            //StartCoroutine(wait());
         }
     }
     public void Attack(Actor target)

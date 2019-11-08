@@ -59,6 +59,9 @@ public class RadialMenu : MonoBehaviour {
                     case "Cancel":
                         _currentHero.CommandToCancelAction();
                         break;
+                    case "Spin":
+                        _currentHero.CommandToSpinAttack();
+                        break;
                 }
                 Debug.Log(selected.title + " is selected");
             }

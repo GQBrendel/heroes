@@ -46,8 +46,11 @@ MonoBehaviour:
   title: 
   options:
   - color: {r: 0, g: 0, b: 0, a: 0}
-    sprite: {fileID: 21300000, guid: 67673189e5e777e448dcfa08e0ca4b47, type: 3}
+    sprite: {fileID: 21300000, guid: c16e81239e00ebe4796136bd048e2abd, type: 3}
     title: Taunt
+  - color: {r: 0, g: 0, b: 0, a: 0}
+    sprite: {fileID: 21300000, guid: 2d0220841c0ecd241977599c60b2309d, type: 3}
+    title: Spin
   - color: {r: 0, g: 0, b: 0, a: 0}
     sprite: {fileID: 21300000, guid: a2aa6f6b387b92e448d89f1fcef305bc, type: 3}
     title: Cancel
