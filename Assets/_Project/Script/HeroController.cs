@@ -21,7 +21,10 @@ public class HeroController : Actor
     [Range(1, 5), SerializeField] private int _tauntDuration;
 
     private int _turnToEndTaunt;
+    private int _tauntCounter;
+    private bool _tauntActive;
 
+    private bool _canControl = true;
     private Interactable _emptyTileMenu;
     private Interactable _enemyTileMenu;
     private Interactable _friendlyTileMenu;
@@ -29,7 +32,6 @@ public class HeroController : Actor
 
     public int id = 0;
 
-    private bool _canControl = true;
 
 
     private void Start ()
@@ -110,17 +112,25 @@ public class HeroController : Actor
 
     public void CommandToTaunt()
     {
+        if(_tauntCounter > 0)
+        {
+            return;
+        }
         if (mainAction)
         {
             Debug.LogError("Taunt being called but this unity already used main action");
             return;
         }
+        _tauntCounter = _tauntDuration;
+        _selfTileMenu.FadeAction("Taunt", _tauntCounter);
 
         _canControl = false;
         HideWays();
         OnActorTaunt?.Invoke(this);
         anim.SetTrigger("Taunt");
-        _turnToEndTaunt = _tauntDuration + TileManager.Instance.CurrentTurn;
+        _tauntActive = true;
+
+      //  _turnToEndTaunt = _tauntDuration + TileManager.Instance.CurrentTurn;
     }
 
     public void CommandToMove(Tile tile)
@@ -163,7 +173,7 @@ public class HeroController : Actor
         }
         if (mainAction && moveAction)
         {
-            TileManager.Instance.SendMessage("endAction");
+            StartCoroutine(EndAction());
         }
     }
 
@@ -194,17 +204,34 @@ public class HeroController : Actor
     public override void ResetActions()
     {
         base.ResetActions();
-        if(_turnToEndTaunt == TileManager.Instance.CurrentTurn)
+        if (_tauntActive)
         {
-            OnActorEndTaunt?.Invoke(this);
+            if (_tauntCounter > 0)
+            {
+                _tauntCounter--;
+                _selfTileMenu.FadeAction("Taunt", _tauntCounter);
+            }
+            if (_tauntCounter == 0)
+            {
+                _selfTileMenu.RemoveFade("Taunt");
+                OnActorEndTaunt?.Invoke(this);
+                _tauntActive = false;
+            }
         }
+        /*
+        if (_turnToEndTaunt == TileManager.Instance.CurrentTurn)
+        {
+            _selfTileMenu.RemoveFade("Taunt");
+            OnActorEndTaunt?.Invoke(this);
+        }*/
     }
+
+
 
     public void FinishedSpin()
     {
         _canControl = true;
         mainAction = true;
-        SpinDamage();
 
         showWays(posX, posY);
 
@@ -212,33 +239,46 @@ public class HeroController : Actor
 
         if (mainAction && moveAction)
         {
-            TileManager.Instance.SendMessage("endAction");
+            StartCoroutine(EndAction());
+        }
+
+    }
+    private IEnumerator EndAction()
+    {
+        yield return null;
+        /*
+        if (KilledEnemyOnTurn)
+        {
+            yield return new WaitUntil(() => ReadyToEndTurn);
+        }*/
+        TileManager.Instance.SendMessage("endAction");
+    }
+
+    public void SpinAttackHit()
+    {
+        List<Actor> adjacentActors = TileManager.Instance.GetAdjacentActors(currentTile);
+        foreach (var actor in adjacentActors)
+        {
+            Fight(actor);
         }
 
     }
 
-    private void SpinDamage()
+    public void AttackHit()
     {
-        Debug.Log(currentTile.posX);
-        List<Actor> adjacentActors = TileManager.Instance.GetAdjacentActors(currentTile);
-        foreach (var actor in adjacentActors)
-        {
-            fight(actor);
-        }
-
+        Fight(_currentEnemy);
     }
 
     public void FinishedAttack()
     {
         _canControl = true;
         mainAction = true;
-        fight(_currentEnemy);
         showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
 
         if (mainAction && moveAction)
         {
-            TileManager.Instance.SendMessage("endAction");
+            StartCoroutine(EndAction());
         }
     }
 
@@ -252,7 +292,7 @@ public class HeroController : Actor
 
         if (mainAction && moveAction)
         {
-            TileManager.Instance.SendMessage("endAction");
+            StartCoroutine(EndAction());
         }
     }
 

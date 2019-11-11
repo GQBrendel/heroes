@@ -25,8 +25,11 @@ public class Actor : MonoBehaviour
     public int posX, posY;
     public int attack, defense;
     public float maxHealth;
-    public bool rotate = false;    
+    public bool rotate = false;
     public GameObject personalCanvas;
+
+   // protected bool KilledEnemyOnTurn { get; set; }
+   // protected bool ReadyToEndTurn { get; set; }
 
     protected bool isActing = false;
     protected int moveDis = 2;
@@ -60,9 +63,9 @@ public class Actor : MonoBehaviour
 
     protected void parentUpdate()
     {
-        if (health <= 0) {
-            killActor();
-        }
+        //    if (health <= 0) {
+        //        killActor();
+        //    }
     }
 
     public void HighLight()
@@ -85,20 +88,24 @@ public class Actor : MonoBehaviour
         AStar_2D.Demo.TileManager.Instance.setActorOnPosition(posX, posY, this);
     }
 
-    public void killActor()
+    private IEnumerator KillActor()
     {
         AStar_2D.Demo.TileManager.Instance.setActorOnPosition(posX, posY, null);
 
-        if (tag.Contains("Hero")) {
+        if (tag.Contains("Hero"))
+        {
             AStar_2D.Demo.TileManager.Instance.alliesNumber--;
             EnemiesController.Instance.IdentifyPlayers();
-        } else if (tag.Contains("Enemy"))
+        }
+        else if (tag.Contains("Enemy"))
         {
             AStar_2D.Demo.TileManager.Instance.enemiesNumber--;
             EnemiesController.Instance.IdentifyEnemies();
         }
 
         currentTile.toggleWalkable();
+        yield return new WaitForSeconds(3f);
+   
         Destroy(gameObject);
     }
        
@@ -158,6 +165,10 @@ public class Actor : MonoBehaviour
         yield return new WaitUntil(() => GetComponent<AnimatedAgent>().moved);
         currentTile.toggleWalkable();
         checkActions();
+       // if (KilledEnemyOnTurn)
+       // {
+       //     yield return new WaitForSeconds(3f);
+       // }
         if (finishedAllActions())
         {
             TileManager.Instance.SendMessage("endAction");
@@ -238,12 +249,26 @@ public class Actor : MonoBehaviour
         currentTile = tile;
     }
 
-    protected void fight (Actor opponent)
+    protected void Fight (Actor opponent)
     {
-        opponent.takeDamage(attack - opponent.defense);
+        bool enemyDead = opponent.TakeDamage(attack - opponent.defense);
+       /* if (!KilledEnemyOnTurn && enemyDead)
+        {
+            KilledEnemyOnTurn = enemyDead;
+            ReadyToEndTurn = false;
+        }
+        if (KilledEnemyOnTurn)
+        {
+            StartCoroutine(GetReadyToEndTurn());
+        }*/
+    }
+    private IEnumerator GetReadyToEndTurn()
+    {
+        yield return new WaitForSeconds(3f);
+//        ReadyToEndTurn = true;
     }
 
-    protected void takeDamage(int damage)
+    protected bool TakeDamage(int damage)
     {
         health -= damage;
 
@@ -253,11 +278,21 @@ public class Actor : MonoBehaviour
 
         float scaleX = health / maxHealth;
 
-        healthBar.transform.localScale = new Vector3(scaleX, 1f,1f);
+        anim.SetTrigger("Damage");
+        anim.SetBool("Dead", health <= 0);
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+        if (health <= 0)
+        {
+            StartCoroutine(KillActor());
+            return true;
+        }
+        return false;
+
     }
 
     public virtual void ResetActions()
     {
+       // KilledEnemyOnTurn = false;
         acted = false;
         moveAction = false;
         mainAction = false;

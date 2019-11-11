@@ -43,14 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbfb868895f7aa49ab042e28f2b1b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeColor: {r: 0.5849056, g: 0.5655927, b: 0.5655927, a: 0.7254902}
   title: 
   options:
-  - color: {r: 0, g: 0, b: 0, a: 0}
+  - CircleColor: {r: 0, g: 0, b: 0, a: 0}
     sprite: {fileID: 21300000, guid: c16e81239e00ebe4796136bd048e2abd, type: 3}
     title: Taunt
-  - color: {r: 0, g: 0, b: 0, a: 0}
+    ImageColor: {r: 1, g: 1, b: 1, a: 0.91764706}
+  - CircleColor: {r: 0, g: 0, b: 0, a: 0}
     sprite: {fileID: 21300000, guid: 2d0220841c0ecd241977599c60b2309d, type: 3}
     title: Spin
-  - color: {r: 0, g: 0, b: 0, a: 0}
+    ImageColor: {r: 1, g: 1, b: 1, a: 1}
+  - CircleColor: {r: 0, g: 0, b: 0, a: 0}
     sprite: {fileID: 21300000, guid: a2aa6f6b387b92e448d89f1fcef305bc, type: 3}
     title: Cancel
+    ImageColor: {r: 1, g: 1, b: 1, a: 1}

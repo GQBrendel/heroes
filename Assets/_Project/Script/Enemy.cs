@@ -9,6 +9,7 @@ public class Enemy : Actor {
     public int id = 0;
 
     CursorManager mouseCursor;
+    private Actor _currentTarget;
 
     public Actor TargetToLookAt { get; set; }
 
@@ -31,12 +32,18 @@ public class Enemy : Actor {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
         }
     }
+
     public void Attack(Actor target)
     {
         transform.LookAt(target.transform);
         anim.SetTrigger("Attack");
+        _currentTarget = target;     
+    }
+
+    public void AttackHit()
+    {
+        Fight(_currentTarget);
         mainAction = true;
-        fight(target);
     }
 
     public int limitX()

@@ -147,8 +147,8 @@ public class EnemiesController : MonoBehaviour
             if(euclidianDistance(_targetHero, activeEnemy) < activeEnemy.attackRange && !activeEnemy.mainAction)
             {
                 activeEnemy.GetComponent<Enemy>().Attack(_targetHero);
-                activeEnemy.mainAction = true;
-                yield return _waitForOneSecond;
+
+                yield return new WaitUntil(() => activeEnemy.mainAction);
             }
             else
             {

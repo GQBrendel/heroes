@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
+using TMPro;
 
 public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
@@ -10,6 +11,7 @@ public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public string title;
     public RadialMenu myMenu;
     public float speed = 8f;
+    public TextMeshProUGUI _coolDownText;
 
 
     Color defaultColor;
