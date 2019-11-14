@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 95909089755769754}
   - component: {fileID: 114608517540005524}
   - component: {fileID: 114383684668466450}
+  - component: {fileID: 709852523964064144}
   m_Layer: 2
   m_Name: Archer
   m_TagString: Hero
@@ -310,6 +311,7 @@ MonoBehaviour:
   posY: 0
   attack: 100
   defense: 5
+  specialAttackDamage: 200
   maxHealth: 80
   rotate: 0
   personalCanvas: {fileID: 1652699373033136}
@@ -321,13 +323,17 @@ MonoBehaviour:
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
-  _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: 7edd1664df5a8c54591509df3b6ba081,
+  _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: f5a0684ad0d9a2645bf3dc275573663d,
     type: 3}
   _friendlyTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 0de273b1ea35ed348afa5dbfeaaa1896,
     type: 3}
-  _selfTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 0de273b1ea35ed348afa5dbfeaaa1896,
+  _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: d4609d4b897ec374ebf66c959fd418a7,
     type: 3}
+  _petSummon: {fileID: 709852523964064144}
   _tauntDuration: 1
+  _specialAttackCoolDownTime: 5
+  _secondSpecialAttackCoolDownTime: 2
+  _frostDuration: 1
   id: 0
 --- !u!114 &114383684668466450
 MonoBehaviour:
@@ -346,6 +352,20 @@ MonoBehaviour:
   dynamicRoutes: 0
   dynamicObstacle: 0
   moved: 0
+--- !u!114 &709852523964064144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072721318551778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0cedf30218505f4fa6ed6e966475e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _petPrefab: {fileID: 530399109506759100, guid: cbd146e805cf234449ac12643cff19c6,
+    type: 3}
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0

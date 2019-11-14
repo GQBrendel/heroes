@@ -63,6 +63,11 @@ public class EnemiesController : MonoBehaviour
 
     void commandToMove(int posX, int posY)
     {
+        if (activeEnemy.Frosted)
+        {
+            posX = activeEnemy.posX;
+            posY = activeEnemy.posY;
+        }
         chooseDestination(posX, posY);                                  //Verifica o destino
         activeEnemy.GetComponent<AStar_2D.Demo.AnimatedAgent>().moved = false;
         activeEnemy.TryMove(destinyTile.GetComponent<AStar_2D.Demo.Tile>());  //manda mover

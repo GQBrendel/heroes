@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public enum StatusType
 {
-    Taunt
+    Taunt,
+    Frost
 }
 
 public class StatusIcons : MonoBehaviour
 {
+    [SerializeField] private Sprite _frostSprite;
     [SerializeField] private Sprite _tauntSprite;
     [SerializeField] private Actor _actor;
     private Image[] _icons;
@@ -20,6 +22,8 @@ public class StatusIcons : MonoBehaviour
         _icons = GetComponentsInChildren<Image>();
         _actor.OnActorTaunt += (Actor a) => { ShowStatus(StatusType.Taunt); };
         _actor.OnActorEndTaunt += (Actor a) => { HideStatus(StatusType.Taunt); };
+        _actor.OnActorFrosted += (Actor a) => { ShowStatus(StatusType.Frost); };
+        _actor.OnActorEndFrosted += (Actor a) => { HideStatus(StatusType.Frost); };
 
         foreach (var icon in _icons)
         {
@@ -34,6 +38,10 @@ public class StatusIcons : MonoBehaviour
                 _icons[_totalStatus].sprite = _tauntSprite;
                 _icons[_totalStatus].gameObject.SetActive(true);
                 break;
+            case StatusType.Frost:
+                _icons[_totalStatus].sprite = _frostSprite;
+                _icons[_totalStatus].gameObject.SetActive(true);
+                break;
         }
         _totalStatus++;
     }
@@ -45,6 +53,17 @@ public class StatusIcons : MonoBehaviour
                 foreach(var icon in _icons)
                 {
                     if(icon.sprite == _tauntSprite)
+                    {
+                        icon.sprite = null;
+                        icon.gameObject.SetActive(false);
+                        break;
+                    }
+                }
+                break;
+            case StatusType.Frost:
+                foreach (var icon in _icons)
+                {
+                    if (icon.sprite == _frostSprite)
                     {
                         icon.sprite = null;
                         icon.gameObject.SetActive(false);

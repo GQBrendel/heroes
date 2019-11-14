@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : Actor {
+public class Enemy : Actor
+{
 
     public int id = 0;
 
@@ -12,6 +13,9 @@ public class Enemy : Actor {
     private Actor _currentTarget;
 
     public Actor TargetToLookAt { get; set; }
+
+    public bool Frosted { get; set; }
+    private int _frostDuration;
 
     void Start()
     {
@@ -21,8 +25,6 @@ public class Enemy : Actor {
 
     void Update()
     {
-        parentUpdate();
-
         if (rotate && TargetToLookAt)
         {
             float speed = 5;
@@ -37,7 +39,7 @@ public class Enemy : Actor {
     {
         transform.LookAt(target.transform);
         anim.SetTrigger("Attack");
-        _currentTarget = target;     
+        _currentTarget = target;
     }
 
     public void AttackHit()
@@ -85,8 +87,23 @@ public class Enemy : Actor {
         id = _id;
     }
 
-    void OnDestroy()
+    public override void GetFrosted(int duration)
     {
-        EnemiesController.Instance.RemoveEnemyFromList(this);
+        _frostDuration = duration;
+        Frosted = true;
+        OnActorFrosted?.Invoke(this as Actor);
+    }
+    public override void ResetActions()
+    {
+        base.ResetActions();
+        if(_frostDuration > 0)
+        {
+            _frostDuration--;
+            if(_frostDuration == 0)
+            {
+                OnActorEndFrosted?.Invoke(this as Actor);
+                Frosted = false;
+            }
+        }
     }
 }

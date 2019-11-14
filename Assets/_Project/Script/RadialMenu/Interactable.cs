@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour {
     public string title;
     public Action[] options;
 
-    public void FadeAction(string actionName, int coolDownTime = 5)
+    public void FadeAction(string actionName, int coolDownTime = 0)
     {
         foreach (var action in options)
         {
@@ -28,7 +28,14 @@ public class Interactable : MonoBehaviour {
             {
                 action.ImageColor = _fadeColor;
                 action.OnCoolDown = true;
-                action.CoolDownValue = coolDownTime;
+                if(coolDownTime > 0)
+                {
+                    action.CoolDownValue = coolDownTime;
+                }
+                else
+                {
+                    action.OnCoolDown = false;
+                }
             }
         }
     }

@@ -13,7 +13,6 @@ public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public float speed = 8f;
     public TextMeshProUGUI _coolDownText;
 
-
     Color defaultColor;
 
     public void Animate()
@@ -32,11 +31,7 @@ public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             yield return null;
         }
         transform.localScale = Vector3.one;
-      
-
     }
-
-
     
     public void OnPointerEnter(PointerEventData eventData)
     {

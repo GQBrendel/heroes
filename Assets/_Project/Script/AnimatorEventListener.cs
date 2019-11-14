@@ -24,6 +24,10 @@ public class AnimatorEventListener : StateMachineBehaviour
                 {
                     Hero.FinishedSpin();
                 }
+                else if (stateInfo.IsName("FrostAttack"))
+                {
+                    Hero.FinishedAttack();
+                }
             }
 
         }

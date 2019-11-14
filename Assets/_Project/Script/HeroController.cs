@@ -7,8 +7,6 @@ using UnityEngine;
 public class HeroController : Actor
 {
     private Actor _currentEnemy;
-    
-
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
@@ -17,11 +15,18 @@ public class HeroController : Actor
     [SerializeField] private Interactable _enemyTileInteractiblePrefab;
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
+    [SerializeField] private PetSummon _petSummon;
 
     [Range(1, 5), SerializeField] private int _tauntDuration;
+    [Range(1, 5), SerializeField] private int _specialAttackCoolDownTime;
+    [Range(1, 5), SerializeField] private int _secondSpecialAttackCoolDownTime;
+    [Range(1, 5), SerializeField] private int _frostDuration;
 
-    private int _turnToEndTaunt;
     private int _tauntCounter;
+    private int _spinAttackCounter;
+    private int _frostAttackCounter;
+    private int _petAttackCounter;
+
     private bool _tauntActive;
 
     private bool _canControl = true;
@@ -32,9 +37,7 @@ public class HeroController : Actor
 
     public int id = 0;
 
-
-
-    private void Start ()
+    private void Start()
     {
         parentStart();
         var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
@@ -56,17 +59,19 @@ public class HeroController : Actor
         {
             animationEventListener[i].Hero = this;
         }
-        
+        if (_petSummon)
+        {
+            _petSummon.OnEnemyHit += HandlePetHit;
+            _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
+        }
     }
-	
-	void Update ()
+
+    void Update()
     {
         if (!_canControl)
         {
             return;
         }
-
-        parentUpdate();
 
         if (rotate)
         {
@@ -74,30 +79,13 @@ public class HeroController : Actor
 
             GameObject closestEnemy = FindClosestObjWithTag("Enemy");
 
-            if (closestEnemy != null) {
+            if (closestEnemy != null)
+            {
                 Quaternion targetRotation;
                 targetRotation = Quaternion.LookRotation(closestEnemy.transform.position - transform.position);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
-               // StartCoroutine(wait());
-            }            
+            }
         }
-    }
-
-    internal void CommandToSpinAttack()
-    {
-        if (mainAction)
-        {
-            Debug.LogError("Spin Attack being called but this unity already used main action");
-            return;
-        }
-
-        _canControl = false;
-
-
-        HideWays();
-        anim.SetTrigger("Spin");
-        OnActorStartAttack?.Invoke(this);
-
     }
 
     private void OpenTileOptions(Tile tile, Interactable interactableType)
@@ -110,9 +98,68 @@ public class HeroController : Actor
         TileManager.Instance.cancelAction();
     }
 
+    public void CommandToFrost(Tile tile)
+    {
+        if (_frostAttackCounter > 0)
+        {
+            return;
+        }
+        if (mainAction)
+        {
+            Debug.LogError("Frost Attack being called but this unity already used main action");
+            return;
+        }
+
+        if (TryAttack(tile))
+        {
+            anim.SetTrigger("Frost");
+        }
+        else
+        {
+            return;
+        }
+
+        _frostAttackCounter = _secondSpecialAttackCoolDownTime;
+        _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+    }
+
+    public void CommandToSummonPet(Tile tile)
+    {
+        if (_petAttackCounter > 0)
+        {
+            return;
+        }
+        if (mainAction)
+        {
+            Debug.LogError("Spin Attack being called but this unity already used main action");
+            return;
+        }
+
+        _petAttackCounter = _specialAttackCoolDownTime;
+        _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+
+        _canControl = false;
+        HideWays();
+
+        OnActorStartAttack?.Invoke(this);
+
+        _currentEnemy = tile.tileActor;
+        _petSummon.SummonPet(tile.transform.position);
+    }
+
+    private void HandlePetFinishedAttack()
+    {
+        FinishedSpecialAttack();
+    }
+
+    private void HandlePetHit()
+    {
+        Fight(_currentEnemy, true);
+    }
+
     public void CommandToTaunt()
     {
-        if(_tauntCounter > 0)
+        if (_tauntCounter > 0)
         {
             return;
         }
@@ -129,8 +176,31 @@ public class HeroController : Actor
         OnActorTaunt?.Invoke(this);
         anim.SetTrigger("Taunt");
         _tauntActive = true;
+    }
+    internal void CommandToSpinAttack()
+    {
+        if (_spinAttackCounter > 0)
+        {
+            return;
+        }
+        if (mainAction)
+        {
+            Debug.LogError("Spin Attack being called but this unity already used main action");
+            return;
+        }
 
-      //  _turnToEndTaunt = _tauntDuration + TileManager.Instance.CurrentTurn;
+        _spinAttackCounter = _specialAttackCoolDownTime;
+
+        _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
+        if (!_tauntActive)
+        {
+            _selfTileMenu.FadeAction("Taunt");
+        }
+
+        _canControl = false;
+        HideWays();
+        anim.SetTrigger("Spin");
+        OnActorStartAttack?.Invoke(this);
     }
 
     public void CommandToMove(Tile tile)
@@ -139,7 +209,10 @@ public class HeroController : Actor
     }
     public void CommandToAttack(Tile tile)
     {
-        TryAttack(tile);
+        if (TryAttack(tile))
+        {
+            anim.SetTrigger("Attack");
+        }
     }
 
     public void Act(Tile tile)
@@ -156,7 +229,7 @@ public class HeroController : Actor
 
         string otherTag = tile.tileActor.tag;
 
-        if(tile == currentTile)
+        if (tile == currentTile)
         {
             OpenTileOptions(tile, _selfTileMenu);
         }
@@ -169,7 +242,7 @@ public class HeroController : Actor
         }
         else if (otherTag.Contains("Enemy"))
         {
-            OpenTileOptions(tile, _enemyTileMenu);       
+            OpenTileOptions(tile, _enemyTileMenu);
         }
         if (mainAction && moveAction)
         {
@@ -177,18 +250,18 @@ public class HeroController : Actor
         }
     }
 
-    private void TryAttack(Tile tile)
+    private bool TryAttack(Tile tile)
     {
         if (euclidianDistance(this, tile.tileActor) > attackRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             Debug.Log("Enemy out of Range");
-            return;
+            return false;
         }
         if (mainAction)
         {
             Debug.Log("Ja atacaou neste turno");
-            return;
+            return false;
         }
         else
         {
@@ -196,8 +269,8 @@ public class HeroController : Actor
             _currentEnemy = tile.tileActor;
             transform.LookAt(_currentEnemy.transform);
             HideWays();
-            anim.SetTrigger("Attack");
             OnActorStartAttack?.Invoke(this);
+            return true;
         }
     }
 
@@ -209,26 +282,78 @@ public class HeroController : Actor
             if (_tauntCounter > 0)
             {
                 _tauntCounter--;
-                _selfTileMenu.FadeAction("Taunt", _tauntCounter);
-            }
-            if (_tauntCounter == 0)
-            {
-                _selfTileMenu.RemoveFade("Taunt");
-                OnActorEndTaunt?.Invoke(this);
-                _tauntActive = false;
+                if (_tauntCounter == 0)
+                {
+                    _selfTileMenu.RemoveFade("Taunt");
+                    OnActorEndTaunt?.Invoke(this);
+                    _tauntActive = false;
+                }
+                else
+                {
+                    _selfTileMenu.FadeAction("Taunt", _tauntCounter);
+                }
             }
         }
-        /*
-        if (_turnToEndTaunt == TileManager.Instance.CurrentTurn)
+        else
         {
             _selfTileMenu.RemoveFade("Taunt");
-            OnActorEndTaunt?.Invoke(this);
-        }*/
+        }
+        if (_spinAttackCounter > 0)
+        {
+            _spinAttackCounter--;
+            if (_spinAttackCounter == 0)
+            {
+                _selfTileMenu.RemoveFade("Spin");
+            }
+            else
+            {
+                _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
+            }
+        }
+        else
+        {
+            _selfTileMenu.RemoveFade("Spin");
+        }
+        if (_frostAttackCounter > 0)
+        {
+            _frostAttackCounter--;
+            if (_frostAttackCounter == 0)
+            {
+                _enemyTileMenu.RemoveFade("Frost");
+            }
+            else
+            {
+                _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+            }
+        }
+        else
+        {
+            _enemyTileMenu.RemoveFade("Frost");
+        }
+        if (_petAttackCounter > 0)
+        {
+            _petAttackCounter--;
+            if (_petAttackCounter == 0)
+            {
+                _enemyTileMenu.RemoveFade("Pet");
+            }
+            else
+            {
+                _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+            }
+        }
+        else
+        {
+            _enemyTileMenu.RemoveFade("Pet");
+        }
     }
 
-
-
     public void FinishedSpin()
+    {
+        FinishedSpecialAttack();
+    }
+
+    private void FinishedSpecialAttack()
     {
         _canControl = true;
         mainAction = true;
@@ -241,8 +366,8 @@ public class HeroController : Actor
         {
             StartCoroutine(EndAction());
         }
-
     }
+
     private IEnumerator EndAction()
     {
         yield return null;
@@ -267,6 +392,12 @@ public class HeroController : Actor
     public void AttackHit()
     {
         Fight(_currentEnemy);
+    }
+
+    public void FrostAttackHit()
+    {
+        _currentEnemy.TakeDamage(0);
+        _currentEnemy.GetFrosted(_frostDuration);
     }
 
     public void FinishedAttack()
@@ -295,7 +426,6 @@ public class HeroController : Actor
             StartCoroutine(EndAction());
         }
     }
-
 
     public void showWays(int x, int y)
     {

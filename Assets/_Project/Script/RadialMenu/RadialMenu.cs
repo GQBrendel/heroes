@@ -60,6 +60,12 @@ public class RadialMenu : MonoBehaviour {
                     case "Taunt":
                         _currentHero.CommandToTaunt();
                         break;
+                    case "Frost":
+                        _currentHero.CommandToFrost(_currentTile);
+                        break;
+                    case "Pet":
+                        _currentHero.CommandToSummonPet(_currentTile);
+                        break;
                     case "Cancel":
                         _currentHero.CommandToCancelAction();
                         break;

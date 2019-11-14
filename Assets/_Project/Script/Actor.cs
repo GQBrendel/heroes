@@ -10,10 +10,12 @@ public class Actor : MonoBehaviour
     public ActorAttackHandler OnActorStartAttack;
     public ActorAttackHandler OnActorFinishAttack;
 
-    public delegate void TauntHandler(Actor actor);
-    public TauntHandler OnActorTaunt;
-    public TauntHandler OnActorEndTaunt;
-    public TauntHandler OnActorEndTauntAnimation;
+    public delegate void StatusHandler(Actor actor);
+    public StatusHandler OnActorTaunt;
+    public StatusHandler OnActorEndTaunt;
+    public StatusHandler OnActorEndTauntAnimation;
+    public StatusHandler OnActorFrosted;
+    public StatusHandler OnActorEndFrosted;
 
     [SerializeField] private Camera m_Camera;
 
@@ -24,12 +26,10 @@ public class Actor : MonoBehaviour
     public bool acted = false;
     public int posX, posY;
     public int attack, defense;
+    public int specialAttackDamage;
     public float maxHealth;
     public bool rotate = false;
     public GameObject personalCanvas;
-
-   // protected bool KilledEnemyOnTurn { get; set; }
-   // protected bool ReadyToEndTurn { get; set; }
 
     protected bool isActing = false;
     protected int moveDis = 2;
@@ -59,13 +59,6 @@ public class Actor : MonoBehaviour
         }
         
         health = maxHealth;
-    }
-
-    protected void parentUpdate()
-    {
-        //    if (health <= 0) {
-        //        killActor();
-        //    }
     }
 
     public void HighLight()
@@ -101,6 +94,7 @@ public class Actor : MonoBehaviour
         {
             AStar_2D.Demo.TileManager.Instance.enemiesNumber--;
             EnemiesController.Instance.IdentifyEnemies();
+            EnemiesController.Instance.RemoveEnemyFromList(this as Enemy);
         }
 
         currentTile.toggleWalkable();
@@ -113,7 +107,12 @@ public class Actor : MonoBehaviour
     {
         animatedAgent = GetComponent<AStar_2D.Demo.AnimatedAgent>();
 
-        if (animatedAgent.IsMoving || !tileDestino.IsWalkable) {
+        if(tileDestino == currentTile)
+        {
+
+        }
+
+        else if (animatedAgent.IsMoving || !tileDestino.IsWalkable) {
             return;
         }
 
@@ -249,26 +248,13 @@ public class Actor : MonoBehaviour
         currentTile = tile;
     }
 
-    protected void Fight (Actor opponent)
+    protected void Fight (Actor opponent, bool specialAttack = false)
     {
-        bool enemyDead = opponent.TakeDamage(attack - opponent.defense);
-       /* if (!KilledEnemyOnTurn && enemyDead)
-        {
-            KilledEnemyOnTurn = enemyDead;
-            ReadyToEndTurn = false;
-        }
-        if (KilledEnemyOnTurn)
-        {
-            StartCoroutine(GetReadyToEndTurn());
-        }*/
-    }
-    private IEnumerator GetReadyToEndTurn()
-    {
-        yield return new WaitForSeconds(3f);
-//        ReadyToEndTurn = true;
+        int attackValue = specialAttack ? specialAttackDamage : attack;
+        opponent.TakeDamage(attackValue - opponent.defense);
     }
 
-    protected bool TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -284,22 +270,20 @@ public class Actor : MonoBehaviour
         if (health <= 0)
         {
             StartCoroutine(KillActor());
-            return true;
         }
-        return false;
-
     }
 
     public virtual void ResetActions()
     {
-       // KilledEnemyOnTurn = false;
         acted = false;
         moveAction = false;
         mainAction = false;
         GetComponent<AnimatedAgent>().moved = false;
-        
     }
 
+    public virtual void GetFrosted(int duration)
+    {
 
+    }
 }
 

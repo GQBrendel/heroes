@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abbfb868895f7aa49ab042e28f2b1b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeColor: {r: 0, g: 0, b: 0, a: 0}
+  _fadeColor: {r: 0.5849056, g: 0.5655927, b: 0.5655927, a: 0.7254902}
   title: 
   options:
   - CircleColor: {r: 0, g: 0, b: 0, a: 0}
