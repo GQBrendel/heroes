@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 224193910617942962}
   - component: {fileID: 222085606027572400}
   - component: {fileID: 114265844101660610}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: UI_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 114608517540005524}
   - component: {fileID: 114383684668466450}
   - component: {fileID: 709852523964064144}
+  - component: {fileID: 7128334700999358427}
   m_Layer: 2
   m_Name: Archer
   m_TagString: Hero
@@ -366,6 +367,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _petPrefab: {fileID: 530399109506759100, guid: cbd146e805cf234449ac12643cff19c6,
     type: 3}
+--- !u!136 &7128334700999358427
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072721318551778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.26
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1500,7 @@ GameObject:
   - component: {fileID: 224252009726822356}
   - component: {fileID: 222244748969391188}
   - component: {fileID: 114150569067967306}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
@@ -2016,7 +2031,7 @@ GameObject:
   - component: {fileID: 114077758639903228}
   - component: {fileID: 114924272646031158}
   - component: {fileID: 114462220563879686}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: CanvasBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3145,7 +3160,7 @@ GameObject:
   - component: {fileID: 2734955822596120139}
   m_Layer: 2
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

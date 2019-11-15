@@ -29,15 +29,10 @@ namespace AStar_2D.Demo
             return new Vector2(posX, posY);
         }
 
-        //public void toggleActor()
-        //{
-        //    hasActor = !hasActor;
-        //}
-        //public bool checkActor()
-        //{
-        //    return hasActor;
-        //}
-        //A partir daqui � do asset mesmo
+        private Camera _mainCamera;
+        private Ray ray;
+        private RaycastHit hit;
+
         public bool touchingPathFlag = false;
         // Delegates
         /// <summary>
@@ -125,16 +120,54 @@ namespace AStar_2D.Demo
         /// </summary>
 		public void Start () 
 		{
-			// DO setup code for the tile
+            _mainCamera = Camera.main;
 		}
-		
-        /// <summary>
-        /// Called by Unity.
-        /// Left blank for demonstration.
-        /// </summary>
-		public void Update () 
-		{
-            // Update tile specific properties or modify the IsWalkable / Weighting values at runtime
+
+
+        public LayerMask _tileLayer;
+
+		public void Update ()
+        {
+            // Make sure events can be sent
+            if (canSend == false)
+                return;
+
+            if (!_mainCamera)
+            {
+                return;
+            }
+
+            ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray,out hit,100,_tileLayer))
+            {
+                if(hit.collider == GetComponent<Collider>())
+                {
+                    // Check for mouse button
+                    if (Input.GetMouseButtonDown(0) == true)
+                    {
+                        // Block message sending
+                        canSend = false;
+
+                        // Trigger the event
+                        if (onTileSelected != null)
+                            onTileSelected(this, 0);
+                    }
+                    else if (Input.GetMouseButtonDown(1) == true)
+                    {
+                        // Block message sending
+                        canSend = false;
+
+                        // Trigger the event
+                        if (onTileSelected != null)
+                            onTileSelected(this, 1);
+                    }
+                }
+               // print(hit.collider.name);
+            }
+
+
+
+
         }
         
         /// <summary>
@@ -161,29 +194,6 @@ namespace AStar_2D.Demo
         /// </summary>
         public void OnMouseOver()
         {
-            // Make sure events can be sent
-            if (canSend == false)
-                return;
-
-            // Check for mouse button
-            if(Input.GetMouseButtonDown(0) == true)
-            {
-                // Block message sending
-                canSend = false;
-
-                // Trigger the event
-                if (onTileSelected != null)
-                    onTileSelected(this, 0);
-            }
-            else if(Input.GetMouseButtonDown(1) == true)
-            {
-                // Block message sending
-                canSend = false;
-
-                // Trigger the event
-                if (onTileSelected != null)
-                    onTileSelected(this, 1);
-            }
         }
 
         /// <summary>

@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 95307820782859002}
   - component: {fileID: 114307234483382722}
   - component: {fileID: 114060124658714802}
+  - component: {fileID: 7827252529342115493}
   m_Layer: 2
   m_Name: Knight
   m_TagString: Hero
@@ -345,6 +346,20 @@ MonoBehaviour:
   dynamicRoutes: 0
   dynamicObstacle: 0
   moved: 0
+--- !u!136 &7827252529342115493
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181729813753890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.26
+  m_Height: 1.68
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1 &1232212028264958
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +497,7 @@ GameObject:
   - component: {fileID: 114972177100558160}
   - component: {fileID: 114044396020304732}
   - component: {fileID: 114661662744442236}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: CanvasBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1202,7 @@ GameObject:
   - component: {fileID: 224086646928645214}
   - component: {fileID: 222832525338534310}
   - component: {fileID: 114255838696870648}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: UI_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1261,7 +1276,7 @@ GameObject:
   - component: {fileID: 224368347886801758}
   - component: {fileID: 222427833092334076}
   - component: {fileID: 114944459935237276}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
@@ -1367,7 +1382,7 @@ GameObject:
   - component: {fileID: 1555822862378576398}
   m_Layer: 2
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1448,6 +1463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StatusIcons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188266899889781884, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7740904570973545947, guid: 9c9af52b481514b4796ef29ccd30c9d4,
         type: 3}
@@ -1553,6 +1573,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623517864480626651, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512701177343329380, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922156567944280817, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023610328983064686, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341201674177170050, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3984835638729355192, guid: 9c9af52b481514b4796ef29ccd30c9d4,
         type: 3}

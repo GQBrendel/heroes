@@ -39,7 +39,6 @@ namespace AStar_2D.Demo
         private EnemiesController tacticalAgent;
         bool aHeroIsSelected;
         public GameObject myCamera;
-        //RaycastHit hit;
         int nActions = 0;
         bool soDeTesteMudarDepois = false;
 
@@ -121,9 +120,9 @@ namespace AStar_2D.Demo
 
         private void spawnActors()
         {
-            GenerateActor(knight, 2, 0);
+            GenerateActor(knight, 1, 0);
             GenerateActor(archer, 5, 0);
-            GenerateActor(_mage, 1, 0);
+            GenerateActor(_mage, 2, 0);
             GenerateActor(imp, 2, 7);
             GenerateActor(imp, 5, 7);
 

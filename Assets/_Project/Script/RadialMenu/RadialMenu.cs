@@ -69,6 +69,12 @@ public class RadialMenu : MonoBehaviour {
                     case "Cancel":
                         _currentHero.CommandToCancelAction();
                         break;
+                    case "Thunder":
+                        _currentHero.CommandToThunder(_currentTile);
+                        break;
+                    case "Heal":
+                        _currentHero.CommandToHeal(_currentTile);
+                        break;
                     case "Spin":
                         _currentHero.CommandToSpinAttack();
                         break;

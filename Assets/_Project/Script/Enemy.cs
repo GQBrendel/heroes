@@ -74,12 +74,12 @@ public class Enemy : Actor
 
     void OnMouseEnter()
     {
-        mouseCursor.setAttack();
+       // mouseCursor.setAttack();
     }
 
     void OnMouseExit()
     {
-        mouseCursor.resetCursor();
+      //  mouseCursor.resetCursor();
     }
 
     internal void setId(int _id)

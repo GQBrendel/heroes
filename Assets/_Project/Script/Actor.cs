@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using AStar_2D.Demo;
+using System;
 
 public class Actor : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class Actor : MonoBehaviour
     public GameObject personalCanvas;
 
     protected bool isActing = false;
+
     protected int moveDis = 2;
     protected float health;
     protected Vector2 lookingAtTile;
@@ -271,6 +273,20 @@ public class Actor : MonoBehaviour
         {
             StartCoroutine(KillActor());
         }
+    }
+
+    public void Heal(int healValue)
+    {
+        health += healValue;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        float scaleX = health / maxHealth;
+        anim.SetTrigger("Healed");
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
     }
 
     public virtual void ResetActions()

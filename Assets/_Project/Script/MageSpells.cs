@@ -4,14 +4,40 @@ using UnityEngine;
 
 public class MageSpells : MonoBehaviour
 {
-    [SerializeField] private RFX4_EffectEvent _effectEvent;
+    [SerializeField] private GameObject _healSpellPrefab;
+    [SerializeField] private Transform _healSpellOrigin;
+    [SerializeField] private RFX4_EffectEvent _oneHandEffectEvent;
+    [SerializeField] private RFX4_EffectEvent _twoHandEffectEvent;
 
-    public void ActivateCharacterEffect()
+    private void Update()
     {
-        _effectEvent.ActivateCharacterEffect();
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            CastHealSpell();
+        }
     }
-    public void ActivateEffect()
+
+    public void CastHealSpell()
     {
-        _effectEvent.ActivateEffect();
+        Instantiate(_healSpellPrefab, _healSpellOrigin.position, _healSpellOrigin.rotation);
+    }
+
+    public void OneHandActivateEffect()
+    {
+        _oneHandEffectEvent.ActivateCharacterEffect();
+    }
+    public void OneHandReleaseEffect()
+    {
+        _oneHandEffectEvent.ActivateEffect();
+    }
+
+    public void TwoHandActivateEffect()
+    {
+        _twoHandEffectEvent.ActivateCharacterEffect();
+        _twoHandEffectEvent.ActivateCharacterEffect2();
+    }
+    public void TwoHandReleaseEffect()
+    {
+        _twoHandEffectEvent.ActivateEffect();
     }
 }

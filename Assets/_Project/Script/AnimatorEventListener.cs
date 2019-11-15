@@ -28,6 +28,15 @@ public class AnimatorEventListener : StateMachineBehaviour
                 {
                     Hero.FinishedAttack();
                 }
+                else if (stateInfo.IsName("Thunder"))
+                {
+                    Hero.FinishedAttack();
+                }
+                else if (stateInfo.IsName("MageHealSpell"))
+                {
+                    Hero.FinishedAttack();
+                }
+                
             }
 
         }

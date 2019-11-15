@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class HeroController : Actor
 {
-    private Actor _currentEnemy;
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
@@ -19,7 +18,7 @@ public class HeroController : Actor
 
     [Range(1, 5), SerializeField] private int _tauntDuration;
     [Range(1, 5), SerializeField] private int _specialAttackCoolDownTime;
-    [Range(1, 5), SerializeField] private int _secondSpecialAttackCoolDownTime;
+    [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
     [Range(1, 5), SerializeField] private int _frostDuration;
 
     private int _tauntCounter;
@@ -29,11 +28,15 @@ public class HeroController : Actor
 
     private bool _tauntActive;
 
-    private bool _canControl = true;
+    protected bool CanControl { get; set; }
+
     private Interactable _emptyTileMenu;
-    private Interactable _enemyTileMenu;
     private Interactable _friendlyTileMenu;
     private Interactable _selfTileMenu;
+    protected Interactable _enemyTileMenu;
+
+    protected Actor CurrentEnemy { get; set; }
+    protected Actor CurrentAlly { get; set; }
 
     public int id = 0;
 
@@ -64,11 +67,12 @@ public class HeroController : Actor
             _petSummon.OnEnemyHit += HandlePetHit;
             _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
         }
+        CanControl = true;
     }
 
     void Update()
     {
-        if (!_canControl)
+        if (!CanControl)
         {
             return;
         }
@@ -91,6 +95,15 @@ public class HeroController : Actor
     private void OpenTileOptions(Tile tile, Interactable interactableType)
     {
         RadialMenuSpawner.instance.SpawnMenu(interactableType, this, tile);
+    }
+
+    public virtual void CommandToThunder(Tile tile)
+    {
+
+    }
+    public virtual void CommandToHeal(Tile tile)
+    {
+
     }
 
     public void CommandToCancelAction()
@@ -138,12 +151,12 @@ public class HeroController : Actor
         _petAttackCounter = _specialAttackCoolDownTime;
         _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
 
-        _canControl = false;
+        CanControl = false;
         HideWays();
 
         OnActorStartAttack?.Invoke(this);
 
-        _currentEnemy = tile.tileActor;
+        CurrentEnemy = tile.tileActor;
         _petSummon.SummonPet(tile.transform.position);
     }
 
@@ -154,7 +167,7 @@ public class HeroController : Actor
 
     private void HandlePetHit()
     {
-        Fight(_currentEnemy, true);
+        Fight(CurrentEnemy, true);
     }
 
     public void CommandToTaunt()
@@ -171,7 +184,7 @@ public class HeroController : Actor
         _tauntCounter = _tauntDuration;
         _selfTileMenu.FadeAction("Taunt", _tauntCounter);
 
-        _canControl = false;
+        CanControl = false;
         HideWays();
         OnActorTaunt?.Invoke(this);
         anim.SetTrigger("Taunt");
@@ -197,7 +210,7 @@ public class HeroController : Actor
             _selfTileMenu.FadeAction("Taunt");
         }
 
-        _canControl = false;
+        CanControl = false;
         HideWays();
         anim.SetTrigger("Spin");
         OnActorStartAttack?.Invoke(this);
@@ -217,7 +230,7 @@ public class HeroController : Actor
 
     public void Act(Tile tile)
     {
-        if (!_canControl)
+        if (!CanControl)
         {
             return;
         }
@@ -250,9 +263,9 @@ public class HeroController : Actor
         }
     }
 
-    private bool TryAttack(Tile tile)
+    protected bool TryAttack(Tile tile)
     {
-        if (euclidianDistance(this, tile.tileActor) > attackRange)
+        if (EuclidianDistance(this, tile.tileActor) > attackRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             Debug.Log("Enemy out of Range");
@@ -265,9 +278,9 @@ public class HeroController : Actor
         }
         else
         {
-            _canControl = false;
-            _currentEnemy = tile.tileActor;
-            transform.LookAt(_currentEnemy.transform);
+            CanControl = false;
+            CurrentEnemy = tile.tileActor;
+            transform.LookAt(CurrentEnemy.transform);
             HideWays();
             OnActorStartAttack?.Invoke(this);
             return true;
@@ -355,7 +368,7 @@ public class HeroController : Actor
 
     private void FinishedSpecialAttack()
     {
-        _canControl = true;
+        CanControl = true;
         mainAction = true;
 
         showWays(posX, posY);
@@ -391,18 +404,18 @@ public class HeroController : Actor
 
     public void AttackHit()
     {
-        Fight(_currentEnemy);
+        Fight(CurrentEnemy);
     }
 
     public void FrostAttackHit()
     {
-        _currentEnemy.TakeDamage(0);
-        _currentEnemy.GetFrosted(_frostDuration);
+        CurrentEnemy.TakeDamage(0);
+        CurrentEnemy.GetFrosted(_frostDuration);
     }
 
     public void FinishedAttack()
     {
-        _canControl = true;
+        CanControl = true;
         mainAction = true;
         showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
@@ -415,7 +428,7 @@ public class HeroController : Actor
 
     public void FinishedTaunt()
     {
-        _canControl = true;
+        CanControl = true;
         mainAction = true;
         showWays(posX, posY);
 
@@ -526,7 +539,7 @@ public class HeroController : Actor
         isSelected = false;
         UnLight();
     }
-    float euclidianDistance(Actor A1, Actor A2)
+    protected float EuclidianDistance(Actor A1, Actor A2)
     {
         int x1, x2, y1, y2;
         x1 = (int)A1.getPos().x;
