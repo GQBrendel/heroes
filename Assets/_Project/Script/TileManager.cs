@@ -26,6 +26,7 @@ namespace AStar_2D.Demo
 
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
+        [SerializeField] private GameObject _mage;
         public GameObject knight;
         public GameObject archer;
         public GameObject imp;
@@ -122,6 +123,7 @@ namespace AStar_2D.Demo
         {
             GenerateActor(knight, 2, 0);
             GenerateActor(archer, 5, 0);
+            GenerateActor(_mage, 1, 0);
             GenerateActor(imp, 2, 7);
             GenerateActor(imp, 5, 7);
 
@@ -273,11 +275,11 @@ namespace AStar_2D.Demo
                 if(!soDeTesteMudarDepois)
                 {
                     soDeTesteMudarDepois = true;
-                    go.name = "Hero";
+                  //  go.name = "Hero";
                 }
                 else
                 {
-                    go.name = "Archer";
+                    //go.name = "Archer";
                 }
                 alliesNumber++;
                 heroesList.Add(go);
