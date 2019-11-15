@@ -19,6 +19,7 @@ public class Actor : MonoBehaviour
     public StatusHandler OnActorEndFrosted;
 
     [SerializeField] private Camera m_Camera;
+    [SerializeField] private ParticleSystem _healParticle;
 
     public Animator anim;
     private AnimatedAgent animatedAgent;
@@ -286,7 +287,13 @@ public class Actor : MonoBehaviour
 
         float scaleX = health / maxHealth;
         anim.SetTrigger("Healed");
+        _healParticle.Play();
         healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+    }
+
+    public bool FullHealth()
+    {
+        return maxHealth == health;
     }
 
     public virtual void ResetActions()

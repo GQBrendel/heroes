@@ -23,7 +23,7 @@ public class HeroController : Actor
 
     private int _tauntCounter;
     private int _spinAttackCounter;
-    private int _frostAttackCounter;
+    protected int _frostAttackCounter;
     private int _petAttackCounter;
 
     private bool _tauntActive;
@@ -31,8 +31,8 @@ public class HeroController : Actor
     protected bool CanControl { get; set; }
 
     private Interactable _emptyTileMenu;
-    private Interactable _friendlyTileMenu;
-    private Interactable _selfTileMenu;
+    protected Interactable _friendlyTileMenu;
+    protected Interactable _selfTileMenu;
     protected Interactable _enemyTileMenu;
 
     protected Actor CurrentEnemy { get; set; }
@@ -133,7 +133,9 @@ public class HeroController : Actor
         }
 
         _frostAttackCounter = _secondSpecialAttackCoolDownTime;
-        _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+        //_enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+        //_enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+        FadeActions();
     }
 
     public void CommandToSummonPet(Tile tile)
@@ -149,7 +151,10 @@ public class HeroController : Actor
         }
 
         _petAttackCounter = _specialAttackCoolDownTime;
-        _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+
+        //_enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+        //_enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+        FadeActions();
 
         CanControl = false;
         HideWays();
@@ -182,7 +187,9 @@ public class HeroController : Actor
             return;
         }
         _tauntCounter = _tauntDuration;
-        _selfTileMenu.FadeAction("Taunt", _tauntCounter);
+        //_selfTileMenu.FadeAction("Taunt", _tauntCounter);
+        //_selfTileMenu.FadeAction("Spin", _spinAttackCounter);
+        FadeActions();
 
         CanControl = false;
         HideWays();
@@ -204,11 +211,12 @@ public class HeroController : Actor
 
         _spinAttackCounter = _specialAttackCoolDownTime;
 
-        _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-        if (!_tauntActive)
+        //_selfTileMenu.FadeAction("Spin", _spinAttackCounter);
+       // if (!_tauntActive)
         {
-            _selfTileMenu.FadeAction("Taunt");
+            //_selfTileMenu.FadeAction("Taunt", _tauntCounter);
         }
+        FadeActions();
 
         CanControl = false;
         HideWays();
@@ -225,6 +233,23 @@ public class HeroController : Actor
         if (TryAttack(tile))
         {
             anim.SetTrigger("Attack");
+            FadeActions();
+        }
+    }
+
+    protected virtual void FadeActions()
+    {
+        _enemyTileMenu.FadeAction("Attack");
+
+        if(gameObject.name == "Knight(Clone)")
+        {
+            _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
+            _selfTileMenu.FadeAction("Taunt", _tauntCounter);
+        }
+        else if (gameObject.name == "Archer(Clone)")
+        {
+            _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+            _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
         }
     }
 
@@ -311,22 +336,7 @@ public class HeroController : Actor
         {
             _selfTileMenu.RemoveFade("Taunt");
         }
-        if (_spinAttackCounter > 0)
-        {
-            _spinAttackCounter--;
-            if (_spinAttackCounter == 0)
-            {
-                _selfTileMenu.RemoveFade("Spin");
-            }
-            else
-            {
-                _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-            }
-        }
-        else
-        {
-            _selfTileMenu.RemoveFade("Spin");
-        }
+
         if (_frostAttackCounter > 0)
         {
             _frostAttackCounter--;
@@ -343,6 +353,23 @@ public class HeroController : Actor
         {
             _enemyTileMenu.RemoveFade("Frost");
         }
+        if (_spinAttackCounter > 0)
+        {
+            _spinAttackCounter--;
+            if (_spinAttackCounter == 0)
+            {
+                _selfTileMenu.RemoveFade("Spin");
+            }
+            else
+            {
+                _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
+            }
+        }
+        else
+        {
+            _selfTileMenu.RemoveFade("Spin");
+        }
+        
         if (_petAttackCounter > 0)
         {
             _petAttackCounter--;
@@ -359,6 +386,8 @@ public class HeroController : Actor
         {
             _enemyTileMenu.RemoveFade("Pet");
         }
+
+        _enemyTileMenu.RemoveFade("Attack");
     }
 
     public void FinishedSpin()

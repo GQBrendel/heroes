@@ -36,7 +36,14 @@ public class RadialMenu : MonoBehaviour {
             newButton.myMenu = this;
             newButton.Animate();
             newButton.icon.color = obj.options[i].ImageColor;
-            newButton._coolDownText.text = obj.options[i].CoolDownValue.ToString();
+            if(obj.options[i].CoolDownValue == 0)
+            {
+                newButton._coolDownText.text = "x";
+            }
+            else
+            {
+                newButton._coolDownText.text = obj.options[i].CoolDownValue.ToString();
+            }
             newButton._coolDownText.gameObject.SetActive(obj.options[i].OnCoolDown);
             
             yield return new WaitForSeconds(0.02f);

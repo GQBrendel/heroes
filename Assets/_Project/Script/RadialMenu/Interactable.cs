@@ -28,13 +28,13 @@ public class Interactable : MonoBehaviour {
             {
                 action.ImageColor = _fadeColor;
                 action.OnCoolDown = true;
-                if(coolDownTime > 0)
+             //   if(coolDownTime > 0)
                 {
                     action.CoolDownValue = coolDownTime;
                 }
-                else
+             //   else
                 {
-                    action.OnCoolDown = false;
+                //    action.OnCoolDown = false;
                 }
             }
         }
