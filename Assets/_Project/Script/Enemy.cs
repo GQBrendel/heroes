@@ -103,6 +103,9 @@ public class Enemy : Actor
             {
                 OnActorEndFrosted?.Invoke(this as Actor);
                 Frosted = false;
+                var ice = FindObjectOfType<IceController>();
+                ice.BreakTheIce();
+
             }
         }
     }

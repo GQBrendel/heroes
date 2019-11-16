@@ -35,7 +35,7 @@ public class HeroController : Actor
     protected Interactable _selfTileMenu;
     protected Interactable _enemyTileMenu;
 
-    protected Actor CurrentEnemy { get; set; }
+    public Actor CurrentEnemy { get; set; }
     protected Actor CurrentAlly { get; set; }
 
     public int id = 0;
@@ -163,6 +163,7 @@ public class HeroController : Actor
 
         CurrentEnemy = tile.tileActor;
         _petSummon.SummonPet(tile.transform.position);
+        anim.SetTrigger("PetAttack");
     }
 
     private void HandlePetFinishedAttack()
@@ -211,11 +212,6 @@ public class HeroController : Actor
 
         _spinAttackCounter = _specialAttackCoolDownTime;
 
-        //_selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-       // if (!_tauntActive)
-        {
-            //_selfTileMenu.FadeAction("Taunt", _tauntCounter);
-        }
         FadeActions();
 
         CanControl = false;

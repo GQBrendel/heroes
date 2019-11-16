@@ -7,6 +7,7 @@ public class Mage : HeroController
 {
     [SerializeField, Range(1,500)] private int _healFactor;
     [Range(1, 5), SerializeField] protected int _healSpellCooldown;
+    [SerializeField] private AudioSource _healSound;
 
     private int _healCounter;
 
@@ -61,7 +62,12 @@ public class Mage : HeroController
 
             CurrentAlly = tile.tileActor;
 
+            anim.SetBool("SelfHeal", tile == currentTile);
             anim.SetTrigger("Heal");
+            if(tile == currentTile)
+            {
+                _healSound.Play();
+            }
         }
     }
 
@@ -91,8 +97,8 @@ public class Mage : HeroController
     {
         if (tile.tileActor.FullHealth())
         {
-            TileManager.Instance.ShowFeedbackMesage(tile, "HEALTH FULL");
-            return false;
+          //  TileManager.Instance.ShowFeedbackMesage(tile, "HEALTH FULL");
+          //  return false;
         }
         if (EuclidianDistance(this, tile.tileActor) > attackRange)
         {

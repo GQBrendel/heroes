@@ -36,9 +36,11 @@ public class AnimatorEventListener : StateMachineBehaviour
                 {
                     Hero.FinishedAttack();
                 }
-                
+                else if (stateInfo.IsName("SelfHeal"))
+                {
+                    Hero.FinishedAttack();
+                }
             }
-
         }
     }
 }
