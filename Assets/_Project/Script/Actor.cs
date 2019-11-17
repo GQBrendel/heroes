@@ -261,6 +261,7 @@ public class Actor : MonoBehaviour
     {
         TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
         health -= damage;
+        PlayDamageSound();
 
         if (health < 0) {
             health = 0;
@@ -273,8 +274,18 @@ public class Actor : MonoBehaviour
         healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
         if (health <= 0)
         {
+            PlayDeathSound();
             StartCoroutine(KillActor());
         }
+    }
+    public virtual void PlayDamageSound()
+    {
+
+    }
+
+    public virtual void PlayDeathSound()
+    {
+
     }
 
     public void Heal(int healValue)

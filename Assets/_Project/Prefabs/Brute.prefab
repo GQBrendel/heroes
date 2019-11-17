@@ -3361,9 +3361,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5310389608896250740}
   - component: {fileID: 2826088992393096718}
-  - component: {fileID: 4854528372862105680}
   - component: {fileID: 5977737984826798449}
   - component: {fileID: 8750991456073462345}
+  - component: {fileID: 2077344126466471385}
   m_Layer: 2
   m_Name: Brute
   m_TagString: Hero
@@ -3409,7 +3409,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4854528372862105680
+--- !u!114 &5977737984826798449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3418,7 +3418,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 9216918927391142247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ad4d320a209a74f9d888dc859a5453, type: 3}
+  m_Script: {fileID: 11500000, guid: 026457dbda74e144787ee00cd02e5c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchGrid: {fileID: 0}
+  moveSpeed: 3.02
+  dynamicRoutes: 0
+  dynamicObstacle: 0
+  moved: 0
+--- !u!136 &8750991456073462345
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216918927391142247}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.32
+  m_Height: 2.2284906
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0642453, z: 0}
+--- !u!114 &2077344126466471385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216918927391142247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130e724bee7109428bcea7e22dad3d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 5871652156187343335}
@@ -3455,37 +3486,6 @@ MonoBehaviour:
   _secondSpecialAttackCoolDownTime: 1
   _frostDuration: 0
   id: 0
---- !u!114 &5977737984826798449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9216918927391142247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026457dbda74e144787ee00cd02e5c9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  searchGrid: {fileID: 0}
-  moveSpeed: 3.02
-  dynamicRoutes: 0
-  dynamicObstacle: 0
-  moved: 0
---- !u!136 &8750991456073462345
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9216918927391142247}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.32
-  m_Height: 2.2284906
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.0642453, z: 0}
 --- !u!1001 &3470663851251467069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3637,7 +3637,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _actor
       value: 
-      objectReference: {fileID: 4854528372862105680}
+      objectReference: {fileID: 2077344126466471385}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c9af52b481514b4796ef29ccd30c9d4, type: 3}
 --- !u!224 &6577350935569327846 stripped

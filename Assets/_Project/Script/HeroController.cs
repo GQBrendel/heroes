@@ -17,12 +17,12 @@ public class HeroController : Actor
     [SerializeField] private PetSummon _petSummon;
 
     [Range(1, 5), SerializeField] private int _tauntDuration;
-    [Range(1, 5), SerializeField] private int _specialAttackCoolDownTime;
+    [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
     [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
     [Range(1, 5), SerializeField] private int _frostDuration;
 
     private int _tauntCounter;
-    private int _spinAttackCounter;
+    protected int _spinAttackCounter;
     protected int _frostAttackCounter;
     private int _petAttackCounter;
 
@@ -152,8 +152,6 @@ public class HeroController : Actor
 
         _petAttackCounter = _specialAttackCoolDownTime;
 
-        //_enemyTileMenu.FadeAction("Pet", _petAttackCounter);
-        //_enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
         FadeActions();
 
         CanControl = false;
@@ -162,6 +160,8 @@ public class HeroController : Actor
         OnActorStartAttack?.Invoke(this);
 
         CurrentEnemy = tile.tileActor;
+
+        transform.LookAt(CurrentEnemy.transform);
         _petSummon.SummonPet(tile.transform.position);
         anim.SetTrigger("PetAttack");
     }
@@ -188,8 +188,6 @@ public class HeroController : Actor
             return;
         }
         _tauntCounter = _tauntDuration;
-        //_selfTileMenu.FadeAction("Taunt", _tauntCounter);
-        //_selfTileMenu.FadeAction("Spin", _spinAttackCounter);
         FadeActions();
 
         CanControl = false;
@@ -198,33 +196,16 @@ public class HeroController : Actor
         anim.SetTrigger("Taunt");
         _tauntActive = true;
     }
-    internal void CommandToSpinAttack()
+    public virtual void CommandToSpinAttack()
     {
-        if (_spinAttackCounter > 0)
-        {
-            return;
-        }
-        if (mainAction)
-        {
-            Debug.LogError("Spin Attack being called but this unity already used main action");
-            return;
-        }
-
-        _spinAttackCounter = _specialAttackCoolDownTime;
-
-        FadeActions();
-
-        CanControl = false;
-        HideWays();
-        anim.SetTrigger("Spin");
-        OnActorStartAttack?.Invoke(this);
+        
     }
 
     public void CommandToMove(Tile tile)
     {
         TryMove(tile);
     }
-    public void CommandToAttack(Tile tile)
+    public virtual void CommandToAttack(Tile tile)
     {
         if (TryAttack(tile))
         {
@@ -417,14 +398,8 @@ public class HeroController : Actor
         TileManager.Instance.SendMessage("endAction");
     }
 
-    public void SpinAttackHit()
+    public virtual void SpinAttackHit()
     {
-        List<Actor> adjacentActors = TileManager.Instance.GetAdjacentActors(currentTile);
-        foreach (var actor in adjacentActors)
-        {
-            Fight(actor);
-        }
-
     }
 
     public virtual void AttackHit()
@@ -467,6 +442,11 @@ public class HeroController : Actor
 
     public void showWays(int x, int y)
     {
+        if (finishedAllActions())
+        {
+            return;
+        }
+
         // Marcas para direita e esquerda
         spawnBlueMark("x", getMoveDis());
         spawnBlueMark("x", -getMoveDis());
