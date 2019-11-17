@@ -29,7 +29,7 @@ namespace AStar_2D.Demo
         [SerializeField] private GameObject _mage;
         public GameObject brute;
         public GameObject archer;
-        public GameObject imp;
+        public GameObject skelletonPrefab;
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
@@ -126,11 +126,14 @@ namespace AStar_2D.Demo
 
         private void spawnActors()
         {
-            GenerateActor(brute, 2, 8);
-            GenerateActor(archer, 5, 0);
-            GenerateActor(_mage, 7, 0);
-            GenerateActor(imp, 2, 7);
-            GenerateActor(imp, 5, 7);
+            GenerateActor(brute, 7, 1);
+            GenerateActor(archer, 8, 0);
+            GenerateActor(_mage, 6, 0);
+            GenerateActor(skelletonPrefab, 4, 8);
+            GenerateActor(skelletonPrefab, 10, 9);
+            GenerateActor(skelletonPrefab, 6, 10);
+            GenerateActor(skelletonPrefab, 2, 14);
+            GenerateActor(skelletonPrefab, 13, 14);
 
             OnAllHeroesSpawned?.Invoke(_heroes);
 
@@ -190,11 +193,6 @@ namespace AStar_2D.Demo
             {
                 HeroController heroScript = selectedHero.GetComponent<HeroController>();
                selectedHero.GetComponent<HeroController>().Act(tile);
-
-            }
-            else if (mouseButton == 1)
-            {
-                tile.toggleWalkable();
             }
         }
 

@@ -52,7 +52,8 @@ MonoBehaviour:
   _mage: {fileID: 7901732471836786819, guid: b02f0560aff70ef4287e10a8d3f11be5, type: 3}
   brute: {fileID: 9216918927391142247, guid: cc8ec09871a0406489ba2fb9ce572f32, type: 3}
   archer: {fileID: 1072721318551778, guid: ecccf96c9e575124fa362cb097eb9a22, type: 3}
-  imp: {fileID: 4470474413053062891, guid: afe570b01d6ee65438a83fdd00434c0f, type: 3}
+  skelletonPrefab: {fileID: 4470474413053062891, guid: afe570b01d6ee65438a83fdd00434c0f,
+    type: 3}
   selectedHero: {fileID: 0}
   _feedbackMessage: {fileID: 0}
   _damagePopUp: {fileID: 7183029863337810717, guid: d3e3602a433eea941948e556c1bae39a,

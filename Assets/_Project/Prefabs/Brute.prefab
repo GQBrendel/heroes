@@ -1404,7 +1404,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7959
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3450,7 +3450,6 @@ MonoBehaviour:
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: f2e505315bb5b0f4ba4125d22444cf35,
     type: 3}
   _petSummon: {fileID: 0}
-  _voice: {fileID: 0}
   _tauntDuration: 2
   _specialAttackCoolDownTime: 3
   _secondSpecialAttackCoolDownTime: 1

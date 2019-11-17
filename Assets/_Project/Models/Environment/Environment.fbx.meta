@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69a190e9609334d4d8ad83cc8140159d
+guid: 37424dcb51cd6f64f94d98b22df26c3e
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -42,6 +42,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: dungeon door material
+    second: {fileID: 2100000, guid: f4a0a60ab2d97534c8b8b792203a03a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: metal material
     second: {fileID: 2100000, guid: edee78ddc5a3d0145bca767d4f2e5d66, type: 2}
   - first:
@@ -64,16 +69,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: tomb material
     second: {fileID: 2100000, guid: 7926ce02c8aa27648b8cbf56365bb372, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: treasure door material
-    second: {fileID: 2100000, guid: 5fdf6561ffd399f4f8be4dadebb29a38, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: treasure door material.002
-    second: {fileID: 2100000, guid: 2cfe6de11f9cda24d96e898a8fc2c17e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
