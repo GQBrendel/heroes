@@ -13,6 +13,7 @@ namespace AStar_2D.Demo
     /// </summary>
 	public class Tile : MonoBehaviour, IPathNode
 	{
+        public Transform DamagePosiiton;
         //Vairaiveis nossas
         public int posX, posY;
         public Actor tileActor;

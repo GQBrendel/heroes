@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        StartAudio();
+    }
+
+    private void StartAudio()
+    {
+        AudioManager.Instance.Play("Ambience");
+        AudioManager.Instance.Play("DungeonMusic");
     }
 
     private void HandleTurnOver()

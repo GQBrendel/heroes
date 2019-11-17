@@ -27,11 +27,15 @@ namespace AStar_2D.Demo
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
         [SerializeField] private GameObject _mage;
-        public GameObject knight;
+        public GameObject brute;
         public GameObject archer;
         public GameObject imp;
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
+        [SerializeField] private DamagePopUp _damagePopUp;
+
+        //[SerializeField] private GameObject _damageFeedbackMessage;
+
 
         public GameObject UiIcon;
         public List<GameObject> heroesList;
@@ -83,8 +87,8 @@ namespace AStar_2D.Demo
                 for (int j = 0; j < gridY; j++)
                 {
                     // Create the tile at its location
-                    GameObject obj = MonoBehaviour.Instantiate(tilePrefab, new Vector3((i - (gridX / 2)) * 0.6f,0, (j - (gridY / 2)) * 0.6f), Quaternion.identity) as GameObject;
-                   // obj.transform.rotation =  Quaternion.Euler(90, 0, 0);
+                    GameObject obj = MonoBehaviour.Instantiate(tilePrefab, new Vector3((i - (gridX / 2)) * 0.6f, 0, (j - (gridY / 2)) * 0.6f), Quaternion.identity) as GameObject;
+                    // obj.transform.rotation =  Quaternion.Euler(90, 0, 0);
                     obj.GetComponent<Tile>().setPos(i, j);
                     // Add the tile script
                     tiles[i, j] = obj.GetComponent<Tile>();
@@ -107,10 +111,10 @@ namespace AStar_2D.Demo
 
             // Pass the arry to the search grid
             constructGrid(tiles);
-            
-            if(GameObject.Find("TacticalAgent") != null)
-            tacticalAgent = GameObject.Find("TacticalAgent").GetComponent<EnemiesController>();
-           
+
+            if (GameObject.Find("TacticalAgent") != null)
+                tacticalAgent = GameObject.Find("TacticalAgent").GetComponent<EnemiesController>();
+
             _feedbackMessage.gameObject.SetActive(false);
         }
         private void Start()
@@ -120,7 +124,7 @@ namespace AStar_2D.Demo
 
         private void spawnActors()
         {
-            GenerateActor(knight, 1, 0);
+            GenerateActor(brute, 2, 8);
             GenerateActor(archer, 5, 0);
             GenerateActor(_mage, 2, 0);
             GenerateActor(imp, 2, 7);
@@ -136,6 +140,11 @@ namespace AStar_2D.Demo
             _feedbackMessage.GetComponentInChildren<TMPro.TextMeshPro>().text  = message;
             _feedbackMessage.transform.position = tile.transform.position;
             _feedbackMessage.gameObject.SetActive(true);
+        }
+
+        public void ShowDamageMessage(Tile tile, int damageAmount, bool isCritical)
+        {
+            DamagePopUp.Create(_damagePopUp.gameObject, tile.DamagePosiiton.position, damageAmount, isCritical);
         }
 
         /// <summary>
@@ -311,7 +320,7 @@ namespace AStar_2D.Demo
                 if(hero.GetComponent<Actor>().checkPos(x,y) && !hero.GetComponent<Actor>().acted) //Se � o actor da posi��o do tile e ele ainda n�o agiu
                 {
                     selectedHero = hero;
-                    selectedHero.GetComponent<HeroController>().selectHero();
+                    selectedHero.GetComponent<HeroController>().SelectHero();
                     aHeroIsSelected = true;
                     break;
                 }

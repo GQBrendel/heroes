@@ -40,7 +40,7 @@ public class HeroController : Actor
 
     public int id = 0;
 
-    private void Start()
+    protected virtual void Start()
     {
         parentStart();
         var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
@@ -237,7 +237,7 @@ public class HeroController : Actor
     {
         _enemyTileMenu.FadeAction("Attack");
 
-        if(gameObject.name == "Knight(Clone)")
+        if(gameObject.name == "Brute(Clone)")
         {
             _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
             _selfTileMenu.FadeAction("Taunt", _tauntCounter);
@@ -427,7 +427,7 @@ public class HeroController : Actor
 
     }
 
-    public void AttackHit()
+    public virtual void AttackHit()
     {
         Fight(CurrentEnemy);
     }
@@ -551,11 +551,11 @@ public class HeroController : Actor
         }
     }
 
-    public void selectHero()
+    public virtual void SelectHero()
     {
         isSelected = true;
         HighLight();
-        showWays(posX,posY);
+        showWays(posX,posY);    
     }
        
     public void unSelect()

@@ -259,6 +259,7 @@ public class Actor : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
         health -= damage;
 
         if (health < 0) {
