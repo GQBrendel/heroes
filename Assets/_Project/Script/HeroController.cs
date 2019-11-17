@@ -527,8 +527,16 @@ public class HeroController : Actor
                 mark = Instantiate(enemyMark) as GameObject;
             }
 
-        } else {
-            mark = Instantiate(blueMark) as GameObject;
+        } else
+        {
+            if (tile.IsWalkable)
+            {
+                mark = Instantiate(blueMark) as GameObject;
+            }
+            else
+            {
+                mark = Instantiate(enemyMark) as GameObject;
+            }
         }
 
         mark.transform.SetParent(transform);

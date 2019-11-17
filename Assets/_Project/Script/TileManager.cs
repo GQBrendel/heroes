@@ -34,7 +34,6 @@ namespace AStar_2D.Demo
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
 
-        //[SerializeField] private GameObject _damageFeedbackMessage;
 
 
         public GameObject UiIcon;
@@ -47,6 +46,8 @@ namespace AStar_2D.Demo
         bool soDeTesteMudarDepois = false;
 
         public int CurrentTurn { get; set; }
+
+        [SerializeField] private List<Vector2> _notwalkable;
 
 
         //Variaveis do Asset:
@@ -120,13 +121,14 @@ namespace AStar_2D.Demo
         private void Start()
         {
             spawnActors();
+            SetupNotWalkableTiles();
         }
 
         private void spawnActors()
         {
             GenerateActor(brute, 2, 8);
             GenerateActor(archer, 5, 0);
-            GenerateActor(_mage, 2, 0);
+            GenerateActor(_mage, 7, 0);
             GenerateActor(imp, 2, 7);
             GenerateActor(imp, 5, 7);
 
@@ -135,6 +137,18 @@ namespace AStar_2D.Demo
             tacticalAgent.IdentifyEnemies();
             tacticalAgent.IdentifyPlayers();
         }
+
+        private void SetupNotWalkableTiles()
+        {
+            foreach(var tile in tiles)
+            {
+                if (_notwalkable.Contains(tile.getPos()))
+                {
+                    tile.toggleWalkable();
+                }
+            }
+        }
+
         public void ShowFeedbackMesage(Tile tile, string message)
         {
             _feedbackMessage.GetComponentInChildren<TMPro.TextMeshPro>().text  = message;
