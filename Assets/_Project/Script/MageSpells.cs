@@ -9,14 +9,6 @@ public class MageSpells : MonoBehaviour
     [SerializeField] private RFX4_EffectEvent _oneHandEffectEvent;
     [SerializeField] private RFX4_EffectEvent _twoHandEffectEvent;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            CastHealSpell();
-        }
-    }
-
     public void CastHealSpell()
     {
         Instantiate(_healSpellPrefab, _healSpellOrigin.position, _healSpellOrigin.rotation);

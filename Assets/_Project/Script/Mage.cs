@@ -97,8 +97,8 @@ public class Mage : HeroController
     {
         if (tile.tileActor.FullHealth())
         {
-          //  TileManager.Instance.ShowFeedbackMesage(tile, "HEALTH FULL");
-          //  return false;
+            TileManager.Instance.ShowFeedbackMesage(tile, "Full Health");
+            return false;
         }
         if (EuclidianDistance(this, tile.tileActor) > attackRange)
         {
@@ -163,7 +163,8 @@ public class Mage : HeroController
         }
         else
         {
-            _enemyTileMenu.RemoveFade("Heal");
+            _selfTileMenu.RemoveFade("Heal");
+            _friendlyTileMenu.RemoveFade("Heal");
         }
     }
 

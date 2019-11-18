@@ -48,6 +48,16 @@ public class Enemy : Actor
         mainAction = true;
     }
 
+    public override void PerformDeathSpecifcsActions()
+    {
+        if (Frosted)
+        {
+            var ice = FindObjectOfType<IceController>();
+            ice.BreakTheIce();
+        }
+    }
+
+
     public int limitX()
     {
         int random;

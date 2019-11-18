@@ -274,7 +274,7 @@ public class Actor : MonoBehaviour
         healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
         if (health <= 0)
         {
-            PlayDeathSound();
+            PerformDeathSpecifcsActions();
             StartCoroutine(KillActor());
         }
     }
@@ -283,7 +283,7 @@ public class Actor : MonoBehaviour
 
     }
 
-    public virtual void PlayDeathSound()
+    public virtual void PerformDeathSpecifcsActions()
     {
 
     }

@@ -59,9 +59,9 @@ public class Brute : HeroController
     {
         AudioManager.Instance.Play("MaleTakeHit");
     }
-    public override void PlayDeathSound()
+    public override void PerformDeathSpecifcsActions()
     {
-        AudioManager.Instance.Play("MaleDeath");
+        AudioManager.Instance.Play("MaleDeath", true);
     }
 
 }

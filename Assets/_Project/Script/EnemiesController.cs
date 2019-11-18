@@ -189,7 +189,7 @@ public class EnemiesController : MonoBehaviour
     {
         Actor target = null;
 
-        if (_taunted)
+        if (_taunted && _tauntHero.isActiveAndEnabled)
         {
             target = _tauntHero;
         }
