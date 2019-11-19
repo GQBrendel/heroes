@@ -202,6 +202,7 @@ namespace AStar_2D.Demo
                 if(AttackingHero == tile.tileActor)
                 {
                     AttackingHero.HideWays();
+                    AttackingHero = null;
                     pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posição
                 }
                 else if (tile.tileActor != null)

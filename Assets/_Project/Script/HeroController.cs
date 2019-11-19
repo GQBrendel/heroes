@@ -10,6 +10,7 @@ public class HeroController : Actor
     public GameObject friendMark;
     public GameObject enemyMark;
     [SerializeField] private GameObject _attackMark;
+    [SerializeField] private GameObject _warningMark;
 
     [SerializeField] private Interactable _emptyTileInteractiblePrefab;
     [SerializeField] private Interactable _enemyTileInteractiblePrefab;
@@ -61,7 +62,6 @@ public class HeroController : Actor
 
         interactibleObject = Instantiate(_selfTileInteractiblePrefab.gameObject);
         _selfTileMenu = interactibleObject.GetComponent<Interactable>();
-
 
         AnimatorEventListener[] animationEventListener = anim.GetBehaviours<AnimatorEventListener>();
 
@@ -201,6 +201,24 @@ public class HeroController : Actor
         Fight(CurrentEnemy, true);
     }
 
+    public void SendHoverCommand(HeroesActions action)
+    {
+        switch (action)
+        {
+            case HeroesActions.Spin:
+                ShowWarningMarks();
+                break;
+        }
+    }
+    public void SendLeaveHoverCommand(HeroesActions action)
+    {
+        switch (action)
+        {
+            case HeroesActions.Spin:
+                HideWays();
+                break;
+        }
+    }
 
     public void SendCommand(HeroesActions action)
     {
@@ -463,6 +481,7 @@ public class HeroController : Actor
 
     public void FinishedSpin()
     {
+        OnActorFinishSpinAttack?.Invoke(this);
         FinishedSpecialAttack();
     }
 
@@ -575,14 +594,22 @@ public class HeroController : Actor
 
     public void ShowAttackMarks()
     {
-        SpawnAttackMark("x", CorrectAttackRange);
-        SpawnAttackMark("x", -CorrectAttackRange);
+        SpawnAttackMark("x", _attackMark, CorrectAttackRange);
+        SpawnAttackMark("x", _attackMark, -CorrectAttackRange);
 
-        SpawnAttackMark("z", CorrectAttackRange);
-        SpawnAttackMark("z", -CorrectAttackRange);
+        SpawnAttackMark("z", _attackMark, CorrectAttackRange);
+        SpawnAttackMark("z", _attackMark, -CorrectAttackRange);
+    }
+    public void ShowWarningMarks()
+    {
+        SpawnAttackMark("x", _warningMark, CorrectAttackRange);
+        SpawnAttackMark("x", _warningMark, -CorrectAttackRange);
+
+        SpawnAttackMark("z", _warningMark, CorrectAttackRange);
+        SpawnAttackMark("z", _warningMark, -CorrectAttackRange);
     }
 
-    private void SpawnAttackMark(string axis, int pos = 1, int defaultZ = 0)
+    private void SpawnAttackMark(string axis, GameObject mark, int pos = 1, int defaultZ = 0)
     {
         if (pos == 0)
         {
@@ -598,8 +625,8 @@ public class HeroController : Actor
         }
         else if (axis == "z")
         {
-            SpawnAttackMark("x", CorrectAttackRange, pos);
-            SpawnAttackMark("x", -CorrectAttackRange, pos);
+            SpawnAttackMark("x", mark, CorrectAttackRange, pos);
+            SpawnAttackMark("x", mark, - CorrectAttackRange, pos);
 
             spawnZ += pos;
         }
@@ -608,24 +635,24 @@ public class HeroController : Actor
 
         if (spawnX >= TileManager.Instance.gridX || spawnX < 0)
         {
-            SpawnAttackMark(axis, pos, defaultZ);
+            SpawnAttackMark(axis, mark, pos, defaultZ);
             return;
         }
 
         if (spawnZ >= TileManager.Instance.gridX || spawnZ < 0)
         {
-            SpawnAttackMark(axis, pos, defaultZ);
+            SpawnAttackMark(axis, mark, pos, defaultZ);
             return;
         }
 
         Tile tile = TileManager.Instance.getObjectOnPosition(spawnX, spawnZ);
 
-        GameObject mark = null;
+        GameObject atkMark = null;
 
-        mark = Instantiate(_attackMark) as GameObject; 
-        mark.transform.position = new Vector3(tile.transform.position.x, transform.position.y - 0.01f, tile.transform.position.z);
+        atkMark = Instantiate(mark) as GameObject;
+        atkMark.transform.position = new Vector3(tile.transform.position.x, transform.position.y - 0.01f, tile.transform.position.z);
 
-        SpawnAttackMark(axis, pos, defaultZ);
+        SpawnAttackMark(axis, mark, pos, defaultZ);
     }
 
     private void SpawnMark(string axis, int pos = 1, int defaultZ = 0 )

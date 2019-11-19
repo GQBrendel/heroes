@@ -32,12 +32,14 @@ public class ActionSelectorButton : MonoBehaviour, IPointerEnterHandler, IPointe
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        _heroController.SendHoverCommand(Action);
         _defaultColor = _circle.color;
         _circle.color = Color.white;
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
+        _heroController.SendLeaveHoverCommand(Action);
         _circle.color = _defaultColor;
     }
 

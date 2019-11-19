@@ -53,7 +53,7 @@ public class Brute : HeroController
         anim.SetTrigger("Spin");
         AudioManager.Instance.Play("SpinAxe");
         AudioManager.Instance.Play("MaleAttackGrunt");
-        OnActorStartAttack?.Invoke(this);
+        OnActorStartSpinAttack?.Invoke(this);
     }
 
     public override void PlayDamageSound()

@@ -10,6 +10,8 @@ public class Actor : MonoBehaviour
     public delegate void ActorAttackHandler(Actor actor);
     public ActorAttackHandler OnActorStartAttack;
     public ActorAttackHandler OnActorFinishAttack;
+    public ActorAttackHandler OnActorStartSpinAttack;
+    public ActorAttackHandler OnActorFinishSpinAttack;
 
     public delegate void StatusHandler(Actor actor);
     public StatusHandler OnActorTaunt;
@@ -19,6 +21,7 @@ public class Actor : MonoBehaviour
     public StatusHandler OnActorEndFrosted;
 
     [SerializeField] private Camera m_Camera;
+    [SerializeField] private Camera m_SpinCamera;
     [SerializeField] private ParticleSystem _healParticle;
 
     public Animator anim;
@@ -51,7 +54,11 @@ public class Actor : MonoBehaviour
         get { return m_Camera; }
         set { m_Camera = value; }
     }
-
+    public Camera SpinCamera
+    {
+        get { return m_SpinCamera; }
+        set { m_SpinCamera = value; }
+    }
     protected void parentStart()
     {
         this.anim = GetComponent<Animator>();
