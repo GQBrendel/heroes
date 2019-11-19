@@ -2579,6 +2579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 7373323794718657832}
+  m_SpinCamera: {fileID: 0}
   _healParticle: {fileID: 4457736266172380572}
   anim: {fileID: 3853337215732162538}
   currentTile: {fileID: 0}
@@ -2594,13 +2595,13 @@ MonoBehaviour:
   personalCanvas: {fileID: 5410261984937531793}
   moveAction: 0
   mainAction: 0
-  attackRange: 4
-  CorrectAttackRange: 3
+  BasicAttackRange: 3
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
   _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
     type: 3}
+  _warningMark: {fileID: 0}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
   _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: c63116293ae867249982eec67631d09b,

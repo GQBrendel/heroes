@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 7164074486814521564}
+  m_SpinCamera: {fileID: 0}
   _healParticle: {fileID: 2869083956743931505}
   anim: {fileID: 95909089755769754}
   currentTile: {fileID: 0}
@@ -367,13 +368,13 @@ MonoBehaviour:
   personalCanvas: {fileID: 1652699373033136}
   moveAction: 0
   mainAction: 0
-  attackRange: 4
-  CorrectAttackRange: 4
+  BasicAttackRange: 5
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
   _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
     type: 3}
+  _warningMark: {fileID: 0}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
   _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: f5a0684ad0d9a2645bf3dc275573663d,
@@ -383,7 +384,7 @@ MonoBehaviour:
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: d4609d4b897ec374ebf66c959fd418a7,
     type: 3}
   _petSummon: {fileID: 709852523964064144}
-  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 91e5622dd34615643890e5ef0fd85163,
+  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: d61b096b68392be4184bdec1f15ce560,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
@@ -397,6 +398,7 @@ MonoBehaviour:
     type: 3}
   _iceArrowOrigin: {fileID: 2004479399998170688}
   _effectOnCollision: {fileID: 173866, guid: 6692e3c69d930964f89b810020ae7d5c, type: 3}
+  FrostAttackRange: 2
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0

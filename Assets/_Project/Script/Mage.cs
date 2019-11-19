@@ -100,7 +100,7 @@ public class Mage : HeroController
             TileManager.Instance.ShowFeedbackMesage(tile, "Full Health");
             return false;
         }
-        if (EuclidianDistance(this, tile.tileActor) > attackRange)
+        if (EuclidianDistance(this, tile.tileActor) > BasicAttackRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             return false;

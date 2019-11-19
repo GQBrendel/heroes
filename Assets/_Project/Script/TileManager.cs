@@ -35,6 +35,8 @@ namespace AStar_2D.Demo
         [SerializeField] private DamagePopUp _damagePopUp;
         public HeroController MovingHero;
         public HeroController AttackingHero;
+        public HeroController FrostingHero;
+        public HeroController PetHero;
 
 
 
@@ -132,8 +134,8 @@ namespace AStar_2D.Demo
             GenerateActor(archer, 8, 0);
             GenerateActor(_mage, 6, 0);
 
-            GenerateActor(skelletonPrefab, 8, 2);/*
-            GenerateActor(skelletonPrefab, 4, 8);
+            GenerateActor(skelletonPrefab, 8, 2);
+            GenerateActor(skelletonPrefab, 4, 8);/*
             GenerateActor(skelletonPrefab, 10, 9);
             GenerateActor(skelletonPrefab, 6, 10);
             GenerateActor(skelletonPrefab, 2, 14);
@@ -203,11 +205,39 @@ namespace AStar_2D.Demo
                 {
                     AttackingHero.HideWays();
                     AttackingHero = null;
-                    pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posição
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y); 
                 }
                 else if (tile.tileActor != null)
                 {
                     AttackingHero.CommandToAttack(tile);                   
+                }
+                return;
+            }
+            else if (FrostingHero)
+            {
+                if (FrostingHero == tile.tileActor)
+                {
+                    FrostingHero.HideWays();
+                    FrostingHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    FrostingHero.CommandToFrost(tile);
+                }
+                return;
+            }
+            else if (PetHero)
+            {
+                if (PetHero == tile.tileActor)
+                {
+                    PetHero.HideWays();
+                    PetHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    PetHero.CommandToSummonPet(tile);
                 }
                 return;
             }

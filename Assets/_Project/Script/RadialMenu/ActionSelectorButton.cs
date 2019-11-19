@@ -14,7 +14,6 @@ public class ActionSelectorButton : MonoBehaviour, IPointerEnterHandler, IPointe
     [SerializeField] private Image _fadeEffect;
     [SerializeField] private Text _countDownText;
 
-
     private Button _currentButton;
     private HeroController _heroController;
 

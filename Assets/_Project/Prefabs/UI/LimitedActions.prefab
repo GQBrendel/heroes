@@ -251,8 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92519b447b43be4e8f0cab0f481d8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Title: 
-  _action: 0
+  Action: 0
   _circle: {fileID: 970939133397845376}
   _icon: {fileID: 4875001239678797983}
   _defaultColor: {r: 0, g: 0, b: 0, a: 0}
@@ -361,8 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92519b447b43be4e8f0cab0f481d8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Title: 
-  _action: 2
+  Action: 2
   _circle: {fileID: 8347098817374407990}
   _icon: {fileID: 3597786691413401093}
   _defaultColor: {r: 0, g: 0, b: 0, a: 0}

@@ -25,6 +25,8 @@ public class HeroController : Actor
     [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
     [Range(1, 5), SerializeField] private int _frostDuration;
 
+    public int FrostAttackDamage = 40;
+
     private int _tauntCounter;
     protected int _spinAttackCounter;
     protected int _frostAttackCounter;
@@ -198,6 +200,7 @@ public class HeroController : Actor
 
     private void HandlePetHit()
     {
+        TileManager.Instance.PetHero = null;
         Fight(CurrentEnemy, true);
     }
 
@@ -249,19 +252,30 @@ public class HeroController : Actor
             case HeroesActions.Spin:
                 CommandToSpinAttack();
                 break;
-          
+            case HeroesActions.Frost:
+                CommandToFrostNew();
+                break;
+            case HeroesActions.Pet:
+                CommandToSummonPetNew();
+                break;
         }
 
     }
+    protected virtual void CommandToFrostNew()
+    {
+    }
+    protected virtual void CommandToSummonPetNew()
+    {
+    }
 
-    void CommandToMoveNew()
+    private void CommandToMoveNew()
     {
         ShowWays(posX,posY);
         TileManager.Instance.MovingHero = this;
     }
-    void CommandToAttackNew()
+    private void CommandToAttackNew()
     {
-        ShowAttackMarks();
+        ShowAttackMarks(BasicAttackRange);
         TileManager.Instance.AttackingHero = this;
     }
 
@@ -372,7 +386,7 @@ public class HeroController : Actor
 
     protected bool TryAttack(Tile tile)
     {
-        if (EuclidianDistance(this, tile.tileActor) > CorrectAttackRange)
+        if (EuclidianDistance(this, tile.tileActor) > BasicAttackRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             Debug.Log("Enemy out of Range");
@@ -521,7 +535,7 @@ public class HeroController : Actor
 
     public void FrostAttackHit()
     {
-        CurrentEnemy.TakeDamage(0);
+        CurrentEnemy.TakeDamage(FrostAttackDamage);
         CurrentEnemy.GetFrosted(_frostDuration);
     }
 
@@ -530,6 +544,8 @@ public class HeroController : Actor
         CanControl = true;
         mainAction = true;
         OnActorFinishAttack?.Invoke(this);
+        TileManager.Instance.FrostingHero = null;
+        TileManager.Instance.PetHero = null;
 
         if (finishedAllActions())
         {
@@ -592,24 +608,24 @@ public class HeroController : Actor
         go.transform.SetParent(transform);
     }
 
-    public void ShowAttackMarks()
+    public void ShowAttackMarks(int range)
     {
-        SpawnAttackMark("x", _attackMark, CorrectAttackRange);
-        SpawnAttackMark("x", _attackMark, -CorrectAttackRange);
+        SpawnAttackMark("x", _attackMark, range, 0, range);
+        SpawnAttackMark("x", _attackMark, -range, 0, range);
 
-        SpawnAttackMark("z", _attackMark, CorrectAttackRange);
-        SpawnAttackMark("z", _attackMark, -CorrectAttackRange);
+        SpawnAttackMark("z", _attackMark, range, 0, range);
+        SpawnAttackMark("z", _attackMark, -range, 0, range);
     }
     public void ShowWarningMarks()
     {
-        SpawnAttackMark("x", _warningMark, CorrectAttackRange);
-        SpawnAttackMark("x", _warningMark, -CorrectAttackRange);
+        SpawnAttackMark("x", _warningMark, BasicAttackRange);
+        SpawnAttackMark("x", _warningMark, -BasicAttackRange);
 
-        SpawnAttackMark("z", _warningMark, CorrectAttackRange);
-        SpawnAttackMark("z", _warningMark, -CorrectAttackRange);
+        SpawnAttackMark("z", _warningMark, BasicAttackRange);
+        SpawnAttackMark("z", _warningMark, -BasicAttackRange);
     }
 
-    private void SpawnAttackMark(string axis, GameObject mark, int pos = 1, int defaultZ = 0)
+    private void SpawnAttackMark(string axis, GameObject mark, int pos = 1, int defaultZ = 0, int range = 1)
     {
         if (pos == 0)
         {
@@ -625,8 +641,8 @@ public class HeroController : Actor
         }
         else if (axis == "z")
         {
-            SpawnAttackMark("x", mark, CorrectAttackRange, pos);
-            SpawnAttackMark("x", mark, - CorrectAttackRange, pos);
+            SpawnAttackMark("x", mark, range, pos, range);
+            SpawnAttackMark("x", mark, - range, pos, range);
 
             spawnZ += pos;
         }
@@ -635,13 +651,13 @@ public class HeroController : Actor
 
         if (spawnX >= TileManager.Instance.gridX || spawnX < 0)
         {
-            SpawnAttackMark(axis, mark, pos, defaultZ);
+            SpawnAttackMark(axis, mark, pos, defaultZ, range);
             return;
         }
 
         if (spawnZ >= TileManager.Instance.gridX || spawnZ < 0)
         {
-            SpawnAttackMark(axis, mark, pos, defaultZ);
+            SpawnAttackMark(axis, mark, pos, defaultZ, range);
             return;
         }
 
@@ -652,7 +668,7 @@ public class HeroController : Actor
         atkMark = Instantiate(mark) as GameObject;
         atkMark.transform.position = new Vector3(tile.transform.position.x, transform.position.y - 0.01f, tile.transform.position.z);
 
-        SpawnAttackMark(axis, mark, pos, defaultZ);
+        SpawnAttackMark(axis, mark, pos, defaultZ, range);
     }
 
     private void SpawnMark(string axis, int pos = 1, int defaultZ = 0 )

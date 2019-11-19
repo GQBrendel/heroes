@@ -1568,6 +1568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 0}
+  m_SpinCamera: {fileID: 0}
+  _healParticle: {fileID: 0}
   anim: {fileID: 0}
   currentTile: {fileID: 0}
   isSelected: 0
@@ -1582,7 +1584,7 @@ MonoBehaviour:
   personalCanvas: {fileID: 423368071600079545}
   moveAction: 0
   mainAction: 0
-  attackRange: 1.5
+  BasicAttackRange: 2
   id: 0
 --- !u!114 &1399395016
 MonoBehaviour:
@@ -1849,31 +1851,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6623517864480626651, guid: 9c9af52b481514b4796ef29ccd30c9d4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6512701177343329380, guid: 9c9af52b481514b4796ef29ccd30c9d4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922156567944280817, guid: 9c9af52b481514b4796ef29ccd30c9d4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1023610328983064686, guid: 9c9af52b481514b4796ef29ccd30c9d4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2341201674177170050, guid: 9c9af52b481514b4796ef29ccd30c9d4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3984835638729355192, guid: 9c9af52b481514b4796ef29ccd30c9d4,
         type: 3}
       propertyPath: _actor
@@ -1891,6 +1868,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 59a1406e78c0df64ca5800d11046899b,
         type: 3}
+    - target: {fileID: 2341201674177170050, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023610328983064686, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922156567944280817, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512701177343329380, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6623517864480626651, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c9af52b481514b4796ef29ccd30c9d4, type: 3}
 --- !u!224 &1667349711253432465 stripped

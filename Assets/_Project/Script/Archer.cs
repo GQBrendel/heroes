@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AStar_2D.Demo;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ public class Archer : HeroController
     [SerializeField] private GameObject _iceArrowPrefab;
     [SerializeField] private Transform _iceArrowOrigin;
     [SerializeField] private GameObject _effectOnCollision;
+
+
+    public int FrostAttackRange = 2;
+    public int PetAttackRange = 10;
 
     private RFX4_PhysicsMotion _effect;
 
@@ -36,6 +41,17 @@ public class Archer : HeroController
                 AudioManager.Instance.Play("ArcherReady");
                 break;
         }
+    }
+
+    protected override void CommandToFrostNew()
+    {
+        TileManager.Instance.FrostingHero = this;
+        ShowAttackMarks(FrostAttackRange);
+    }
+    protected override void CommandToSummonPetNew()
+    {
+        TileManager.Instance.PetHero = this;
+        ShowAttackMarks(PetAttackRange);
     }
 
     public override void AttackHit()

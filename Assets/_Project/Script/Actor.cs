@@ -46,8 +46,7 @@ public class Actor : MonoBehaviour
 
     public bool moveAction, mainAction;
   
-    public float attackRange = 1.5f;
-    public int CorrectAttackRange = 2;
+    public int BasicAttackRange = 2;
 
     public Camera Camera
     {

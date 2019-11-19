@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum HeroesActions
+﻿public enum HeroesActions
 {
     Move,
     Attack,
     Passturn,
     Spin,
     Taunt,
+    Frost,
+    Pet
 }

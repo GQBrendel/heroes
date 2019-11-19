@@ -3553,8 +3553,7 @@ MonoBehaviour:
   personalCanvas: {fileID: 8492058878658294996}
   moveAction: 0
   mainAction: 0
-  attackRange: 1.5
-  CorrectAttackRange: 1
+  BasicAttackRange: 1
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
