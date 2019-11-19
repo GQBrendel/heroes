@@ -15,6 +15,7 @@ public class HeroController : Actor
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
     [SerializeField] private PetSummon _petSummon;
+    [SerializeField] private ActionSelector _actionSelectorPrefab;
 
     [Range(1, 5), SerializeField] private int _tauntDuration;
     [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
@@ -30,6 +31,7 @@ public class HeroController : Actor
 
     protected bool CanControl { get; set; }
 
+    private ActionSelector _actionSelector;
     private Interactable _emptyTileMenu;
     protected Interactable _friendlyTileMenu;
     protected Interactable _selfTileMenu;
@@ -43,7 +45,8 @@ public class HeroController : Actor
     protected virtual void Start()
     {
         parentStart();
-        var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
+
+         var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
         _emptyTileMenu = interactibleObject.GetComponent<Interactable>();
 
         interactibleObject = Instantiate(_enemyTileInteractiblePrefab.gameObject);
@@ -67,6 +70,11 @@ public class HeroController : Actor
             _petSummon.OnEnemyHit += HandlePetHit;
             _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
         }
+
+        _actionSelector = Instantiate(_actionSelectorPrefab, transform.position, Quaternion.identity).GetComponent<ActionSelector>();
+        _actionSelector.gameObject.SetActive(false);
+        _actionSelector.SetController(this);
+
         CanControl = true;
     }
 
@@ -182,6 +190,30 @@ public class HeroController : Actor
     private void HandlePetHit()
     {
         Fight(CurrentEnemy, true);
+    }
+
+
+    public void SendCommand(HeroesActions action)
+    {
+        _actionSelector.gameObject.SetActive(false);
+        switch (action)
+        {
+            case HeroesActions.Move:
+                CommandToMoveNew();
+                break;
+            case HeroesActions.Attack:
+                break;
+            case HeroesActions.Taunt:
+                break;
+            case HeroesActions.Spin:
+                break;
+        }
+    }
+
+    void CommandToMoveNew()
+    {
+        showWays(posX,posY);
+        TileManager.Instance.MovingHero = this;
     }
 
     public void CommandToTaunt()
@@ -390,7 +422,7 @@ public class HeroController : Actor
         CanControl = true;
         mainAction = true;
 
-        showWays(posX, posY);
+        //showWays(posX, posY);
 
         OnActorFinishAttack?.Invoke(this);
 
@@ -430,7 +462,7 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-        showWays(posX, posY);
+       // showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
 
         if (mainAction && moveAction)
@@ -443,7 +475,7 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-        showWays(posX, posY);
+      //  showWays(posX, posY);
 
         OnActorEndTauntAnimation?.Invoke(this);
 
@@ -451,6 +483,12 @@ public class HeroController : Actor
         {
             StartCoroutine(EndAction());
         }
+    }
+
+    public override void ShowOptionsforActions()
+    {
+        _actionSelector.gameObject.SetActive(true);
+        _actionSelector.SetPosition(transform.position);
     }
 
     public void showWays(int x, int y)
@@ -555,8 +593,9 @@ public class HeroController : Actor
     public virtual void SelectHero()
     {
         isSelected = true;
-        HighLight();
-        showWays(posX,posY);    
+
+        ShowOptionsforActions();
+//        showWays(posX,posY);    
     }
        
     public void unSelect()

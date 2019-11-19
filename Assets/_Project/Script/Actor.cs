@@ -156,12 +156,19 @@ public class Actor : MonoBehaviour
         animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
         currentTile.toggleWalkable();                               //Marca o tile como não caminhável
         currentTile = tileDestino;                                  //Altera o tile atual do personagem
-        setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor  
+        setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor
+
+        TileManager.Instance.MovingHero = null;
         if(tag.Contains("Hero"))
         {
             GetComponent<AnimatedAgent>().moved = false;
             StartCoroutine(controlMovement());
         }
+    }
+
+    public virtual void ShowOptionsforActions()
+    {
+
     }
     IEnumerator controlMovement()
     {
@@ -177,7 +184,8 @@ public class Actor : MonoBehaviour
         }
         else if (!mainAction)
         {
-            GetComponent<HeroController>().showWays(posX, posY);
+            ShowOptionsforActions();
+            //GetComponent<HeroController>().showWays(posX, posY);
         }
     }
     public bool finishedAllActions()

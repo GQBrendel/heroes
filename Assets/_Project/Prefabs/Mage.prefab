@@ -2607,6 +2607,8 @@ MonoBehaviour:
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: c1819852a6eea4741aaf1e289d3f0c6a,
     type: 3}
   _petSummon: {fileID: 0}
+  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 91e5622dd34615643890e5ef0fd85163,
+    type: 3}
   _tauntDuration: 1
   _specialAttackCoolDownTime: 2
   _secondSpecialAttackCoolDownTime: 3

@@ -33,6 +33,7 @@ namespace AStar_2D.Demo
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
+        public HeroController MovingHero;
 
 
 
@@ -180,8 +181,21 @@ namespace AStar_2D.Demo
 
         private void onTileSelectedMouse(Tile tile, int mouseButton)
         {
-            // Check for button
-            if(mouseButton == 0 && !aHeroIsSelected)
+            if(mouseButton!= 0)
+            {
+                return;
+            }
+
+            if (MovingHero)
+            {
+                if (tile.IsWalkable)
+                {
+                    MovingHero.CommandToMove(tile);
+                }
+                return;
+            }
+
+            if (!aHeroIsSelected)
             {
                 pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posição
                 if (selectedHero == null) {
@@ -189,7 +203,7 @@ namespace AStar_2D.Demo
                 }
 
             }
-            else if (mouseButton == 0 && aHeroIsSelected)
+            else if (aHeroIsSelected)
             {
                 HeroController heroScript = selectedHero.GetComponent<HeroController>();
                selectedHero.GetComponent<HeroController>().Act(tile);
