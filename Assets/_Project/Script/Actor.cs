@@ -169,7 +169,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public virtual void ShowOptionsforActions()
+    public virtual void ShowOptionsforActions(bool limited)
     {
 
     }
@@ -187,7 +187,7 @@ public class Actor : MonoBehaviour
         }
         else // if (!mainAction)
         {
-            ShowOptionsforActions();
+            ShowOptionsforActions(false);
         }
     }
     public bool finishedAllActions()

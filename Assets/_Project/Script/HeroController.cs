@@ -17,6 +17,7 @@ public class HeroController : Actor
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
     [SerializeField] private PetSummon _petSummon;
     [SerializeField] private ActionSelector _actionSelectorPrefab;
+    [SerializeField] private ActionSelector _limitedActionSelectorPrefab;
 
     [Range(1, 5), SerializeField] private int _tauntDuration;
     [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
@@ -33,6 +34,8 @@ public class HeroController : Actor
     protected bool CanControl { get; set; }
 
     private ActionSelector _actionSelector;
+    private ActionSelector _limitedSelector;
+
     private Interactable _emptyTileMenu;
     protected Interactable _friendlyTileMenu;
     protected Interactable _selfTileMenu;
@@ -75,6 +78,11 @@ public class HeroController : Actor
         _actionSelector = Instantiate(_actionSelectorPrefab, transform.position, Quaternion.identity).GetComponent<ActionSelector>();
         _actionSelector.gameObject.SetActive(false);
         _actionSelector.SetController(this);
+
+        _limitedSelector = Instantiate(_limitedActionSelectorPrefab, transform.position, Quaternion.identity).GetComponent<ActionSelector>();
+        _limitedSelector.gameObject.SetActive(false);
+        _limitedSelector.SetController(this);
+
 
         CanControl = true;
     }
@@ -196,11 +204,16 @@ public class HeroController : Actor
 
     public void SendCommand(HeroesActions action)
     {
-        if (action != HeroesActions.Move && mainAction)
+        if(mainAction)
         {
-            return;
+            if(action != HeroesActions.Move && action != HeroesActions.Passturn)
+            {
+                return;
+            }
         }
+
         _actionSelector.gameObject.SetActive(false);
+        _limitedSelector.gameObject.SetActive(false);
         switch (action)
         {
             case HeroesActions.Move:
@@ -281,17 +294,26 @@ public class HeroController : Actor
 
     protected virtual void FadeActions()
     {
+        _actionSelector.FadeAction(HeroesActions.Attack);
+
         _enemyTileMenu.FadeAction("Attack");
 
         if(gameObject.name == "Brute(Clone)")
         {
             _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
             _selfTileMenu.FadeAction("Taunt", _tauntCounter);
+
+            _actionSelector.FadeAction(HeroesActions.Spin, _spinAttackCounter);
+            _actionSelector.FadeAction(HeroesActions.Taunt, _tauntCounter);
+
         }
         else if (gameObject.name == "Archer(Clone)")
         {
             _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
             _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+
+          //  _actionSelector.FadeAction("Frost", _frostAttackCounter);
+          //  _actionSelector.FadeAction("Pet", _petAttackCounter);
         }
     }
 
@@ -365,6 +387,7 @@ public class HeroController : Actor
                 if (_tauntCounter == 0)
                 {
                     _selfTileMenu.RemoveFade("Taunt");
+                    _actionSelector.RemoveFade(HeroesActions.Taunt);
                     OnActorEndTaunt?.Invoke(this);
                     _tauntActive = false;
                 }
@@ -377,6 +400,8 @@ public class HeroController : Actor
         else
         {
             _selfTileMenu.RemoveFade("Taunt");
+
+            _actionSelector.RemoveFade(HeroesActions.Taunt);
         }
 
         if (_frostAttackCounter > 0)
@@ -410,6 +435,8 @@ public class HeroController : Actor
         else
         {
             _selfTileMenu.RemoveFade("Spin");
+
+            _actionSelector.RemoveFade(HeroesActions.Spin);
         }
         
         if (_petAttackCounter > 0)
@@ -430,6 +457,8 @@ public class HeroController : Actor
         }
 
         _enemyTileMenu.RemoveFade("Attack");
+
+        _actionSelector.RemoveFade(HeroesActions.Attack);
     }
 
     public void FinishedSpin()
@@ -452,7 +481,7 @@ public class HeroController : Actor
         }
         else
         {
-            ShowOptionsforActions();
+            ShowOptionsforActions(true);
         }
     }
 
@@ -489,7 +518,7 @@ public class HeroController : Actor
         }
         else
         {
-            ShowOptionsforActions();
+            ShowOptionsforActions(true);
         }
     }
 
@@ -506,14 +535,22 @@ public class HeroController : Actor
         }
         else
         {
-            ShowOptionsforActions();
+            ShowOptionsforActions(true);
         }
     }
 
-    public override void ShowOptionsforActions()
+    public override void ShowOptionsforActions(bool limited)
     {
-        _actionSelector.gameObject.SetActive(true);
-        _actionSelector.SetPosition(transform.position);
+        if (limited)
+        {
+            _limitedSelector.gameObject.SetActive(true);
+            _limitedSelector.SetPosition(transform.position);
+        }
+        else
+        {
+            _actionSelector.gameObject.SetActive(true);
+            _actionSelector.SetPosition(transform.position);
+        }
     }
 
     public void ShowWays(int x, int y)
@@ -673,7 +710,7 @@ public class HeroController : Actor
     {
         isSelected = true;
 
-        ShowOptionsforActions();
+        ShowOptionsforActions(false);
 //        showWays(posX,posY);    
     }
        

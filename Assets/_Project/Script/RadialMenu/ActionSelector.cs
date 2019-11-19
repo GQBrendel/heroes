@@ -14,14 +14,36 @@ public class ActionSelector : MonoBehaviour
         _controller = heroController;
         _actionSelectorButtons = GetComponentsInChildren<ActionSelectorButton>();
 
-        foreach (var buton in _actionSelectorButtons)
+        foreach (var button in _actionSelectorButtons)
         {
-            buton.SetController(heroController);
+            button.SetController(heroController);
         }
     }
     public void SetPosition(Vector3 positionReference)
     {
         Vector3 actorPos = Camera.main.WorldToScreenPoint(positionReference);
         _menuTransform.transform.position = actorPos;
+    }
+
+    public void FadeAction(HeroesActions action, int coolDownTime = 0)
+    {
+        foreach (var button in _actionSelectorButtons)
+        {
+            if (button.Action == action)
+            {
+                button.Fade(coolDownTime);
+            }
+        }
+    }
+
+    internal void RemoveFade(HeroesActions action)
+    {
+        foreach (var button in _actionSelectorButtons)
+        {
+            if (button.Action == action)
+            {
+                button.RemoveFade();
+            }
+        }
     }
 }

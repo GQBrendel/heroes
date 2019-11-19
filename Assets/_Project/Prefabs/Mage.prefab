@@ -2612,6 +2612,8 @@ MonoBehaviour:
   _petSummon: {fileID: 0}
   _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 91e5622dd34615643890e5ef0fd85163,
     type: 3}
+  _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
+    type: 3}
   _tauntDuration: 1
   _specialAttackCoolDownTime: 2
   _secondSpecialAttackCoolDownTime: 3
