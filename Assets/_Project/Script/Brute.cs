@@ -18,6 +18,7 @@ public class Brute : HeroController
             AudioManager.Instance.Play("MaleAttackGrunt");
             anim.SetTrigger("Attack");
             FadeActions();
+            TileManager.Instance.AttackingHero = null;
         }
     }
     public override void SpinAttackHit()

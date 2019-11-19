@@ -9,6 +9,7 @@ public class HeroController : Actor
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
+    [SerializeField] private GameObject _attackMark;
 
     [SerializeField] private Interactable _emptyTileInteractiblePrefab;
     [SerializeField] private Interactable _enemyTileInteractiblePrefab;
@@ -195,6 +196,10 @@ public class HeroController : Actor
 
     public void SendCommand(HeroesActions action)
     {
+        if (action != HeroesActions.Move && mainAction)
+        {
+            return;
+        }
         _actionSelector.gameObject.SetActive(false);
         switch (action)
         {
@@ -202,18 +207,25 @@ public class HeroController : Actor
                 CommandToMoveNew();
                 break;
             case HeroesActions.Attack:
+                CommandToAttackNew();
                 break;
             case HeroesActions.Taunt:
                 break;
             case HeroesActions.Spin:
                 break;
         }
+  
     }
 
     void CommandToMoveNew()
     {
-        showWays(posX,posY);
+        ShowWays(posX,posY);
         TileManager.Instance.MovingHero = this;
+    }
+    void CommandToAttackNew()
+    {
+        ShowAttackMarks();
+        TileManager.Instance.AttackingHero = this;
     }
 
     public void CommandToTaunt()
@@ -254,8 +266,10 @@ public class HeroController : Actor
     {
         if (TryAttack(tile))
         {
+            HideWays();
             anim.SetTrigger("Attack");
             FadeActions();
+            TileManager.Instance.AttackingHero = null;
         }
     }
 
@@ -312,7 +326,7 @@ public class HeroController : Actor
 
     protected bool TryAttack(Tile tile)
     {
-        if (EuclidianDistance(this, tile.tileActor) > attackRange)
+        if (EuclidianDistance(this, tile.tileActor) > CorrectAttackRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             Debug.Log("Enemy out of Range");
@@ -435,11 +449,6 @@ public class HeroController : Actor
     private IEnumerator EndAction()
     {
         yield return null;
-        /*
-        if (KilledEnemyOnTurn)
-        {
-            yield return new WaitUntil(() => ReadyToEndTurn);
-        }*/
         TileManager.Instance.SendMessage("endAction");
     }
 
@@ -462,12 +471,15 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-       // showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
 
-        if (mainAction && moveAction)
+        if (finishedAllActions())
         {
             StartCoroutine(EndAction());
+        }
+        else
+        {
+            ShowOptionsforActions();
         }
     }
 
@@ -491,7 +503,7 @@ public class HeroController : Actor
         _actionSelector.SetPosition(transform.position);
     }
 
-    public void showWays(int x, int y)
+    public void ShowWays(int x, int y)
     {
         if (finishedAllActions())
         {
@@ -499,20 +511,74 @@ public class HeroController : Actor
         }
 
         // Marcas para direita e esquerda
-        spawnBlueMark("x", getMoveDis());
-        spawnBlueMark("x", -getMoveDis());
+        SpawnMark("x", getMoveDis());
+        SpawnMark("x", -getMoveDis());
 
         // Marcas para cima e baixo
-        spawnBlueMark("z", getMoveDis());
-        spawnBlueMark("z", -getMoveDis());
+        SpawnMark("z", getMoveDis());
+        SpawnMark("z", -getMoveDis());
 
         GameObject go = Instantiate(blueMark) as GameObject;
         go.transform.position = transform.position;
         go.transform.SetParent(transform);
-
     }
 
-    private void spawnBlueMark(string axis, int pos = 1, int defaultZ = 0 )
+    public void ShowAttackMarks()
+    {
+        SpawnAttackMark("x", CorrectAttackRange);
+        SpawnAttackMark("x", -CorrectAttackRange);
+
+        SpawnAttackMark("z", CorrectAttackRange);
+        SpawnAttackMark("z", -CorrectAttackRange);
+    }
+
+    private void SpawnAttackMark(string axis, int pos = 1, int defaultZ = 0)
+    {
+        if (pos == 0)
+        {
+            return;
+        }
+
+        int spawnX = posX;
+        int spawnZ = posY + defaultZ;
+
+        if (axis == "x")
+        {
+            spawnX += pos;
+        }
+        else if (axis == "z")
+        {
+            SpawnAttackMark("x", CorrectAttackRange, pos);
+            SpawnAttackMark("x", -CorrectAttackRange, pos);
+
+            spawnZ += pos;
+        }
+
+        pos += pos < 0 ? 1 : -1;
+
+        if (spawnX >= TileManager.Instance.gridX || spawnX < 0)
+        {
+            SpawnAttackMark(axis, pos, defaultZ);
+            return;
+        }
+
+        if (spawnZ >= TileManager.Instance.gridX || spawnZ < 0)
+        {
+            SpawnAttackMark(axis, pos, defaultZ);
+            return;
+        }
+
+        Tile tile = TileManager.Instance.getObjectOnPosition(spawnX, spawnZ);
+
+        GameObject mark = null;
+
+        mark = Instantiate(_attackMark) as GameObject; 
+        mark.transform.position = new Vector3(tile.transform.position.x, transform.position.y - 0.01f, tile.transform.position.z);
+
+        SpawnAttackMark(axis, pos, defaultZ);
+    }
+
+    private void SpawnMark(string axis, int pos = 1, int defaultZ = 0 )
     {
         if (pos == 0) {
             return;
@@ -527,8 +593,8 @@ public class HeroController : Actor
         }
         else if (axis == "z")
         {
-            spawnBlueMark("x", getMoveDis(), pos);
-            spawnBlueMark("x", -getMoveDis(), pos);
+            SpawnMark("x", getMoveDis(), pos);
+            SpawnMark("x", -getMoveDis(), pos);
 
             spawnZ += pos;
         }
@@ -536,12 +602,12 @@ public class HeroController : Actor
         pos += pos < 0 ? 1 : -1;
 
         if (spawnX >= TileManager.Instance.gridX || spawnX < 0) {
-            spawnBlueMark(axis, pos, defaultZ);
+            SpawnMark(axis, pos, defaultZ);
             return;
         }
 
         if (spawnZ >= TileManager.Instance.gridX || spawnZ < 0) {
-            spawnBlueMark(axis, pos, defaultZ);
+            SpawnMark(axis, pos, defaultZ);
             return;
         }
 
@@ -577,7 +643,7 @@ public class HeroController : Actor
             tile.transform.position.z
         );
 
-        spawnBlueMark(axis, pos, defaultZ);
+        SpawnMark(axis, pos, defaultZ);
     }
 
     public void HideWays()
@@ -604,6 +670,7 @@ public class HeroController : Actor
         isSelected = false;
         UnLight();
     }
+
     protected float EuclidianDistance(Actor A1, Actor A2)
     {
         int x1, x2, y1, y2;
@@ -612,7 +679,9 @@ public class HeroController : Actor
         x2 = (int)A2.getPos().x;
         y2 = (int)A2.getPos().y;
 
-        return (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        int result = (int)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        Debug.Log("Distance is " + result);
+        return result;
     }
     internal void setId(int _id)
     {

@@ -242,7 +242,6 @@ GameObject:
   - component: {fileID: 970939133397845376}
   - component: {fileID: 3918172101994541005}
   - component: {fileID: 2327113803365932327}
-  - component: {fileID: 3757421577899766867}
   m_Layer: 5
   m_Name: MoveButton
   m_TagString: Untagged
@@ -337,49 +336,6 @@ MonoBehaviour:
   _circle: {fileID: 970939133397845376}
   _icon: {fileID: 4875001239678797983}
   _defaultColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &3757421577899766867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734787601753512179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 970939133397845376}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3920707793216054700
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +806,9 @@ GameObject:
   - component: {fileID: 7082409230744213538}
   - component: {fileID: 6293273973473927251}
   - component: {fileID: 5998267465337102134}
+  - component: {fileID: 2010333209961126121}
   m_Layer: 5
-  m_Name: Button(Clone)
+  m_Name: AttackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,6 +885,22 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &2010333209961126121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877452377101004382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92519b447b43be4e8f0cab0f481d8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: 1
+  _circle: {fileID: 6293273973473927251}
+  _icon: {fileID: 7593317029022810675}
+  _defaultColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6426233130400829847
 GameObject:
   m_ObjectHideFlags: 0

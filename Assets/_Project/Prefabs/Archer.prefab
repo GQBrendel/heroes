@@ -368,9 +368,12 @@ MonoBehaviour:
   moveAction: 0
   mainAction: 0
   attackRange: 4
+  CorrectAttackRange: 4
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
+  _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
+    type: 3}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
   _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: f5a0684ad0d9a2645bf3dc275573663d,

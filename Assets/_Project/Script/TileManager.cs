@@ -34,6 +34,7 @@ namespace AStar_2D.Demo
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
         public HeroController MovingHero;
+        public HeroController AttackingHero;
 
 
 
@@ -130,6 +131,8 @@ namespace AStar_2D.Demo
             GenerateActor(brute, 7, 1);
             GenerateActor(archer, 8, 0);
             GenerateActor(_mage, 6, 0);
+
+            GenerateActor(skelletonPrefab, 8, 2);
             GenerateActor(skelletonPrefab, 4, 8);
             GenerateActor(skelletonPrefab, 10, 9);
             GenerateActor(skelletonPrefab, 6, 10);
@@ -191,6 +194,19 @@ namespace AStar_2D.Demo
                 if (tile.IsWalkable)
                 {
                     MovingHero.CommandToMove(tile);
+                }
+                return;
+            }
+            else if (AttackingHero)
+            {
+                if(AttackingHero == tile.tileActor)
+                {
+                    AttackingHero.HideWays();
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posição
+                }
+                else if (tile.tileActor != null)
+                {
+                    AttackingHero.CommandToAttack(tile);                   
                 }
                 return;
             }

@@ -42,7 +42,10 @@ public class Actor : MonoBehaviour
     private Image healthBar;
 
     public bool moveAction, mainAction;
+  
     public float attackRange = 1.5f;
+    public int CorrectAttackRange = 2;
+
     public Camera Camera
     {
         get { return m_Camera; }
@@ -182,10 +185,9 @@ public class Actor : MonoBehaviour
             rotate = true;
             StartCoroutine(SetRotateToFalse());
         }
-        else if (!mainAction)
+        else // if (!mainAction)
         {
             ShowOptionsforActions();
-            //GetComponent<HeroController>().showWays(posX, posY);
         }
     }
     public bool finishedAllActions()
