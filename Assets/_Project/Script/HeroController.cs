@@ -37,11 +37,6 @@ public class HeroController : Actor
     protected ActionSelector ActionSelector;
     private ActionSelector _limitedSelector;
 
-    private Interactable _emptyTileMenu;
-    protected Interactable _friendlyTileMenu;
-    protected Interactable _selfTileMenu;
-    protected Interactable _enemyTileMenu;
-
     public Actor CurrentEnemy { get; set; }
     protected Actor CurrentAlly { get; set; }
 
@@ -51,26 +46,12 @@ public class HeroController : Actor
     {
         parentStart();
 
-         var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
-        _emptyTileMenu = interactibleObject.GetComponent<Interactable>();
-
-        interactibleObject = Instantiate(_enemyTileInteractiblePrefab.gameObject);
-        _enemyTileMenu = interactibleObject.GetComponent<Interactable>();
-
-        interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject);
-        _friendlyTileMenu = interactibleObject.GetComponent<Interactable>();
-
-        interactibleObject = Instantiate(_selfTileInteractiblePrefab.gameObject);
-        _selfTileMenu = interactibleObject.GetComponent<Interactable>();
-
         AnimatorEventListener[] animationEventListener = anim.GetBehaviours<AnimatorEventListener>();
 
         for (int i = 0; i < animationEventListener.Length; i++)
         {
             animationEventListener[i].Hero = this;
-        }   
-
-      //  _frostAttackCounter = _secondSpecialAttackCoolDownTime;
+        }
 
         ActionSelector = Instantiate(_actionSelectorPrefab, transform.position, Quaternion.identity).GetComponent<ActionSelector>();
         ActionSelector.gameObject.SetActive(false);
@@ -141,27 +122,11 @@ public class HeroController : Actor
     {
     }
 
-
-
-
-
-    public void SendHoverCommand(HeroesActions action)
+    public virtual void SendHoverCommand(HeroesActions action)
     {
-        switch (action)
-        {
-            case HeroesActions.Spin:
-                ShowWarningMarks();
-                break;
-        }
     }
-    public void SendLeaveHoverCommand(HeroesActions action)
+    public virtual void SendLeaveHoverCommand(HeroesActions action)
     {
-        switch (action)
-        {
-            case HeroesActions.Spin:
-                HideWays();
-                break;
-        }
     }
 
     private bool ValidateCommand(HeroesActions action)
@@ -289,27 +254,6 @@ public class HeroController : Actor
 
     protected virtual void FadeActions()
     {
-        ActionSelector.FadeAction(HeroesActions.Attack);
-
-        _enemyTileMenu.FadeAction("Attack");
-
-        if(gameObject.name == "Brute(Clone)")
-        {/*
-            _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-            _selfTileMenu.FadeAction("Taunt", _tauntCounter);
-
-            ActionSelector.FadeAction(HeroesActions.Spin, _spinAttackCounter);
-            ActionSelector.FadeAction(HeroesActions.Taunt, _tauntCounter);*/
-
-        }
-        else if (gameObject.name == "Archer(Clone)")
-        {
-          //  _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
-          //  _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
-
-          //  _actionSelector.FadeAction("Frost", _frostAttackCounter);
-          //  _actionSelector.FadeAction("Pet", _petAttackCounter);
-        }
     }
 
     public void Act(Tile tile)
@@ -318,29 +262,9 @@ public class HeroController : Actor
         {
             return;
         }
-        if (tile.tileActor == null)
-        {
-            OpenTileOptions(tile, _emptyTileMenu);
-            return;
-        }
 
         string otherTag = tile.tileActor.tag;
-
-        if (tile == currentTile)
-        {
-            OpenTileOptions(tile, _selfTileMenu);
-        }
-
-        else if (otherTag.Contains("Hero"))
-        {
-            Debug.Log("Clique em aliado");
-            OpenTileOptions(tile, _friendlyTileMenu);
-            return;
-        }
-        else if (otherTag.Contains("Enemy"))
-        {
-            OpenTileOptions(tile, _enemyTileMenu);
-        }
+      
         if (mainAction && moveAction)
         {
             StartCoroutine(EndAction());
@@ -373,70 +297,7 @@ public class HeroController : Actor
 
     public override void ResetActions()
     {
-        base.ResetActions();/*
-        if (_tauntActive)
-        {
-            if (_tauntCounter > 0)
-            {
-                _tauntCounter--;
-                if (_tauntCounter == 0)
-                {
-                    _selfTileMenu.RemoveFade("Taunt");
-                    ActionSelector.RemoveFade(HeroesActions.Taunt);
-                    OnActorEndTaunt?.Invoke(this);
-                    _tauntActive = false;
-                }
-                else
-                {
-                    _selfTileMenu.FadeAction("Taunt", _tauntCounter);
-                }
-            }
-        }
-        else
-        {
-            _selfTileMenu.RemoveFade("Taunt");
-
-            ActionSelector.RemoveFade(HeroesActions.Taunt);
-        }
-        if (_spinAttackCounter > 0)
-        {
-            _spinAttackCounter--;
-            if (_spinAttackCounter == 0)
-            {
-                _selfTileMenu.RemoveFade("Spin");
-            }
-            else
-            {
-                _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-            }
-        }
-        else
-        {
-            _selfTileMenu.RemoveFade("Spin");
-
-            ActionSelector.RemoveFade(HeroesActions.Spin);
-        }*/
-        
-        if (_petAttackCounter > 0)
-        {
-            _petAttackCounter--;
-            if (_petAttackCounter == 0)
-            {
-                _enemyTileMenu.RemoveFade("Pet");
-            }
-            else
-            {
-                _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
-            }
-        }
-        else
-        {
-            _enemyTileMenu.RemoveFade("Pet");
-        }
-
-        _enemyTileMenu.RemoveFade("Attack");
-
-        ActionSelector.RemoveFade(HeroesActions.Attack);
+        base.ResetActions();
     }
 
     public void FinishedSpin()
@@ -449,8 +310,6 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-
-        //showWays(posX, posY);
 
         OnActorFinishAttack?.Invoke(this);
 

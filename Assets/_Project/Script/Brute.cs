@@ -81,9 +81,6 @@ public class Brute : HeroController
             Debug.LogError("Spin Attack being called but this unity already used main action");
             return;
         }
-
-        //_spinAttackCounter = _specialAttackCoolDownTime;
-
         _spinCounter = _spinAttackCooldown;
 
         FadeActions();
@@ -122,6 +119,33 @@ public class Brute : HeroController
             {
                 ActionSelector.FadeAction(HeroesActions.Taunt, _tauntCounter);
             }
+        }
+    }
+    public override void SendHoverCommand(HeroesActions action)
+    {
+        if(_spinCounter > 0)
+        {
+            return;
+        }
+
+        switch (action)
+        {
+            case HeroesActions.Spin:
+                ShowWarningMarks();
+                break;
+        }
+    }
+    public override void SendLeaveHoverCommand(HeroesActions action)
+    {
+        if (_spinAttackCooldown > 0)
+        {
+            return;
+        }
+        switch (action)
+        {
+            case HeroesActions.Spin:
+                HideWays();
+                break;
         }
     }
 

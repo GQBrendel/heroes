@@ -284,7 +284,7 @@ namespace AStar_2D.Demo
             else if (aHeroIsSelected)
             {
                 HeroController heroScript = selectedHero.GetComponent<HeroController>();
-               selectedHero.GetComponent<HeroController>().Act(tile);
+               // selectedHero.GetComponent<HeroController>().Act(tile);
             }
         }
 

@@ -109,14 +109,6 @@ public class Mage : HeroController
         }
     }
 
-    protected override void FadeActions()
-    {
-        base.FadeActions();
-        _selfTileMenu.FadeAction("Heal", _healCounter);
-        _friendlyTileMenu.FadeAction("Heal", _healCounter);
-        _enemyTileMenu.FadeAction("Thunder", _thunderCounter);
-    }
-
     public void HealHit()
     {
         ActionSelector.FadeAction(HeroesActions.Heal, _healCounter);

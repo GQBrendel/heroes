@@ -387,7 +387,6 @@ MonoBehaviour:
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
-  _tauntDuration: 1
   _specialAttackCoolDownTime: 5
   _secondSpecialAttackCoolDownTime: 2
   _frostDuration: 1
@@ -401,7 +400,7 @@ MonoBehaviour:
   _petSummon: {fileID: 709852523964064144}
   _petSpellCooldown: 5
   _frostAttackCooldown: 3
-  FrostAttackRange: 2
+  FrostAttackRange: 4
   PetAttackRange: 10
 --- !u!1 &1084392373996996
 GameObject:
