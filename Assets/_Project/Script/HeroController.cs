@@ -209,12 +209,18 @@ public class HeroController : Actor
             case HeroesActions.Attack:
                 CommandToAttackNew();
                 break;
+            case HeroesActions.Passturn:
+                CommandToPassTurn();
+                break;
             case HeroesActions.Taunt:
+                CommandToTaunt();
                 break;
             case HeroesActions.Spin:
+                CommandToSpinAttack();
                 break;
+          
         }
-  
+
     }
 
     void CommandToMoveNew()
@@ -440,9 +446,13 @@ public class HeroController : Actor
 
         OnActorFinishAttack?.Invoke(this);
 
-        if (mainAction && moveAction)
+        if (finishedAllActions())
         {
             StartCoroutine(EndAction());
+        }
+        else
+        {
+            ShowOptionsforActions();
         }
     }
 
@@ -487,13 +497,16 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-      //  showWays(posX, posY);
 
         OnActorEndTauntAnimation?.Invoke(this);
 
-        if (mainAction && moveAction)
+        if (finishedAllActions())
         {
             StartCoroutine(EndAction());
+        }
+        else
+        {
+            ShowOptionsforActions();
         }
     }
 

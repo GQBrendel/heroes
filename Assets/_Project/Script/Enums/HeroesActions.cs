@@ -6,6 +6,7 @@ public enum HeroesActions
 {
     Move,
     Attack,
-    Taunt,
+    Passturn,
     Spin,
+    Taunt,
 }
