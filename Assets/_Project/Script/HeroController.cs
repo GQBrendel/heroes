@@ -9,31 +9,33 @@ public class HeroController : Actor
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
+    [SerializeField] private GameObject _attackMark;
+    [SerializeField] private GameObject _warningMark;
 
     [SerializeField] private Interactable _emptyTileInteractiblePrefab;
     [SerializeField] private Interactable _enemyTileInteractiblePrefab;
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
-    [SerializeField] private PetSummon _petSummon;
+    [SerializeField] private ActionSelector _actionSelectorPrefab;
+    [SerializeField] private ActionSelector _limitedActionSelectorPrefab;
 
-    [Range(1, 5), SerializeField] private int _tauntDuration;
     [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
     [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
     [Range(1, 5), SerializeField] private int _frostDuration;
 
-    private int _tauntCounter;
+    public int FrostAttackDamage = 40;
+
+   // private int _tauntCounter;
     protected int _spinAttackCounter;
-    protected int _frostAttackCounter;
+   // protected int _frostAttackCounter;
     private int _petAttackCounter;
 
     private bool _tauntActive;
 
     protected bool CanControl { get; set; }
 
-    private Interactable _emptyTileMenu;
-    protected Interactable _friendlyTileMenu;
-    protected Interactable _selfTileMenu;
-    protected Interactable _enemyTileMenu;
+    protected ActionSelector ActionSelector;
+    private ActionSelector _limitedSelector;
 
     public Actor CurrentEnemy { get; set; }
     protected Actor CurrentAlly { get; set; }
@@ -43,18 +45,6 @@ public class HeroController : Actor
     protected virtual void Start()
     {
         parentStart();
-        var interactibleObject = Instantiate(_emptyTileInteractiblePrefab.gameObject);
-        _emptyTileMenu = interactibleObject.GetComponent<Interactable>();
-
-        interactibleObject = Instantiate(_enemyTileInteractiblePrefab.gameObject);
-        _enemyTileMenu = interactibleObject.GetComponent<Interactable>();
-
-        interactibleObject = Instantiate(_friendlyTileInteractiblePrefab.gameObject);
-        _friendlyTileMenu = interactibleObject.GetComponent<Interactable>();
-
-        interactibleObject = Instantiate(_selfTileInteractiblePrefab.gameObject);
-        _selfTileMenu = interactibleObject.GetComponent<Interactable>();
-
 
         AnimatorEventListener[] animationEventListener = anim.GetBehaviours<AnimatorEventListener>();
 
@@ -62,11 +52,16 @@ public class HeroController : Actor
         {
             animationEventListener[i].Hero = this;
         }
-        if (_petSummon)
-        {
-            _petSummon.OnEnemyHit += HandlePetHit;
-            _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
-        }
+
+        ActionSelector = Instantiate(_actionSelectorPrefab, transform.position, Quaternion.identity).GetComponent<ActionSelector>();
+        ActionSelector.gameObject.SetActive(false);
+        ActionSelector.SetController(this);
+
+        _limitedSelector = Instantiate(_limitedActionSelectorPrefab, transform.position, Quaternion.identity).GetComponent<ActionSelector>();
+        _limitedSelector.gameObject.SetActive(false);
+        _limitedSelector.SetController(this);
+
+
         CanControl = true;
     }
 
@@ -119,99 +114,127 @@ public class HeroController : Actor
         TileManager.Instance.cancelAction();
     }
 
-    public void CommandToFrost(Tile tile)
+    public virtual void CommandToFrost(Tile tile)
     {
-        if (_frostAttackCounter > 0)
-        {
-            return;
-        }
-        if (mainAction)
-        {
-            Debug.LogError("Frost Attack being called but this unity already used main action");
-            return;
-        }
-
-        if (TryAttack(tile))
-        {
-            anim.SetTrigger("Frost");
-        }
-        else
-        {
-            return;
-        }
-
-        _frostAttackCounter = _secondSpecialAttackCoolDownTime;
-        //_enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
-        //_enemyTileMenu.FadeAction("Pet", _petAttackCounter);
-        FadeActions();
     }
 
-    public void CommandToSummonPet(Tile tile)
+    public virtual void CommandToSummonPet(Tile tile)
     {
-        if (_petAttackCounter > 0)
-        {
-            return;
-        }
-        if (mainAction)
-        {
-            Debug.LogError("Spin Attack being called but this unity already used main action");
-            return;
-        }
-
-        _petAttackCounter = _specialAttackCoolDownTime;
-
-        FadeActions();
-
-        CanControl = false;
-        HideWays();
-
-        OnActorStartAttack?.Invoke(this);
-
-        CurrentEnemy = tile.tileActor;
-
-        transform.LookAt(CurrentEnemy.transform);
-        _petSummon.SummonPet(tile.transform.position);
-        anim.SetTrigger("PetAttack");
     }
 
-    private void HandlePetFinishedAttack()
+    public virtual void SendHoverCommand(HeroesActions action)
     {
-        FinishedSpecialAttack();
+    }
+    public virtual void SendLeaveHoverCommand(HeroesActions action)
+    {
     }
 
-    private void HandlePetHit()
+    private bool ValidateCommand(HeroesActions action)
     {
-        Fight(CurrentEnemy, true);
+        if(action == HeroesActions.Taunt || action == HeroesActions.Spin)
+        {
+            return ValidateBrute(action);
+        }
+        else if (action == HeroesActions.Frost || action == HeroesActions.Pet)
+        {
+            return ValidateArcher(action);
+        }
+        else if (action == HeroesActions.Thunder || action == HeroesActions.Heal)
+        {
+            return ValidateMage(action);
+        }
+        return true;
     }
 
-    public void CommandToTaunt()
+    protected virtual bool ValidateBrute(HeroesActions action)
     {
-        if (_tauntCounter > 0)
+        return false;
+    }
+    protected virtual bool ValidateArcher(HeroesActions action)
+    {
+        return false;
+    }
+    protected virtual bool ValidateMage(HeroesActions action)
+    {
+        return false;
+    }
+
+    public void SendCommand(HeroesActions action)
+    {
+        if(mainAction)
+        {
+            if(action != HeroesActions.Move && action != HeroesActions.Passturn)
+            {
+                return;
+            }
+        }
+        if (!ValidateCommand(action))
         {
             return;
         }
-        if (mainAction)
-        {
-            Debug.LogError("Taunt being called but this unity already used main action");
-            return;
-        }
-        _tauntCounter = _tauntDuration;
-        FadeActions();
 
-        CanControl = false;
-        HideWays();
-        OnActorTaunt?.Invoke(this);
-        anim.SetTrigger("Taunt");
-        _tauntActive = true;
+        ActionSelector.gameObject.SetActive(false);
+        _limitedSelector.gameObject.SetActive(false);
+        switch (action)
+        {
+            case HeroesActions.Move:
+                CommandToMoveNew();
+                break;
+            case HeroesActions.Attack:
+                CommandToAttackNew();
+                break;
+            case HeroesActions.Passturn:
+                CommandToPassTurn();
+                break;
+            case HeroesActions.Taunt:
+                CommandToTaunt();
+                break;
+            case HeroesActions.Spin:
+                CommandToSpinAttack();
+                break;
+            case HeroesActions.Frost:
+                CommandToFrostNew();
+                break;
+            case HeroesActions.Pet:
+                CommandToSummonPetNew();
+                break;
+            case HeroesActions.Thunder:
+                CommandToThunderNew();
+                break;
+            case HeroesActions.Heal:
+                CommandToHealNew();
+                break;
+        }
+    }
+    protected virtual void CommandToThunderNew()
+    {
+    }
+    protected virtual void CommandToHealNew()
+    {
+    }
+    protected virtual void CommandToFrostNew()
+    {
+    }
+    protected virtual void CommandToSummonPetNew()
+    {
+    }
+
+    private void CommandToMoveNew()
+    {
+        ShowWays(posX,posY);
+        TileManager.Instance.MovingHero = this;
+    }
+    private void CommandToAttackNew()
+    {
+        ShowAttackMarks(BasicAttackRange);
+        TileManager.Instance.AttackingHero = this;
+    }
+
+    public virtual void CommandToTaunt()
+    { 
     }
     public virtual void CommandToSpinAttack()
     {
-        mainAction = true;
-        moveAction = true;
-
-        TileManager.Instance.SendMessage("endAction");
-        rotate = true;
-        StartCoroutine(SetRotateToFalse());
     }
 
     public void CommandToMove(Tile tile)
@@ -220,27 +243,17 @@ public class HeroController : Actor
     }
     public virtual void CommandToAttack(Tile tile)
     {
-        if (TryAttack(tile))
+        if (TryAttack(tile, BasicAttackRange))
         {
+            HideWays();
             anim.SetTrigger("Attack");
             FadeActions();
+            TileManager.Instance.AttackingHero = null;
         }
     }
 
     protected virtual void FadeActions()
     {
-        _enemyTileMenu.FadeAction("Attack");
-
-        if(gameObject.name == "Brute(Clone)")
-        {
-            _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-            _selfTileMenu.FadeAction("Taunt", _tauntCounter);
-        }
-        else if (gameObject.name == "Archer(Clone)")
-        {
-            _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
-            _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
-        }
     }
 
     public void Act(Tile tile)
@@ -249,38 +262,18 @@ public class HeroController : Actor
         {
             return;
         }
-        if (tile.tileActor == null)
-        {
-            OpenTileOptions(tile, _emptyTileMenu);
-            return;
-        }
 
         string otherTag = tile.tileActor.tag;
-
-        if (tile == currentTile)
-        {
-            OpenTileOptions(tile, _selfTileMenu);
-        }
-
-        else if (otherTag.Contains("Hero"))
-        {
-            Debug.Log("Clique em aliado");
-            OpenTileOptions(tile, _friendlyTileMenu);
-            return;
-        }
-        else if (otherTag.Contains("Enemy"))
-        {
-            OpenTileOptions(tile, _enemyTileMenu);
-        }
+      
         if (mainAction && moveAction)
         {
             StartCoroutine(EndAction());
         }
     }
 
-    protected bool TryAttack(Tile tile)
+    protected bool TryAttack(Tile tile, int checkRange)
     {
-        if (EuclidianDistance(this, tile.tileActor) > attackRange)
+        if (EuclidianDistance(this, tile.tileActor) > checkRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             Debug.Log("Enemy out of Range");
@@ -305,109 +298,34 @@ public class HeroController : Actor
     public override void ResetActions()
     {
         base.ResetActions();
-        if (_tauntActive)
-        {
-            if (_tauntCounter > 0)
-            {
-                _tauntCounter--;
-                if (_tauntCounter == 0)
-                {
-                    _selfTileMenu.RemoveFade("Taunt");
-                    OnActorEndTaunt?.Invoke(this);
-                    _tauntActive = false;
-                }
-                else
-                {
-                    _selfTileMenu.FadeAction("Taunt", _tauntCounter);
-                }
-            }
-        }
-        else
-        {
-            _selfTileMenu.RemoveFade("Taunt");
-        }
-
-        if (_frostAttackCounter > 0)
-        {
-            _frostAttackCounter--;
-            if (_frostAttackCounter == 0)
-            {
-                _enemyTileMenu.RemoveFade("Frost");
-            }
-            else
-            {
-                _enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
-            }
-        }
-        else
-        {
-            _enemyTileMenu.RemoveFade("Frost");
-        }
-        if (_spinAttackCounter > 0)
-        {
-            _spinAttackCounter--;
-            if (_spinAttackCounter == 0)
-            {
-                _selfTileMenu.RemoveFade("Spin");
-            }
-            else
-            {
-                _selfTileMenu.FadeAction("Spin", _spinAttackCounter);
-            }
-        }
-        else
-        {
-            _selfTileMenu.RemoveFade("Spin");
-        }
-        
-        if (_petAttackCounter > 0)
-        {
-            _petAttackCounter--;
-            if (_petAttackCounter == 0)
-            {
-                _enemyTileMenu.RemoveFade("Pet");
-            }
-            else
-            {
-                _enemyTileMenu.FadeAction("Pet", _petAttackCounter);
-            }
-        }
-        else
-        {
-            _enemyTileMenu.RemoveFade("Pet");
-        }
-
-        _enemyTileMenu.RemoveFade("Attack");
     }
 
     public void FinishedSpin()
     {
+        OnActorFinishSpinAttack?.Invoke(this);
         FinishedSpecialAttack();
     }
 
-    private void FinishedSpecialAttack()
+    protected void FinishedSpecialAttack()
     {
         CanControl = true;
         mainAction = true;
 
-        showWays(posX, posY);
-
         OnActorFinishAttack?.Invoke(this);
 
-        if (mainAction && moveAction)
+        if (finishedAllActions())
         {
             StartCoroutine(EndAction());
+        }
+        else
+        {
+            ShowOptionsforActions(true);
         }
     }
 
     private IEnumerator EndAction()
     {
         yield return null;
-        /*
-        if (KilledEnemyOnTurn)
-        {
-            yield return new WaitUntil(() => ReadyToEndTurn);
-        }*/
         TileManager.Instance.SendMessage("endAction");
     }
 
@@ -422,7 +340,7 @@ public class HeroController : Actor
 
     public void FrostAttackHit()
     {
-        CurrentEnemy.TakeDamage(0);
+        CurrentEnemy.TakeDamage(FrostAttackDamage);
         CurrentEnemy.GetFrosted(_frostDuration);
     }
 
@@ -430,12 +348,19 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-        showWays(posX, posY);
         OnActorFinishAttack?.Invoke(this);
+        TileManager.Instance.FrostingHero = null;
+        TileManager.Instance.PetHero = null;
+        TileManager.Instance.ThunderHero = null;
+        TileManager.Instance.HealingHero = null;
 
-        if (mainAction && moveAction)
+        if (finishedAllActions())
         {
             StartCoroutine(EndAction());
+        }
+        else
+        {
+            ShowOptionsforActions(true);
         }
     }
 
@@ -443,17 +368,34 @@ public class HeroController : Actor
     {
         CanControl = true;
         mainAction = true;
-        showWays(posX, posY);
 
         OnActorEndTauntAnimation?.Invoke(this);
 
-        if (mainAction && moveAction)
+        if (finishedAllActions())
         {
             StartCoroutine(EndAction());
         }
+        else
+        {
+            ShowOptionsforActions(true);
+        }
     }
 
-    public void showWays(int x, int y)
+    public override void ShowOptionsforActions(bool limited)
+    {
+        if (limited)
+        {
+            _limitedSelector.gameObject.SetActive(true);
+            _limitedSelector.SetPosition(transform.position);
+        }
+        else
+        {
+            ActionSelector.gameObject.SetActive(true);
+            ActionSelector.SetPosition(transform.position);
+        }
+    }
+
+    public void ShowWays(int x, int y)
     {
         if (finishedAllActions())
         {
@@ -461,20 +403,82 @@ public class HeroController : Actor
         }
 
         // Marcas para direita e esquerda
-        spawnBlueMark("x", getMoveDis());
-        spawnBlueMark("x", -getMoveDis());
+        SpawnMark("x", getMoveDis());
+        SpawnMark("x", -getMoveDis());
 
         // Marcas para cima e baixo
-        spawnBlueMark("z", getMoveDis());
-        spawnBlueMark("z", -getMoveDis());
+        SpawnMark("z", getMoveDis());
+        SpawnMark("z", -getMoveDis());
 
         GameObject go = Instantiate(blueMark) as GameObject;
         go.transform.position = transform.position;
         go.transform.SetParent(transform);
-
     }
 
-    private void spawnBlueMark(string axis, int pos = 1, int defaultZ = 0 )
+    public void ShowAttackMarks(int range)
+    {
+        SpawnAttackMark("x", _attackMark, range, 0, range);
+        SpawnAttackMark("x", _attackMark, -range, 0, range);
+
+        SpawnAttackMark("z", _attackMark, range, 0, range);
+        SpawnAttackMark("z", _attackMark, -range, 0, range);
+    }
+    public void ShowWarningMarks()
+    {
+        SpawnAttackMark("x", _warningMark, BasicAttackRange);
+        SpawnAttackMark("x", _warningMark, -BasicAttackRange);
+
+        SpawnAttackMark("z", _warningMark, BasicAttackRange);
+        SpawnAttackMark("z", _warningMark, -BasicAttackRange);
+    }
+
+    private void SpawnAttackMark(string axis, GameObject mark, int pos = 1, int defaultZ = 0, int range = 1)
+    {
+        if (pos == 0)
+        {
+            return;
+        }
+
+        int spawnX = posX;
+        int spawnZ = posY + defaultZ;
+
+        if (axis == "x")
+        {
+            spawnX += pos;
+        }
+        else if (axis == "z")
+        {
+            SpawnAttackMark("x", mark, range, pos, range);
+            SpawnAttackMark("x", mark, - range, pos, range);
+
+            spawnZ += pos;
+        }
+
+        pos += pos < 0 ? 1 : -1;
+
+        if (spawnX >= TileManager.Instance.gridX || spawnX < 0)
+        {
+            SpawnAttackMark(axis, mark, pos, defaultZ, range);
+            return;
+        }
+
+        if (spawnZ >= TileManager.Instance.gridX || spawnZ < 0)
+        {
+            SpawnAttackMark(axis, mark, pos, defaultZ, range);
+            return;
+        }
+
+        Tile tile = TileManager.Instance.getObjectOnPosition(spawnX, spawnZ);
+
+        GameObject atkMark = null;
+
+        atkMark = Instantiate(mark) as GameObject;
+        atkMark.transform.position = new Vector3(tile.transform.position.x, transform.position.y - 0.01f, tile.transform.position.z);
+
+        SpawnAttackMark(axis, mark, pos, defaultZ, range);
+    }
+
+    private void SpawnMark(string axis, int pos = 1, int defaultZ = 0 )
     {
         if (pos == 0) {
             return;
@@ -489,8 +493,8 @@ public class HeroController : Actor
         }
         else if (axis == "z")
         {
-            spawnBlueMark("x", getMoveDis(), pos);
-            spawnBlueMark("x", -getMoveDis(), pos);
+            SpawnMark("x", getMoveDis(), pos);
+            SpawnMark("x", -getMoveDis(), pos);
 
             spawnZ += pos;
         }
@@ -498,12 +502,12 @@ public class HeroController : Actor
         pos += pos < 0 ? 1 : -1;
 
         if (spawnX >= TileManager.Instance.gridX || spawnX < 0) {
-            spawnBlueMark(axis, pos, defaultZ);
+            SpawnMark(axis, pos, defaultZ);
             return;
         }
 
         if (spawnZ >= TileManager.Instance.gridX || spawnZ < 0) {
-            spawnBlueMark(axis, pos, defaultZ);
+            SpawnMark(axis, pos, defaultZ);
             return;
         }
 
@@ -539,7 +543,7 @@ public class HeroController : Actor
             tile.transform.position.z
         );
 
-        spawnBlueMark(axis, pos, defaultZ);
+        SpawnMark(axis, pos, defaultZ);
     }
 
     public void HideWays()
@@ -555,8 +559,9 @@ public class HeroController : Actor
     public virtual void SelectHero()
     {
         isSelected = true;
-        HighLight();
-        showWays(posX,posY);    
+
+        ShowOptionsforActions(false);
+//        showWays(posX,posY);    
     }
        
     public void unSelect()
@@ -565,6 +570,7 @@ public class HeroController : Actor
         isSelected = false;
         UnLight();
     }
+
     protected float EuclidianDistance(Actor A1, Actor A2)
     {
         int x1, x2, y1, y2;
@@ -573,7 +579,9 @@ public class HeroController : Actor
         x2 = (int)A2.getPos().x;
         y2 = (int)A2.getPos().y;
 
-        return (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        int result = (int)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        Debug.Log("Distance is " + result);
+        return result;
     }
     internal void setId(int _id)
     {

@@ -149,7 +149,7 @@ public class EnemiesController : MonoBehaviour
             activeEnemy = enemiesList[i].GetComponent<Enemy>();
             _targetHero = GetTargetHero();
 
-            if(euclidianDistance(_targetHero, activeEnemy) < activeEnemy.attackRange && !activeEnemy.mainAction)
+            if(euclidianDistance(_targetHero, activeEnemy) < activeEnemy.BasicAttackRange && !activeEnemy.mainAction)
             {
                 activeEnemy.GetComponent<Enemy>().Attack(_targetHero);
 

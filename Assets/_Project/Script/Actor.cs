@@ -10,6 +10,8 @@ public class Actor : MonoBehaviour
     public delegate void ActorAttackHandler(Actor actor);
     public ActorAttackHandler OnActorStartAttack;
     public ActorAttackHandler OnActorFinishAttack;
+    public ActorAttackHandler OnActorStartSpinAttack;
+    public ActorAttackHandler OnActorFinishSpinAttack;
 
     public delegate void StatusHandler(Actor actor);
     public StatusHandler OnActorTaunt;
@@ -19,6 +21,7 @@ public class Actor : MonoBehaviour
     public StatusHandler OnActorEndFrosted;
 
     [SerializeField] private Camera m_Camera;
+    [SerializeField] private Camera m_SpinCamera;
     [SerializeField] private ParticleSystem _healParticle;
 
     public Animator anim;
@@ -42,13 +45,19 @@ public class Actor : MonoBehaviour
     private Image healthBar;
 
     public bool moveAction, mainAction;
-    public float attackRange = 1.5f;
+  
+    public int BasicAttackRange = 2;
+
     public Camera Camera
     {
         get { return m_Camera; }
         set { m_Camera = value; }
     }
-
+    public Camera SpinCamera
+    {
+        get { return m_SpinCamera; }
+        set { m_SpinCamera = value; }
+    }
     protected void parentStart()
     {
         this.anim = GetComponent<Animator>();
@@ -156,12 +165,19 @@ public class Actor : MonoBehaviour
         animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
         currentTile.toggleWalkable();                               //Marca o tile como não caminhável
         currentTile = tileDestino;                                  //Altera o tile atual do personagem
-        setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor  
+        setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor
+
+        TileManager.Instance.MovingHero = null;
         if(tag.Contains("Hero"))
         {
             GetComponent<AnimatedAgent>().moved = false;
             StartCoroutine(controlMovement());
         }
+    }
+
+    public virtual void ShowOptionsforActions(bool limited)
+    {
+
     }
     IEnumerator controlMovement()
     {
@@ -175,9 +191,9 @@ public class Actor : MonoBehaviour
             rotate = true;
             StartCoroutine(SetRotateToFalse());
         }
-        else if (!mainAction)
+        else // if (!mainAction)
         {
-            GetComponent<HeroController>().showWays(posX, posY);
+            ShowOptionsforActions(false);
         }
     }
     public bool finishedAllActions()

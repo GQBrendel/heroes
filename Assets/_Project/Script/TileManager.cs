@@ -33,6 +33,12 @@ namespace AStar_2D.Demo
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
+        public HeroController MovingHero;
+        public HeroController AttackingHero;
+        public HeroController FrostingHero;
+        public HeroController PetHero;
+        public HeroController ThunderHero;
+        public HeroController HealingHero;
 
 
 
@@ -129,11 +135,13 @@ namespace AStar_2D.Demo
             GenerateActor(brute, 7, 1);
             GenerateActor(archer, 8, 0);
             GenerateActor(_mage, 6, 0);
-            GenerateActor(skelletonPrefab, 4, 8);
+
+            GenerateActor(skelletonPrefab, 8, 2);
+            GenerateActor(skelletonPrefab, 4, 8);/*
             GenerateActor(skelletonPrefab, 10, 9);
             GenerateActor(skelletonPrefab, 6, 10);
             GenerateActor(skelletonPrefab, 2, 14);
-            GenerateActor(skelletonPrefab, 13, 14);
+            GenerateActor(skelletonPrefab, 13, 14);*/
 
             OnAllHeroesSpawned?.Invoke(_heroes);
 
@@ -180,8 +188,92 @@ namespace AStar_2D.Demo
 
         private void onTileSelectedMouse(Tile tile, int mouseButton)
         {
-            // Check for button
-            if(mouseButton == 0 && !aHeroIsSelected)
+            if(mouseButton!= 0)
+            {
+                return;
+            }
+
+            if (MovingHero)
+            {
+                if (tile.IsWalkable)
+                {
+                    MovingHero.CommandToMove(tile);
+                }
+                return;
+            }
+            else if (AttackingHero)
+            {
+                if(AttackingHero == tile.tileActor)
+                {
+                    AttackingHero.HideWays();
+                    AttackingHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y); 
+                }
+                else if (tile.tileActor != null)
+                {
+                    AttackingHero.CommandToAttack(tile);                   
+                }
+                return;
+            }
+            else if (FrostingHero)
+            {
+                if (FrostingHero == tile.tileActor)
+                {
+                    FrostingHero.HideWays();
+                    FrostingHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    FrostingHero.CommandToFrost(tile);
+                }
+                return;
+            }
+            else if (PetHero)
+            {
+                if (PetHero == tile.tileActor)
+                {
+                    PetHero.HideWays();
+                    PetHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    PetHero.CommandToSummonPet(tile);
+                }
+                return;
+            }
+            else if (ThunderHero)
+            {
+                if (ThunderHero == tile.tileActor)
+                {
+                    ThunderHero.HideWays();
+                    ThunderHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    ThunderHero.CommandToThunder(tile);
+                }
+                return;
+            }
+            else if (HealingHero)
+            {
+              //  if (HealingHero == tile.tileActor)
+                {
+               //     HealingHero.HideWays();
+                //    HealingHero = null;
+                //    HealingHero.CommandToHeal(tile);
+//                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                /*else*/ if (tile.tileActor != null)
+                {
+                    HealingHero.CommandToHeal(tile);
+                }
+                return;
+            }
+
+            if (!aHeroIsSelected)
             {
                 pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posição
                 if (selectedHero == null) {
@@ -189,10 +281,10 @@ namespace AStar_2D.Demo
                 }
 
             }
-            else if (mouseButton == 0 && aHeroIsSelected)
+            else if (aHeroIsSelected)
             {
                 HeroController heroScript = selectedHero.GetComponent<HeroController>();
-               selectedHero.GetComponent<HeroController>().Act(tile);
+               // selectedHero.GetComponent<HeroController>().Act(tile);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using AStar_2D.Demo;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        StartAudio();
+       // StartAudio();
     }
 
     private void StartAudio()
@@ -46,11 +47,27 @@ public class GameManager : MonoBehaviour
         {
             actor.OnActorStartAttack += HandleActorAttack;
             actor.OnActorFinishAttack += HandleActorFinishedAttack;
+            actor.OnActorStartSpinAttack += HandleSpinAttack;
+            actor.OnActorFinishSpinAttack += HandleFinishSpinAttack;
+
             actor.OnActorTaunt += HandleActorTaunt;
             actor.OnActorEndTaunt += HandleActorEndTaunt;
             actor.OnActorEndTauntAnimation += HandleActorEndTauntAnimation;
         }
     }
+
+    private void HandleFinishSpinAttack(Actor actor)
+    {
+        _mainCamera.gameObject.SetActive(true);
+        actor.SpinCamera.gameObject.SetActive(false);
+    }
+
+    private void HandleSpinAttack(Actor actor)
+    {
+        _mainCamera.gameObject.SetActive(false);
+        actor.SpinCamera.gameObject.SetActive(true);
+    }
+
     private void HandleActorAttack(Actor actor)
     {
         _mainCamera.gameObject.SetActive(false);

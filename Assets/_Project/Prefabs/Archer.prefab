@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 7164074486814521564}
+  m_SpinCamera: {fileID: 0}
   _healParticle: {fileID: 2869083956743931505}
   anim: {fileID: 95909089755769754}
   currentTile: {fileID: 0}
@@ -367,10 +368,13 @@ MonoBehaviour:
   personalCanvas: {fileID: 1652699373033136}
   moveAction: 0
   mainAction: 0
-  attackRange: 4
+  BasicAttackRange: 5
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
+  _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
+    type: 3}
+  _warningMark: {fileID: 0}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
   _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: f5a0684ad0d9a2645bf3dc275573663d,
@@ -379,17 +383,25 @@ MonoBehaviour:
     type: 3}
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: d4609d4b897ec374ebf66c959fd418a7,
     type: 3}
-  _petSummon: {fileID: 709852523964064144}
-  _tauntDuration: 1
+  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: d61b096b68392be4184bdec1f15ce560,
+    type: 3}
+  _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
+    type: 3}
   _specialAttackCoolDownTime: 5
   _secondSpecialAttackCoolDownTime: 2
   _frostDuration: 1
+  FrostAttackDamage: 40
   id: 0
   _icyTrailParticles: {fileID: 2049554200845611903}
   _iceArrowPrefab: {fileID: 1520786051656894, guid: 60f067005042016479e156d2700edf0c,
     type: 3}
   _iceArrowOrigin: {fileID: 2004479399998170688}
   _effectOnCollision: {fileID: 173866, guid: 6692e3c69d930964f89b810020ae7d5c, type: 3}
+  _petSummon: {fileID: 709852523964064144}
+  _petSpellCooldown: 5
+  _frostAttackCooldown: 3
+  FrostAttackRange: 4
+  PetAttackRange: 10
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3155,36 +3167,6 @@ Transform:
   - {fileID: 4234680795514184}
   m_Father: {fileID: 4215185313641586}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &92943700908765486
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 2733838017850268663}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2521892058792959698}
-  m_Layer: 0
-  m_Name: Audio (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2521892058792959698
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 2733838017850268663}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92943700908765486}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2215274047766400503}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988925578513816644
 GameObject:

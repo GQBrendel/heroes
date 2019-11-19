@@ -2579,6 +2579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 7373323794718657832}
+  m_SpinCamera: {fileID: 0}
   _healParticle: {fileID: 4457736266172380572}
   anim: {fileID: 3853337215732162538}
   currentTile: {fileID: 0}
@@ -2594,10 +2595,13 @@ MonoBehaviour:
   personalCanvas: {fileID: 5410261984937531793}
   moveAction: 0
   mainAction: 0
-  attackRange: 4
+  BasicAttackRange: 3
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
+  _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
+    type: 3}
+  _warningMark: {fileID: 0}
   _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
     type: 3}
   _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: c63116293ae867249982eec67631d09b,
@@ -2607,14 +2611,22 @@ MonoBehaviour:
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: c1819852a6eea4741aaf1e289d3f0c6a,
     type: 3}
   _petSummon: {fileID: 0}
+  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 9de4c7284187cb2468d039ba8ae316f3,
+    type: 3}
+  _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
+    type: 3}
   _tauntDuration: 1
   _specialAttackCoolDownTime: 2
   _secondSpecialAttackCoolDownTime: 3
   _frostDuration: 0
+  FrostAttackDamage: 40
   id: 0
   _healFactor: 90
   _healSpellCooldown: 2
+  _thunderAttackCooldown: 3
   _healSound: {fileID: 4384046316555227504}
+  ThundertAttackRange: 5
+  HealAttackRange: 4
 --- !u!114 &3250235294387397274
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class Brute : HeroController
 {
+    [Range(1, 5), SerializeField] private int _tauntDuration;
+    [Range(1, 5), SerializeField] protected int _spinAttackCooldown;
+    [Range(1, 5), SerializeField] protected int _tauntCooldown;
+
+    private int _spinCounter = 0;
+    private int _tauntCounter = 0;
+
     public override void AttackHit()
     {
         base.AttackHit();
@@ -13,13 +20,34 @@ public class Brute : HeroController
 
     public override void CommandToAttack(Tile tile)
     {
-        if (TryAttack(tile))
+        if (TryAttack(tile, BasicAttackRange))
         {
             AudioManager.Instance.Play("MaleAttackGrunt");
             anim.SetTrigger("Attack");
             FadeActions();
+            TileManager.Instance.AttackingHero = null;
         }
     }
+    public override void CommandToTaunt()
+    {
+        if (_tauntCounter > 0)
+        {
+            return;
+        }
+        if (mainAction)
+        {
+            Debug.LogError("Taunt being called but this unity already used main action");
+            return;
+        }
+        _tauntCounter = _tauntCooldown;
+        FadeActions();
+
+        CanControl = false;
+        HideWays();
+        OnActorTaunt?.Invoke(this);
+        anim.SetTrigger("Taunt");
+    }
+
     public override void SpinAttackHit()
     {
         List<Actor> adjacentActors = TileManager.Instance.GetAdjacentActors(currentTile);
@@ -28,7 +56,18 @@ public class Brute : HeroController
             AudioManager.Instance.Play("AxeHit");
             Fight(actor);
         }
-
+    }
+    protected override bool ValidateBrute(HeroesActions action)
+    {
+        if (action == HeroesActions.Taunt)
+        {
+            return _tauntCounter == 0;
+        }
+        else if (action == HeroesActions.Spin)
+        {
+            return _spinCounter == 0;
+        }
+        return false;
     }
 
     public override void CommandToSpinAttack()
@@ -42,8 +81,7 @@ public class Brute : HeroController
             Debug.LogError("Spin Attack being called but this unity already used main action");
             return;
         }
-
-        _spinAttackCounter = _specialAttackCoolDownTime;
+        _spinCounter = _spinAttackCooldown;
 
         FadeActions();
 
@@ -52,7 +90,63 @@ public class Brute : HeroController
         anim.SetTrigger("Spin");
         AudioManager.Instance.Play("SpinAxe");
         AudioManager.Instance.Play("MaleAttackGrunt");
-        OnActorStartAttack?.Invoke(this);
+        OnActorStartSpinAttack?.Invoke(this);
+    }
+    public override void ResetActions()
+    {
+        base.ResetActions();
+        if (_spinCounter > 0)
+        {
+            _spinCounter--;
+            if (_spinCounter == 0)
+            {
+                ActionSelector.RemoveFade(HeroesActions.Spin);
+            }
+            else
+            {
+                ActionSelector.FadeAction(HeroesActions.Spin, _spinCounter);
+            }
+        }
+        if (_tauntCounter > 0)
+        {
+            _tauntCounter--;
+            if (_tauntCounter == 0)
+            {
+                ActionSelector.RemoveFade(HeroesActions.Taunt);
+                OnActorEndTaunt?.Invoke(this);
+            }
+            else
+            {
+                ActionSelector.FadeAction(HeroesActions.Taunt, _tauntCounter);
+            }
+        }
+    }
+    public override void SendHoverCommand(HeroesActions action)
+    {
+        if(_spinCounter > 0)
+        {
+            return;
+        }
+
+        switch (action)
+        {
+            case HeroesActions.Spin:
+                ShowWarningMarks();
+                break;
+        }
+    }
+    public override void SendLeaveHoverCommand(HeroesActions action)
+    {
+        if (_spinAttackCooldown > 0)
+        {
+            return;
+        }
+        switch (action)
+        {
+            case HeroesActions.Spin:
+                HideWays();
+                break;
+        }
     }
 
     public override void PlayDamageSound()
