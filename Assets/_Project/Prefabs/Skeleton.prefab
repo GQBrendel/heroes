@@ -1585,6 +1585,7 @@ MonoBehaviour:
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 2
+  Movement: 2
   id: 0
 --- !u!114 &1399395016
 MonoBehaviour:

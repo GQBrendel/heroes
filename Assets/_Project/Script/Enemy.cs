@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Enemy : Actor
 {
-
+    public int Movement;
     public int id = 0;
 
     CursorManager mouseCursor;
@@ -119,4 +119,16 @@ public class Enemy : Actor
             }
         }
     }
+
+    public Vector2 TopLeft { get { return new Vector2(posX - 1, posY + 1); } }
+    public Vector2 Top { get { return new Vector2(posX,posY + 1); } }
+    public Vector2 TopRight { get { return new Vector2(posX + 1 , posY + 1); } }
+
+    public Vector2 Right { get { return new Vector2(posX + 1 , posY); } }
+
+    public Vector2 BottonRight { get { return new Vector2(posX + 1, posY - 1); } }
+    public Vector2 Botton { get { return new Vector2(posX, posY - 1); } }
+    public Vector2 BottonLeft { get { return new Vector2(posX - 1, posY - 1); } }
+
+    public Vector2 Left { get { return new Vector2(posX - 1, posY); } }
 }

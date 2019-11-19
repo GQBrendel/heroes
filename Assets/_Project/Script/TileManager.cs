@@ -136,12 +136,12 @@ namespace AStar_2D.Demo
             GenerateActor(archer, 8, 0);
             GenerateActor(_mage, 6, 0);
 
-            GenerateActor(skelletonPrefab, 8, 2);
-            GenerateActor(skelletonPrefab, 4, 8);/*
+          //  GenerateActor(skelletonPrefab, 8, 2);
+            GenerateActor(skelletonPrefab, 4, 8);
             GenerateActor(skelletonPrefab, 10, 9);
             GenerateActor(skelletonPrefab, 6, 10);
             GenerateActor(skelletonPrefab, 2, 14);
-            GenerateActor(skelletonPrefab, 13, 14);*/
+            GenerateActor(skelletonPrefab, 13, 14);
 
             OnAllHeroesSpawned?.Invoke(_heroes);
 

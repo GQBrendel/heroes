@@ -266,6 +266,9 @@ public class EnemiesController : MonoBehaviour
     {
         return (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
     }
+
+    public bool foundPosition;
+
     void moveNextToClosestHero()
     {
         float distance;
@@ -282,58 +285,55 @@ public class EnemiesController : MonoBehaviour
 
             Vector2 heroPos = new Vector2(heroPosX, heroPosY);
 
-
             ReValidateMovement(distance, heroPos);
+            if (foundPosition)
+            {
+                commandToMove(bestX, bestY);
+            }
+            else
+            {
 
-            commandToMove(bestX, bestY);
+            }
         }
     }
+
     private void ReValidateMovement(float distance, Vector2 heroPos)
     {
+        foundPosition = true;
         FindRoute(distance, heroPos);
         int x = (int)heroPos.x;
         int y = (int)heroPos.y;
 
         if (!TileManager.Instance.IsMovementValid(bestX, bestY))
         {
-            if (TileManager.Instance.IsMovementValid(x, y + 1))
+            //Search for a valid position adjacent
+            List<Vector2> adjacentPositions = Utils.GetAdjacentPoints(new Vector2(bestX, bestY));
+            foreach(var point in adjacentPositions)
             {
-                y += 1;
+                if(TileManager.Instance.IsMovementValid((int)point.x, (int)point.y))
+                {
+                    bestX = (int)point.x;
+                    bestY = (int)point.y;
+                    return;
+                }
             }
-            else if (TileManager.Instance.IsMovementValid(x + 1, y + 1))
+
+            //Double the search
+            foreach (var point in adjacentPositions)
             {
-                x += 1;
-                y += 1;
+                List<Vector2> secondLayerAdjacentPoints = Utils.GetAdjacentPoints(point);
+                foreach (var deepoPoint in secondLayerAdjacentPoints)
+                {
+                    if (TileManager.Instance.IsMovementValid((int)point.x, (int)point.y))
+                    {
+                        bestX = (int)point.x;
+                        bestY = (int)point.y;
+                        Debug.LogError("Had to appel to second layer of search");
+                        return;
+                    }
+                }
             }
-            else if (TileManager.Instance.IsMovementValid(x + 1, y))
-            {
-                x += 1;
-            }
-            else if (TileManager.Instance.IsMovementValid(x + 1, y - 1))
-            {
-                x += 1;
-                y -= 1;
-            }
-            else if (TileManager.Instance.IsMovementValid(x, y - 1))
-            {
-                y -= 1;
-            }
-            else if (TileManager.Instance.IsMovementValid(x - 1, y - 1))
-            {
-                x -= 1;
-                y -= 1;
-            }
-            else if (TileManager.Instance.IsMovementValid(x - 1, y))
-            {
-                x -= 1;
-            }
-            else if (TileManager.Instance.IsMovementValid(x - 1, y + 1))
-            {
-                x -= 1;
-                y += 1;
-            }
-            bestX = x;
-            bestY = y;
+
         }
     }
     public void RemoveHeroFromList(HeroController hero)
