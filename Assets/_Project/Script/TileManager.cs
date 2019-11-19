@@ -37,6 +37,8 @@ namespace AStar_2D.Demo
         public HeroController AttackingHero;
         public HeroController FrostingHero;
         public HeroController PetHero;
+        public HeroController ThunderHero;
+        public HeroController HealingHero;
 
 
 
@@ -238,6 +240,35 @@ namespace AStar_2D.Demo
                 else if (tile.tileActor != null)
                 {
                     PetHero.CommandToSummonPet(tile);
+                }
+                return;
+            }
+            else if (ThunderHero)
+            {
+                if (ThunderHero == tile.tileActor)
+                {
+                    ThunderHero.HideWays();
+                    ThunderHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    ThunderHero.CommandToThunder(tile);
+                }
+                return;
+            }
+            else if (HealingHero)
+            {
+              //  if (HealingHero == tile.tileActor)
+                {
+               //     HealingHero.HideWays();
+                //    HealingHero = null;
+                //    HealingHero.CommandToHeal(tile);
+//                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                /*else*/ if (tile.tileActor != null)
+                {
+                    HealingHero.CommandToHeal(tile);
                 }
                 return;
             }

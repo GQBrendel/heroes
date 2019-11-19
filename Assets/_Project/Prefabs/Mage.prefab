@@ -2611,7 +2611,7 @@ MonoBehaviour:
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: c1819852a6eea4741aaf1e289d3f0c6a,
     type: 3}
   _petSummon: {fileID: 0}
-  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 91e5622dd34615643890e5ef0fd85163,
+  _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 9de4c7284187cb2468d039ba8ae316f3,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
@@ -2619,10 +2619,14 @@ MonoBehaviour:
   _specialAttackCoolDownTime: 2
   _secondSpecialAttackCoolDownTime: 3
   _frostDuration: 0
+  FrostAttackDamage: 40
   id: 0
   _healFactor: 90
   _healSpellCooldown: 2
+  _thunderAttackCooldown: 3
   _healSound: {fileID: 4384046316555227504}
+  ThundertAttackRange: 5
+  HealAttackRange: 4
 --- !u!114 &3250235294387397274
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,13 @@ public class Archer : HeroController
     [SerializeField] private GameObject _iceArrowPrefab;
     [SerializeField] private Transform _iceArrowOrigin;
     [SerializeField] private GameObject _effectOnCollision;
+    [SerializeField] private PetSummon _petSummon;
+
+    [Range(1, 5), SerializeField] protected int _petSpellCooldown;
+    [Range(1, 5), SerializeField] protected int _frostAttackCooldown;
+
+    private int _petCounter = 0;
+    private int _frostCounter = 0;
 
 
     public int FrostAttackRange = 2;
@@ -20,6 +27,18 @@ public class Archer : HeroController
     {
         base.Start();
         _icyTrailParticles.gameObject.SetActive(false);
+        _petSummon.OnEnemyHit += HandlePetHit;
+        _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
+        
+    }
+    private void HandlePetHit()
+    {
+        TileManager.Instance.PetHero = null;
+        Fight(CurrentEnemy, true);
+    }
+    private void HandlePetFinishedAttack()
+    {
+        FinishedSpecialAttack();
     }
 
     public override void SelectHero()
@@ -43,6 +62,19 @@ public class Archer : HeroController
         }
     }
 
+    protected override bool ValidateArcher(HeroesActions action)
+    {
+        if (action == HeroesActions.Frost)
+        {
+            return _frostCounter == 0;
+        }
+        else if (action == HeroesActions.Pet)
+        {
+            return _petCounter == 0;
+        }
+        return false;
+    }
+
     protected override void CommandToFrostNew()
     {
         TileManager.Instance.FrostingHero = this;
@@ -58,6 +90,60 @@ public class Archer : HeroController
     {
         base.AttackHit();
         AudioManager.Instance.Play("Bow");
+    }
+    public override void CommandToFrost(Tile tile)
+    {
+        if (mainAction)
+        {
+            Debug.LogError("Frost Attack being called but this unity already used main action");
+            return;
+        }
+
+        if (TryAttack(tile, FrostAttackRange))
+        {
+            anim.SetTrigger("Frost");
+        }
+        else
+        {
+            return;
+        }
+
+        _frostCounter = _frostAttackCooldown;
+        //_frostAttackCounter = _secondSpecialAttackCoolDownTime;
+        //_enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
+        //_enemyTileMenu.FadeAction("Pet", _petAttackCounter);
+        FadeActions();
+    }
+    public override void CommandToSummonPet(Tile tile)
+    {
+        if (mainAction)
+        {
+            Debug.LogError("Spin Attack being called but this unity already used main action");
+            return;
+        }
+
+        if (TryAttack(tile, PetAttackRange))
+        {
+        }
+        else
+        {
+            return;
+        }
+
+        _petCounter = _petSpellCooldown;
+
+        FadeActions();
+
+        CanControl = false;
+        HideWays();
+
+        OnActorStartAttack?.Invoke(this);
+
+        CurrentEnemy = tile.tileActor;
+
+        transform.LookAt(CurrentEnemy.transform);
+        _petSummon.SummonPet(tile.transform.position);
+        anim.SetTrigger("PetAttack");
     }
 
     public void CastIceArrow()
@@ -86,4 +172,34 @@ public class Archer : HeroController
     {
         _icyTrailParticles.gameObject.SetActive(false);
     }
+
+    public override void ResetActions()
+    {
+        base.ResetActions();
+        if (_frostCounter > 0)
+        {
+            _frostCounter--;
+            if (_frostCounter == 0)
+            {
+                ActionSelector.RemoveFade(HeroesActions.Frost);
+            }
+            else
+            {
+                ActionSelector.FadeAction(HeroesActions.Frost, _frostCounter);
+            }
+        }
+        if (_petCounter > 0)
+        {
+            _petCounter--;
+            if (_petCounter == 0)
+            {
+                ActionSelector.RemoveFade(HeroesActions.Pet);
+            }
+            else
+            {
+                ActionSelector.FadeAction(HeroesActions.Pet, _petCounter);
+            }
+        }
+    }
+
 }

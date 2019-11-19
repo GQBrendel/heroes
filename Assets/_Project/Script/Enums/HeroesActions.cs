@@ -6,5 +6,7 @@
     Spin,
     Taunt,
     Frost,
-    Pet
+    Pet,
+    Thunder,
+    Heal
 }

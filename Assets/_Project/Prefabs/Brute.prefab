@@ -3569,16 +3569,18 @@ MonoBehaviour:
     type: 3}
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: f2e505315bb5b0f4ba4125d22444cf35,
     type: 3}
-  _petSummon: {fileID: 0}
   _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 91e5622dd34615643890e5ef0fd85163,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
-  _tauntDuration: 2
   _specialAttackCoolDownTime: 3
   _secondSpecialAttackCoolDownTime: 1
   _frostDuration: 0
+  FrostAttackDamage: 40
   id: 0
+  _tauntDuration: 2
+  _spinAttackCooldown: 3
+  _tauntCooldown: 2
 --- !u!1001 &3470663851251467069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3706,6 +3708,12 @@ PrefabInstance:
       propertyPath: _actor
       value: 
       objectReference: {fileID: 2077344126466471385}
+    - target: {fileID: 3984835638729355192, guid: 9c9af52b481514b4796ef29ccd30c9d4,
+        type: 3}
+      propertyPath: _frostSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59a1406e78c0df64ca5800d11046899b,
+        type: 3}
     - target: {fileID: 2341201674177170050, guid: 9c9af52b481514b4796ef29ccd30c9d4,
         type: 3}
       propertyPath: m_Layer

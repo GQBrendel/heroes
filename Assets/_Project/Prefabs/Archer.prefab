@@ -383,7 +383,6 @@ MonoBehaviour:
     type: 3}
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: d4609d4b897ec374ebf66c959fd418a7,
     type: 3}
-  _petSummon: {fileID: 709852523964064144}
   _actionSelectorPrefab: {fileID: 1076566576920833743, guid: d61b096b68392be4184bdec1f15ce560,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
@@ -392,13 +391,18 @@ MonoBehaviour:
   _specialAttackCoolDownTime: 5
   _secondSpecialAttackCoolDownTime: 2
   _frostDuration: 1
+  FrostAttackDamage: 40
   id: 0
   _icyTrailParticles: {fileID: 2049554200845611903}
   _iceArrowPrefab: {fileID: 1520786051656894, guid: 60f067005042016479e156d2700edf0c,
     type: 3}
   _iceArrowOrigin: {fileID: 2004479399998170688}
   _effectOnCollision: {fileID: 173866, guid: 6692e3c69d930964f89b810020ae7d5c, type: 3}
+  _petSummon: {fileID: 709852523964064144}
+  _petSpellCooldown: 5
+  _frostAttackCooldown: 3
   FrostAttackRange: 2
+  PetAttackRange: 10
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0
