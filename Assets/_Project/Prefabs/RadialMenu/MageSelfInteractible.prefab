@@ -58,3 +58,9 @@ MonoBehaviour:
     ImageColor: {r: 1, g: 1, b: 1, a: 1}
     OnCoolDown: 0
     CoolDownValue: 1
+  - CircleColor: {r: 0, g: 0, b: 0, a: 0}
+    sprite: {fileID: 21300000, guid: 2bcace51520ed2048b5188372316204b, type: 3}
+    title: Passturn
+    ImageColor: {r: 1, g: 1, b: 1, a: 1}
+    OnCoolDown: 0
+    CoolDownValue: 1

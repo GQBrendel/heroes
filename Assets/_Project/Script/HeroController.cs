@@ -97,6 +97,14 @@ public class HeroController : Actor
         RadialMenuSpawner.instance.SpawnMenu(interactableType, this, tile);
     }
 
+    public void CommandToPassTurn()
+    {
+        mainAction = true;
+        moveAction = true;
+
+        TileManager.Instance.SendMessage("endAction");
+    }
+
     public virtual void CommandToThunder(Tile tile)
     {
 
@@ -198,7 +206,12 @@ public class HeroController : Actor
     }
     public virtual void CommandToSpinAttack()
     {
-        
+        mainAction = true;
+        moveAction = true;
+
+        TileManager.Instance.SendMessage("endAction");
+        rotate = true;
+        StartCoroutine(SetRotateToFalse());
     }
 
     public void CommandToMove(Tile tile)

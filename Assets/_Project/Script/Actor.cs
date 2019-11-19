@@ -105,6 +105,7 @@ public class Actor : MonoBehaviour
    
         Destroy(gameObject);
     }
+
        
     public void TryMove(AStar_2D.Demo.Tile tileDestino)
     {
@@ -167,19 +168,17 @@ public class Actor : MonoBehaviour
         yield return new WaitUntil(() => GetComponent<AnimatedAgent>().moved);
         currentTile.toggleWalkable();
         checkActions();
-       // if (KilledEnemyOnTurn)
-       // {
-       //     yield return new WaitForSeconds(3f);
-       // }
+
         if (finishedAllActions())
         {
             TileManager.Instance.SendMessage("endAction");
             rotate = true;
             StartCoroutine(SetRotateToFalse());
-
         }
         else if (!mainAction)
-            GetComponent<HeroController>().showWays(posX,posY);
+        {
+            GetComponent<HeroController>().showWays(posX, posY);
+        }
     }
     public bool finishedAllActions()
     {
@@ -192,7 +191,7 @@ public class Actor : MonoBehaviour
             return false;
         }
     }
-    private IEnumerator SetRotateToFalse()
+    protected IEnumerator SetRotateToFalse()
     {
         yield return new WaitForSeconds(1);
         rotate = false;
