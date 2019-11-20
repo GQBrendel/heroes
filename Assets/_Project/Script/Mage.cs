@@ -102,18 +102,30 @@ public class Mage : HeroController
 
             anim.SetBool("SelfHeal", tile == currentTile);
             anim.SetTrigger("Heal");
-            if(tile == currentTile)
+
+            if (tile == currentTile)
             {
                 _healSound.Play();
             }
         }
     }
 
+    public override void PlayOutOfRangeSound()
+    {
+        AudioManager.Instance.Play("MageOutOfRange");
+    }
+
     public void HealHit()
     {
+        AudioManager.Instance.Play("MageHeal");
         ActionSelector.FadeAction(HeroesActions.Heal, _healCounter);
         TileManager.Instance.HealingHero = null;
         Heal(CurrentAlly, _healFactor);
+    }
+
+    public override void PerformDeathSpecifcsActions()
+    {
+        AudioManager.Instance.Play("MageDeath");
     }
 
     private bool TryHeal(Tile tile)
@@ -129,6 +141,7 @@ public class Mage : HeroController
         if (EuclidianDistance(this, tile.tileActor) > HealAttackRange)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
+            PlayOutOfRangeSound();
             return false;
         }
         if (mainAction)
@@ -152,6 +165,38 @@ public class Mage : HeroController
         ally.Heal(healValue);
     }
 
+    public override void PlayDamageSound()
+    {
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            AudioManager.Instance.Play("MageHit");
+        }
+        else if (random == 1)
+        {
+            AudioManager.Instance.Play("MageHit2");
+        }
+    }
+    public override void SelectHero()
+    {
+        base.SelectHero();
+        PlayRandomSelectionAudio();
+    }
+
+    private void PlayRandomSelectionAudio()
+    {
+        int random = Random.Range(0, 2);
+
+        switch (random)
+        {
+            case 0:
+                AudioManager.Instance.Play("MageYes");
+                break;
+            case 1:
+                AudioManager.Instance.Play("MageReady");
+                break;
+        }
+    }
 
     public override void ResetActions()
     {

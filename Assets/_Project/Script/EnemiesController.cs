@@ -21,9 +21,7 @@ public class EnemiesController : MonoBehaviour
     [HideInInspector]
     public List<GameObject> tilesList;
     GameObject destinyTile;
-
-
-
+    
     Enemy activeEnemy;
     Vector3 boardOffset;
     Vector3 unitsOffset;
@@ -267,7 +265,7 @@ public class EnemiesController : MonoBehaviour
         return (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
     }
 
-    public bool foundPosition;
+   // public bool foundPosition;
 
     void moveNextToClosestHero()
     {
@@ -286,20 +284,16 @@ public class EnemiesController : MonoBehaviour
             Vector2 heroPos = new Vector2(heroPosX, heroPosY);
 
             ReValidateMovement(distance, heroPos);
-            if (foundPosition)
+         //   if (foundPosition)
             {
                 commandToMove(bestX, bestY);
-            }
-            else
-            {
-
-            }
+            }        
         }
     }
 
     private void ReValidateMovement(float distance, Vector2 heroPos)
     {
-        foundPosition = true;
+        //foundPosition = true;
         FindRoute(distance, heroPos);
         int x = (int)heroPos.x;
         int y = (int)heroPos.y;

@@ -277,6 +277,7 @@ public class HeroController : Actor
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             Debug.Log("Enemy out of Range");
+            PlayOutOfRangeSound();
             return false;
         }
         if (mainAction)
@@ -586,6 +587,9 @@ public class HeroController : Actor
     internal void setId(int _id)
     {
         id = _id;
+    }
+    public virtual void PlayOutOfRangeSound()
+    {
     }
 
     void OnDestroy()

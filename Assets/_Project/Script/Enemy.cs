@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -37,6 +36,7 @@ public class Enemy : Actor
 
     public void Attack(Actor target)
     {
+        AudioManager.Instance.Play("SkeletonAttack");
         transform.LookAt(target.transform);
         anim.SetTrigger("Attack");
         _currentTarget = target;
@@ -50,10 +50,28 @@ public class Enemy : Actor
 
     public override void PerformDeathSpecifcsActions()
     {
+        AudioManager.Instance.Play("SkeletonDeath");
         if (Frosted)
         {
             var ice = FindObjectOfType<IceController>();
             ice.BreakTheIce();
+        }
+    }
+
+    public override void PlayDamageSound()
+    {
+        int random = Random.Range(0, 3);
+        if(random == 0)
+        {
+            AudioManager.Instance.Play("SkeletonHit1");
+        }
+        else if (random == 1)
+        {
+            AudioManager.Instance.Play("SkeletonHit2");
+        }
+        else if (random == 2)
+        {
+            AudioManager.Instance.Play("SkeletonHit3");
         }
     }
 

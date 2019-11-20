@@ -41,26 +41,6 @@ public class Archer : HeroController
         FinishedSpecialAttack();
     }
 
-    public override void SelectHero()
-    {
-        base.SelectHero();
-        PlayRandomSelectionAudio();
-    }
-
-    private void PlayRandomSelectionAudio()
-    {
-        int random = Random.Range(0, 2);
-
-        switch (random)
-        {
-            case 0:
-                AudioManager.Instance.Play("ArcherYes");
-                break;
-            case 1:
-                AudioManager.Instance.Play("ArcherReady");
-                break;
-        }
-    }
 
     protected override bool ValidateArcher(HeroesActions action)
     {
@@ -171,6 +151,23 @@ public class Archer : HeroController
     public void TurnOffParticles()
     {
         _icyTrailParticles.gameObject.SetActive(false);
+    }
+
+    public override void PlayDamageSound()
+    {
+        int random = Random.Range(0, 3);
+        if (random == 0)
+        {
+            AudioManager.Instance.Play("FemaleHit1");
+        }
+        else if (random == 1)
+        {
+            AudioManager.Instance.Play("FemaleHit2");
+        }
+        else if (random == 2)
+        {
+            AudioManager.Instance.Play("FemaleHit3");
+        }
     }
 
     public override void ResetActions()

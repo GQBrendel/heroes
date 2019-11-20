@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4020073896273343728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4020073896273343730}
+  - component: {fileID: 4020073896273343731}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4020073896273343730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020073896273343728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03666401, y: 7.227303, z: 146.94427}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4020073896273343731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4020073896273343728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c29be5f69132bf4ca80d45a8a1cf11f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Ambience
+    clip: {fileID: 8300000, guid: 6307562c4a1795a47b2fee8d9162d56e, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: -7166994498881461443, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: DungeonMusic
+    clip: {fileID: 8300000, guid: 7c601e21b7bc1404fa0ffa29deae1140, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 2090734325700558021, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageYes
+    clip: {fileID: 8300000, guid: 4ada5b8a437bb9a468be6c06760564bf, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1.1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageReady
+    clip: {fileID: 8300000, guid: 4b362db71498b6246ac651af433a4578, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1.1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: Bow
+    clip: {fileID: 8300000, guid: b007a619c2edd7644b77ff3ed6895093, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 7227720299388091766, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: AxeHit
+    clip: {fileID: 8300000, guid: b4dd713dc3c7f4540ad93aaf0cb2dd71, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 7227720299388091766, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MaleAttackGrunt
+    clip: {fileID: 8300000, guid: 8e8ef16a422824ebfb0d5fb7b17aa031, type: 3}
+    volume: 1
+    volumeVariance: 0.35
+    pitch: 1
+    pitchVariance: 0.337
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: SpinAxe
+    clip: {fileID: 8300000, guid: 09e6036fbe071c641830248e77e25000, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.275
+    loop: 0
+    mixerGroup: {fileID: 7227720299388091766, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MaleTakeHit
+    clip: {fileID: 8300000, guid: 8bfe94dee7206ac44806cf6d6af1b367, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.275
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MaleDeath
+    clip: {fileID: 8300000, guid: 9b903cdade895c643bd1d9ad9ee60e41, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 0.8
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: SkeletonAttack
+    clip: {fileID: 8300000, guid: 1797a0705a56740219aec41079bd4753, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 0.8
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: SkeletonHit1
+    clip: {fileID: 8300000, guid: f2805cf8feb6543ebb46819e457a3b62, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 0.8
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: SkeletonHit2
+    clip: {fileID: 8300000, guid: 2de1a3a2dd2854605a93fca415642dad, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 0.8
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: SkeletonHit3
+    clip: {fileID: 8300000, guid: e6a5b3076b9a54fd6a81865309cf176a, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 0.8
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: SkeletonDeath
+    clip: {fileID: 8300000, guid: 4ebef63f832f54fd0b648ffae65569a6, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 0.8
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: FemaleAttack
+    clip: {fileID: 8300000, guid: 2373a887111ea7741a8b6b01e7e13572, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: FemaleHit1
+    clip: {fileID: 8300000, guid: 01716b5c3673c674e99cf19fa2b0d78f, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: FemaleHit2
+    clip: {fileID: 8300000, guid: 46e55044e3dda3e43a58b64ec3bdcb0b, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: FemaleHit3
+    clip: {fileID: 8300000, guid: 56ea3d8f4eda9d742858508a84651eee, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageHit
+    clip: {fileID: 8300000, guid: e7404b3871bc93840b0f640abeeda1e1, type: 3}
+    volume: 1
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageHit2
+    clip: {fileID: 8300000, guid: 16be60c3e1311f54fb6f154764e5df1e, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageOutOfRange
+    clip: {fileID: 8300000, guid: 2391e5c84ce7bc547b390fbda587c402, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageHeal
+    clip: {fileID: 8300000, guid: 0cc0898c9699c9c4ca852c6bb4f6e671, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MageDeath
+    clip: {fileID: 8300000, guid: 8ffda7dab5e462443adf40d7f54a94e1, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
