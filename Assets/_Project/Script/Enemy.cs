@@ -36,10 +36,14 @@ public class Enemy : Actor
 
     public void Attack(Actor target)
     {
-        AudioManager.Instance.Play("SkeletonAttack");
         transform.LookAt(target.transform);
         anim.SetTrigger("Attack");
         _currentTarget = target;
+    }
+
+    public void AttackSound()
+    {
+        AudioManager.Instance.Play("SkeletonAttack");
     }
 
     public void AttackHit()

@@ -68,7 +68,7 @@ public class EnemiesController : MonoBehaviour
         }
         chooseDestination(posX, posY);                                  //Verifica o destino
         activeEnemy.GetComponent<AStar_2D.Demo.AnimatedAgent>().moved = false;
-        activeEnemy.TryMove(destinyTile.GetComponent<AStar_2D.Demo.Tile>());  //manda mover
+        activeEnemy.TryMoveEnemy(destinyTile.GetComponent<AStar_2D.Demo.Tile>());  //manda mover
         activeEnemy.GetComponent<Actor>().checkActions();
     }
 
@@ -117,8 +117,11 @@ public class EnemiesController : MonoBehaviour
         activeHeroes = GameObject.FindGameObjectsWithTag("Hero");
         foreach (GameObject hero in activeHeroes)
         {
-            heroList.Add(hero);
-            heroUnits++;
+            if (hero.GetComponent<Actor>().Alive)
+            {
+                heroList.Add(hero);
+                heroUnits++;
+            }
         }
 
         int lastId = heroList[heroList.Count - 1].GetComponent<HeroController>().id;
@@ -152,6 +155,8 @@ public class EnemiesController : MonoBehaviour
                 activeEnemy.GetComponent<Enemy>().Attack(_targetHero);
 
                 yield return new WaitUntil(() => activeEnemy.mainAction);
+
+                //yield return _waitForOneSecond;
             }
             else
             {
@@ -187,7 +192,7 @@ public class EnemiesController : MonoBehaviour
     {
         Actor target = null;
 
-        if (_taunted && _tauntHero.isActiveAndEnabled)
+        if (_taunted &&  _tauntHero.Alive)
         {
             target = _tauntHero;
         }
@@ -200,8 +205,11 @@ public class EnemiesController : MonoBehaviour
                 float heroDis = euclidianDistance(hero.GetComponent<Actor>(), activeEnemy);
                 if (minDistance > heroDis)
                 {
-                    minDistance = heroDis;
-                    target = hero.GetComponent<Actor>();
+                    if (hero.GetComponent<Actor>().Alive)
+                    {
+                        minDistance = heroDis;
+                        target = hero.GetComponent<Actor>();
+                    }
                 }
             }
         }
@@ -247,6 +255,10 @@ public class EnemiesController : MonoBehaviour
         }
         Debug.Log("Best X excolhido foi " + bestX);
         Debug.Log("Best Y escolhido foi " + bestY);
+        if(bestY == 6)
+        {
+            Debug.Log("h");
+        }
 
     }
     float euclidianDistance(Actor A1, Actor A2)

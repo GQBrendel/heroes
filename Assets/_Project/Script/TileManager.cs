@@ -344,12 +344,6 @@ namespace AStar_2D.Demo
             heroesList.Remove(hero.gameObject);
         }
 
-        private void tryMove(Tile tile)
-        {
-            // tiles[selectedHero.GetComponent<Actor>().posX, selectedHero.GetComponent<Actor>().posY].toggleWalkable();         //Marca o tile Origem como n�o caminh�vel
-            selectedHero.GetComponent<Actor>().TryMove(tile);
-        } 
-
         private void onTileHover(Tile tile)
         {
             // Find the first agent
@@ -500,7 +494,7 @@ namespace AStar_2D.Demo
         }
         public bool IsMovementValid(int x, int y)
         {
-            return tiles[x, y].IsWalkable;
+            return (tiles[x,y].tileActor == null && tiles[x, y].IsWalkable);
         }
     }
 }

@@ -239,7 +239,7 @@ public class HeroController : Actor
 
     public void CommandToMove(Tile tile)
     {
-        TryMove(tile);
+        TryMoveHero(tile);
     }
     public virtual void CommandToAttack(Tile tile)
     {

@@ -24,6 +24,8 @@ public class Actor : MonoBehaviour
     [SerializeField] private Camera m_SpinCamera;
     [SerializeField] private ParticleSystem _healParticle;
 
+    public bool Alive { get; private set; } = true;
+
     public Animator anim;
     private AnimatedAgent animatedAgent;
     public Tile currentTile;
@@ -95,6 +97,11 @@ public class Actor : MonoBehaviour
 
     private IEnumerator KillActor()
     {
+        if (!Alive)
+        {
+            Debug.LogError("Killing a dead unit");
+        }
+        Alive = false;
         AStar_2D.Demo.TileManager.Instance.setActorOnPosition(posX, posY, null);
 
         if (tag.Contains("Hero"))
@@ -116,34 +123,24 @@ public class Actor : MonoBehaviour
     }
 
        
-    public void TryMove(AStar_2D.Demo.Tile tileDestino)
+    public void TryMoveHero(Tile tileDestino)
     {
-        animatedAgent = GetComponent<AStar_2D.Demo.AnimatedAgent>();
+        animatedAgent = GetComponent<AnimatedAgent>();
 
         if(tileDestino == currentTile)
         {
 
         }
 
-        else if (animatedAgent.IsMoving || !tileDestino.IsWalkable) {
+        else if (animatedAgent.IsMoving || !tileDestino.IsWalkable)
+        {
             return;
         }
-
         if (tileDestino.posX > posX + moveDis)
         {
-            Debug.Log("Não posso mover pois o destino é " + tileDestino.posX + " minha pos em X é " + posX + " e meu movimento é " + moveDis);
-            animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
-            currentTile.toggleWalkable();                               //Marca o tile como não caminhável
-            currentTile = tileDestino;                                  //Altera o tile atual do personagem
-            setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor  
-            if (tag.Contains("Hero"))
-            {
-                GetComponent<AnimatedAgent>().moved = false;
-                StartCoroutine(controlMovement());
-            }
-//            return;
+            return;
         }
-
+        
         if (tileDestino.posX < posX - moveDis) {
             return;
         }
@@ -174,6 +171,62 @@ public class Actor : MonoBehaviour
             StartCoroutine(controlMovement());
         }
     }
+
+    public void TryMoveEnemy(Tile tileDestino)
+    {
+        animatedAgent = GetComponent<AnimatedAgent>();
+
+        if (tileDestino == currentTile)
+        {
+
+        }
+
+        else if (animatedAgent.IsMoving || !tileDestino.IsWalkable)
+        {
+            return;
+        }
+     /*
+        if (tileDestino.posX > posX + moveDis)
+        {
+            Debug.Log("Não posso mover pois o destino é " + tileDestino.posX + " minha pos em X é " + posX + " e meu movimento é " + moveDis);
+            animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
+            currentTile.toggleWalkable();                               //Marca o tile como não caminhável
+            currentTile = tileDestino;                                  //Altera o tile atual do personagem
+            setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor  
+            if (tag.Contains("Hero"))
+            {
+                GetComponent<AnimatedAgent>().moved = false;
+                StartCoroutine(controlMovement());
+            }
+            //  return;
+        }
+
+        if (tileDestino.posX < posX - moveDis)
+        {
+            return;
+        }
+
+        if (tileDestino.posY > posY + moveDis)
+        {
+            return;
+        }
+
+        if (tileDestino.posY < posY - moveDis)
+        {
+            return;
+        }*/
+
+        transform.LookAt(tileDestino.transform);  //Olha na direção do movimento
+
+    
+
+        animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
+        currentTile.toggleWalkable();                               //Marca o tile como não caminhável
+        currentTile = tileDestino;                                  //Altera o tile atual do personagem
+        setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor
+
+    }
+
 
     public virtual void ShowOptionsforActions(bool limited)
     {

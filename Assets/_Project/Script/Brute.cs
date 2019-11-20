@@ -137,7 +137,7 @@ public class Brute : HeroController
     }
     public override void SendLeaveHoverCommand(HeroesActions action)
     {
-        if (_spinAttackCooldown > 0)
+        if (_spinCounter > 0)
         {
             return;
         }
