@@ -128,12 +128,27 @@ public class GameManager : MonoBehaviour
     }
     private void Update ()
     {
-		if (EnemiesController.Instance.enemyUnits == 0) {
-			_canvasManager.SendMessage("setVictory");
+        if(!update)
+        {
+            return;
+        }
+		if (EnemiesController.Instance.enemyUnits == 0)
+        {
+            StartCoroutine(DelayAndSendMessage("setVictory"));
+            update = false;
 		}
 
-		if (EnemiesController.Instance.heroUnits == 0) {
-			_canvasManager.SendMessage("setDefeat");
+		if (EnemiesController.Instance.heroUnits == 0)
+        {
+            StartCoroutine(DelayAndSendMessage("setDefeat"));
+            update = false;
 		}
 	}
+
+    private IEnumerator DelayAndSendMessage(string message)
+    {
+        yield return new WaitForSeconds(2f);
+        _canvasManager.SendMessage(message);
+    }
+    bool update = true;
 }

@@ -2601,14 +2601,6 @@ MonoBehaviour:
   _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
     type: 3}
   _warningMark: {fileID: 0}
-  _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
-    type: 3}
-  _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: c63116293ae867249982eec67631d09b,
-    type: 3}
-  _friendlyTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 386b13d0ba250714fa12fe29fec93bf3,
-    type: 3}
-  _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: c1819852a6eea4741aaf1e289d3f0c6a,
-    type: 3}
   _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 9de4c7284187cb2468d039ba8ae316f3,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
@@ -2687,9 +2679,9 @@ MonoBehaviour:
   m_CharacterName: Yanling
   m_CharacterClass: Mage
   _characterLevels:
-  - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
-  - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
-  - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
+  - {fileID: 11400000, guid: 4b7b445ea1029d84dbaf978f98b5a16f, type: 2}
+  - {fileID: 11400000, guid: 0bf545d02de0c484c990fa0c8c873ae1, type: 2}
+  - {fileID: 11400000, guid: a56a66ec797d2834f89413bd9072c6d8, type: 2}
   _skillLevel2: {fileID: 11400000, guid: 43481c203b003a44a9370bc544599f62, type: 2}
   _skillLevel3: {fileID: 11400000, guid: 22ed23d137c3723428cd73314d0ec01d, type: 2}
 --- !u!1 &7997846102043675970

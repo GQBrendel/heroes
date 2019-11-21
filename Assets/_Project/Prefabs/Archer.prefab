@@ -374,14 +374,6 @@ MonoBehaviour:
   _attackMark: {fileID: 1756343190703454, guid: 7623ebcef272ab848819f2f7492d910b,
     type: 3}
   _warningMark: {fileID: 0}
-  _emptyTileInteractiblePrefab: {fileID: 3779137577813760683, guid: d29c2887cdf16744ebb91ebd2c94b9f3,
-    type: 3}
-  _enemyTileInteractiblePrefab: {fileID: 299513952576742434, guid: f5a0684ad0d9a2645bf3dc275573663d,
-    type: 3}
-  _friendlyTileInteractiblePrefab: {fileID: 1364098759103960461, guid: 0de273b1ea35ed348afa5dbfeaaa1896,
-    type: 3}
-  _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: d4609d4b897ec374ebf66c959fd418a7,
-    type: 3}
   _actionSelectorPrefab: {fileID: 1076566576920833743, guid: d61b096b68392be4184bdec1f15ce560,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
@@ -418,9 +410,9 @@ MonoBehaviour:
   m_CharacterName: Arya
   m_CharacterClass: Ranger
   _characterLevels:
-  - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
-  - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
-  - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
+  - {fileID: 11400000, guid: 191731a196ae3ec46b9a2ed3d5a0a607, type: 2}
+  - {fileID: 11400000, guid: d5d7285716ba161499e1a8401dbd2d06, type: 2}
+  - {fileID: 11400000, guid: e3af903f882975a4b93f2a219bbec395, type: 2}
   _skillLevel2: {fileID: 11400000, guid: be2b7964b8335c74db3c650cfe04c158, type: 2}
   _skillLevel3: {fileID: 11400000, guid: 7749c07f150eefe4f8247adbeea9a832, type: 2}
 --- !u!1 &1084392373996996

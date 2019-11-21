@@ -1584,9 +1584,9 @@ MonoBehaviour:
   BasicAttackRange: 2
   XPValue: 100
   Movement: 2
-  Strength: 2
-  BasicAttackDamage: 6
-  Constitution: 1
+  Strength: 4
+  BasicAttackDamage: 5
+  Constitution: 7
   MaxHealth: 10
   Health: 0
   id: 0

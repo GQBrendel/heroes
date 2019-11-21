@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1137f336af0d3344894d4e27a174c656, type: 3}
+  m_Name: RangerLevel2
+  m_EditorClassIdentifier: 
+  Level: 2
+  XPToNextLevel: 80
+  HP: 10
+  Strength: 7
+  Dexterity: 8
+  Constitution: 6
+  Intelligence: 4
+  Speed: 2
+  Astral: 5
+  BasicAttack: 4
+  SpinAttack: 0
+  FrostShot: 6
+  PetSummon: 10
+  Heal: 0
+  Thunder: 0

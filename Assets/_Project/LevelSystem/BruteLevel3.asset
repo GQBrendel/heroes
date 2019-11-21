@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: BruteLevel3
   m_EditorClassIdentifier: 
   Level: 3
-  XPToNextLevel: 200
-  HP: 25
-  Strength: 3
+  XPToNextLevel: 80
+  HP: 20
+  Strength: 8
   Dexterity: 3
-  Constitution: 3
-  Intelligence: 3
-  Speed: 3
-  Astral: 3
-  BasicAttack: 20
-  SpinAttack: 20
+  Constitution: 7
+  Intelligence: 4
+  Speed: 2
+  Astral: 4
+  BasicAttack: 5
+  SpinAttack: 7
   FrostShot: 0
   PetSummon: 0
   Heal: 0
