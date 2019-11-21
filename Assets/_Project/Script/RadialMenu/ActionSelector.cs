@@ -6,6 +6,9 @@ using UnityEngine;
 public class ActionSelector : MonoBehaviour
 {
     [SerializeField] private RectTransform _menuTransform;
+    [SerializeField] private ActionSelectorButton _skillLevel2;
+    [SerializeField] private ActionSelectorButton _skillLevel3;
+
     private ActionSelectorButton[] _actionSelectorButtons;
     private HeroController _controller;
 
@@ -44,6 +47,22 @@ public class ActionSelector : MonoBehaviour
             {
                 button.RemoveFade();
             }
+        }
+    }
+
+    public void Updatelevel(int level, HeroController controller)
+    {
+        if(level >= 3)
+        {
+            _skillLevel3.gameObject.SetActive(true);
+            _skillLevel3.Active = true;
+            _skillLevel3.SetController(controller);
+        }
+        if(level >= 2)
+        {
+            _skillLevel2.gameObject.SetActive(true);
+            _skillLevel2.Active = true;
+            _skillLevel2.SetController(controller);
         }
     }
 }

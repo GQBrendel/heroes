@@ -3546,13 +3546,9 @@ MonoBehaviour:
   acted: 0
   posX: 0
   posY: 0
-  attack: 60
-  defense: 15
-  specialAttackDamage: 60
-  MaxhHealth: 150
   rotate: 0
   personalCanvas: {fileID: 8492058878658294996}
-  Health: 0
+  healthBar: {fileID: 0}
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 1
@@ -3579,8 +3575,6 @@ MonoBehaviour:
   _characterInfo: {fileID: 2730875208192612629}
   _specialAttackCoolDownTime: 3
   _secondSpecialAttackCoolDownTime: 1
-  _frostDuration: 0
-  FrostAttackDamage: 40
   Level: 1
   id: 0
   _tauntDuration: 2
@@ -3605,6 +3599,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
   - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
   - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
+  _skillLevel2: {fileID: 11400000, guid: ca36681b6b2b84845be82151aa950c33, type: 2}
+  _skillLevel3: {fileID: 11400000, guid: 955ed86774b28b74b901db9cadddb29c, type: 2}
 --- !u!1001 &3470663851251467069
 PrefabInstance:
   m_ObjectHideFlags: 0

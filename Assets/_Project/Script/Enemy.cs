@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class Enemy : Actor
 {
     public int Movement;
+    public int Strength;
+    public int BasicAttackDamage;
+
     public int Constitution;
     public float MaxHealth;
     public float Health;
@@ -104,6 +107,12 @@ public class Enemy : Actor
     {
         BasicAttackFight(_currentTarget, this);
         mainAction = true;
+    }
+
+    protected override void BasicAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = Strength + BasicAttackDamage;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
     }
 
     public override void PerformDeathSpecifcsActions()

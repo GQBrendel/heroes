@@ -11,6 +11,10 @@ public class CharacterInfo : MonoBehaviour
     [SerializeField] private string m_CharacterClass;
     [SerializeField] private CharacterLevel[] _characterLevels;
 
+    [Header("Skills")]
+    [SerializeField] private Skill _skillLevel2;
+    [SerializeField] private Skill _skillLevel3;
+
     private MainInfoPanel _mainInfoPanel;
     private MainInfoPanel _classInfoPanel;
     private LevelUpPanel _levelUpPanel;
@@ -114,7 +118,20 @@ public class CharacterInfo : MonoBehaviour
             UpdateLevelInfo();
 
 
-            _levelUpPanel.UpdateUI(previousCharacter, this);
+            if(Level == 2)
+            {
+                _levelUpPanel.UpdateUI(previousCharacter, this, _skillLevel2);
+            }
+            else if (Level == 3)
+            {
+                _levelUpPanel.UpdateUI(previousCharacter, this, _skillLevel3);
+            }
+            else
+            {
+                _levelUpPanel.UpdateUI(previousCharacter, this);
+            }
+
+
             StartCoroutine(DelayAndShowLevelUpPanel());
             return true;
         }
@@ -126,7 +143,7 @@ public class CharacterInfo : MonoBehaviour
 
     private IEnumerator DelayAndShowLevelUpPanel()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         _levelUpPanel.gameObject.SetActive(true);
     }
     private CharacterInfo GetCharacterState()

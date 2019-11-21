@@ -1578,14 +1578,17 @@ MonoBehaviour:
   posY: 0
   rotate: 0
   personalCanvas: {fileID: 423368071600079545}
-  Health: 0
+  healthBar: {fileID: 0}
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 2
-  XPValue: 30
+  XPValue: 100
   Movement: 2
+  Strength: 2
+  BasicAttackDamage: 6
   Constitution: 1
   MaxHealth: 10
+  Health: 0
   id: 0
 --- !u!114 &1399395016
 MonoBehaviour:

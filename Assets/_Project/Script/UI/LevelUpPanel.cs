@@ -14,12 +14,17 @@ public class LevelUpPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentValues;
     [Header("Buttons")]
     [SerializeField] private Button _continueGameButton;
+    [Header("New Skill")]
+    [SerializeField] private GameObject _newSkillPanel;
+    [SerializeField] private TextMeshProUGUI _skillName;
+    [SerializeField] private TextMeshProUGUI _skillDescription;
+    [SerializeField] private Image _skillImage;
 
     private void Start()
     {
         _continueGameButton.onClick.AddListener(() => gameObject.SetActive(false));
     }
-    public void UpdateUI(CharacterInfo previousInfo, CharacterInfo CurrentInfo)
+    public void UpdateUI(CharacterInfo previousInfo, CharacterInfo CurrentInfo, Skill skill = null)
     {
         _portraitImage.sprite = CurrentInfo.Image;
         _nameLevelMessage.SetText(CurrentInfo.Name + " level " + CurrentInfo.Level + "!!");
@@ -42,7 +47,16 @@ public class LevelUpPanel : MonoBehaviour
             CurrentInfo.Speed.ToString() + "\n" +
             CurrentInfo.Astral.ToString() + "\n");
 
-
-        Debug.Log("Previous " + previousInfo.Strength + " Current " + CurrentInfo.Strength);
+        if (skill)
+        {
+            _newSkillPanel.SetActive(true);
+            _skillName.SetText(skill.Name);
+            _skillDescription.SetText(skill.Description);
+            _skillImage.sprite = skill.Sprite;
+        }
+        else
+        {
+            _newSkillPanel.SetActive(false);
+        }
     }
 }

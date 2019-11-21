@@ -16,10 +16,10 @@ public class HeroController : Actor
     [SerializeField] private GameObject _attackMark;
     [SerializeField] private GameObject _warningMark;
 
-    [SerializeField] private Interactable _emptyTileInteractiblePrefab;
+  /*  [SerializeField] private Interactable _emptyTileInteractiblePrefab;
     [SerializeField] private Interactable _enemyTileInteractiblePrefab;
     [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
-    [SerializeField] private Interactable _selfTileInteractiblePrefab;
+    [SerializeField] private Interactable _selfTileInteractiblePrefab;*/
     [SerializeField] private ActionSelector _actionSelectorPrefab;
     [SerializeField] private ActionSelector _limitedActionSelectorPrefab;
     [SerializeField] protected CharacterInfo _characterInfo;
@@ -64,7 +64,6 @@ public class HeroController : Actor
         _limitedSelector.gameObject.SetActive(false);
         _limitedSelector.SetController(this);
 
-
         CanControl = true;
 
         StartCoroutine(FirstFrame());
@@ -73,6 +72,7 @@ public class HeroController : Actor
     {
         yield return new WaitForEndOfFrame();
         _characterInfo.UpdateCharacterInfoNoSelection(this);
+        ActionSelector.Updatelevel(_characterInfo.Level, this);
 
     }
 
@@ -652,6 +652,7 @@ public class HeroController : Actor
         if (levelUp)
         {
             OnLevelUp?.Invoke(this);
+            ActionSelector.Updatelevel(_characterInfo.Level, this);
         }
         UpdateCharacterInfo();
     }

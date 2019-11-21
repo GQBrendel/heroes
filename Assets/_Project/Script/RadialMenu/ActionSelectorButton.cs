@@ -16,9 +16,19 @@ public class ActionSelectorButton : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private Button _currentButton;
     private HeroController _heroController;
+    public bool Active;
+
+    private void OnEnable()
+    {
+        Active = true;
+    }
 
     internal void SetController(HeroController heroController)
     {
+        if (_heroController)
+        {
+            return;
+        }
         _heroController = heroController;
         _currentButton = GetComponent<Button>();
         RemoveFade();
