@@ -13,6 +13,7 @@ public class CharacterInfo : MonoBehaviour
 
     private MainInfoPanel _mainInfoPanel;
     private MainInfoPanel _classInfoPanel;
+    private LevelUpPanel _levelUpPanel;
 
     public string Class
     {
@@ -44,12 +45,23 @@ public class CharacterInfo : MonoBehaviour
     public int Speed { get; set; }
     public int Astral { get; set; }
 
+    public int BasicAttack { get; set; }
+    public int SpinAttack { get; set; }
+
+    public int FrostShot { get; set; }
+    public int PetSummon { get; set; }
+
+    public int Heal { get; set; }
+    public int Thunder { get; set; }
+
     private void Start()
     {
         LinkWithInfoPanels();
         Level = PlayerPrefs.GetInt(Name + "Level", 1);
         CurrentXP = PlayerPrefs.GetInt(Name + "CurrentXP", 0);
 
+        MaxHP = _characterLevels[Level - 1].HP;
+        CurrentHP = MaxHP;
         XPToNextLevel = _characterLevels[Level - 1].XPToNextLevel;
         UpdateLevelInfo();
     }
@@ -67,19 +79,21 @@ public class CharacterInfo : MonoBehaviour
                 _mainInfoPanel = panel;
             }
         }
+        var levelUp = Resources.FindObjectsOfTypeAll<LevelUpPanel>();
+        _levelUpPanel = levelUp[0];
     }
 
     public void UpdateCharacterInfo(HeroController character, bool disableAiPanel = true)
     {
-        CurrentHP = (int)character.Health;
-        MaxHP = (int)character.MaxhHealth;
+//        CurrentHP = (int)character.Health;
+        MaxHP = _characterLevels[Level - 1].HP;
         _mainInfoPanel.UpdateInfoUI(this, disableAiPanel);
         _classInfoPanel.UpdateInfoUI(this, disableAiPanel);
     }
     public void UpdateCharacterInfoNoSelection(HeroController character)
     {
-        CurrentHP = (int)character.Health;
-        MaxHP = (int)character.MaxhHealth;
+    //    CurrentHP = (int)character.Health;
+        MaxHP = _characterLevels[Level - 1].HP;
         _classInfoPanel.UpdateInfoUI(this);
     }
 
@@ -90,11 +104,18 @@ public class CharacterInfo : MonoBehaviour
 
         if(CurrentXP >= XPToNextLevel)
         {
+            CharacterInfo previousCharacter = GetCharacterState();
+
             xpExtra = CurrentXP - XPToNextLevel;
             CurrentXP = xpExtra;
             Level++;
-            XPToNextLevel = _characterLevels[Level-1].XPToNextLevel;
+            XPToNextLevel = _characterLevels[Level-1].XPToNextLevel;     
+
             UpdateLevelInfo();
+
+
+            _levelUpPanel.UpdateUI(previousCharacter, this);
+            StartCoroutine(DelayAndShowLevelUpPanel());
             return true;
         }
         else
@@ -102,13 +123,46 @@ public class CharacterInfo : MonoBehaviour
             return false;
         }
     }
+
+    private IEnumerator DelayAndShowLevelUpPanel()
+    {
+        yield return new WaitForSeconds(3f);
+        _levelUpPanel.gameObject.SetActive(true);
+    }
+    private CharacterInfo GetCharacterState()
+    {
+        CharacterInfo character = new CharacterInfo();
+        character.MaxHP = MaxHP;
+        character.Strength = Strength;
+        character.Dexterity = Dexterity;
+        character.Constitution = Constitution;
+        character.Intelligence = Intelligence;
+        character.Speed = Speed;
+        character.Astral = Astral;
+
+        return character;
+    }
     private void UpdateLevelInfo()
     {
+        
+        MaxHP = _characterLevels[Level - 1].HP;
+        CurrentHP = MaxHP;
         Strength = _characterLevels[Level - 1].Strength;
         Dexterity = _characterLevels[Level - 1].Dexterity;
         Constitution = _characterLevels[Level - 1].Constitution;
         Intelligence = _characterLevels[Level - 1].Intelligence;
         Speed = _characterLevels[Level - 1].Speed;
         Astral = _characterLevels[Level - 1].Astral;
-    }
+
+        BasicAttack = _characterLevels[Level - 1].BasicAttack;
+        SpinAttack = _characterLevels[Level - 1].SpinAttack;
+
+        FrostShot = _characterLevels[Level - 1].FrostShot;
+        PetSummon = _characterLevels[Level - 1].PetSummon;
+
+        Heal = _characterLevels[Level - 1].Heal;
+        Thunder = _characterLevels[Level - 1].Thunder;
+
+
+}
 }

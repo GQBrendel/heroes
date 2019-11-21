@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AStar_2D.Demo;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,6 +7,10 @@ using UnityEngine.AI;
 public class Enemy : Actor
 {
     public int Movement;
+    public int Constitution;
+    public float MaxHealth;
+    public float Health;
+
     public int id = 0;
 
     CursorManager mouseCursor;
@@ -20,6 +25,7 @@ public class Enemy : Actor
     {
         parentStart();
         mouseCursor = GameObject.FindGameObjectWithTag("GameController").GetComponent<CursorManager>();
+        Health = MaxHealth;
     }
 
     void Update()
@@ -32,6 +38,54 @@ public class Enemy : Actor
             targetRotation = Quaternion.LookRotation(TargetToLookAt.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
         }
+    }
+    public override void TakeDamage(int damage, Actor attackingActor)
+    {
+        TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
+        Health -= damage;
+        PlayDamageSound();
+
+        if (Health < 0)
+        {
+            Health = 0;
+        }
+
+        UpdateCharacterInfoNoSelection();
+
+        float scaleX = Health / GetMaxHealth();
+
+        anim.SetTrigger("Damage");
+        anim.SetBool("Dead", Health <= 0);
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+        if (Health <= 0)
+        {
+            attackingActor.KilledAnEnemy(XPValue);
+            PerformDeathSpecifcsActions();
+            StartCoroutine(KillActor());
+        }
+    }
+    public override void Heal(int healValue)
+    {
+        Health += healValue;
+
+        if (Health > GetMaxHealth())
+        {
+            Health = GetMaxHealth();
+        }
+        UpdateCharacterInfoNoSelection();
+        float scaleX = Health / GetMaxHealth();
+        anim.SetTrigger("Healed");
+        _healParticle.Play();
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+    }
+
+    public override float GetMaxHealth()
+    {
+        return MaxHealth;
+    }
+    public override float GetCurrentHealth()
+    {
+        return Health;
     }
 
     public void Attack(Actor target)
@@ -48,7 +102,7 @@ public class Enemy : Actor
 
     public void AttackHit()
     {
-        Fight(_currentTarget, this);
+        BasicAttackFight(_currentTarget, this);
         mainAction = true;
     }
 
@@ -141,6 +195,11 @@ public class Enemy : Actor
             }
         }
     }
+    public override int GetCharacterDefense()
+    {
+        return Constitution;
+    }
+
 
     public Vector2 TopLeft { get { return new Vector2(posX - 1, posY + 1); } }
     public Vector2 Top { get { return new Vector2(posX,posY + 1); } }

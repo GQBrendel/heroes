@@ -361,13 +361,9 @@ MonoBehaviour:
   acted: 0
   posX: 0
   posY: 0
-  attack: 100
-  defense: 5
-  specialAttackDamage: 200
-  MaxhHealth: 100
   rotate: 0
   personalCanvas: {fileID: 1652699373033136}
-  Health: 0
+  healthBar: {fileID: 0}
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 5
@@ -393,8 +389,6 @@ MonoBehaviour:
   _characterInfo: {fileID: 2277096520817641750}
   _specialAttackCoolDownTime: 5
   _secondSpecialAttackCoolDownTime: 2
-  _frostDuration: 1
-  FrostAttackDamage: 40
   Level: 1
   id: 0
   _icyTrailParticles: {fileID: 2049554200845611903}
@@ -405,6 +399,7 @@ MonoBehaviour:
   _petSummon: {fileID: 709852523964064144}
   _petSpellCooldown: 5
   _frostAttackCooldown: 3
+  _frostDuration: 1
   FrostAttackRange: 4
   PetAttackRange: 10
 --- !u!114 &2277096520817641750
@@ -423,9 +418,9 @@ MonoBehaviour:
   m_CharacterName: Arya
   m_CharacterClass: Ranger
   _characterLevels:
-  - {fileID: 11400000, guid: 1dbeeeb5385c5a64381d7e5db4fd872c, type: 2}
-  - {fileID: 11400000, guid: 0b3d7f1f9e96db1468949c0d81d7d12c, type: 2}
-  - {fileID: 11400000, guid: 1495ffb0ced9a8648a7d095c4c290628, type: 2}
+  - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
+  - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
+  - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0

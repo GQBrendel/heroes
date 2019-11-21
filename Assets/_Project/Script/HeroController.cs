@@ -26,9 +26,8 @@ public class HeroController : Actor
 
     [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
     [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
-    [Range(1, 5), SerializeField] private int _frostDuration;
 
-    public int FrostAttackDamage = 40;
+   // public int FrostAttackDamage = 40;
     public int Level = 1;
 
     protected int _spinAttackCounter;
@@ -350,13 +349,55 @@ public class HeroController : Actor
 
     public virtual void AttackHit()
     {
-        Fight(CurrentEnemy, this);
+        BasicAttackFight(CurrentEnemy, this);
+    }
+    public override void TakeDamage(int damage, Actor attackingActor)
+    {
+        TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
+        _characterInfo.CurrentHP -= damage;
+        PlayDamageSound();
+
+        if (_characterInfo.CurrentHP < 0)
+        {
+            _characterInfo.CurrentHP = 0;
+        }
+
+        UpdateCharacterInfoNoSelection();
+
+        float scaleX = _characterInfo.CurrentHP / GetMaxHealth();
+
+        anim.SetTrigger("Damage");
+        anim.SetBool("Dead", _characterInfo.CurrentHP <= 0);
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+        if (_characterInfo.CurrentHP <= 0)
+        {
+            attackingActor.KilledAnEnemy(XPValue);
+            PerformDeathSpecifcsActions();
+            StartCoroutine(KillActor());
+        }
+    }
+    public override void Heal(int healValue)
+    {
+        _characterInfo.CurrentHP += healValue;
+
+        if (_characterInfo.CurrentHP > GetMaxHealth())
+        {
+            _characterInfo.CurrentHP = (int)GetMaxHealth();
+        }
+        UpdateCharacterInfoNoSelection();
+        float scaleX = _characterInfo.CurrentHP / GetMaxHealth();
+        anim.SetTrigger("Healed");
+        _healParticle.Play();
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
     }
 
-    public void FrostAttackHit()
+    public override float GetMaxHealth()
     {
-        CurrentEnemy.TakeDamage(FrostAttackDamage, this);
-        CurrentEnemy.GetFrosted(_frostDuration);
+        return _characterInfo.MaxHP;
+    }
+    public override float GetCurrentHealth()
+    {
+        return _characterInfo.CurrentHP;
     }
 
     public void FinishedAttack()
@@ -577,11 +618,7 @@ public class HeroController : Actor
     {   
         isSelected = true;
         ShowOptionsforActions(false);
-
-        Debug.Log("Health " + Health);
-        Debug.Log("MaxHealth " + MaxhHealth);
         UpdateCharacterInfo();
-
     }
 
     protected override void UpdateCharacterInfo()
@@ -618,6 +655,11 @@ public class HeroController : Actor
         }
         UpdateCharacterInfo();
     }
+    public override int GetCharacterDefense()
+    {
+        return _characterInfo.Constitution;
+    }
+
     void OnDestroy()
     {
         EnemiesController.Instance.RemoveHeroFromList(this);

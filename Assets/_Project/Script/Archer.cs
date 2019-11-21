@@ -13,6 +13,7 @@ public class Archer : HeroController
 
     [Range(1, 5), SerializeField] protected int _petSpellCooldown;
     [Range(1, 5), SerializeField] protected int _frostAttackCooldown;
+    [Range(1, 5), SerializeField] private int _frostDuration;
 
     private int _petCounter = 0;
     private int _frostCounter = 0;
@@ -31,10 +32,15 @@ public class Archer : HeroController
         _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
         
     }
+    public void FrostAttackHit()
+    {
+        FrostAttackFight(CurrentEnemy, this);
+    }
+
     private void HandlePetHit()
     {
         TileManager.Instance.PetHero = null;
-        Fight(CurrentEnemy, this, true);
+        PetAttackFight(CurrentEnemy, this);
     }
     private void HandlePetFinishedAttack()
     {
@@ -89,9 +95,6 @@ public class Archer : HeroController
         }
 
         _frostCounter = _frostAttackCooldown;
-        //_frostAttackCounter = _secondSpecialAttackCoolDownTime;
-        //_enemyTileMenu.FadeAction("Frost", _frostAttackCounter);
-        //_enemyTileMenu.FadeAction("Pet", _petAttackCounter);
         FadeActions();
     }
     public override void CommandToSummonPet(Tile tile)
@@ -170,6 +173,24 @@ public class Archer : HeroController
         }
     }
 
+    protected override void BasicAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = _characterInfo.Dexterity + _characterInfo.BasicAttack;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
+    }
+
+    private void PetAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = _characterInfo.Dexterity + _characterInfo.PetSummon;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
+    }
+    private void FrostAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = _characterInfo.Dexterity + _characterInfo.FrostShot;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
+        CurrentEnemy.GetFrosted(_frostDuration);
+    }
+
     public override void ResetActions()
     {
         base.ResetActions();
@@ -197,6 +218,7 @@ public class Archer : HeroController
                 ActionSelector.FadeAction(HeroesActions.Pet, _petCounter);
             }
         }
+
     }
 
 }

@@ -22,7 +22,7 @@ public class Actor : MonoBehaviour
 
     [SerializeField] private Camera m_Camera;
     [SerializeField] private Camera m_SpinCamera;
-    [SerializeField] private ParticleSystem _healParticle;
+    [SerializeField] public ParticleSystem _healParticle;
 
     public bool Alive { get; private set; } = true;
 
@@ -32,19 +32,20 @@ public class Actor : MonoBehaviour
     public bool isSelected = false;
     public bool acted = false;
     public int posX, posY;
-    public int attack, defense;
-    public int specialAttackDamage;
-    public float MaxhHealth;
+    //public int attack;
+    //public int defense;
+    //public int specialAttackDamage;
+    //public float MaxhHealth;
     public bool rotate = false;
     public GameObject personalCanvas;
 
     protected bool isActing = false;
 
     protected int moveDis = 2;
-    public float Health;
+   // public float Health;
     protected Vector2 lookingAtTile;
 
-    private Image healthBar;
+    public Image healthBar;
 
     public bool moveAction, mainAction;
   
@@ -72,8 +73,21 @@ public class Actor : MonoBehaviour
                 healthBar = children.gameObject.GetComponent<Image>();
             }
         }
-        
-        Health = MaxhHealth;
+        StartCoroutine(WaitAMoment());
+    }
+
+    private IEnumerator WaitAMoment()
+    {
+        yield return new WaitForEndOfFrame();
+       // Health = GetMaxHealth();
+    }
+    public virtual float GetMaxHealth()
+    {
+        throw new NotImplementedException();
+    }
+    public virtual float GetCurrentHealth()
+    {
+        throw new NotImplementedException();
     }
 
     public void HighLight()
@@ -96,7 +110,7 @@ public class Actor : MonoBehaviour
         AStar_2D.Demo.TileManager.Instance.setActorOnPosition(posX, posY, this);
     }
 
-    private IEnumerator KillActor()
+    public IEnumerator KillActor()
     {
         if (!Alive)
         {
@@ -234,6 +248,11 @@ public class Actor : MonoBehaviour
         rotate = false;
     }
 
+    public virtual int GetCharacterDefense()
+    {
+        throw new NotImplementedException();
+    }
+
     public void checkActions()
     {
         if (!moveAction)
@@ -287,10 +306,8 @@ public class Actor : MonoBehaviour
         currentTile = tile;
     }
 
-    protected void Fight (Actor opponent, Actor attackingActor, bool specialAttack = false)
+    protected virtual void BasicAttackFight (Actor opponent, Actor attackingActor)
     {
-        int attackValue = specialAttack ? specialAttackDamage : attack;
-        opponent.TakeDamage(attackValue - opponent.defense, attackingActor);
     }
 
     public virtual void KilledAnEnemy(int XpObtained)
@@ -306,29 +323,8 @@ public class Actor : MonoBehaviour
     {
     }
 
-    public void TakeDamage(int damage, Actor attackingActor)
+    public virtual void TakeDamage(int damage, Actor attackingActor)
     {
-        TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
-        Health -= damage;
-        PlayDamageSound();
-
-        if (Health < 0) {
-            Health = 0;
-        }
-
-        UpdateCharacterInfoNoSelection();
-
-        float scaleX = Health / MaxhHealth;
-
-        anim.SetTrigger("Damage");
-        anim.SetBool("Dead", Health <= 0);
-        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
-        if (Health <= 0)
-        {
-            attackingActor.KilledAnEnemy(XPValue);
-            PerformDeathSpecifcsActions();
-            StartCoroutine(KillActor());
-        }
     }
     public virtual void PlayDamageSound()
     {
@@ -340,24 +336,14 @@ public class Actor : MonoBehaviour
 
     }
 
-    public void Heal(int healValue)
+    public virtual void Heal(int healValue)
     {
-        Health += healValue;
-
-        if (Health > MaxhHealth)
-        {
-            Health = MaxhHealth;
-        }
-        UpdateCharacterInfoNoSelection();
-        float scaleX = Health / MaxhHealth;
-        anim.SetTrigger("Healed");
-        _healParticle.Play();
-        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+       
     }
 
     public bool FullHealth()
     {
-        return MaxhHealth == Health;
+        return GetMaxHealth() == GetCurrentHealth();
     }
 
     public virtual void ResetActions()

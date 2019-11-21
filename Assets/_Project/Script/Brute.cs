@@ -54,7 +54,7 @@ public class Brute : HeroController
         foreach (var actor in adjacentActors)
         {
             AudioManager.Instance.Play("AxeHit");
-            Fight(actor, this);
+            BasicAttackFight(actor, this);
         }
     }
     protected override bool ValidateBrute(HeroesActions action)
@@ -147,6 +147,11 @@ public class Brute : HeroController
                 HideWays();
                 break;
         }
+    }
+    protected override void BasicAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = _characterInfo.Strength + _characterInfo.BasicAttack;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
     }
 
     public override void PlayDamageSound()

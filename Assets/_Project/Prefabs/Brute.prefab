@@ -3602,9 +3602,9 @@ MonoBehaviour:
   m_CharacterName: Brute
   m_CharacterClass: Barbarian
   _characterLevels:
-  - {fileID: 11400000, guid: 1dbeeeb5385c5a64381d7e5db4fd872c, type: 2}
-  - {fileID: 11400000, guid: 0b3d7f1f9e96db1468949c0d81d7d12c, type: 2}
-  - {fileID: 11400000, guid: 1495ffb0ced9a8648a7d095c4c290628, type: 2}
+  - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
+  - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
+  - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
 --- !u!1001 &3470663851251467069
 PrefabInstance:
   m_ObjectHideFlags: 0

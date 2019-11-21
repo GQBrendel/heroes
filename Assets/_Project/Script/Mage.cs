@@ -53,7 +53,7 @@ public class Mage : HeroController
     {
         mainAction = true;
         TileManager.Instance.ThunderHero = null;
-        Fight(CurrentEnemy, this, true);
+        ThunderAttackFight(CurrentEnemy, this);
     }
 
     protected override bool ValidateMage(HeroesActions action)
@@ -165,6 +165,16 @@ public class Mage : HeroController
     private void Heal(Actor ally, int healValue)
     {
         ally.Heal(healValue);
+    }
+    protected override void BasicAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = _characterInfo.Intelligence + _characterInfo.BasicAttack;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
+    }
+    private void ThunderAttackFight(Actor opponent, Actor attackingActor)
+    {
+        int damage = _characterInfo.Intelligence + _characterInfo.Thunder;
+        opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
     }
 
     public override void PlayDamageSound()

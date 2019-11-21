@@ -2693,7 +2693,9 @@ MonoBehaviour:
   m_CharacterName: Yanling
   m_CharacterClass: Mage
   _characterLevels:
-  - {fileID: 11400000, guid: 1dbeeeb5385c5a64381d7e5db4fd872c, type: 2}
+  - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
+  - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
+  - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
 --- !u!1 &7997846102043675970
 GameObject:
   m_ObjectHideFlags: 0

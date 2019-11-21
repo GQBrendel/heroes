@@ -53,9 +53,9 @@ public class MainInfoPanel : MonoBehaviour
         }
     }
 
-    public void DisableAiPanel()
+    public void EnableAiPanel()
     {
-        _aiTurnPanel.SetActive(false);
+        _aiTurnPanel.SetActive(true);
     }
 
 

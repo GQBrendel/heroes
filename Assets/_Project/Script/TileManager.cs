@@ -437,7 +437,7 @@ namespace AStar_2D.Demo
 
         private void endTurn()
         {
-            _mainInfoPanel.DisableAiPanel();
+            _mainInfoPanel.EnableAiPanel();
             tacticalAgent.enemiesTurn();
             StartCoroutine(waitForIAActions());
         }
