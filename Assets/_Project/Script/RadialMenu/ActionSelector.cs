@@ -9,13 +9,13 @@ public class ActionSelector : MonoBehaviour
     [SerializeField] private ActionSelectorButton _skillLevel2;
     [SerializeField] private ActionSelectorButton _skillLevel3;
 
-    private ActionSelectorButton[] _actionSelectorButtons;
+    [SerializeField] private ActionSelectorButton[] _actionSelectorButtons;
     private HeroController _controller;
 
     public void SetController(HeroController heroController)
     {
         _controller = heroController;
-        _actionSelectorButtons = GetComponentsInChildren<ActionSelectorButton>();
+      //  _actionSelectorButtons = GetComponentsInChildren<ActionSelectorButton>();
 
         foreach (var button in _actionSelectorButtons)
         {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MageLevel3
   m_EditorClassIdentifier: 
   Level: 3
-  XPToNextLevel: 80
+  XPToNextLevel: 10000
   HP: 10
   Strength: 5
   Dexterity: 6

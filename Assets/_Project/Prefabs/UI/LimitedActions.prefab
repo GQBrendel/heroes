@@ -257,6 +257,7 @@ MonoBehaviour:
   _defaultColor: {r: 0, g: 0, b: 0, a: 0}
   _fadeEffect: {fileID: 2228460060736128769}
   _countDownText: {fileID: 3477613949589003081}
+  Active: 0
 --- !u!1 &6426233130400829847
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +367,7 @@ MonoBehaviour:
   _defaultColor: {r: 0, g: 0, b: 0, a: 0}
   _fadeEffect: {fileID: 0}
   _countDownText: {fileID: 0}
+  Active: 0
 --- !u!1 &6674053476206144353
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,3 +777,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuTransform: {fileID: 4497973722700233810}
+  _skillLevel2: {fileID: 0}
+  _skillLevel3: {fileID: 0}
+  _actionSelectorButtons:
+  - {fileID: 2327113803365932327}
+  - {fileID: 6801744360223666110}

@@ -1576,3 +1576,9 @@ MonoBehaviour:
   _menuTransform: {fileID: 4497973722700233810}
   _skillLevel2: {fileID: 7295791086591759768}
   _skillLevel3: {fileID: 4075041948116349235}
+  _actionSelectorButtons:
+  - {fileID: 2327113803365932327}
+  - {fileID: 2010333209961126121}
+  - {fileID: 6801744360223666110}
+  - {fileID: 7295791086591759768}
+  - {fileID: 4075041948116349235}
