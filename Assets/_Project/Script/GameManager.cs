@@ -53,7 +53,15 @@ public class GameManager : MonoBehaviour
             actor.OnActorTaunt += HandleActorTaunt;
             actor.OnActorEndTaunt += HandleActorEndTaunt;
             actor.OnActorEndTauntAnimation += HandleActorEndTauntAnimation;
+
+            HeroController hero = actor as HeroController;
+            hero.OnLevelUp += HandleHeroLevelUp;
         }
+    }
+
+    private void HandleHeroLevelUp(HeroController hero)
+    {
+
     }
 
     private void HandleFinishSpinAttack(Actor actor)

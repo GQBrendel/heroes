@@ -54,7 +54,7 @@ public class Brute : HeroController
         foreach (var actor in adjacentActors)
         {
             AudioManager.Instance.Play("AxeHit");
-            Fight(actor);
+            Fight(actor, this);
         }
     }
     protected override bool ValidateBrute(HeroesActions action)

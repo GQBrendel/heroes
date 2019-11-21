@@ -34,7 +34,7 @@ public class Archer : HeroController
     private void HandlePetHit()
     {
         TileManager.Instance.PetHero = null;
-        Fight(CurrentEnemy, true);
+        Fight(CurrentEnemy, this, true);
     }
     private void HandlePetFinishedAttack()
     {

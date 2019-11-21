@@ -48,7 +48,7 @@ public class Enemy : Actor
 
     public void AttackHit()
     {
-        Fight(_currentTarget);
+        Fight(_currentTarget, this);
         mainAction = true;
     }
 

@@ -14,6 +14,7 @@ namespace AStar_2D.Demo
 	public class Tile : MonoBehaviour, IPathNode
 	{
         public Transform DamagePosiiton;
+        public GameObject AttackMark;
         //Vairaiveis nossas
         public int posX, posY;
         public Actor tileActor;

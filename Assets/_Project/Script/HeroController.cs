@@ -4,8 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterInfo))]
 public class HeroController : Actor
 {
+    public delegate void LevelUpHandler(HeroController hero);
+    public LevelUpHandler OnLevelUp;
+
     public GameObject blueMark;
     public GameObject friendMark;
     public GameObject enemyMark;
@@ -18,16 +22,16 @@ public class HeroController : Actor
     [SerializeField] private Interactable _selfTileInteractiblePrefab;
     [SerializeField] private ActionSelector _actionSelectorPrefab;
     [SerializeField] private ActionSelector _limitedActionSelectorPrefab;
+    [SerializeField] protected CharacterInfo _characterInfo;
 
     [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
     [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
     [Range(1, 5), SerializeField] private int _frostDuration;
 
     public int FrostAttackDamage = 40;
+    public int Level = 1;
 
-   // private int _tauntCounter;
     protected int _spinAttackCounter;
-   // protected int _frostAttackCounter;
     private int _petAttackCounter;
 
     private bool _tauntActive;
@@ -63,6 +67,14 @@ public class HeroController : Actor
 
 
         CanControl = true;
+
+        StartCoroutine(FirstFrame());
+    }
+    private IEnumerator FirstFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        _characterInfo.UpdateCharacterInfoNoSelection(this);
+
     }
 
     void Update()
@@ -273,12 +285,14 @@ public class HeroController : Actor
 
     protected bool TryAttack(Tile tile, int checkRange)
     {
-        if (EuclidianDistance(this, tile.tileActor) > checkRange)
+        if (tile.AttackMark == null)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
-            Debug.Log("Enemy out of Range");
             PlayOutOfRangeSound();
             return false;
+        }
+//        if (EuclidianDistance(this, tile.tileActor) > checkRange)
+        {
         }
         if (mainAction)
         {
@@ -336,12 +350,12 @@ public class HeroController : Actor
 
     public virtual void AttackHit()
     {
-        Fight(CurrentEnemy);
+        Fight(CurrentEnemy, this);
     }
 
     public void FrostAttackHit()
     {
-        CurrentEnemy.TakeDamage(FrostAttackDamage);
+        CurrentEnemy.TakeDamage(FrostAttackDamage, this);
         CurrentEnemy.GetFrosted(_frostDuration);
     }
 
@@ -476,6 +490,8 @@ public class HeroController : Actor
         atkMark = Instantiate(mark) as GameObject;
         atkMark.transform.position = new Vector3(tile.transform.position.x, transform.position.y - 0.01f, tile.transform.position.z);
 
+        tile.AttackMark = atkMark;
+
         SpawnAttackMark(axis, mark, pos, defaultZ, range);
     }
 
@@ -558,13 +574,25 @@ public class HeroController : Actor
     }
 
     public virtual void SelectHero()
-    {
+    {   
         isSelected = true;
-
         ShowOptionsforActions(false);
-//        showWays(posX,posY);    
+
+        Debug.Log("Health " + Health);
+        Debug.Log("MaxHealth " + MaxhHealth);
+        UpdateCharacterInfo();
+
     }
-       
+
+    protected override void UpdateCharacterInfo()
+    {
+        _characterInfo.UpdateCharacterInfo(this);
+    }
+    protected override void UpdateCharacterInfoNoSelection()
+    {
+        _characterInfo.UpdateCharacterInfoNoSelection(this);
+    }
+
     public void unSelect()
     {
         HideWays();
@@ -572,18 +600,7 @@ public class HeroController : Actor
         UnLight();
     }
 
-    protected float EuclidianDistance(Actor A1, Actor A2)
-    {
-        int x1, x2, y1, y2;
-        x1 = (int)A1.getPos().x;
-        y1 = (int)A1.getPos().y;
-        x2 = (int)A2.getPos().x;
-        y2 = (int)A2.getPos().y;
 
-        int result = (int)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
-        Debug.Log("Distance is " + result);
-        return result;
-    }
     internal void setId(int _id)
     {
         id = _id;
@@ -592,6 +609,15 @@ public class HeroController : Actor
     {
     }
 
+    public override void KilledAnEnemy(int XPObtained)
+    {
+        bool levelUp = _characterInfo.ObtainXP(XPObtained);
+        if (levelUp)
+        {
+            OnLevelUp?.Invoke(this);
+        }
+        UpdateCharacterInfo();
+    }
     void OnDestroy()
     {
         EnemiesController.Instance.RemoveHeroFromList(this);

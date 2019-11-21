@@ -2518,6 +2518,7 @@ GameObject:
   - component: {fileID: 3250235294387397274}
   - component: {fileID: 1204809174406409157}
   - component: {fileID: 5181983524213830300}
+  - component: {fileID: -1718689836775941238}
   m_Layer: 2
   m_Name: Mage
   m_TagString: Hero
@@ -2590,12 +2591,14 @@ MonoBehaviour:
   attack: 100
   defense: 5
   specialAttackDamage: 500
-  maxHealth: 100
+  MaxhHealth: 80
   rotate: 0
   personalCanvas: {fileID: 5410261984937531793}
+  Health: 0
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 3
+  XPValue: 0
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
@@ -2610,16 +2613,16 @@ MonoBehaviour:
     type: 3}
   _selfTileInteractiblePrefab: {fileID: 8211948573358193399, guid: c1819852a6eea4741aaf1e289d3f0c6a,
     type: 3}
-  _petSummon: {fileID: 0}
   _actionSelectorPrefab: {fileID: 1076566576920833743, guid: 9de4c7284187cb2468d039ba8ae316f3,
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
-  _tauntDuration: 1
+  _characterInfo: {fileID: -1718689836775941238}
   _specialAttackCoolDownTime: 2
   _secondSpecialAttackCoolDownTime: 3
   _frostDuration: 0
   FrostAttackDamage: 40
+  Level: 1
   id: 0
   _healFactor: 90
   _healSpellCooldown: 2
@@ -2674,6 +2677,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: 0}
+--- !u!114 &-1718689836775941238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7901732471836786819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccce509c4857a24086b6cafe06187c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PortraitImage: {fileID: 21300000, guid: f8503e8e5282e6a489e496bf7eaba70e, type: 3}
+  m_CharacterName: Yanling
+  m_CharacterClass: Mage
+  _characterLevels:
+  - {fileID: 11400000, guid: 1dbeeeb5385c5a64381d7e5db4fd872c, type: 2}
 --- !u!1 &7997846102043675970
 GameObject:
   m_ObjectHideFlags: 0

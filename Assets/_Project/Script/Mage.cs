@@ -53,7 +53,7 @@ public class Mage : HeroController
     {
         mainAction = true;
         TileManager.Instance.ThunderHero = null;
-        Fight(CurrentEnemy, true);
+        Fight(CurrentEnemy, this, true);
     }
 
     protected override bool ValidateMage(HeroesActions action)
@@ -138,7 +138,8 @@ public class Mage : HeroController
             TileManager.Instance.HealingHero = null;
             return false;
         }
-        if (EuclidianDistance(this, tile.tileActor) > HealAttackRange)
+        //if (EuclidianDistance(this, tile.tileActor) > HealAttackRange)
+        if (tile.AttackMark == null && tile != currentTile)
         {
             TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
             PlayOutOfRangeSound();
@@ -156,6 +157,7 @@ public class Mage : HeroController
             transform.LookAt(CurrentAlly.transform);
             HideWays();
             OnActorStartAttack?.Invoke(this);
+            UpdateCharacterInfoNoSelection();
             return true;
         }
     }

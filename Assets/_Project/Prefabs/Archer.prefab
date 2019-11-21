@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 709852523964064144}
   - component: {fileID: 7128334700999358427}
   - component: {fileID: 7568791820567690220}
+  - component: {fileID: 2277096520817641750}
   m_Layer: 2
   m_Name: Archer
   m_TagString: Hero
@@ -363,12 +364,14 @@ MonoBehaviour:
   attack: 100
   defense: 5
   specialAttackDamage: 200
-  maxHealth: 80
+  MaxhHealth: 100
   rotate: 0
   personalCanvas: {fileID: 1652699373033136}
+  Health: 0
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 5
+  XPValue: 0
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
@@ -387,10 +390,12 @@ MonoBehaviour:
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
+  _characterInfo: {fileID: 2277096520817641750}
   _specialAttackCoolDownTime: 5
   _secondSpecialAttackCoolDownTime: 2
   _frostDuration: 1
   FrostAttackDamage: 40
+  Level: 1
   id: 0
   _icyTrailParticles: {fileID: 2049554200845611903}
   _iceArrowPrefab: {fileID: 1520786051656894, guid: 60f067005042016479e156d2700edf0c,
@@ -402,6 +407,25 @@ MonoBehaviour:
   _frostAttackCooldown: 3
   FrostAttackRange: 4
   PetAttackRange: 10
+--- !u!114 &2277096520817641750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072721318551778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccce509c4857a24086b6cafe06187c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PortraitImage: {fileID: 21300000, guid: 58572f9a1dd36fb4a8e4dae53d6f87c9, type: 3}
+  m_CharacterName: Arya
+  m_CharacterClass: Ranger
+  _characterLevels:
+  - {fileID: 11400000, guid: 1dbeeeb5385c5a64381d7e5db4fd872c, type: 2}
+  - {fileID: 11400000, guid: 0b3d7f1f9e96db1468949c0d81d7d12c, type: 2}
+  - {fileID: 11400000, guid: 1495ffb0ced9a8648a7d095c4c290628, type: 2}
 --- !u!1 &1084392373996996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,15 +3476,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c268ce164a85d14996ab059050dc46b, type: 3}
---- !u!198 &2049554200845611903 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 385044559491053186, guid: 8c268ce164a85d14996ab059050dc46b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1812286891088070141}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2215274047766400503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 547386715281868810, guid: 8c268ce164a85d14996ab059050dc46b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812286891088070141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2049554200845611903 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 385044559491053186, guid: 8c268ce164a85d14996ab059050dc46b,
     type: 3}
   m_PrefabInstance: {fileID: 1812286891088070141}
   m_PrefabAsset: {fileID: 0}

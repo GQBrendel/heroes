@@ -33,6 +33,8 @@ namespace AStar_2D.Demo
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
+
+        [SerializeField] MainInfoPanel _mainInfoPanel;
         public HeroController MovingHero;
         public HeroController AttackingHero;
         public HeroController FrostingHero;
@@ -178,11 +180,6 @@ namespace AStar_2D.Demo
         /// </summary>
         public void Update()
         {
-            // Do stuff
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                MoveTeste();
-            }
             
         }
 
@@ -440,6 +437,7 @@ namespace AStar_2D.Demo
 
         private void endTurn()
         {
+            _mainInfoPanel.DisableAiPanel();
             tacticalAgent.enemiesTurn();
             StartCoroutine(waitForIAActions());
         }

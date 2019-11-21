@@ -34,14 +34,14 @@ public class Actor : MonoBehaviour
     public int posX, posY;
     public int attack, defense;
     public int specialAttackDamage;
-    public float maxHealth;
+    public float MaxhHealth;
     public bool rotate = false;
     public GameObject personalCanvas;
 
     protected bool isActing = false;
 
     protected int moveDis = 2;
-    protected float health;
+    public float Health;
     protected Vector2 lookingAtTile;
 
     private Image healthBar;
@@ -49,6 +49,7 @@ public class Actor : MonoBehaviour
     public bool moveAction, mainAction;
   
     public int BasicAttackRange = 2;
+    public int XPValue;
 
     public Camera Camera
     {
@@ -72,7 +73,7 @@ public class Actor : MonoBehaviour
             }
         }
         
-        health = maxHealth;
+        Health = MaxhHealth;
     }
 
     public void HighLight()
@@ -185,41 +186,8 @@ public class Actor : MonoBehaviour
         {
             return;
         }
-     /*
-        if (tileDestino.posX > posX + moveDis)
-        {
-            Debug.Log("Não posso mover pois o destino é " + tileDestino.posX + " minha pos em X é " + posX + " e meu movimento é " + moveDis);
-            animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
-            currentTile.toggleWalkable();                               //Marca o tile como não caminhável
-            currentTile = tileDestino;                                  //Altera o tile atual do personagem
-            setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor  
-            if (tag.Contains("Hero"))
-            {
-                GetComponent<AnimatedAgent>().moved = false;
-                StartCoroutine(controlMovement());
-            }
-            //  return;
-        }
-
-        if (tileDestino.posX < posX - moveDis)
-        {
-            return;
-        }
-
-        if (tileDestino.posY > posY + moveDis)
-        {
-            return;
-        }
-
-        if (tileDestino.posY < posY - moveDis)
-        {
-            return;
-        }*/
 
         transform.LookAt(tileDestino.transform);  //Olha na direção do movimento
-
-    
-
         animatedAgent.setDestination(tileDestino.WorldPosition);    //Manda Mover   
         currentTile.toggleWalkable();                               //Marca o tile como não caminhável
         currentTile = tileDestino;                                  //Altera o tile atual do personagem
@@ -319,29 +287,45 @@ public class Actor : MonoBehaviour
         currentTile = tile;
     }
 
-    protected void Fight (Actor opponent, bool specialAttack = false)
+    protected void Fight (Actor opponent, Actor attackingActor, bool specialAttack = false)
     {
         int attackValue = specialAttack ? specialAttackDamage : attack;
-        opponent.TakeDamage(attackValue - opponent.defense);
+        opponent.TakeDamage(attackValue - opponent.defense, attackingActor);
     }
 
-    public void TakeDamage(int damage)
+    public virtual void KilledAnEnemy(int XpObtained)
+    {
+
+    }
+
+    protected virtual void UpdateCharacterInfo()
+    {
+
+    }
+    protected virtual void UpdateCharacterInfoNoSelection()
+    {
+    }
+
+    public void TakeDamage(int damage, Actor attackingActor)
     {
         TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
-        health -= damage;
+        Health -= damage;
         PlayDamageSound();
 
-        if (health < 0) {
-            health = 0;
+        if (Health < 0) {
+            Health = 0;
         }
 
-        float scaleX = health / maxHealth;
+        UpdateCharacterInfoNoSelection();
+
+        float scaleX = Health / MaxhHealth;
 
         anim.SetTrigger("Damage");
-        anim.SetBool("Dead", health <= 0);
+        anim.SetBool("Dead", Health <= 0);
         healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
-        if (health <= 0)
+        if (Health <= 0)
         {
+            attackingActor.KilledAnEnemy(XPValue);
             PerformDeathSpecifcsActions();
             StartCoroutine(KillActor());
         }
@@ -358,14 +342,14 @@ public class Actor : MonoBehaviour
 
     public void Heal(int healValue)
     {
-        health += healValue;
+        Health += healValue;
 
-        if (health > maxHealth)
+        if (Health > MaxhHealth)
         {
-            health = maxHealth;
+            Health = MaxhHealth;
         }
-
-        float scaleX = health / maxHealth;
+        UpdateCharacterInfoNoSelection();
+        float scaleX = Health / MaxhHealth;
         anim.SetTrigger("Healed");
         _healParticle.Play();
         healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
@@ -373,7 +357,7 @@ public class Actor : MonoBehaviour
 
     public bool FullHealth()
     {
-        return maxHealth == health;
+        return MaxhHealth == Health;
     }
 
     public virtual void ResetActions()

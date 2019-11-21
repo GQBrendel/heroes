@@ -3447,6 +3447,7 @@ GameObject:
   - component: {fileID: 5977737984826798449}
   - component: {fileID: 8750991456073462345}
   - component: {fileID: 2077344126466471385}
+  - component: {fileID: 2730875208192612629}
   m_Layer: 2
   m_Name: Brute
   m_TagString: Hero
@@ -3548,12 +3549,14 @@ MonoBehaviour:
   attack: 60
   defense: 15
   specialAttackDamage: 60
-  maxHealth: 100
+  MaxhHealth: 150
   rotate: 0
   personalCanvas: {fileID: 8492058878658294996}
+  Health: 0
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 1
+  XPValue: 0
   blueMark: {fileID: 1756343190703454, guid: 0e20c09188091e14886d714bc9c9e8dd, type: 3}
   friendMark: {fileID: 1756343190703454, guid: 547c5e17aef47024fa2b8abcb1386c0b, type: 3}
   enemyMark: {fileID: 1756343190703454, guid: 506d33cf9c510fb4e8a14e06563e7a35, type: 3}
@@ -3573,14 +3576,35 @@ MonoBehaviour:
     type: 3}
   _limitedActionSelectorPrefab: {fileID: 1076566576920833743, guid: 82bd6fbf3fc407e48baf4409536a2279,
     type: 3}
+  _characterInfo: {fileID: 2730875208192612629}
   _specialAttackCoolDownTime: 3
   _secondSpecialAttackCoolDownTime: 1
   _frostDuration: 0
   FrostAttackDamage: 40
+  Level: 1
   id: 0
   _tauntDuration: 2
   _spinAttackCooldown: 3
   _tauntCooldown: 2
+--- !u!114 &2730875208192612629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216918927391142247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccce509c4857a24086b6cafe06187c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PortraitImage: {fileID: 21300000, guid: 64ab0b04122b53240a9fdbf4797d8940, type: 3}
+  m_CharacterName: Brute
+  m_CharacterClass: Barbarian
+  _characterLevels:
+  - {fileID: 11400000, guid: 1dbeeeb5385c5a64381d7e5db4fd872c, type: 2}
+  - {fileID: 11400000, guid: 0b3d7f1f9e96db1468949c0d81d7d12c, type: 2}
+  - {fileID: 11400000, guid: 1495ffb0ced9a8648a7d095c4c290628, type: 2}
 --- !u!1001 &3470663851251467069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3881,15 +3905,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d61d5260859180c4e93fe1f325c2bf0d, type: 3}
---- !u!4 &1671662072219849091 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5587890246548715563, guid: d61d5260859180c4e93fe1f325c2bf0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6538878521682405800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1570818515080305137 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5724752713711382617, guid: d61d5260859180c4e93fe1f325c2bf0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6538878521682405800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1671662072219849091 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5587890246548715563, guid: d61d5260859180c4e93fe1f325c2bf0d,
     type: 3}
   m_PrefabInstance: {fileID: 6538878521682405800}
   m_PrefabAsset: {fileID: 0}
