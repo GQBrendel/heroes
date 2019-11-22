@@ -16,10 +16,6 @@ public class HeroController : Actor
     [SerializeField] private GameObject _attackMark;
     [SerializeField] private GameObject _warningMark;
 
-  /*  [SerializeField] private Interactable _emptyTileInteractiblePrefab;
-    [SerializeField] private Interactable _enemyTileInteractiblePrefab;
-    [SerializeField] private Interactable _friendlyTileInteractiblePrefab;
-    [SerializeField] private Interactable _selfTileInteractiblePrefab;*/
     [SerializeField] private ActionSelector _actionSelectorPrefab;
     [SerializeField] private ActionSelector _limitedActionSelectorPrefab;
     [SerializeField] protected CharacterInfo _characterInfo;
@@ -653,8 +649,15 @@ public class HeroController : Actor
         {
             OnLevelUp?.Invoke(this);
             ActionSelector.Updatelevel(_characterInfo.Level, this);
+
+             anim.SetTrigger("Healed");
+            _healParticle.Play();
+
         }
         UpdateCharacterInfo();
+
+        float scaleX = _characterInfo.CurrentHP / GetMaxHealth();
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
     }
     public override int GetCharacterDefense()
     {

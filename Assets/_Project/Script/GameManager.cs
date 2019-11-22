@@ -150,7 +150,8 @@ public class GameManager : MonoBehaviour
 
     private void Update ()
     {
-        if(!update)
+        LevelUpCheat();
+        if (!update)
         {
             return;
         }
@@ -165,7 +166,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DelayAndSendMessage("setDefeat"));
             update = false;
 		}
-        LevelUpCheat();
 	}
 
 
