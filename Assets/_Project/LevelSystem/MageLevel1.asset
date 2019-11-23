@@ -21,7 +21,7 @@ MonoBehaviour:
   Intelligence: 6
   Speed: 2
   Astral: 6
-  BasicAttack: 3
+  BasicAttack: 5
   SpinAttack: 0
   FrostShot: 0
   PetSummon: 0

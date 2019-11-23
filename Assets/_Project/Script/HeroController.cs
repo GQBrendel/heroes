@@ -69,6 +69,7 @@ public class HeroController : Actor
         yield return new WaitForEndOfFrame();
         _characterInfo.UpdateCharacterInfoNoSelection(this);
         ActionSelector.Updatelevel(_characterInfo.Level, this);
+        UpdateCharacterInfo();
 
     }
 
@@ -631,6 +632,7 @@ public class HeroController : Actor
         HideWays();
         isSelected = false;
         UnLight();
+        _characterInfo.DisableHighlight();
     }
 
 

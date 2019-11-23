@@ -153,6 +153,29 @@ public class Brute : HeroController
         int damage = _characterInfo.Strength + _characterInfo.BasicAttack;
         opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
     }
+    public override void SelectHero()
+    {
+        base.SelectHero();
+        PlayRandomSelectionAudio();
+    }
+
+    private void PlayRandomSelectionAudio()
+    {
+        int random = Random.Range(0, 3);
+
+        switch (random)
+        {
+            case 0:
+                AudioManager.Instance.Play("BruteCountOnMe");
+                break;
+            case 1:
+                AudioManager.Instance.Play("BruteHellYeah");
+                break;
+            case 2:
+                AudioManager.Instance.Play("BruteYes");
+                break;
+        }
+    }
 
     public override void PlayDamageSound()
     {

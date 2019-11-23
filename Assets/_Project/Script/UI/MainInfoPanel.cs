@@ -23,6 +23,7 @@ public class MainInfoPanel : MonoBehaviour
     [SerializeField] private Button _closeInfoButton;
     [Header("Images")]
     [SerializeField] private GameObject _aiTurnPanel;
+    [SerializeField] private GameObject _hightLight;
     [Header("Attributes")]
     [SerializeField] private TextMeshProUGUI _strength;
     [SerializeField] private TextMeshProUGUI _dexterity;
@@ -42,7 +43,7 @@ public class MainInfoPanel : MonoBehaviour
 
         if (_aiTurnPanel)
         {
-            _aiTurnPanel.SetActive(true);
+          //  _aiTurnPanel.SetActive(true);
         }
     }
     private void Update()
@@ -55,7 +56,7 @@ public class MainInfoPanel : MonoBehaviour
 
     public void EnableAiPanel()
     {
-        _aiTurnPanel.SetActive(true);
+       // _aiTurnPanel.SetActive(true);
     }
 
 
@@ -85,5 +86,14 @@ public class MainInfoPanel : MonoBehaviour
         {
             _aiTurnPanel.SetActive(false);
         }
+    }
+
+    public void EnableHightLight()
+    {
+        _hightLight.SetActive(true);
+    }
+    public void DisableHighLight()
+    {
+        _hightLight.SetActive(false);
     }
 }

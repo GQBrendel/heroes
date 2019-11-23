@@ -78,7 +78,7 @@ public class CharacterInfo : MonoBehaviour
             {
                 _classInfoPanel = panel;
             }
-            else if (panel.name == "MainInfoPanel")
+            else if (panel.name == "MainInfoPanel_" + Name)
             {
                 _mainInfoPanel = panel;
             }
@@ -89,14 +89,12 @@ public class CharacterInfo : MonoBehaviour
 
     public void UpdateCharacterInfo(HeroController character, bool disableAiPanel = true)
     {
-//        CurrentHP = (int)character.Health;
         MaxHP = _characterLevels[Level - 1].HP;
         _mainInfoPanel.UpdateInfoUI(this, disableAiPanel);
         _classInfoPanel.UpdateInfoUI(this, disableAiPanel);
     }
     public void UpdateCharacterInfoNoSelection(HeroController character)
     {
-    //    CurrentHP = (int)character.Health;
         MaxHP = _characterLevels[Level - 1].HP;
         _classInfoPanel.UpdateInfoUI(this);
     }
@@ -182,4 +180,13 @@ public class CharacterInfo : MonoBehaviour
 
 
 }
+
+    public void DisableHighlight()
+    {
+        _mainInfoPanel.DisableHighLight();
+    }
+    public void EnableHighLight()
+    {
+        _mainInfoPanel.EnableHightLight();
+    }
 }

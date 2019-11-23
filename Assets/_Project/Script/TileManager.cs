@@ -256,14 +256,7 @@ namespace AStar_2D.Demo
             }
             else if (HealingHero)
             {
-              //  if (HealingHero == tile.tileActor)
-                {
-               //     HealingHero.HideWays();
-                //    HealingHero = null;
-                //    HealingHero.CommandToHeal(tile);
-//                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
-                }
-                /*else*/ if (tile.tileActor != null)
+                if (tile.tileActor != null)
                 {
                     HealingHero.CommandToHeal(tile);
                 }
@@ -273,7 +266,8 @@ namespace AStar_2D.Demo
             if (!aHeroIsSelected)
             {
                 pickHero((int)tile.getPos().x, (int)tile.getPos().y); //Pega o heroi naquela posição
-                if (selectedHero == null) {
+                if (selectedHero == null)
+                {
                     return;
                 }
 
@@ -412,10 +406,12 @@ namespace AStar_2D.Demo
         {
             foreach (GameObject hero in heroesList)
             {
+                hero.GetComponent<CharacterInfo>().DisableHighlight();
                 if(hero.GetComponent<Actor>().checkPos(x,y) && !hero.GetComponent<Actor>().acted) //Se � o actor da posi��o do tile e ele ainda n�o agiu
                 {
                     selectedHero = hero;
                     selectedHero.GetComponent<HeroController>().SelectHero();
+                    hero.GetComponent<CharacterInfo>().EnableHighLight();
                     aHeroIsSelected = true;
                     break;
                 }
