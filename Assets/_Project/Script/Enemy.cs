@@ -100,7 +100,7 @@ public class Enemy : Actor
 
     public void AttackSound()
     {
-        AudioManager.Instance.Play("SkeletonAttack");
+        AudioManager.Instance.Play("SkeletonAttack", true);
     }
 
     public void AttackHit()
@@ -148,7 +148,7 @@ public class Enemy : Actor
         int random;
         do
         {
-            random = UnityEngine.Random.Range(posX - moveDis, posX + moveDis);
+            random = UnityEngine.Random.Range(posX - MovementInTiles, posX + MovementInTiles);
             Debug.Log("Random X " + random);
 
         } while (random < 0 || random >= AStar_2D.Demo.TileManager.Instance.gridX || random == posX);
@@ -160,7 +160,7 @@ public class Enemy : Actor
         int random;
         do
         {
-            random = UnityEngine.Random.Range(posY - moveDis, posY + moveDis);
+            random = UnityEngine.Random.Range(posY - MovementInTiles, posY + MovementInTiles);
             Debug.Log("Random Y " + random);
 
         } while (random < 0 || random >= AStar_2D.Demo.TileManager.Instance.gridY || random == posY);

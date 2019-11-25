@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamagePosiiton: {fileID: 5684531214846042949}
+  AttackMark: {fileID: 0}
   posX: 0
   posY: 0
   tileActor: {fileID: 0}

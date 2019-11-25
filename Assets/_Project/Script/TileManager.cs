@@ -26,10 +26,11 @@ namespace AStar_2D.Demo
 
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
-        [SerializeField] private GameObject _mage;
-        public GameObject brute;
-        public GameObject archer;
-        public GameObject skelletonPrefab;
+        //[SerializeField] private GameObject _mage;
+        //public GameObject brute;
+        //public GameObject archer;
+        //public GameObject skelletonPrefab;
+        //public GameObject KoboldPrefab;
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
@@ -42,18 +43,17 @@ namespace AStar_2D.Demo
         public HeroController ThunderHero;
         public HeroController HealingHero;
 
-
-
         public GameObject UiIcon;
         public List<GameObject> heroesList;
         private List<Actor> _heroes;
         private EnemiesController tacticalAgent;
-        bool aHeroIsSelected;
+        protected bool aHeroIsSelected;
         public GameObject myCamera;
         int nActions = 0;
         bool soDeTesteMudarDepois = false;
 
         public int CurrentTurn { get; set; }
+        public bool ShouldExecuteActions { get; set; }
 
         [SerializeField] private List<Vector2> _notwalkable;
 
@@ -132,18 +132,43 @@ namespace AStar_2D.Demo
             SetupNotWalkableTiles();
         }
 
+        [SerializeField] private LevelSettings _level1;
+        [SerializeField] private LevelSettings _level4;
+
+        public int CurrentLevel = 1;
+
         private void spawnActors()
         {
+            if(CurrentLevel == 1)
+            {
+                foreach (var actor in _level1.Characters)
+                {
+                    GenerateActor(actor.CharacterPrefab, actor.Level1Spawn);
+                }
+            }
+            else if (CurrentLevel == 4)
+            {
+                foreach (var actor in _level4.Characters)
+                {
+                    GenerateActor(actor.CharacterPrefab, actor.Level4Spawn);
+                }
+            }
+
+
+            // GenerateActor(brute, Brute.Level1Spawn);
+            //  GenerateActor(Brute.CharacterPrefab, Brute.Level1Spawn);
+            /*
             GenerateActor(brute, 7, 1);
             GenerateActor(archer, 8, 0);
             GenerateActor(_mage, 6, 0);
 
-           // GenerateActor(skelletonPrefab, 8, 2);
-            GenerateActor(skelletonPrefab, 4, 8);
-            GenerateActor(skelletonPrefab, 10, 9);
-            GenerateActor(skelletonPrefab, 6, 10);
-            GenerateActor(skelletonPrefab, 2, 14);
-            GenerateActor(skelletonPrefab, 13, 14);
+            GenerateActor(KoboldPrefab, 8, 2);
+            GenerateActor(KoboldPrefab, 4, 8);
+            GenerateActor(KoboldPrefab, 10, 9);
+            GenerateActor(KoboldPrefab, 6, 10);
+            GenerateActor(KoboldPrefab, 2, 14);
+            GenerateActor(KoboldPrefab, 13, 14);
+            */
 
             OnAllHeroesSpawned?.Invoke(_heroes);
 
@@ -174,18 +199,14 @@ namespace AStar_2D.Demo
             DamagePopUp.Create(_damagePopUp.gameObject, tile.DamagePosiiton.position, damageAmount, isCritical);
         }
 
-        /// <summary>
-        /// Called by Unity.
-        /// Left blank for demonstration.
-        /// </summary>
-        public void Update()
+        protected virtual void onTileSelectedMouse(Tile tile, int mouseButton)
         {
-            
-        }
+            if (!ShouldExecuteActions)
+            {
+                return;
+            }
 
-        private void onTileSelectedMouse(Tile tile, int mouseButton)
-        {
-            if(mouseButton!= 0)
+            if (mouseButton!= 0)
             {
                 return;
             }
@@ -353,8 +374,11 @@ namespace AStar_2D.Demo
             }
         }
 
-        private void GenerateActor(GameObject UnitOfType, int x, int y)
+        private void GenerateActor(GameObject UnitOfType, Vector2 spawnPos)
         {
+            int x = (int)spawnPos.x;
+            int y = (int)spawnPos.y;
+
             GameObject go = MonoBehaviour.Instantiate(
                 UnitOfType, 
                 new Vector3((x - (gridX / 2)) * 0.6f, 0, (y - (gridY / 2)) * 0.6f),
@@ -402,7 +426,7 @@ namespace AStar_2D.Demo
 
         }
 
-        void pickHero(int x, int y)
+        protected void pickHero(int x, int y)
         {
             foreach (GameObject hero in heroesList)
             {

@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 8591d0c6f79a9064fb1131354a962650
+labels:
+- AStar
+- A*
+- Pathfinding
+- Dynamic
+- Agent
+- AStar2D
+- Multithreading
+- Examples
+- Grid
+- Tile
+timeCreated: 1504491288
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - hero: {fileID: 1181729813753890, guid: 5235cbed4440a2c41a50a16d3186cfe6, type: 2}
+  - enemy: {fileID: 1925957946624150, guid: 9898e7f3facdbde43a09f78be6a1baf7, type: 2}
+  - tilePrefab: {fileID: 187808, guid: ab64bacedd9885d47b44d615b3adf42b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

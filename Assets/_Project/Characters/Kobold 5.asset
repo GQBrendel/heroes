@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08fd8d3080f331458a8d53a961c1e46, type: 3}
+  m_Name: Kobold 5
+  m_EditorClassIdentifier: 
+  CharacterPrefab: {fileID: 5406023474236802806, guid: 6274fd932778701468de60d4bd53790a,
+    type: 3}
+  Level1Spawn: {x: 1, y: 1}
+  Level2Spawn: {x: 0, y: 0}
+  Level3Spawn: {x: 0, y: 0}
+  Level4Spawn: {x: 13, y: 14}

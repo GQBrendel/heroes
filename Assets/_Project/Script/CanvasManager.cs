@@ -56,7 +56,7 @@ public class CanvasManager : MonoBehaviour {
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    SceneManager.LoadScene("Teste");
+                    SceneManager.LoadScene("Level4");
                 }
             }
 

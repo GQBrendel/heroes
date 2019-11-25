@@ -638,8 +638,8 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   cloudProjectId: 2c5762ef-8cc4-436f-9049-2f06327408d6
   framebufferDepthMemorylessMode: 0
-  projectName: Speech Recon
-  organizationId: guilhermeqb
+  projectName: Brotherhood
+  organizationId: toppersons
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

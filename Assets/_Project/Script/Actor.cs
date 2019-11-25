@@ -41,7 +41,7 @@ public class Actor : MonoBehaviour
 
     protected bool isActing = false;
 
-    protected int moveDis = 2;
+    public int MovementInTiles = 2;
    // public float Health;
     protected Vector2 lookingAtTile;
 
@@ -151,20 +151,20 @@ public class Actor : MonoBehaviour
         {
             return;
         }
-        if (tileDestino.posX > posX + moveDis)
+        if (tileDestino.posX > posX + MovementInTiles)
         {
             return;
         }
         
-        if (tileDestino.posX < posX - moveDis) {
+        if (tileDestino.posX < posX - MovementInTiles) {
             return;
         }
 
-        if (tileDestino.posY > posY + moveDis) {
+        if (tileDestino.posY > posY + MovementInTiles) {
             return;
         }
 
-        if (tileDestino.posY < posY - moveDis) {
+        if (tileDestino.posY < posY - MovementInTiles) {
             return;
         }
 
@@ -284,7 +284,7 @@ public class Actor : MonoBehaviour
 
     public int getMoveDis()
     {
-        return moveDis;
+        return MovementInTiles;
     }
 
     public bool checkPos(int x, int y)
