@@ -15,6 +15,6 @@ MonoBehaviour:
   CharacterPrefab: {fileID: 5406023474236802806, guid: 6274fd932778701468de60d4bd53790a,
     type: 3}
   Level1Spawn: {x: 1, y: 1}
-  Level2Spawn: {x: 0, y: 0}
-  Level3Spawn: {x: 0, y: 0}
+  Level2Spawn: {x: 10, y: 9}
+  Level3Spawn: {x: 10, y: 9}
   Level4Spawn: {x: 10, y: 9}

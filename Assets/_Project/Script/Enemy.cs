@@ -143,7 +143,7 @@ public class Enemy : Actor
     }
 
 
-    public int limitX()
+   /* public int limitX()
     {
         int random;
         do
@@ -153,9 +153,9 @@ public class Enemy : Actor
 
         } while (random < 0 || random >= AStar_2D.Demo.TileManager.Instance.gridX || random == posX);
         return random;
-    }
+    }*/
 
-    public int limitY()
+   /* public int limitY()
     {
         int random;
         do
@@ -165,7 +165,7 @@ public class Enemy : Actor
 
         } while (random < 0 || random >= AStar_2D.Demo.TileManager.Instance.gridY || random == posY);
         return random;
-    }
+    }*/
 
     void OnMouseEnter()
     {
@@ -199,8 +199,10 @@ public class Enemy : Actor
                 OnActorEndFrosted?.Invoke(this as Actor);
                 Frosted = false;
                 var ice = FindObjectOfType<IceController>();
-                ice.BreakTheIce();
-
+                if (ice)
+                {
+                    ice.BreakTheIce();
+                }
             }
         }
     }

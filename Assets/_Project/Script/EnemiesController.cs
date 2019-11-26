@@ -307,6 +307,7 @@ public class EnemiesController : MonoBehaviour
     {
         //foundPosition = true;
         FindRoute(distance, heroPos);
+
         int x = (int)heroPos.x;
         int y = (int)heroPos.y;
 

@@ -26,11 +26,6 @@ namespace AStar_2D.Demo
 
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
-        //[SerializeField] private GameObject _mage;
-        //public GameObject brute;
-        //public GameObject archer;
-        //public GameObject skelletonPrefab;
-        //public GameObject KoboldPrefab;
         public GameObject selectedHero;
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
@@ -126,13 +121,16 @@ namespace AStar_2D.Demo
 
             _feedbackMessage.gameObject.SetActive(false);
         }
-        private void Start()
+        protected virtual void Start()
         {
             spawnActors();
             SetupNotWalkableTiles();
+            ShouldExecuteActions = true;
         }
 
         [SerializeField] private LevelSettings _level1;
+        [SerializeField] private LevelSettings _level2;
+        [SerializeField] private LevelSettings _level3;
         [SerializeField] private LevelSettings _level4;
 
         public int CurrentLevel = 1;
@@ -146,6 +144,20 @@ namespace AStar_2D.Demo
                     GenerateActor(actor.CharacterPrefab, actor.Level1Spawn);
                 }
             }
+            else if (CurrentLevel == 2)
+            {
+                foreach (var actor in _level2.Characters)
+                {
+                    GenerateActor(actor.CharacterPrefab, actor.Level2Spawn);
+                }
+            }
+            else if (CurrentLevel == 3)
+            {
+                foreach (var actor in _level3.Characters)
+                {
+                    GenerateActor(actor.CharacterPrefab, actor.Level3Spawn);
+                }
+            }
             else if (CurrentLevel == 4)
             {
                 foreach (var actor in _level4.Characters)
@@ -153,22 +165,6 @@ namespace AStar_2D.Demo
                     GenerateActor(actor.CharacterPrefab, actor.Level4Spawn);
                 }
             }
-
-
-            // GenerateActor(brute, Brute.Level1Spawn);
-            //  GenerateActor(Brute.CharacterPrefab, Brute.Level1Spawn);
-            /*
-            GenerateActor(brute, 7, 1);
-            GenerateActor(archer, 8, 0);
-            GenerateActor(_mage, 6, 0);
-
-            GenerateActor(KoboldPrefab, 8, 2);
-            GenerateActor(KoboldPrefab, 4, 8);
-            GenerateActor(KoboldPrefab, 10, 9);
-            GenerateActor(KoboldPrefab, 6, 10);
-            GenerateActor(KoboldPrefab, 2, 14);
-            GenerateActor(KoboldPrefab, 13, 14);
-            */
 
             OnAllHeroesSpawned?.Invoke(_heroes);
 
@@ -189,7 +185,6 @@ namespace AStar_2D.Demo
 
         public virtual void MoveSelected()
         {
-            throw new NotImplementedException();
         }
 
         public void ShowFeedbackMesage(Tile tile, string message)

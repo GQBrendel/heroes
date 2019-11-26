@@ -15,6 +15,13 @@ namespace AStar_2D.Demo
 
         Fungus.EventHandler EventHandler;
 
+        protected override void Start()
+        {
+            base.Start();
+            ShouldExecuteActions = false;
+        }
+
+
         protected override void onTileSelectedMouse(Tile tile, int mouseButton)
         {
             if (!ShouldExecuteActions)
@@ -51,10 +58,13 @@ namespace AStar_2D.Demo
             else if (AttackingHero)
             {
                 if (AttackingHero == tile.tileActor)
-                {/*
-                    AttackingHero.HideWays();
-                    AttackingHero = null;
-                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);*/
+                {
+                    if (!_tutorialIsActive)
+                    {
+                        AttackingHero.HideWays();
+                        AttackingHero = null;
+                        pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                    }
                 }
                 else if (tile.tileActor != null)
                 {
@@ -125,6 +135,10 @@ namespace AStar_2D.Demo
 
         protected override void endTurn()
         {
+            if (!_tutorialIsActive)
+            {
+                EnemiesTurnReadyStart();
+            }
             return;
         }
         public void EnemiesTurnReadyStart()
