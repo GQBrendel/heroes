@@ -16,7 +16,8 @@ public class ActionSelectorButton : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private Button _currentButton;
     private HeroController _heroController;
-    public bool Active;
+    public bool Active = true;
+    public bool Clickable = true;
 
     private void OnEnable()
     {
@@ -36,6 +37,10 @@ public class ActionSelectorButton : MonoBehaviour, IPointerEnterHandler, IPointe
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
+        if (!Clickable)
+        {
+            return;
+        }
         if(Time.timeScale == 0)
         {
             return;

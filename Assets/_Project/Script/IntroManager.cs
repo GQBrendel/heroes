@@ -1,5 +1,6 @@
 ﻿using AStar_2D.Demo;
 using Fungus;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,21 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private Flowchart _flowChart;
     [SerializeField] private TileManagerTutorial _tileManager;
 
-    private bool _tutorialSelect;
+   // private bool _tutorialSelect;
+   // private bool _enemiesTurn;
 
     private void Awake()
     {
         _skipButton.onClick.AddListener(FinishIntro);
+    }
+
+    public void LydiaSelected()
+    {
+        _flowChart.SendFungusMessage("LydiaSelected");
+    }
+    public void MoveSelected()
+    {
+        _flowChart.SendFungusMessage("MoveSelected");
     }
 
     private void FinishIntro()
@@ -25,21 +36,29 @@ public class IntroManager : MonoBehaviour
         _flowChart.SendFungusMessage("Start");
     }
 
-    private void CheckForTutorialSelect()
+    public void TutorialSelect()
     {
-        if (_tutorialSelect)
-        {
-            return;
-        }
-        if (_flowChart.GetBooleanVariable("TutorialSelect"))
-        {
-            _tileManager.ShouldExecuteActions = true;
-            _tutorialSelect = true;
-        }
+       _tileManager.ShouldExecuteActions = true;
+    }
+    public void AITurn()
+    {
+        _tileManager.EnemiesTurnReadyStart();
+        _tileManager.ShouldExecuteActions = true;
+        _tileManager.EndTutorial();
     }
 
-    void Update()
+    public void AttackSelected()
     {
-        CheckForTutorialSelect();
+        _flowChart.SendFungusMessage("AttackSelected");
+    }
+
+    public void FinishedMovement()
+    {
+        _flowChart.SendFungusMessage("FinishedMovement");
+    }
+
+    public void LevelUp()
+    {
+        _flowChart.SendFungusMessage("LevelUpMessage");
     }
 }

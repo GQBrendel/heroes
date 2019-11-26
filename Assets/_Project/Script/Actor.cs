@@ -25,6 +25,7 @@ public class Actor : MonoBehaviour
     [SerializeField] public ParticleSystem _healParticle;
 
     public bool Alive { get; private set; } = true;
+    public bool IsTutorial { get; set; }
 
     public Animator anim;
     private AnimatedAgent animatedAgent;
@@ -214,6 +215,10 @@ public class Actor : MonoBehaviour
     {
 
     }
+    public virtual void ShowOptionsforActionsTutorial(bool limited)
+    {
+
+    }
     IEnumerator controlMovement()
     {
         yield return new WaitUntil(() => GetComponent<AnimatedAgent>().moved);
@@ -226,9 +231,16 @@ public class Actor : MonoBehaviour
             rotate = true;
             StartCoroutine(SetRotateToFalse());
         }
-        else // if (!mainAction)
+        else 
         {
-            ShowOptionsforActions(false);
+            if (IsTutorial)
+            {
+                ShowOptionsforActionsTutorial(false);
+            }
+            else
+            {
+                ShowOptionsforActions(false);
+            }
         }
     }
     public bool finishedAllActions()

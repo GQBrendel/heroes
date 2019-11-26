@@ -30,7 +30,11 @@ public class Archer : HeroController
         _icyTrailParticles.gameObject.SetActive(false);
         _petSummon.OnEnemyHit += HandlePetHit;
         _petSummon.OnEnemyFinishedAttack += HandlePetFinishedAttack;
-        
+        var tileManagerTutorial = FindObjectOfType<TileManagerTutorial>();
+        if (tileManagerTutorial)
+        {
+            IsTutorial = true;
+        }        
     }
     public void FrostAttackHit()
     {

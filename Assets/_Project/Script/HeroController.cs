@@ -23,7 +23,7 @@ public class HeroController : Actor
     [Range(1, 5), SerializeField] protected int _specialAttackCoolDownTime;
     [Range(1, 5), SerializeField] protected int _secondSpecialAttackCoolDownTime;
 
-   // public int FrostAttackDamage = 40;
+    private IntroManager _introManager;
     public int Level = 1;
 
     protected int _spinAttackCounter;
@@ -34,6 +34,7 @@ public class HeroController : Actor
     protected bool CanControl { get; set; }
 
     protected ActionSelector ActionSelector;
+
     private ActionSelector _limitedSelector;
 
     public Actor CurrentEnemy { get; set; }
@@ -69,6 +70,7 @@ public class HeroController : Actor
         yield return new WaitForEndOfFrame();
         _characterInfo.UpdateCharacterInfoNoSelection(this);
         ActionSelector.Updatelevel(_characterInfo.Level, this);
+        _introManager = FindObjectOfType<IntroManager>();
         UpdateCharacterInfo();
 
     }
@@ -231,11 +233,17 @@ public class HeroController : Actor
     {
         ShowWays(posX,posY);
         TileManager.Instance.MovingHero = this;
+        TileManager.Instance.MoveSelected();
     }
     private void CommandToAttackNew()
     {
         ShowAttackMarks(BasicAttackRange);
         TileManager.Instance.AttackingHero = this;
+
+        if (IsTutorial)
+        {
+            _introManager.AttackSelected();
+        }
     }
 
     public virtual void CommandToTaunt()
@@ -448,6 +456,42 @@ public class HeroController : Actor
         }
     }
 
+    private int _tutorialStep = 1;
+
+    public override void ShowOptionsforActionsTutorial(bool limited)
+    {
+        if (limited)
+        {
+            _limitedSelector.gameObject.SetActive(true);
+            _limitedSelector.SetPosition(transform.position);
+        }
+        else
+        {
+            if (_tutorialStep == 1)
+            {
+                ActionSelector.DisableAction(HeroesActions.Passturn);
+                ActionSelector.DisableAction(HeroesActions.Attack);
+            }
+            else if (_tutorialStep == 2)
+            {
+                ActionSelector.DisableAction(HeroesActions.Move);
+                ActionSelector.EnableAction(HeroesActions.Attack);
+                _introManager.FinishedMovement();
+            }
+            else if (_tutorialStep == 3)
+            {
+                ActionSelector.EnableAction(HeroesActions.Move);
+                ActionSelector.EnableAction(HeroesActions.Attack);
+                ActionSelector.EnableAction(HeroesActions.Passturn);
+              //  _introManager.FinishedMovement();
+            }
+            ActionSelector.gameObject.SetActive(true);
+            ActionSelector.SetPosition(transform.position);
+        }
+
+        _tutorialStep++;
+    }
+
     public void ShowWays(int x, int y)
     {
         if (finishedAllActions())
@@ -617,6 +661,12 @@ public class HeroController : Actor
         ShowOptionsforActions(false);
         UpdateCharacterInfo();
     }
+    public virtual void SelectHeroTutorial()
+    {
+        isSelected = true;
+        ShowOptionsforActionsTutorial(false);
+        UpdateCharacterInfo();
+    }
 
     protected override void UpdateCharacterInfo()
     {
@@ -649,11 +699,17 @@ public class HeroController : Actor
         bool levelUp = _characterInfo.ObtainXP(XPObtained);
         if (levelUp)
         {
+            if (IsTutorial)
+            {
+                _introManager.LevelUp();
+            }
+
             OnLevelUp?.Invoke(this);
             ActionSelector.Updatelevel(_characterInfo.Level, this);
 
              anim.SetTrigger("Healed");
             _healParticle.Play();
+
 
         }
         UpdateCharacterInfo();

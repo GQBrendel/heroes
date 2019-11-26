@@ -46,7 +46,7 @@ namespace AStar_2D.Demo
         public GameObject UiIcon;
         public List<GameObject> heroesList;
         private List<Actor> _heroes;
-        private EnemiesController tacticalAgent;
+        protected EnemiesController tacticalAgent;
         protected bool aHeroIsSelected;
         public GameObject myCamera;
         int nActions = 0;
@@ -59,7 +59,7 @@ namespace AStar_2D.Demo
 
 
         //Variaveis do Asset:
-        private Tile[,] tiles;
+        public Tile[,] tiles;
         /// <summary>
         /// How many tiles to create in the X axis.
         /// </summary>
@@ -185,6 +185,11 @@ namespace AStar_2D.Demo
                     tile.toggleWalkable();
                 }
             }
+        }
+
+        public virtual void MoveSelected()
+        {
+            throw new NotImplementedException();
         }
 
         public void ShowFeedbackMesage(Tile tile, string message)
@@ -426,7 +431,7 @@ namespace AStar_2D.Demo
 
         }
 
-        protected void pickHero(int x, int y)
+        protected virtual void pickHero(int x, int y)
         {
             foreach (GameObject hero in heroesList)
             {
@@ -455,14 +460,14 @@ namespace AStar_2D.Demo
             }
         }
 
-        private void endTurn()
+        protected virtual void endTurn()
         {
             _mainInfoPanel.EnableAiPanel();
             tacticalAgent.enemiesTurn();
-            StartCoroutine(waitForIAActions());
+            StartCoroutine(WaitForIAActions());
         }
 
-        IEnumerator waitForIAActions()
+        protected IEnumerator WaitForIAActions()
         {
             yield return new WaitUntil(() => tacticalAgent.ActiveIA == false);
             nActions = 0;

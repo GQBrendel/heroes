@@ -38,6 +38,28 @@ public class ActionSelector : MonoBehaviour
             }
         }
     }
+    public void DisableAction(HeroesActions action)
+    {
+        foreach (var button in _actionSelectorButtons)
+        {
+            if (button.Action == action)
+            {
+                button.Fade(0);
+                button.Clickable = false;
+            }
+        }
+    }
+    public void EnableAction(HeroesActions action)
+    {
+        foreach (var button in _actionSelectorButtons)
+        {
+            if (button.Action == action)
+            {
+                button.RemoveFade();
+                button.Clickable = true;
+            }
+        }
+    }
 
     internal void RemoveFade(HeroesActions action)
     {
