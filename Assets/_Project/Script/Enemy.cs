@@ -93,6 +93,10 @@ public class Enemy : Actor
 
     public void Attack(Actor target)
     {
+        if (!target)
+        {
+            return;
+        }
         transform.LookAt(target.transform);
         anim.SetTrigger("Attack");
         _currentTarget = target;

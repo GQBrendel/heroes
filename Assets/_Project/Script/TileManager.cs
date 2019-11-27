@@ -20,9 +20,16 @@ namespace AStar_2D.Demo
     {
         public delegate void HeroSpawnHandler(List<Actor> actors);
         public delegate void TurnOverHandler();
+        public delegate void TurnStartHandler();
+        public delegate void AllHeroesDead();
+
+        public AllHeroesDead OnAllHeroesDead;
 
         public HeroSpawnHandler OnAllHeroesSpawned;
         public TurnOverHandler OnTurnOver;
+
+        public TurnStartHandler OnHeroesEndTurn;
+        public TurnStartHandler OnEnemyEndTurn;
 
         public static TileManager Instance;
         public int alliesNumber, enemiesNumber;
@@ -30,7 +37,6 @@ namespace AStar_2D.Demo
         [SerializeField] private GameObject _feedbackMessage;
         [SerializeField] private DamagePopUp _damagePopUp;
 
-        [SerializeField] MainInfoPanel _mainInfoPanel;
         public HeroController MovingHero;
         public HeroController AttackingHero;
         public HeroController FrostingHero;
@@ -51,6 +57,12 @@ namespace AStar_2D.Demo
         public bool ShouldExecuteActions { get; set; }
 
         [SerializeField] private List<Vector2> _notwalkable;
+
+        [SerializeField] private LevelSettings _level1;
+        [SerializeField] private LevelSettings _level2;
+        [SerializeField] private LevelSettings _level3;
+        [SerializeField] private LevelSettings _level4;
+        public int CurrentLevel = 1;
 
 
         //Variaveis do Asset:
@@ -126,14 +138,8 @@ namespace AStar_2D.Demo
             spawnActors();
             SetupNotWalkableTiles();
             ShouldExecuteActions = true;
+            OnEnemyEndTurn?.Invoke();
         }
-
-        [SerializeField] private LevelSettings _level1;
-        [SerializeField] private LevelSettings _level2;
-        [SerializeField] private LevelSettings _level3;
-        [SerializeField] private LevelSettings _level4;
-
-        public int CurrentLevel = 1;
 
         private void spawnActors()
         {
@@ -354,6 +360,10 @@ namespace AStar_2D.Demo
         public void RemoveHeroFromList(HeroController hero)
         {
             heroesList.Remove(hero.gameObject);
+            if(heroesList.Count <= 0)
+            {
+                OnAllHeroesDead?.Invoke();
+            }
         }
 
         private void onTileHover(Tile tile)
@@ -452,12 +462,12 @@ namespace AStar_2D.Demo
             if (nActions == heroesList.Count)
             {
                 endTurn();
+                OnHeroesEndTurn?.Invoke();
             }
         }
 
         protected virtual void endTurn()
         {
-            _mainInfoPanel.EnableAiPanel();
             tacticalAgent.enemiesTurn();
             StartCoroutine(WaitForIAActions());
         }
@@ -475,6 +485,7 @@ namespace AStar_2D.Demo
             {
                 hero.GetComponent<Actor>().ResetActions();
             }
+            OnEnemyEndTurn?.Invoke();
         }
 
         public void cancelAction()

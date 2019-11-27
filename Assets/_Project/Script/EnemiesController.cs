@@ -263,6 +263,10 @@ public class EnemiesController : MonoBehaviour
     }
     float euclidianDistance(Actor A1, Actor A2)
     {
+        if(!A1 || !A2)
+        {
+            return 0;
+        }
         int x1, x2, y1, y2;
         x1 = (int)A1.getPos().x;
         y1 = (int)A1.getPos().y;
@@ -346,5 +350,9 @@ public class EnemiesController : MonoBehaviour
     public void RemoveHeroFromList(HeroController hero)
     {
         heroList.Remove(hero.gameObject);
+        if(heroList.Count <= 0)
+        {
+           // TileManager.Instance.AllHeroesAreDead();
+        }
     }
 }

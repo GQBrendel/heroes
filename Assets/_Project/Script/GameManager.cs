@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -23,6 +24,17 @@ public class GameManager : MonoBehaviour
 
         _tileManager.OnAllHeroesSpawned += HandleAllHeroesSpawned;
         _tileManager.OnTurnOver += HandleTurnOver;
+        _tileManager.OnEnemyEndTurn += HandleEnemyTurnOver;
+        _tileManager.OnHeroesEndTurn += HandleHeroesTurnOver;
+        _tileManager.OnAllHeroesDead += (() =>
+        {
+            StartCoroutine(LevelFailed());
+        });
+
+
+        _canvasManager.OnBackToMenu += HandleBackToMenu;
+        _canvasManager.OnNextLevel += HandleNextLevel;
+        _canvasManager.OnRetryLevel += HandleRestartLevel;
     }
     private void Start()
     {
@@ -38,6 +50,14 @@ public class GameManager : MonoBehaviour
     private void HandleTurnOver()
     {
         _currentTurn++;
+    }
+    private void HandleEnemyTurnOver()
+    {
+        _canvasManager.ShowPlayerPhaseMessage();
+    }
+    private void HandleHeroesTurnOver()
+    {
+        _canvasManager.ShowEnemyPhaseMessage();
     }
 
     private void HandleAllHeroesSpawned(List<Actor> actors)
@@ -157,22 +177,39 @@ public class GameManager : MonoBehaviour
         }
 		if (EnemiesController.Instance.enemyUnits == 0)
         {
-            StartCoroutine(DelayAndSendMessage("setVictory"));
+            StartCoroutine(LevelCompleted());
             update = false;
 		}
 
 		if (EnemiesController.Instance.heroUnits == 0)
         {
-            StartCoroutine(DelayAndSendMessage("setDefeat"));
+            StartCoroutine(LevelFailed());
             update = false;
 		}
 	}
 
-
-    private IEnumerator DelayAndSendMessage(string message)
+    private IEnumerator LevelCompleted()
     {
         yield return new WaitForSeconds(2f);
-        _canvasManager.SendMessage(message);
+        _canvasManager.ShowVictoryScreen();
+    }
+    private IEnumerator LevelFailed()
+    {
+        yield return new WaitForSeconds(2f);
+        _canvasManager.ShowDefeatScreen();
     }
     bool update = true;
+
+    private void HandleRestartLevel()
+    {
+        SceneManager.LoadScene(_tileManager.CurrentLevel);
+    }
+    private void HandleNextLevel()
+    {
+        SceneManager.LoadScene(_tileManager.CurrentLevel + 1);
+    }
+    private void HandleBackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

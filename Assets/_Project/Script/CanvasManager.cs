@@ -4,97 +4,58 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanvasManager : MonoBehaviour {
+public class CanvasManager : MonoBehaviour
+{
+    public delegate void CommandsHandler();
+    public CommandsHandler OnNextLevel;
+    public CommandsHandler OnRetryLevel;
+    public CommandsHandler OnBackToMenu;
 
-    private bool victory;
-    private bool defeated;
+    [SerializeField] private GameObject _victoryScreen;
+    [SerializeField] private GameObject _defeatScreen;
 
-    private GameObject uiBG;
-    private Text victoryUi;
-    private Text defeatedUi;
+    [SerializeField] private GameObject _playerPhaseMessage;
+    [SerializeField] private GameObject _enemyPhaseMessage;
+
+    [SerializeField] private Button _menuButtonVictory;
+    [SerializeField] private Button _menuButtonDefeat;
+    [SerializeField] private Button _nextLevelButton;
+    [SerializeField] private Button _retryButton;
 
     void Awake()
     {
-        if(!tag.Contains("DebugText"))
-        {
+        _victoryScreen.SetActive(false);
+        _defeatScreen.SetActive(false);
 
-            uiBG = GameObject.Find("UiBackground");
-            Text[] childrens = uiBG.gameObject.GetComponentsInChildren<Text>();
-
-            foreach (Text item in childrens)
-            {
-                if (item.name == "VictoryBoard")
-                {
-                    victoryUi = item;
-                }
-                else if (item.name == "DefeatBoard")
-                {
-                    defeatedUi = item;
-                }
-            }
-
-            victoryUi.gameObject.SetActive(false);
-            victory = false;
-            defeatedUi.gameObject.SetActive(false);
-            defeated = false;
-
-            uiBG.SetActive(false);
-        }
+        _menuButtonDefeat.onClick.AddListener(() => OnBackToMenu?.Invoke());
+        _menuButtonVictory.onClick.AddListener(() => OnBackToMenu?.Invoke());
+        _nextLevelButton.onClick.AddListener(() => OnNextLevel?.Invoke());
+        _retryButton.onClick.AddListener(() => OnRetryLevel?.Invoke());
     }
 
-    void Update()
+    public void ShowVictoryScreen()
     {
-        if (!tag.Contains("DebugText"))
-        {
-            if (victory)
-            {
-                if (victoryUi.gameObject.active == false)
-                {
-                    uiBG.SetActive(true);
-                    victoryUi.gameObject.SetActive(true);
-                }
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    SceneManager.LoadScene("Level4");
-                }
-            }
-
-            if (defeated)
-            {
-                if (!defeatedUi.gameObject.active)
-                {
-                    uiBG.SetActive(true);
-                    defeatedUi.gameObject.SetActive(true);
-                }
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    SceneManager.LoadScene("Teste");
-                }
-            }
-        }
-
-    }
-
-	public void showMessage(string message)
+        _victoryScreen.SetActive(true);
+    }   
+    public void ShowDefeatScreen()
     {
-        GetComponent<Text>().text = message;
+        _defeatScreen.SetActive(true);
     }
 
-    /**
-     * Ativa tela de vitoria
-     */
-    public void setVictory()
+    public void ShowPlayerPhaseMessage()
     {
-        victory = true;
+        _playerPhaseMessage.SetActive(true);
+        StartCoroutine(DisablePanel(_playerPhaseMessage));
+    }
+    public void ShowEnemyPhaseMessage()
+    {
+        _enemyPhaseMessage.SetActive(true);
+        StartCoroutine(DisablePanel(_enemyPhaseMessage));
+    }
+    private IEnumerator DisablePanel(GameObject panel)
+    {
+        yield return new WaitForSeconds(3f);
+        panel.SetActive(false);
     }
 
-    /**
-     * Ativa tela de gameover
-     */
-    public void setDefeat()
-    {
-        defeated = true;
-    }
 }
