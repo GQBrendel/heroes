@@ -2590,6 +2590,7 @@ MonoBehaviour:
   posY: 0
   rotate: 0
   personalCanvas: {fileID: 5410261984937531793}
+  MovementInTiles: 2
   healthBar: {fileID: 0}
   moveAction: 0
   mainAction: 0
@@ -2675,7 +2676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccce509c4857a24086b6cafe06187c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PortraitImage: {fileID: 21300000, guid: f8503e8e5282e6a489e496bf7eaba70e, type: 3}
+  m_PortraitImage: {fileID: 21300000, guid: 341ea488bcad3d84389a3f0f7292ccb3, type: 3}
   m_CharacterName: Yanling
   m_CharacterClass: Mage
   _characterLevels:

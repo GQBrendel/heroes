@@ -4,8 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum PanelType
+{
+    Extended,
+    Short,
+}
+
 public class MainInfoPanel : MonoBehaviour
 {
+    [SerializeField] private PanelType _panelType;
     [Header("Images")]
     [SerializeField] private Image _portraitImage;
     [SerializeField] private Image _healthBar;
@@ -17,10 +24,10 @@ public class MainInfoPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _characterLevel;
     [SerializeField] private TextMeshProUGUI _currentHp;
     [SerializeField] private TextMeshProUGUI _currentXp;
-    [Header("Info")]
-    [SerializeField] private GameObject _infoPanel;
-    [SerializeField] private Button _infoButton;
-    [SerializeField] private Button _closeInfoButton;
+ //   [Header("Info")]
+  //  [SerializeField] private GameObject _infoPanel;
+  //  [SerializeField] private Button _infoButton;
+ //   [SerializeField] private Button _closeInfoButton;
     [Header("Images")]
     [SerializeField] private GameObject _aiTurnPanel;
     [SerializeField] private GameObject _hightLight;
@@ -33,7 +40,7 @@ public class MainInfoPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _astral;
 
     private void Start()
-    {
+    {/*
         _infoButton?.onClick.AddListener(() => { _infoPanel.SetActive(!_infoPanel.activeInHierarchy); });
         _closeInfoButton?.onClick.AddListener(() => { _infoPanel.SetActive(false); });
         if (_infoPanel)
@@ -44,15 +51,8 @@ public class MainInfoPanel : MonoBehaviour
         if (_aiTurnPanel)
         {
           //  _aiTurnPanel.SetActive(true);
-        }
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _infoPanel.SetActive(!_infoPanel.activeInHierarchy);
-        }
-    }
+        }*/
+    } 
 
     public void EnableAiPanel()
     {
@@ -62,9 +62,7 @@ public class MainInfoPanel : MonoBehaviour
 
     public void UpdateInfoUI(CharacterInfo character, bool disableAiPanel = true)
     {
-        _portraitImage.sprite = character.Image;
-        _characterName.SetText(character.Name);
-        _className.SetText(character.Class);
+        _portraitImage.sprite = character.Image;       
         _characterLevel.SetText(character.Level.ToString());
         _currentHp.SetText(character.CurrentHP + "/" + character.MaxHP);
         _currentXp.SetText(character.CurrentXP + "/" + character.XPToNextLevel);
@@ -75,12 +73,20 @@ public class MainInfoPanel : MonoBehaviour
         scaleX = (float)character.CurrentXP / (float)character.XPToNextLevel;
         _xpBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
 
-        _strength.SetText(character.Strength.ToString());
-        _dexterity.SetText(character.Dexterity.ToString());
-        _constitution.SetText(character.Constitution.ToString());
-        _intelligence.SetText(character.Intelligence.ToString());
-        _speed.SetText(character.Speed.ToString());
-        _astral.SetText(character.Astral.ToString());
+        if (_panelType == PanelType.Short)
+        {
+            _characterName.SetText(character.Name);
+            _className.SetText(character.Class);
+        }
+        else if (_panelType == PanelType.Extended)
+        {
+            _strength.SetText(character.Strength.ToString());
+            _dexterity.SetText(character.Dexterity.ToString());
+            _constitution.SetText(character.Constitution.ToString());
+            _intelligence.SetText(character.Intelligence.ToString());
+            _speed.SetText(character.Speed.ToString());
+            _astral.SetText(character.Astral.ToString());
+        }
 
         if (_aiTurnPanel && disableAiPanel)
         {

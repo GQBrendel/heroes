@@ -363,6 +363,7 @@ MonoBehaviour:
   posY: 0
   rotate: 0
   personalCanvas: {fileID: 1652699373033136}
+  MovementInTiles: 2
   healthBar: {fileID: 0}
   moveAction: 0
   mainAction: 0
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccce509c4857a24086b6cafe06187c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PortraitImage: {fileID: 21300000, guid: 58572f9a1dd36fb4a8e4dae53d6f87c9, type: 3}
+  m_PortraitImage: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}
   m_CharacterName: Arya
   m_CharacterClass: Ranger
   _characterLevels:

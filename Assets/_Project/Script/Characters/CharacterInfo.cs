@@ -71,18 +71,21 @@ public class CharacterInfo : MonoBehaviour
     }
     private void LinkWithInfoPanels()
     {
-        var panels = Resources.FindObjectsOfTypeAll<MainInfoPanel>();
-        foreach (var panel in panels)
+      //  var panels = Resources.FindObjectsOfTypeAll<MainInfoPanel>();
+     //   foreach (var panel in panels)
         {
-            if (panel.name == Class + "InfoPanel")
+       //     if (panel.name == Class + "InfoPanel")
             {
-                _classInfoPanel = panel;
+        //        _classInfoPanel = panel;
             }
-            else if (panel.name == "MainInfoPanel_" + Name)
+          //  else if (panel.name == "MainInfoPanel_" + Name)
             {
-                _mainInfoPanel = panel;
+               // _mainInfoPanel = panel;
             }
         }
+
+        _classInfoPanel = InfoPanelManager.Instance.GetClassInfoPanel(this);
+        _mainInfoPanel = InfoPanelManager.Instance.GetInfoPanel(this);
         var levelUp = Resources.FindObjectsOfTypeAll<LevelUpPanel>();
         _levelUpPanel = levelUp[0];
     }

@@ -26,11 +26,7 @@ public class GameManager : MonoBehaviour
         _tileManager.OnTurnOver += HandleTurnOver;
         _tileManager.OnEnemyEndTurn += HandleEnemyTurnOver;
         _tileManager.OnHeroesEndTurn += HandleHeroesTurnOver;
-        _tileManager.OnAllHeroesDead += (() =>
-        {
-            StartCoroutine(LevelFailed());
-        });
-
+        _tileManager.OnAllHeroesDead += HandleAllHeroesDead;
 
         _canvasManager.OnBackToMenu += HandleBackToMenu;
         _canvasManager.OnNextLevel += HandleNextLevel;
@@ -45,6 +41,11 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Ambience");
         AudioManager.Instance.Play("DungeonMusic");
+    }
+
+    private void HandleAllHeroesDead()
+    {
+        StartCoroutine(LevelFailed());
     }
 
     private void HandleTurnOver()
@@ -138,8 +139,10 @@ public class GameManager : MonoBehaviour
     {
         _tileManager.OnAllHeroesSpawned -= HandleAllHeroesSpawned;
         _tileManager.OnTurnOver -= HandleTurnOver;
+        _tileManager.OnAllHeroesDead -= HandleAllHeroesDead;
 
-        foreach(Actor actor in _heroes)
+
+        foreach (Actor actor in _heroes)
         {
             actor.OnActorStartAttack -= HandleActorAttack;
             actor.OnActorFinishAttack -= HandleActorFinishedAttack;
