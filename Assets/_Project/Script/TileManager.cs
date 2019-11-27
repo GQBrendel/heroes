@@ -219,6 +219,12 @@ namespace AStar_2D.Demo
 
             if (MovingHero)
             {
+                if (MovingHero == tile.tileActor)
+                {
+                    MovingHero.HideWays();
+                    MovingHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
                 if (tile.IsWalkable)
                 {
                     MovingHero.CommandToMove(tile);
