@@ -12,7 +12,7 @@ public enum NecromancerState
 
 public class EnemiesController : MonoBehaviour
 {
-    private NecromancerState _necromancerState = NecromancerState.CreateShield;
+    private NecromancerState _necromancerState = NecromancerState.CastSpell;
 
     private WaitForSeconds _waitForOneSecond = new WaitForSeconds(1f);
 
@@ -251,8 +251,19 @@ public class EnemiesController : MonoBehaviour
                     StopCoroutine(Wait3SecondsRoutine);
                     Wait3SecondsRoutine = null;
                 }
+
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
+                necro.StartTeleport();
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
                 yield return _waitForOneSecond;
                 TeleportAwayFromEnemy();
+
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
                 activeEnemy.currentTile.toggleWalkable();
                 _necromancerState = NecromancerState.SummonSkeletons;
                 break;

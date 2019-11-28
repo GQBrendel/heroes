@@ -7,6 +7,7 @@ public class Necromancer : Enemy
 {
     [SerializeField] private GameObject _skeletonPrefab;
     [SerializeField] private int _shieldDamage;
+    [SerializeField] private GameObject _darkCloudEffect;
     private bool _shielded;
 
     public override void TryMoveEnemy(Tile tileDestino)
@@ -107,5 +108,11 @@ public class Necromancer : Enemy
         {
             attackingActor.TakeDamage(_shieldDamage - attackingActor.GetCharacterDefense(), this);
         }
+    }
+
+    public void StartTeleport()
+    {
+        anim.SetTrigger("Teleport");
+        _darkCloudEffect.SetActive(true);
     }
 }
