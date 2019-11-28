@@ -239,6 +239,7 @@ public class EnemiesController : MonoBehaviour
         var necro = activeEnemy.GetComponent<Necromancer>();
 
         _targetHero = GetRandomTargetHero();
+        necro.DisableCloudEffect();
 
         switch (_necromancerState)
         {
@@ -255,15 +256,13 @@ public class EnemiesController : MonoBehaviour
                 yield return _waitForOneSecond;
                 yield return _waitForOneSecond;
                 necro.StartTeleport();
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
+                yield return new WaitForSeconds(4f);
                 TeleportAwayFromEnemy();
+                yield return _waitForOneSecond;
+                necro.DisableCloudEffect();
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
 
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
                 activeEnemy.currentTile.toggleWalkable();
                 _necromancerState = NecromancerState.SummonSkeletons;
                 break;

@@ -208,19 +208,16 @@ namespace AStar_2D.Demo
             walkable = !walkable;
 
             // Get the sprite renderer
-            // SpriteRenderer renderer = GetComponent<SpriteRenderer>();
             MeshRenderer renderer = GetComponent<MeshRenderer>();
 
             // Check if the tile is walkable
             if(IsWalkable == true)
             {
-                renderer.material = walkableMaterial;
-//                renderer.color = Color.white;
+               // renderer.material = walkableMaterial;
             }
             else
             {
-                renderer.material = NOTkableMaterial;
-//                renderer.color = Color.red;
+               // renderer.material = NOTkableMaterial;
             }
         }
 

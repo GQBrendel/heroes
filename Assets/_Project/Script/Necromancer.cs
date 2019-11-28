@@ -38,7 +38,7 @@ public class Necromancer : Enemy
         TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
 
         spawnPos = GetSpawnForSkeleton();
-        TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
+       // TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
     }
     private Vector2 GetSpawnForSkeleton()
     {
@@ -114,5 +114,10 @@ public class Necromancer : Enemy
     {
         anim.SetTrigger("Teleport");
         _darkCloudEffect.SetActive(true);
+    }
+
+    public void DisableCloudEffect()
+    {
+        _darkCloudEffect.SetActive(false);
     }
 }
