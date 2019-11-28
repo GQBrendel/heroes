@@ -6,6 +6,8 @@ using UnityEngine;
 public class Necromancer : Enemy
 {
     [SerializeField] private GameObject _skeletonPrefab;
+    [SerializeField] private int _shieldDamage;
+    private bool _shielded;
 
     public override void TryMoveEnemy(Tile tileDestino)
     {
@@ -70,5 +72,40 @@ public class Necromancer : Enemy
 
         spawnPos = new Vector2(randomX, randomY);
         return spawnPos;
+    }
+
+    public void CreateShield()
+    {
+        _shielded = true;
+    }
+
+    public override void TakeDamage(int damage, Actor attackingActor)
+    {
+        TileManager.Instance.ShowDamageMessage(currentTile, damage, false);
+        Health -= damage;
+        PlayDamageSound();
+
+        if (Health < 0)
+        {
+            Health = 0;
+        }
+
+        UpdateCharacterInfoNoSelection();
+
+        float scaleX = Health / GetMaxHealth();
+
+        anim.SetTrigger("Damage");
+        anim.SetBool("Dead", Health <= 0);
+        healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+        if (Health <= 0)
+        {
+            attackingActor.KilledAnEnemy(XPValue);
+            PerformDeathSpecifcsActions();
+            StartCoroutine(KillActor());
+        }
+        if (_shielded)
+        {
+            attackingActor.TakeDamage(_shieldDamage - attackingActor.GetCharacterDefense(), this);
+        }
     }
 }
