@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Necromancer : Enemy
 {
+    [SerializeField] private GameObject _skeletonPrefab;
+
     public override void TryMoveEnemy(Tile tileDestino)
     {
         animatedAgent = GetComponent<AnimatedAgent>();
@@ -19,8 +21,6 @@ public class Necromancer : Enemy
             return;
         }
 
-       // transform.LookAt(tileDestino.transform);  
-
         currentTile.toggleWalkable();                             
         currentTile = tileDestino;
 
@@ -28,12 +28,47 @@ public class Necromancer : Enemy
 
         setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);  
     }
-    private IEnumerator test(Tile tileDestino)
+
+    public void SummonSkeletons()
     {
-        yield return new WaitForSeconds(2f);
+        Vector2 spawnPos = GetSpawnForSkeleton();     
+        TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
 
-
-
+        spawnPos = GetSpawnForSkeleton();
+        TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
     }
+    private Vector2 GetSpawnForSkeleton()
+    {
+        Vector2 spawnPos = Vector2.zero;
+        int limitX = TileManager.Instance.gridX;
+        int limitY = TileManager.Instance.gridY;
+        int randomX = 0;
+        int randomY = 0;
 
+        do
+        {
+            randomX = Random.Range(posX - 4, posX + 4);
+            randomY = Random.Range(posY - 4, posY + 4);
+
+            if (randomX > limitX)
+            {
+                randomX = limitX;
+            }
+            else if (randomX < 0)
+            {
+                randomX = 0;
+            }
+            if (randomY > limitY)
+            {
+                randomY = limitY;
+            }
+            else if (randomY < 0)
+            {
+                randomY = 0;
+            }
+        } while (!TileManager.Instance.tiles[randomX, randomY].IsWalkable);
+
+        spawnPos = new Vector2(randomX, randomY);
+        return spawnPos;
+    }
 }

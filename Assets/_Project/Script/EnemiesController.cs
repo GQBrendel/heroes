@@ -12,7 +12,7 @@ public enum NecromancerState
 
 public class EnemiesController : MonoBehaviour
 {
-    private NecromancerState _necromancerState = NecromancerState.CastSpell;
+    private NecromancerState _necromancerState = NecromancerState.SummonSkeletons;
 
     private WaitForSeconds _waitForOneSecond = new WaitForSeconds(1f);
 
@@ -108,6 +108,18 @@ public class EnemiesController : MonoBehaviour
             enemy.GetComponent<Enemy>().setId(lastId++);
         }
     }
+    private void MoreEnemiesSpawned()
+    {
+        enemyUnits = AStar_2D.Demo.TileManager.Instance.enemiesNumber;
+        enemiesList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+
+        int lastId = enemiesList[enemiesList.Count - 1].GetComponent<Enemy>().id;
+
+        foreach (GameObject enemy in enemiesList)
+        {
+            enemy.GetComponent<Enemy>().setId(lastId++);
+        }
+    }
 
     internal void RemoveEnemyFromList(Enemy enemy)
     {
@@ -171,9 +183,9 @@ public class EnemiesController : MonoBehaviour
     private int i;
     IEnumerator ControlMovement()
     {
-
         yield return _waitForOneSecond;
-        for (i = 0; i < enemyUnits; i++)
+        int enemiesCount = enemyUnits;
+        for (i = 0; i < enemiesCount; i++)
         {
             activeEnemy = enemiesList[i].GetComponent<Enemy>();
             Necromancer necro = activeEnemy.GetComponent<Necromancer>();
@@ -242,10 +254,14 @@ public class EnemiesController : MonoBehaviour
                 yield return _waitForOneSecond;
                 TeleportAwayFromEnemy();
                 activeEnemy.currentTile.toggleWalkable();
-
-
+                _necromancerState = NecromancerState.SummonSkeletons;
                 break;
             case NecromancerState.SummonSkeletons:
+                Debug.Log("SummonSkeletons");
+                necro.SummonSkeletons();
+                MoreEnemiesSpawned();
+                //_necromancerState = NecromancerState.CreateShield;
+
                 break;
             case NecromancerState.CreateShield:
                 break;

@@ -1434,6 +1434,8 @@ MonoBehaviour:
   MaxHealth: 100
   Health: 10
   id: 0
+  _skeletonPrefab: {fileID: 4470474413053062891, guid: afe570b01d6ee65438a83fdd00434c0f,
+    type: 3}
 --- !u!114 &2206009261934078569
 MonoBehaviour:
   m_ObjectHideFlags: 0

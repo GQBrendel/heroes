@@ -390,7 +390,7 @@ namespace AStar_2D.Demo
             }
         }
 
-        private void GenerateActor(GameObject UnitOfType, Vector2 spawnPos)
+        public void GenerateActor(GameObject UnitOfType, Vector2 spawnPos)
         {
             int x = (int)spawnPos.x;
             int y = (int)spawnPos.y;
