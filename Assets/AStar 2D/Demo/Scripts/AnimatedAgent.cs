@@ -49,7 +49,7 @@ namespace AStar_2D.Demo
         /// </summary>
         public override void onDestinationUnreachable()
         {
-            Debug.LogWarning(string.Format("Agent [{0}]: I can't reach that target", gameObject.name));
+            Debug.LogError(string.Format("Agent [{0}]: I can't reach that target", gameObject.name));
         }
 
         public override void onDestinationReached()

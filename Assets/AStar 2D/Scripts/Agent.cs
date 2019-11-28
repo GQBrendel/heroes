@@ -287,6 +287,13 @@ namespace AStar_2D
                 transform.position = node.WorldPosition;
             }
         }
+        public void PlaceAt(Vector3 worldPosition)
+        {
+            Index index = searchGrid.findNearestIndex(worldPosition);
+            changeState(AgentState.Idle);
+            onDestinationReached();
+            placeAt(index);
+        }
 
         /// <summary>
         /// Provides the agent with a new destination target which in turn calls the path finding algorithm using the assigned <see cref="AStarGrid"/>.

@@ -187,7 +187,7 @@ public class EditorTilemap : AStarGrid
         else if(mouseButton == 1)
         {
             // Toggle the walkable status
-            tile.toggleWalkable();
+            //tile.toggleWalkable();
         }
     }
 

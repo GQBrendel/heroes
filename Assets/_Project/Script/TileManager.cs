@@ -504,11 +504,6 @@ namespace AStar_2D.Demo
 
             }
         }
-            
-        public void toggleTile(Tile tile)
-        {
-            tile.toggleWalkable();
-        }
 
         public Tile getObjectOnPosition(int x, int y)
         {

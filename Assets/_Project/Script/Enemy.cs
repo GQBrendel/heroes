@@ -15,8 +15,6 @@ public class Enemy : Actor
     public float Health;
 
     public int id = 0;
-
-    CursorManager mouseCursor;
     private Actor _currentTarget;
 
     public Actor TargetToLookAt { get; set; }
@@ -27,7 +25,6 @@ public class Enemy : Actor
     void Start()
     {
         parentStart();
-        mouseCursor = GameObject.FindGameObjectWithTag("GameController").GetComponent<CursorManager>();
         Health = MaxHealth;
     }
 
@@ -144,41 +141,6 @@ public class Enemy : Actor
         {
             AudioManager.Instance.Play("SkeletonHit3");
         }
-    }
-
-
-   /* public int limitX()
-    {
-        int random;
-        do
-        {
-            random = UnityEngine.Random.Range(posX - MovementInTiles, posX + MovementInTiles);
-            Debug.Log("Random X " + random);
-
-        } while (random < 0 || random >= AStar_2D.Demo.TileManager.Instance.gridX || random == posX);
-        return random;
-    }*/
-
-   /* public int limitY()
-    {
-        int random;
-        do
-        {
-            random = UnityEngine.Random.Range(posY - MovementInTiles, posY + MovementInTiles);
-            Debug.Log("Random Y " + random);
-
-        } while (random < 0 || random >= AStar_2D.Demo.TileManager.Instance.gridY || random == posY);
-        return random;
-    }*/
-
-    void OnMouseEnter()
-    {
-       // mouseCursor.setAttack();
-    }
-
-    void OnMouseExit()
-    {
-      //  mouseCursor.resetCursor();
     }
 
     internal void setId(int _id)

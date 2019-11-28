@@ -490,6 +490,8 @@ MonoBehaviour:
   _tileLayer:
     serializedVersion: 2
     m_Bits: 1024
+  walkableMaterial: {fileID: 2100000, guid: 7fad735bfcb71a74ba513841d15cc92b, type: 2}
+  NOTkableMaterial: {fileID: 2100000, guid: 0fdf97416997f0a4dbf3deb6a8ef7d05, type: 3}
 --- !u!54 &54445725090725392
 Rigidbody:
   m_ObjectHideFlags: 0

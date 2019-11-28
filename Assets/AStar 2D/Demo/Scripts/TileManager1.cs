@@ -101,7 +101,7 @@ namespace AStar_2D.Demo
             else if(mouseButton == 1)
             {
                 // Toggle the walkable status
-                tile.toggleWalkable();
+               // tile.toggleWalkable();
             }
         }
 

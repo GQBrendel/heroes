@@ -681,7 +681,6 @@ public class HeroController : Actor
     {
         HideWays();
         isSelected = false;
-        UnLight();
         _characterInfo.DisableHighlight();
     }
 

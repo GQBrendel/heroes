@@ -28,22 +28,17 @@ public class Actor : MonoBehaviour
     public bool IsTutorial { get; set; }
 
     public Animator anim;
-    private AnimatedAgent animatedAgent;
+    protected AnimatedAgent animatedAgent;
     public Tile currentTile;
     public bool isSelected = false;
     public bool acted = false;
     public int posX, posY;
-    //public int attack;
-    //public int defense;
-    //public int specialAttackDamage;
-    //public float MaxhHealth;
     public bool rotate = false;
     public GameObject personalCanvas;
 
     protected bool isActing = false;
 
     public int MovementInTiles = 2;
-   // public float Health;
     protected Vector2 lookingAtTile;
 
     public Image healthBar;
@@ -80,7 +75,6 @@ public class Actor : MonoBehaviour
     private IEnumerator WaitAMoment()
     {
         yield return new WaitForEndOfFrame();
-       // Health = GetMaxHealth();
     }
     public virtual float GetMaxHealth()
     {
@@ -89,18 +83,6 @@ public class Actor : MonoBehaviour
     public virtual float GetCurrentHealth()
     {
         throw new NotImplementedException();
-    }
-
-    public void HighLight()
-    {/*
-        transform.GetChild(2).gameObject.SetActive(true);
-        transform.GetChild(1).gameObject.SetActive(false);*/
-    }
-
-    public void UnLight()
-    {/*
-        transform.GetChild(1).gameObject.SetActive(true);
-        transform.GetChild(2).gameObject.SetActive(false);*/
     }
 
     public void setPos(int x, int y)
@@ -188,7 +170,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void TryMoveEnemy(Tile tileDestino)
+    public virtual void TryMoveEnemy(Tile tileDestino)
     {
         animatedAgent = GetComponent<AnimatedAgent>();
 
@@ -207,7 +189,6 @@ public class Actor : MonoBehaviour
         currentTile.toggleWalkable();                               //Marca o tile como não caminhável
         currentTile = tileDestino;                                  //Altera o tile atual do personagem
         setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);   //Redefine a posição do Actor
-
     }
 
 

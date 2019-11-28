@@ -197,6 +197,8 @@ namespace AStar_2D.Demo
         public void OnMouseOver()
         {
         }
+        public Material walkableMaterial;
+        public Material NOTkableMaterial;
 
         /// <summary>
         /// Toggle the walkable state of this tile.
@@ -206,16 +208,19 @@ namespace AStar_2D.Demo
             walkable = !walkable;
 
             // Get the sprite renderer
-            SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            // SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+            MeshRenderer renderer = GetComponent<MeshRenderer>();
 
             // Check if the tile is walkable
             if(IsWalkable == true)
             {
-              //  renderer.color = Color.white;
+                renderer.material = walkableMaterial;
+//                renderer.color = Color.white;
             }
             else
             {
-              //  renderer.color = Color.red;
+                renderer.material = NOTkableMaterial;
+//                renderer.color = Color.red;
             }
         }
 

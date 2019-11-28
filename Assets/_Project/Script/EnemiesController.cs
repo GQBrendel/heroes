@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using AStar_2D.Demo;
+
+public enum NecromancerState
+{
+    CastSpell,
+    SummonSkeletons,
+    CreateShield,
+}
 
 public class EnemiesController : MonoBehaviour
 {
+    private NecromancerState _necromancerState = NecromancerState.CastSpell;
+
     private WaitForSeconds _waitForOneSecond = new WaitForSeconds(1f);
 
     private Actor _targetHero;
@@ -142,39 +150,107 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
+
+    private Coroutine Wait3SecondsRoutine;
+
+    private bool EnemyFinishedAction(Enemy activeEnemy)
+    {
+        if(Wait3SecondsRoutine == null)
+        {
+            Wait3SecondsRoutine = StartCoroutine(Wait3Seconds(activeEnemy));
+        }
+        return activeEnemy.mainAction;
+    }
+    private IEnumerator Wait3Seconds(Enemy activeEnemy)
+    {
+        yield return new WaitForSeconds(3f);
+        Debug.LogError("Finished Enemy action based on time");
+        activeEnemy.mainAction = true;
+    }
+
+    private int i;
     IEnumerator ControlMovement()
     {
+
         yield return _waitForOneSecond;
-        for (int i = 0; i < enemyUnits; i++)
+        for (i = 0; i < enemyUnits; i++)
         {
             activeEnemy = enemiesList[i].GetComponent<Enemy>();
-            _targetHero = GetTargetHero();
+            Necromancer necro = activeEnemy.GetComponent<Necromancer>();
 
-            if(euclidianDistance(_targetHero, activeEnemy) < activeEnemy.BasicAttackRange && !activeEnemy.mainAction)
+            if (necro)
             {
-                activeEnemy.GetComponent<Enemy>().Attack(_targetHero);
-
-                yield return new WaitUntil(() => activeEnemy.mainAction);
-
-                //yield return _waitForOneSecond;
+                yield return Necromancer();
             }
             else
             {
-                moveNextToClosestHero();
-                yield return new WaitUntil(() => activeEnemy.GetComponent<AStar_2D.Demo.AnimatedAgent>().moved == true); //Espera a IA anterior terminar de se mover para chamar a próxima
-                activeEnemy.currentTile.toggleWalkable();
-                activeEnemy.rotate = true;
-                if (!activeEnemy.finishedAllActions()) //Se não terminou todas as ações entra no loop do mesmo inimigo
-                {
-                    i--;
-                }
-                else
-                {
-                    yield return _waitForOneSecond;
-                }
+                yield return CommonEnemyTurn();
             }
         }
         endOfIAturn();        
+    }
+
+    private IEnumerator CommonEnemyTurn()
+    {
+        _targetHero = GetTargetHero();
+
+        if (euclidianDistance(_targetHero, activeEnemy) < activeEnemy.BasicAttackRange && !activeEnemy.mainAction)
+        {
+            activeEnemy.GetComponent<Enemy>().Attack(_targetHero);
+
+            yield return new WaitUntil(() => EnemyFinishedAction(activeEnemy));
+            if (Wait3SecondsRoutine != null)
+            {
+                StopCoroutine(Wait3SecondsRoutine);
+                Wait3SecondsRoutine = null;
+            }
+        }
+        else
+        {
+            moveNextToClosestHero();
+            yield return new WaitUntil(() => activeEnemy.GetComponent<AStar_2D.Demo.AnimatedAgent>().moved == true); //Espera a IA anterior terminar de se mover para chamar a próxima
+            activeEnemy.currentTile.toggleWalkable();
+            activeEnemy.rotate = true;
+            if (!activeEnemy.finishedAllActions()) //Se não terminou todas as ações entra no loop do mesmo inimigo
+            {
+                i--;
+            }
+            else
+            {
+                yield return _waitForOneSecond;
+            }
+        }
+
+    }
+    private IEnumerator Necromancer()
+    {
+        var necro = activeEnemy.GetComponent<Necromancer>();
+
+        _targetHero = GetRandomTargetHero();
+
+        switch (_necromancerState)
+        {
+            case NecromancerState.CastSpell:
+                yield return _waitForOneSecond;
+                activeEnemy.Attack(_targetHero);
+                yield return new WaitUntil(() => EnemyFinishedAction(activeEnemy));
+                if (Wait3SecondsRoutine != null)
+                {
+                    StopCoroutine(Wait3SecondsRoutine);
+                    Wait3SecondsRoutine = null;
+                }
+                yield return _waitForOneSecond;
+                TeleportAwayFromEnemy();
+                activeEnemy.currentTile.toggleWalkable();
+
+
+                break;
+            case NecromancerState.SummonSkeletons:
+                break;
+            case NecromancerState.CreateShield:
+                break;
+        }
+        yield return null;
     }
 
     void endOfIAturn()
@@ -186,6 +262,24 @@ public class EnemiesController : MonoBehaviour
         }
 
         ActiveIA = false;
+    }
+
+    private Actor GetRandomTargetHero()
+    {
+        Actor target = null;
+
+        if (_taunted && _tauntHero.Alive)
+        {
+            target = _tauntHero;
+        }
+        else
+        {
+            int random = Random.Range(0, heroList.Count);
+            target = heroList[random].GetComponent<Actor>();
+        }
+
+        activeEnemy.TargetToLookAt = target;
+        return target;
     }
 
     private Actor GetTargetHero()
@@ -255,11 +349,6 @@ public class EnemiesController : MonoBehaviour
         }
         Debug.Log("Best X excolhido foi " + bestX);
         Debug.Log("Best Y escolhido foi " + bestY);
-        if(bestY == 6)
-        {
-            Debug.Log("h");
-        }
-
     }
     float euclidianDistance(Actor A1, Actor A2)
     {
@@ -274,15 +363,125 @@ public class EnemiesController : MonoBehaviour
         y2 = (int)A2.getPos().y;
 
         //Debug.Log("Calculada Distancia entre " + x1 + " " + y1 + " || " + x2 + " " + y2 + " O Resultado foi: " + (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1))));
-        return (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        return (float)System.Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
     }
     float euclidianDistance(int x1, int y1, int x2, int y2)
     {
-        return (float)Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+        return (float)System.Math.Sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
     }
 
-   // public bool foundPosition;
+    private void TeleportAwayFromEnemy()
+    {
+        int targetY = 0;
+        int targetX = 0;
 
+        int heroPosX = _targetHero.posX;
+        int heroPosY = _targetHero.posY;
+
+        Debug.Log("Matematicaaa");
+        Debug.Log("activeEnemy.posY - heroPosY: " + (activeEnemy.posY - heroPosY));
+        Debug.Log("activeEnemy.posX - heroPosX: " + (activeEnemy.posX - heroPosX));
+ 
+        if ((activeEnemy.posY - heroPosY) >= 0) //heroi abaixo no tabuleiro
+        {
+            targetY = activeEnemy.posY + 4;
+            if(targetY > TileManager.Instance.gridY)
+            {
+                targetY = activeEnemy.posY -4;
+            }
+            else if(targetY <= 0)
+            {
+                targetY = TileManager.Instance.gridY - 4;
+            }
+        }
+        else if ((activeEnemy.posY - heroPosY) < 0) //heroi acima no tabuleiro
+        {
+            targetY = activeEnemy.posY - 4;
+            if (targetY >= TileManager.Instance.gridY)
+            {
+                targetY = activeEnemy.posY + 4;
+            }
+            else if (targetY <= 0)
+            {
+                targetY = TileManager.Instance.gridY - 4;
+            }
+        }
+
+        if ((activeEnemy.posX - heroPosX) >= 0) //heroi abaixo no tabuleiro
+        {
+            targetX = activeEnemy.posX + 2;
+            if (targetX >= TileManager.Instance.gridX)
+            {
+                targetX = activeEnemy.posX - 2;
+            }
+            else if (targetX <= 0)
+            {
+                targetX = TileManager.Instance.gridX - 2;
+            }
+        }
+        else if ((activeEnemy.posX - heroPosX) < 0) //heroi acima no tabuleiro
+        {
+            targetX = activeEnemy.posX - 2;
+            if (targetX > TileManager.Instance.gridX)
+            {
+                targetX = activeEnemy.posX  + 2;
+            }
+            else if (targetX <= 0)
+            {
+                targetX = TileManager.Instance.gridX - 2;
+            }
+        }
+        if (targetX <= 0 || targetX >= TileManager.Instance.gridX)
+        {
+            targetX = 1;
+        }
+        if(targetY <= 0 || targetY >= TileManager.Instance.gridY)
+        {
+            targetY = 1;
+        }
+
+            if (!TileManager.Instance.tiles[targetX, targetY].IsWalkable)
+        {
+            bool found = false;
+            for (int i = targetX; i > TileManager.Instance.gridX; i--)
+            {
+                if(TileManager.Instance.tiles[i, targetY].IsWalkable)
+                {
+                    targetX = i;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                for (int i = 0; i < TileManager.Instance.gridX; i++)
+                {
+                    if (TileManager.Instance.tiles[i, targetY].IsWalkable)
+                    {
+                        targetX = i;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (!found)
+            {
+                Debug.Break();
+                Debug.LogError("Failed to find a position to teleport");
+            }
+        }
+
+        if(targetX == 0 && targetY == 0)
+        {
+            Debug.LogError("Could not find position to teleport");
+            Debug.Break();
+        }
+        Debug.Log("target x" + targetX);
+        Debug.Log("target y" + targetY);
+
+        commandToMove(targetX, targetY);
+        transform.LookAt(_targetHero.transform);
+    }
     void moveNextToClosestHero()
     {
         float distance;
@@ -299,15 +498,12 @@ public class EnemiesController : MonoBehaviour
 
             Vector2 heroPos = new Vector2(heroPosX, heroPosY);
 
-            ReValidateMovement(distance, heroPos);
-         //   if (foundPosition)
-            {
-                commandToMove(bestX, bestY);
-            }        
+            ValidateMovement(distance, heroPos);
+            commandToMove(bestX, bestY);
         }
     }
 
-    private void ReValidateMovement(float distance, Vector2 heroPos)
+    private void ValidateMovement(float distance, Vector2 heroPos)
     {
         //foundPosition = true;
         FindRoute(distance, heroPos);
@@ -350,9 +546,5 @@ public class EnemiesController : MonoBehaviour
     public void RemoveHeroFromList(HeroController hero)
     {
         heroList.Remove(hero.gameObject);
-        if(heroList.Count <= 0)
-        {
-           // TileManager.Instance.AllHeroesAreDead();
-        }
     }
 }
