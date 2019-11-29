@@ -1,17 +1,101 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    private bool _hasSavedGame;
+
     [SerializeField] private GameObject _loading;
 
-    void Update()
+    [Header("Menu Buttons")]
+    [SerializeField] private Button _newGameButton;
+    [SerializeField] private Button _continueButton;
+    [SerializeField] private Button _optionButton;
+    [SerializeField] private Button _creditsButton;
+    [SerializeField] private Button _exitButton;
+
+    [Header("Confirm new Game Menu")]
+    [SerializeField] private GameObject _startNewGamePanel;
+    [SerializeField] private Button _confirmButton;
+    [SerializeField] private Button _recuseButton;
+
+    [Header("Grayed Buttons")]
+    [SerializeField] private GameObject _greyedContinueButton;
+    [SerializeField] private GameObject _uiBlocker;
+
+    [Header("Credits")]
+    [SerializeField] private GameObject _creditsPanel;
+
+
+    private void Awake()
     {
-        if(Input.GetMouseButtonDown(0))
+        _hasSavedGame = PlayerPrefs.GetInt("HasSavedGame", 1) == 0;
+        if (_hasSavedGame)
         {
-            _loading.SetActive(true);
-            SceneManager.LoadScene(1);
+            _greyedContinueButton.SetActive(false);
+            _continueButton.gameObject.SetActive(true);
         }
+        else
+        {
+            _greyedContinueButton.SetActive(true);
+            _continueButton.gameObject.SetActive(false);
+        }
+
+        _newGameButton.onClick.AddListener(HandleNewGame);
+        _continueButton.onClick.AddListener(HandleContinue);
+        _optionButton.onClick.AddListener(HandleOptions);
+        _creditsButton.onClick.AddListener(HandleCredits);
+        _exitButton.onClick.AddListener(HandleExit);
+        _confirmButton.onClick.AddListener(EnterInGameScene);
+        _recuseButton.onClick.AddListener(HandleRecuse);
+    }
+
+    private void HandleNewGame()
+    {
+        if (_hasSavedGame)
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("HasSavedGame", 0);
+            _startNewGamePanel.SetActive(true);
+            _uiBlocker.SetActive(true);
+        }
+        else
+        {
+            EnterInGameScene();
+        }
+    }
+    private void EnterInGameScene()
+    {
+        _loading.SetActive(true);
+        PlayerPrefs.SetInt("HasSavedGame", 0);
+        SceneManager.LoadScene(1);
+    }
+    private void HandleContinue()
+    {
+        EnterInGameScene();
+    }
+    private void HandleOptions()
+    {
+
+    }
+    private void HandleCredits()
+    {
+        _creditsPanel.SetActive(true);
+    }
+    private void HandleRecuse()
+    {
+        _uiBlocker.SetActive(false);
+        _startNewGamePanel.SetActive(false);
+    }
+
+    private void HandleExit()
+    {
+        Application.Quit();
+    }
+
+    private void Update()
+    {
         LevelUpCheat();
     }
 
