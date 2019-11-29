@@ -97,10 +97,12 @@ public class CanvasManager : MonoBehaviour
 
     public void ShowVictoryScreen()
     {
+        _uiBlocker.SetActive(true);
         _victoryScreen.SetActive(true);
     }   
     public void ShowDefeatScreen()
     {
+        _uiBlocker.SetActive(true);
         _defeatScreen.SetActive(true);
     }
 

@@ -27,7 +27,7 @@ public class LevelUpPanel : MonoBehaviour
     public void UpdateUI(CharacterInfo previousInfo, CharacterInfo CurrentInfo, Skill skill = null)
     {
         _portraitImage.sprite = CurrentInfo.Image;
-        _nameLevelMessage.SetText(CurrentInfo.Name + " level " + CurrentInfo.Level + "!!");
+        _nameLevelMessage.SetText(CurrentInfo.Name + " - level " + CurrentInfo.Level);
 
         _previousValues.SetText(
             previousInfo.MaxHP.ToString() + "\n" +

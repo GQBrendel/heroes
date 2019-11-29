@@ -8,6 +8,8 @@ public class Necromancer : Enemy
     [SerializeField] private GameObject _skeletonPrefab;
     [SerializeField] private int _shieldDamage;
     [SerializeField] private GameObject _darkCloudEffect;
+    [SerializeField] private GameObject _fireShieldEffect;
+
     private bool _shielded;
 
     public override void TryMoveEnemy(Tile tileDestino)
@@ -32,13 +34,18 @@ public class Necromancer : Enemy
         setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);  
     }
 
+
+    public void StartSummon()
+    {
+        anim.SetTrigger("Summon");
+    }
     public void SummonSkeletons()
     {
         Vector2 spawnPos = GetSpawnForSkeleton();     
         TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
 
         spawnPos = GetSpawnForSkeleton();
-       // TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
+        TileManager.Instance.GenerateActor(_skeletonPrefab, spawnPos);
     }
     private Vector2 GetSpawnForSkeleton()
     {
@@ -55,7 +62,7 @@ public class Necromancer : Enemy
 
             if (randomX > limitX)
             {
-                randomX = limitX;
+                randomX = limitX-1;
             }
             else if (randomX < 0)
             {
@@ -63,7 +70,7 @@ public class Necromancer : Enemy
             }
             if (randomY > limitY)
             {
-                randomY = limitY;
+                randomY = limitY-1;
             }
             else if (randomY < 0)
             {
@@ -75,10 +82,39 @@ public class Necromancer : Enemy
         return spawnPos;
     }
 
-    public void CreateShield()
+    public void EnableShield()
     {
         _shielded = true;
+        _fireShieldEffect.SetActive(true);
     }
+
+    public void CastFireShield()
+    {
+        anim.SetTrigger("Shield");
+    }
+    public void DisableFireShield()
+    {
+        _shielded = false;
+        _fireShieldEffect.SetActive(false);
+    }
+
+    public float XoffSet;
+
+    public override void Attack(Actor target)
+    {
+        if (!target)
+        {
+            return;
+        }
+        Vector3 dir = target.transform.position;
+        Vector3 correctedLook = new Vector3(dir.x + XoffSet, dir.y, dir.z);
+
+        transform.LookAt(correctedLook);
+        anim.SetTrigger("Attack");
+        _currentTarget = target;
+    }
+
+
 
     public override void TakeDamage(int damage, Actor attackingActor)
     {

@@ -15,7 +15,7 @@ public class Enemy : Actor
     public float Health;
 
     public int id = 0;
-    private Actor _currentTarget;
+    protected Actor _currentTarget;
 
     public Actor TargetToLookAt { get; set; }
 
@@ -88,7 +88,7 @@ public class Enemy : Actor
         return Health;
     }
 
-    public void Attack(Actor target)
+    public virtual void Attack(Actor target)
     {
         if (!target)
         {

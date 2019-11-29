@@ -169,13 +169,13 @@ public class EnemiesController : MonoBehaviour
     {
         if(Wait3SecondsRoutine == null)
         {
-            Wait3SecondsRoutine = StartCoroutine(Wait3Seconds(activeEnemy));
+            Wait3SecondsRoutine = StartCoroutine(Wait4Seconds(activeEnemy));
         }
         return activeEnemy.mainAction;
     }
-    private IEnumerator Wait3Seconds(Enemy activeEnemy)
+    private IEnumerator Wait4Seconds(Enemy activeEnemy)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         Debug.LogError("Finished Enemy action based on time");
         activeEnemy.mainAction = true;
     }
@@ -240,38 +240,32 @@ public class EnemiesController : MonoBehaviour
 
         _targetHero = GetRandomTargetHero();
         necro.DisableCloudEffect();
+        necro.DisableFireShield();
 
         switch (_necromancerState)
         {
             case NecromancerState.CastSpell:
                 yield return _waitForOneSecond;
                 activeEnemy.Attack(_targetHero);
-                yield return new WaitUntil(() => EnemyFinishedAction(activeEnemy));
-                if (Wait3SecondsRoutine != null)
-                {
-                    StopCoroutine(Wait3SecondsRoutine);
-                    Wait3SecondsRoutine = null;
-                }
+               
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
 
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
-                necro.StartTeleport();
-                yield return new WaitForSeconds(4f);
-                TeleportAwayFromEnemy();
-                yield return _waitForOneSecond;
-                necro.DisableCloudEffect();
-                yield return _waitForOneSecond;
-                yield return _waitForOneSecond;
+                yield return TeleportFunction(necro);
 
                 activeEnemy.currentTile.toggleWalkable();
                 _necromancerState = NecromancerState.SummonSkeletons;
                 break;
             case NecromancerState.SummonSkeletons:
-                Debug.Log("SummonSkeletons");
+
+                necro.StartSummon();
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
+
                 necro.SummonSkeletons();
                 MoreEnemiesSpawned();
-                yield return _waitForOneSecond;
-                TeleportAwayFromEnemy();
+
+                yield return TeleportFunction(necro);
                 activeEnemy.currentTile.toggleWalkable();
 
                 _necromancerState = NecromancerState.CreateShield;
@@ -279,12 +273,27 @@ public class EnemiesController : MonoBehaviour
                 break;
             case NecromancerState.CreateShield:
                 yield return _waitForOneSecond;
-                necro.CreateShield();
+                necro.CastFireShield();
+                yield return _waitForOneSecond;
+                yield return _waitForOneSecond;
                 yield return _waitForOneSecond;
                 _necromancerState = NecromancerState.CastSpell;
                 break;
         }
         yield return null;
+    }
+
+    private IEnumerator TeleportFunction(Necromancer necro)
+    {
+        yield return _waitForOneSecond;
+        yield return _waitForOneSecond;
+        necro.StartTeleport();
+        yield return new WaitForSeconds(4f);
+        TeleportAwayFromEnemy();
+        yield return _waitForOneSecond;
+        necro.DisableCloudEffect();
+        yield return _waitForOneSecond;
+        yield return _waitForOneSecond;
     }
 
     void endOfIAturn()
