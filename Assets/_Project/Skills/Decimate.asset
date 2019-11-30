@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Decimate
   m_EditorClassIdentifier: 
   Name: Decimate
-  Sprite: {fileID: 21300000, guid: 2d0220841c0ecd241977599c60b2309d, type: 3}
+  Sprite: {fileID: 21300000, guid: b2a076995fef0a341ab1d950c59e9f99, type: 3}
   Description: Brute swings his axe in a wide circle. Hitting all the units next to
     him.

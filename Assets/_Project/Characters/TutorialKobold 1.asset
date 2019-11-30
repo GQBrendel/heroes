@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterPrefab: {fileID: 5406023474236802806, guid: 24846ae4ce79b2a4788a7d39ceb7b8bd,
     type: 3}
-  Level1Spawn: {x: 3, y: 4}
+  Level1Spawn: {x: 3, y: 6}
   Level2Spawn: {x: 0, y: 0}
   Level3Spawn: {x: 0, y: 0}
   Level4Spawn: {x: 0, y: 0}

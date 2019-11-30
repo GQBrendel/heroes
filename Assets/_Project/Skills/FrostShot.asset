@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FrostShot
   m_EditorClassIdentifier: 
   Name: Frost Shot
-  Sprite: {fileID: 21300000, guid: 59a1406e78c0df64ca5800d11046899b, type: 3}
+  Sprite: {fileID: 21300000, guid: 69b9ea68e17b6a64283a40eab886265b, type: 3}
   Description: Summons healing powers to heal allies.

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AnimalCompanion
   m_EditorClassIdentifier: 
   Name: Animal Companion
-  Sprite: {fileID: 21300000, guid: 6a001a1561cfaf54db84ed1d424c9121, type: 3}
+  Sprite: {fileID: 21300000, guid: 81d695581e2905f41a6ca15aef9494b1, type: 3}
   Description: Summons healing powers to heal allies.
