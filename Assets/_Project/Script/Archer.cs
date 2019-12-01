@@ -33,7 +33,14 @@ public class Archer : HeroController
         var tileManagerTutorial = FindObjectOfType<TileManagerTutorial>();
         if (tileManagerTutorial)
         {
-            IsTutorial = true;
+            if(PlayerPrefs.GetInt("HasSavedGame", 1) == 0)
+            {
+                IsTutorial = false;
+            }
+            else
+            {
+                IsTutorial = true;
+            }
         }        
     }
     public void FrostAttackHit()

@@ -15,10 +15,20 @@ namespace AStar_2D.Demo
 
         Fungus.EventHandler EventHandler;
 
+        private bool _tutorialIsActive = true;
+
         protected override void Start()
         {
             base.Start();
             ShouldExecuteActions = false;
+
+
+            _tutorialIsActive = PlayerPrefs.GetInt("HasSavedGame", 1) != 0;
+
+            if (!_tutorialIsActive)
+            {
+                EndTutorial();
+            }
         }
 
 
@@ -86,6 +96,20 @@ namespace AStar_2D.Demo
                 }
                 return;
             }
+            else if (PetHero)
+            {
+                if (PetHero == tile.tileActor)
+                {
+                    PetHero.HideWays();
+                    PetHero = null;
+                    pickHero((int)tile.getPos().x, (int)tile.getPos().y);
+                }
+                else if (tile.tileActor != null)
+                {
+                    PetHero.CommandToSummonPet(tile);
+                }
+                return;
+            }
 
 
             if (!aHeroIsSelected)
@@ -147,7 +171,6 @@ namespace AStar_2D.Demo
             StartCoroutine(WaitForIAActions());
         }
 
-        private bool _tutorialIsActive = true;
 
         public void EndTutorial()
         {
@@ -156,6 +179,7 @@ namespace AStar_2D.Demo
                 hero.GetComponent<HeroController>().IsTutorial = false;
             }
             _tutorialIsActive = false;
+            ShouldExecuteActions = true;
         }
 
 

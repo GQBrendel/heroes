@@ -171,6 +171,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SaveGame(CharacterInfo character)
+    {
+        PlayerPrefs.SetInt(character.Name + "Level", character.Level);
+        PlayerPrefs.SetInt(character.Name + "CurrentXP", character.CurrentXP);
+        PlayerPrefs.SetInt("HasSavedGame", 0);
+    }
+
     private void Update ()
     {
         LevelUpCheat();
@@ -193,6 +200,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LevelCompleted()
     {
+        CharacterInfo[] characters = FindObjectsOfType<CharacterInfo>();
+        foreach (var character in characters)
+        {
+            SaveGame(character);
+        }
         yield return new WaitForSeconds(2f);
         _canvasManager.ShowVictoryScreen();
     }

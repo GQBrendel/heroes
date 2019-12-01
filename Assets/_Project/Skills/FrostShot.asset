@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b0e73de9c66740ad92eaf56d2bf5a, type: 3}
   m_Name: FrostShot
   m_EditorClassIdentifier: 
-  Name: Frost Shot
+  Name: Seta de Gelo
   Sprite: {fileID: 21300000, guid: 69b9ea68e17b6a64283a40eab886265b, type: 3}
-  Description: Summons healing powers to heal allies.
+  Description: Canaliza uma enrgia congelante e dispara uma flecha de gelo com seu
+    arco.

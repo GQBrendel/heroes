@@ -56,7 +56,6 @@ public class MainMenu : MonoBehaviour
         if (_hasSavedGame)
         {
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt("HasSavedGame", 0);
             _startNewGamePanel.SetActive(true);
             _uiBlocker.SetActive(true);
         }
@@ -68,7 +67,6 @@ public class MainMenu : MonoBehaviour
     private void EnterInGameScene()
     {
         _loading.SetActive(true);
-        PlayerPrefs.SetInt("HasSavedGame", 0);
         SceneManager.LoadScene(1);
     }
     private void HandleContinue()

@@ -460,6 +460,10 @@ public class HeroController : Actor
 
     public override void ShowOptionsforActionsTutorial(bool limited)
     {
+        if (!IsTutorial)
+        {
+            _tutorialStep = 5;
+        }
         if (limited)
         {
             _limitedSelector.gameObject.SetActive(true);

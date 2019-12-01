@@ -1,0 +1,29 @@
+ARYA / Sophalla / Silmeria / Lydia / Celes
+Arrow Shot - Fires a simple arrow 
+Frost Bolt - Channels icy energy and shots an arrow
+Animal Companion - Summons Grey to perform a fiercely attack
+
+BRUTE / Kongol / Kraad / Zunde / Falx
+Axe Strike - A basic axe blow
+Battle Cry - Shouts loud to attract enemies' attacks*
+Decimate - Spins the axe damaging everyone around
+
+YANLING
+Arcane Explosion - Throws an stream of energy
+Astral Recovery - Heals an ally
+Distressful Lightning - Zaps enemies with a giant shockwave
+/////////////////////////////////////////////////////////////////////////
+Lydia
+Tiro Rápido - Dispara uma flechada no alvo
+Flecha Congelante - Imbui magia congelante na flecha e congela o alvo
+Companheiro Animal - Invoca Grey para ferozmente atacar o alvo
+
+Brute
+Machadada - Um simples golpe de machado
+Battle Cry - Um grito alto que atrai os ataques inimigos
+Decimar! - Um giro rápido de machado atingindo todos os alvos ao redor
+
+Yanling
+Explosão Arcana - Atira uma corrente de energia
+Cura Astral - Recupera a vida de um aliado
+Relâmpago Desolador - Uma gigante onda de choque que eletrifica os inimigos

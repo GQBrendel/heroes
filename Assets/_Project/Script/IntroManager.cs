@@ -19,6 +19,13 @@ public class IntroManager : MonoBehaviour
     private void Awake()
     {
         _skipButton.onClick.AddListener(FinishIntro);
+
+
+        if (PlayerPrefs.GetInt("HasSavedGame", 1) == 0)
+        {
+            _introPanel.SetActive(false);
+            _tileManager.EndTutorial();
+        }
     }
 
     public void LydiaSelected()

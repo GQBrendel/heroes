@@ -31867,7 +31867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8503e8e5282e6a489e496bf7eaba70e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -47587,7 +47587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yanling - Level 2
+  m_text: Arya - level 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -47657,7 +47657,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1882102792038095616}
-    characterCount: 17
+    characterCount: 14
     spriteCount: 0
     spaceCount: 3
     wordCount: 4
@@ -63784,7 +63784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5480d30435e77534f9b4809069667219, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69b9ea68e17b6a64283a40eab886265b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -64675,19 +64675,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '100
+  m_text: '8
 
-    109
+    6
 
-    20
+    7
 
-    30
+    5
 
-    40
+    4
 
-    50
+    2
 
-    60'
+    4
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -64757,9 +64759,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9161913714272698580}
-    characterCount: 22
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 6
+    spaceCount: 7
     wordCount: 7
     linkCount: 0
     lineCount: 7
@@ -65268,19 +65270,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '115
+  m_text: '10
 
-    12
+    7
 
-    23
+    8
 
-    35
+    6
 
-    44
+    4
 
-    57
+    2
 
-    696'
+    5
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -65350,9 +65354,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9161913714465356270}
-    characterCount: 22
+    characterCount: 15
     spriteCount: 0
-    spaceCount: 6
+    spaceCount: 7
     wordCount: 7
     linkCount: 0
     lineCount: 7
@@ -65847,7 +65851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9161913714978979619
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66295,7 +66299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Astral Recovery
+  m_text: Seta de Gelo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -66365,10 +66369,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9161913715194206561}
-    characterCount: 15
+    characterCount: 12
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -66607,7 +66611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Astral Recovery
+  m_text: Canaliza uma enrgia congelante e dispara uma flecha de gelo com seu arco.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -66636,7 +66640,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 56.2
+  m_fontSize: 28.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -66677,12 +66681,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 9161913715234454518}
-    characterCount: 15
+    characterCount: 73
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 12
+    wordCount: 13
     linkCount: 0
-    lineCount: 2
+    lineCount: 5
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
