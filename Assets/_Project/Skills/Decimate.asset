@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b0e73de9c66740ad92eaf56d2bf5a, type: 3}
   m_Name: Decimate
   m_EditorClassIdentifier: 
-  Name: Decimate
+  Name: Dizimar
   Sprite: {fileID: 21300000, guid: b2a076995fef0a341ab1d950c59e9f99, type: 3}
-  Description: Brute swings his axe in a wide circle. Hitting all the units next to
-    him.
+  Description: "Um giro r\xE1pido de machado atingindo todos os alvos ao redor."

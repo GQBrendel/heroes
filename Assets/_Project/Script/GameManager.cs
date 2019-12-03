@@ -154,20 +154,32 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 1);
-            PlayerPrefs.SetInt("Arya" + "Level", 1);
+            PlayerPrefs.SetInt("Lydia" + "Level", 1);
             PlayerPrefs.SetInt("Yanling" + "Level", 1);
         }
         else if (Input.GetKeyDown(KeyCode.F2))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 2);
-            PlayerPrefs.SetInt("Arya" + "Level", 2);
+            PlayerPrefs.SetInt("Lydia" + "Level", 2);
             PlayerPrefs.SetInt("Yanling" + "Level", 2);
         }
         else if (Input.GetKeyDown(KeyCode.F3))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 3);
-            PlayerPrefs.SetInt("Arya" + "Level", 3);
+            PlayerPrefs.SetInt("Lydia" + "Level", 3);
             PlayerPrefs.SetInt("Yanling" + "Level", 3);
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            PlayerPrefs.SetInt("Brute" + "Level", 4);
+            PlayerPrefs.SetInt("Lydia" + "Level", 4);
+            PlayerPrefs.SetInt("Yanling" + "Level", 4);
+        }
+        else if (Input.GetKeyDown(KeyCode.F5))
+        {
+            PlayerPrefs.SetInt("Brute" + "Level", 5);
+            PlayerPrefs.SetInt("Lydia" + "Level", 5);
+            PlayerPrefs.SetInt("Yanling" + "Level", 5);
         }
     }
 

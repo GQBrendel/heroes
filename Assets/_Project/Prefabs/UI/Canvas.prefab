@@ -2098,7 +2098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: Recupera a vida de um aliado.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -2168,12 +2168,12 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 160965453}
-    characterCount: 51
+    characterCount: 29
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 5
+    wordCount: 6
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2498,10 +2498,10 @@ RectTransform:
   m_Father: {fileID: 1706569669}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -170.8, y: 2}
-  m_SizeDelta: {x: 6868.6, y: 572.9}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3181.4, y: -13.8}
+  m_SizeDelta: {x: 6373.6, y: 377.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &224132673
 CanvasRenderer:
@@ -2524,12 +2524,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6431373, g: 0.07058824, b: 0.07058824, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2927e1d7d646af8459f2898fc4fce62b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3060,10 +3060,10 @@ RectTransform:
   m_Father: {fileID: 1345908518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -170.8, y: 2}
-  m_SizeDelta: {x: 6868.6, y: 572.9}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3181.4, y: -13.8}
+  m_SizeDelta: {x: 6373.6, y: 377.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &309144348
 CanvasRenderer:
@@ -3086,12 +3086,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.078431375, g: 0.4901961, b: 0.7254902, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78ee397acef927a439f9c6db499a7d33, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3494,7 +3494,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 4.6868753
+  m_padding: 0
   m_canvasRenderer: {fileID: 348943588}
   m_TextComponent: {fileID: 683338113}
   m_materialReferenceIndex: 1
@@ -3867,7 +3867,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5810,7 +5810,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1575839989556648269}
   m_Father: {fileID: 664027712}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5845,7 +5846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golpe de Machado                             Nivel 1
+  m_text: "Rel\xE2mpago Desolador                      Nivel 4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -5915,21 +5916,21 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.267212, w: 0}
   m_textInfo:
     textComponent: {fileID: 634402719}
-    characterCount: 52
+    characterCount: 48
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 5
+    spaceCount: 24
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1055270031171443048}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -8567,7 +8568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: Canaliza uma enrgia congelante e dispara uma flecha de gelo com seu arco.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -8637,10 +8638,10 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 868932993}
-    characterCount: 51
+    characterCount: 73
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 12
+    wordCount: 13
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -9379,7 +9380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: Invoca Grey para ferozmente atacar o alvo.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -9449,12 +9450,12 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 949469309}
-    characterCount: 51
+    characterCount: 42
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 6
+    wordCount: 7
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -9913,11 +9914,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Brute adentra o subterr\xE2neo da cidade pela primeira vez, n\xE3o bastou
-    destro\xE7ar os guardas da cidade para que obtivesse a \u201Cpermiss\xE3o\u201D
-    para entrar. A \xFAnica coisa que o levava a realizar tal feito era a promessa
-    de recompensa ao resgatar a pessoa que estivesse l\xE1 dentro. D\xE1 risada ao
-    se lembrar de como recebeu a not\xEDcia."
+  m_text: "Brute nunca conheceu seus pais, foi criado em um lar com dezenas de outras
+    crian\xE7as, prometeu retornar um dia, com sacos cheios de moedas de ouro e ajudar
+    aqueles que precisam de ajuda como ele um dia precisou. Um mercen\xE1rio de bom
+    cora\xE7\xE3o que aceita praticamente tudo por dinheiro em prol de seu objetivo."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -9928,7 +9928,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281880424
-  m_fontColor: {r: 0.40784317, g: 0.30980393, b: 0.21960786, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9953,7 +9953,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 272
+  m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -11194,7 +11194,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 286054158436513189}
   m_Father: {fileID: 1638239701}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11229,7 +11230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tiro de Arco                                       Nivel 1
+  m_text: "Explos\xE3o Arcana                                Nivel 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -11299,21 +11300,21 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.904053, w: 0}
   m_textInfo:
     textComponent: {fileID: 1117699151}
-    characterCount: 58
+    characterCount: 54
     spriteCount: 0
-    spaceCount: 42
-    wordCount: 5
+    spaceCount: 34
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 9183258675037631434}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -13458,7 +13459,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Yanling \xE9 uma maga."
+  m_text: "Criada desde crian\xE7a em uma abadia come\xE7ou a treinar magia cedo na
+    tutela de suas superiores. Inquieta e ansiosa para mostrar seus poderes levou
+    v\xE1rias puni\xE7\xF5es durante seus estudos. Todos os dias aprende uma magia
+    nova para provar para todas da abadia que pode ajudar o reino atrav\xE9s delas."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -13685,10 +13689,10 @@ RectTransform:
   m_Father: {fileID: 1115391843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -170.8, y: 2}
-  m_SizeDelta: {x: 6868.6, y: 572.9}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3181.4, y: -13.8}
+  m_SizeDelta: {x: 6373.6, y: 377.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1416346502
 CanvasRenderer:
@@ -13711,12 +13715,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.078431375, g: 0.4901961, b: 0.7254902, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78ee397acef927a439f9c6db499a7d33, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14615,7 +14619,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golpe de Machado                             Nivel 1
+  m_text: Cura Astral                                       Nivel 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -14685,10 +14689,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.267212, w: 0}
   m_textInfo:
     textComponent: {fileID: 1478787229}
-    characterCount: 52
+    characterCount: 57
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 5
+    spaceCount: 41
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -14781,8 +14785,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16779,8 +16783,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17082,7 +17086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: Uma gigante onda de choque que eletrifica os inimigos.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -17152,7 +17156,7 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 1658468426}
-    characterCount: 51
+    characterCount: 54
     spriteCount: 0
     spaceCount: 8
     wordCount: 9
@@ -17239,7 +17243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: Dispara uma flechada no alvo.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -17309,12 +17313,12 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 1663313245}
-    characterCount: 51
+    characterCount: 29
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -17396,7 +17400,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lydia \xE9 uma patrulheira."
+  m_text: "Filha bastarda do rei e amada apenas por seu pai, perdeu direito ao trono
+    por ser renegada por seu irm\xE3o. Decidiu desde cedo treinar com seu arco para
+    poder um dia provar para todos do reino, principalmente aqueles que a renegam,
+    que \xE9 capaz de ser a verdadeira herdeira."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -17425,7 +17432,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 69.65
+  m_fontSize: 20.1
   m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17466,12 +17473,12 @@ MonoBehaviour:
   m_margin: {x: 7.1901855, y: 3.5950928, z: 9.886475, w: 6.291397}
   m_textInfo:
     textComponent: {fileID: 1699793820}
-    characterCount: 24
+    characterCount: 271
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 48
+    wordCount: 49
     linkCount: 0
-    lineCount: 2
+    lineCount: 6
     pageCount: 1
     materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
@@ -17858,7 +17865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golpe de Machado                             Nivel 1
+  m_text: Flecha Congelante                             Nivel 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -17928,10 +17935,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.267212, w: 0}
   m_textInfo:
     textComponent: {fileID: 1738175425}
-    characterCount: 52
+    characterCount: 53
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 5
+    spaceCount: 31
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -19363,10 +19370,10 @@ RectTransform:
   m_Father: {fileID: 1279164493}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -170.8, y: 2}
-  m_SizeDelta: {x: 6868.6, y: 572.9}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3181.4, y: -13.8}
+  m_SizeDelta: {x: 6373.6, y: 377.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1871274884
 CanvasRenderer:
@@ -19389,12 +19396,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6431373, g: 0.07058824, b: 0.07058824, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2927e1d7d646af8459f2898fc4fce62b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19666,8 +19673,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.050018, y: 68.20001}
-  m_SizeDelta: {x: 528.4, y: 41.9}
+  m_AnchoredPosition: {x: -17, y: 69.597}
+  m_SizeDelta: {x: 542.5, y: 39.105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1916963807
 CanvasRenderer:
@@ -19695,7 +19702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golpe de Machado                             Nivel 1
+  m_text: Companheiro Animal                        Nivel 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -19765,10 +19772,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.267212, w: 0}
   m_textInfo:
     textComponent: {fileID: 1916963806}
-    characterCount: 52
+    characterCount: 49
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 5
+    spaceCount: 26
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -19856,7 +19863,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 4.6868753
   m_canvasRenderer: {fileID: 1925373730}
   m_TextComponent: {fileID: 1988132792}
   m_materialReferenceIndex: 1
@@ -20318,7 +20325,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -21064,7 +21071,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: "Lan\xE7a uma corrente de energia arcana no alvo."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -21134,14 +21141,14 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 1988132792}
-    characterCount: 51
+    characterCount: 45
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 7
+    wordCount: 8
     linkCount: 0
     lineCount: 2
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -44251,7 +44258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Arya
+  m_text: Lydia
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -44321,7 +44328,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1882102791693468500}
-    characterCount: 4
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -48342,6 +48349,78 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2276950005898666784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 286054158436513189}
+  - component: {fileID: 117683165814655936}
+  - component: {fileID: 9183258675037631434}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [MedievalSharp SDF Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &286054158436513189
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276950005898666784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1117699150}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &117683165814655936
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276950005898666784}
+  m_CullTransparentMesh: 0
+--- !u!114 &9183258675037631434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276950005898666784}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 4.6868753
+  m_canvasRenderer: {fileID: 117683165814655936}
+  m_TextComponent: {fileID: 1117699151}
+  m_materialReferenceIndex: 1
 --- !u!1 &2764577962772170036
 GameObject:
   m_ObjectHideFlags: 0
@@ -52888,6 +52967,78 @@ MonoBehaviour:
   _intelligence: {fileID: 4342406303697988162}
   _speed: {fileID: 4342406304132150433}
   _astral: {fileID: 4342406303412925535}
+--- !u!1 &3987573090936916664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1575839989556648269}
+  - component: {fileID: 1301986300765317908}
+  - component: {fileID: 1055270031171443048}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [MedievalSharp SDF Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1575839989556648269
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987573090936916664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 634402718}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1301986300765317908
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987573090936916664}
+  m_CullTransparentMesh: 0
+--- !u!114 &1055270031171443048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987573090936916664}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 4.6868753
+  m_canvasRenderer: {fileID: 1301986300765317908}
+  m_TextComponent: {fileID: 634402719}
+  m_materialReferenceIndex: 1
 --- !u!1 &4342406302880276926
 GameObject:
   m_ObjectHideFlags: 0
@@ -53032,7 +53183,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 4.6868753
   m_canvasRenderer: {fileID: 4342406302916064943}
   m_TextComponent: {fileID: 4342406304795738784}
   m_materialReferenceIndex: 1
@@ -53456,7 +53607,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -53748,7 +53899,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golpe de Machado                             Nivel 1
+  m_text: Dizimar                                           Nivel 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -53818,10 +53969,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.267212, w: 0}
   m_textInfo:
     textComponent: {fileID: 4342406303010289855}
-    characterCount: 52
+    characterCount: 57
     spriteCount: 0
-    spaceCount: 32
-    wordCount: 5
+    spaceCount: 44
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -54234,7 +54385,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: "Um grito amea\xE7ador que atrai os ataques inimigos."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -54304,14 +54455,14 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 4342406303094888532}
-    characterCount: 51
+    characterCount: 49
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 7
+    wordCount: 8
     linkCount: 0
     lineCount: 2
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -56743,10 +56894,10 @@ RectTransform:
   m_Father: {fileID: 4342406302880276927}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -170.8, y: 2}
-  m_SizeDelta: {x: 6868.6, y: 572.9}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3181.4, y: -13.8}
+  m_SizeDelta: {x: 6373.6, y: 377.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4342406303758402821
 CanvasRenderer:
@@ -56769,12 +56920,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6431373, g: 0.07058824, b: 0.07058824, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2927e1d7d646af8459f2898fc4fce62b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -57412,7 +57563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Golpe de Machado                             Nivel 1
+  m_text: Grito de Guerra                                Nivel 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -57482,9 +57633,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -38.267212, w: 0}
   m_textInfo:
     textComponent: {fileID: 4342406303835873300}
-    characterCount: 52
+    characterCount: 54
     spriteCount: 0
-    spaceCount: 32
+    spaceCount: 35
     wordCount: 5
     linkCount: 0
     lineCount: 1
@@ -57956,7 +58107,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 4.6868753
   m_canvasRenderer: {fileID: 4342406303928396456}
   m_TextComponent: {fileID: 4342406303094888532}
   m_materialReferenceIndex: 1
@@ -59560,7 +59711,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -61332,10 +61483,10 @@ RectTransform:
   m_Father: {fileID: 4342406303913443208}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -170.8, y: 2}
-  m_SizeDelta: {x: 6868.6, y: 572.9}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3181.4, y: -13.8}
+  m_SizeDelta: {x: 6373.6, y: 377.4}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4342406304655907567
 CanvasRenderer:
@@ -61358,12 +61509,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.078431375, g: 0.4901961, b: 0.7254902, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78ee397acef927a439f9c6db499a7d33, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -61900,7 +62051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Acerta um inimigo com um poderoso golpe de machado.
+  m_text: "Um giro r\xE1pido de machado atingindo todos os alvos ao redor."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -61970,14 +62121,14 @@ MonoBehaviour:
   m_margin: {x: 9.613159, y: 6.1798706, z: 17.852783, w: 6.1798096}
   m_textInfo:
     textComponent: {fileID: 4342406304795738784}
-    characterCount: 51
+    characterCount: 60
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 10
+    wordCount: 11
     linkCount: 0
     lineCount: 2
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}

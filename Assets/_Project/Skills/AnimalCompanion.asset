@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b0e73de9c66740ad92eaf56d2bf5a, type: 3}
   m_Name: AnimalCompanion
   m_EditorClassIdentifier: 
-  Name: Animal Companion
+  Name: Companheiro Animal
   Sprite: {fileID: 21300000, guid: 81d695581e2905f41a6ca15aef9494b1, type: 3}
-  Description: Summons healing powers to heal allies.
+  Description: Lydia invoca seu tigre Grey para ferozmente atacar o alvo.

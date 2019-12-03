@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b0e73de9c66740ad92eaf56d2bf5a, type: 3}
   m_Name: BattleCry
   m_EditorClassIdentifier: 
-  Name: Battle Cry
+  Name: Grito de Guerra
   Sprite: {fileID: 21300000, guid: 26311754366c43848bb8da32b94aafd0, type: 3}
-  Description: ' Powerful battle cry. Provokes enemies by preventing them from attacking
-    any other unit if not Brute.'
+  Description: "Um grito amea\xE7ador que atrai os ataques inimigos."

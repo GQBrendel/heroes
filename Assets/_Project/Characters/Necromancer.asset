@@ -17,4 +17,4 @@ MonoBehaviour:
   Level1Spawn: {x: 5, y: 5}
   Level2Spawn: {x: 5, y: 5}
   Level3Spawn: {x: 5, y: 5}
-  Level4Spawn: {x: 5, y: 5}
+  Level4Spawn: {x: 10, y: 13}

@@ -74,7 +74,7 @@ public class ActionSelector : MonoBehaviour
 
     public void Updatelevel(int level, HeroController controller)
     {
-        if(level >= 3)
+        if(level >= 4)
         {
             _skillLevel3.gameObject.SetActive(true);
             _skillLevel3.Active = true;

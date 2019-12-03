@@ -76,7 +76,7 @@ public class Necromancer : Enemy
             {
                 randomY = 0;
             }
-        } while (!TileManager.Instance.tiles[randomX, randomY].IsWalkable);
+        } while (!TileManager.Instance.getObjectOnPosition(randomX, randomY).IsWalkable); 
 
         spawnPos = new Vector2(randomX, randomY);
         return spawnPos;

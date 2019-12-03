@@ -30,7 +30,7 @@ public class InfoPanelManager : MonoBehaviour
         {
             return _infoPanelYanling;
         }
-        else if(info.Name == "Arya")
+        else if(info.Name == "Lydia")
         {
             return _infoPanelArya;
         }
@@ -52,7 +52,7 @@ public class InfoPanelManager : MonoBehaviour
         {
             return _classPanelYanling;
         }
-        else if (info.Name == "Arya")
+        else if (info.Name == "Lydia")
         {
             return _classPanelArya;
         }

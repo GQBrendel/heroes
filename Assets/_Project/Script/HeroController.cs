@@ -380,6 +380,7 @@ public class HeroController : Actor
             PerformDeathSpecifcsActions();
             StartCoroutine(KillActor());
         }
+        UpdateCharacterInfo();
     }
     public override void Heal(int healValue)
     {
@@ -394,6 +395,7 @@ public class HeroController : Actor
         anim.SetTrigger("Healed");
         _healParticle.Play();
         healthBar.transform.localScale = new Vector3(scaleX, 1f, 1f);
+        UpdateCharacterInfo();
     }
 
     public override float GetMaxHealth()
@@ -491,6 +493,12 @@ public class HeroController : Actor
             }
             ActionSelector.gameObject.SetActive(true);
             ActionSelector.SetPosition(transform.position);
+        }
+        if (!IsTutorial)
+        {
+            ActionSelector.EnableAction(HeroesActions.Move);
+            ActionSelector.EnableAction(HeroesActions.Attack);
+            ActionSelector.EnableAction(HeroesActions.Passturn);
         }
 
         _tutorialStep++;

@@ -479,6 +479,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c870905e289de874ebaa7b885b35c53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRenderesrs:
+  - {fileID: 23658461365316850}
+  - {fileID: 23566406518488844}
+  - {fileID: 23355633100154520}
+  - {fileID: 23864997808832220}
+  - {fileID: 23156475277064948}
   DamagePosiiton: {fileID: 5684531214846042949}
   AttackMark: {fileID: 0}
   posX: 0

@@ -192,7 +192,7 @@ public class Archer : HeroController
 
     private void PetAttackFight(Actor opponent, Actor attackingActor)
     {
-        int damage = _characterInfo.Dexterity + _characterInfo.PetSummon;
+        int damage = _characterInfo.Intelligence + _characterInfo.PetSummon;
         opponent.TakeDamage(damage - opponent.GetCharacterDefense(), attackingActor);
     }
     private void FrostAttackFight(Actor opponent, Actor attackingActor)

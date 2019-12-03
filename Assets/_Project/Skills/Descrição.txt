@@ -20,8 +20,8 @@ Companheiro Animal - Invoca Grey para ferozmente atacar o alvo
 
 Brute
 Machadada - Um simples golpe de machado
-Battle Cry - Um grito alto que atrai os ataques inimigos
-Decimar! - Um giro rápido de machado atingindo todos os alvos ao redor
+Grito de Guerra - Um grito ameaçador que atrai os ataques inimigos
+Dizimar - Um giro rápido de machado atingindo todos os alvos ao redor
 
 Yanling
 Explosão Arcana - Atira uma corrente de energia

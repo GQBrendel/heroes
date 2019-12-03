@@ -57,6 +57,7 @@ namespace AStar_2D.Demo
         public bool ShouldExecuteActions { get; set; }
 
         [SerializeField] private List<Vector2> _notwalkable;
+        private TilesDestroyer _tilesDestroyer;
 
         [SerializeField] private LevelSettings _level1;
         [SerializeField] private LevelSettings _level2;
@@ -186,6 +187,11 @@ namespace AStar_2D.Demo
                 {
                     tile.toggleWalkable();
                 }
+            }
+            _tilesDestroyer = GetComponent<TilesDestroyer>();
+            if (_tilesDestroyer)
+            {
+                _tilesDestroyer.DestroyTiles(tiles);
             }
         }
 
@@ -507,6 +513,16 @@ namespace AStar_2D.Demo
 
         public Tile getObjectOnPosition(int x, int y)
         {
+
+            if(x >= gridX)
+            {
+                x = gridX-1;
+            }
+            if(y >= gridY)
+            {
+                y = gridY-1;
+            }
+
             return tiles[x, y];
         }
 

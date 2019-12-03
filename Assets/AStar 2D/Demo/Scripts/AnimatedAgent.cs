@@ -50,6 +50,7 @@ namespace AStar_2D.Demo
         public override void onDestinationUnreachable()
         {
             Debug.LogError(string.Format("Agent [{0}]: I can't reach that target", gameObject.name));
+            GetComponent<Enemy>().DestinationUnreachable();
         }
 
         public override void onDestinationReached()

@@ -1512,7 +1512,7 @@ GameObject:
   - component: {fileID: 1399395016}
   - component: {fileID: 1399395015}
   m_Layer: 9
-  m_Name: Skeleton
+  m_Name: SkeletonSummon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1586,10 +1586,10 @@ MonoBehaviour:
   BasicAttackRange: 2
   XPValue: 100
   Movement: 2
-  Strength: 4
-  BasicAttackDamage: 5
-  Constitution: 7
-  MaxHealth: 10
+  Strength: 0
+  BasicAttackDamage: 24
+  Constitution: 1
+  MaxHealth: 20
   Health: 0
   id: 0
 --- !u!114 &1399395016

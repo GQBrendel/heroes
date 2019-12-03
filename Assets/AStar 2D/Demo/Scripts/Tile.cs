@@ -13,11 +13,20 @@ namespace AStar_2D.Demo
     /// </summary>
 	public class Tile : MonoBehaviour, IPathNode
 	{
+        [SerializeField] private MeshRenderer[] myRenderesrs;
         public Transform DamagePosiiton;
         public GameObject AttackMark;
         //Vairaiveis nossas
         public int posX, posY;
         public Actor tileActor;
+
+        public void DisableVisibility()
+        {
+            foreach (var render in myRenderesrs)
+            {
+                render.enabled = false;
+            }
+        }
 
         //  public bool hasActor = false;
         public void setPos(int x, int y)
@@ -213,7 +222,7 @@ namespace AStar_2D.Demo
             // Check if the tile is walkable
             if(IsWalkable == true)
             {
-               // renderer.material = walkableMaterial;
+                //renderer.material = walkableMaterial;
             }
             else
             {

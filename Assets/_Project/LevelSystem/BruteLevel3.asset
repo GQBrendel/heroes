@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 3
   XPToNextLevel: 10000
-  HP: 20
-  Strength: 8
-  Dexterity: 3
-  Constitution: 7
-  Intelligence: 4
+  HP: 80
+  Strength: 6
+  Dexterity: 2
+  Constitution: 6
+  Intelligence: 2
   Speed: 2
   Astral: 4
-  BasicAttack: 5
-  SpinAttack: 7
+  BasicAttack: 14
+  SpinAttack: 14
   FrostShot: 0
   PetSummon: 0
   Heal: 0

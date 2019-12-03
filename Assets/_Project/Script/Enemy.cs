@@ -1,4 +1,5 @@
 ﻿using AStar_2D.Demo;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,6 +65,16 @@ public class Enemy : Actor
             StartCoroutine(KillActor());
         }
     }
+
+    internal void DestinationUnreachable()
+    {
+        mainAction = true;
+        moveAction = true;
+        GetComponent<AnimatedAgent>().moved = true;
+        rotate = true;
+        StartCoroutine(SetRotateToFalse());
+    }
+
     public override void Heal(int healValue)
     {
         Health += healValue;
@@ -128,7 +139,7 @@ public class Enemy : Actor
 
     public override void PlayDamageSound()
     {
-        int random = Random.Range(0, 3);
+        int random = UnityEngine.Random.Range(0, 3);
         if(random == 0)
         {
             AudioManager.Instance.Play("SkeletonHit1");

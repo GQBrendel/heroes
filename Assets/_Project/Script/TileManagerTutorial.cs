@@ -171,7 +171,6 @@ namespace AStar_2D.Demo
             StartCoroutine(WaitForIAActions());
         }
 
-
         public void EndTutorial()
         {
             foreach(var hero in heroesList)
@@ -181,10 +180,5 @@ namespace AStar_2D.Demo
             _tutorialIsActive = false;
             ShouldExecuteActions = true;
         }
-
-
-
     }
-
-
 }

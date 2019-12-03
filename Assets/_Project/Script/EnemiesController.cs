@@ -185,7 +185,7 @@ public class EnemiesController : MonoBehaviour
     {
         yield return _waitForOneSecond;
         int enemiesCount = enemyUnits;
-        for (i = 0; i < enemiesCount; i++)
+        for (i = 0; i < enemiesList.Count; i++)
         {
             activeEnemy = enemiesList[i].GetComponent<Enemy>();
             Necromancer necro = activeEnemy.GetComponent<Necromancer>();
@@ -523,7 +523,10 @@ public class EnemiesController : MonoBehaviour
         Debug.Log("target y" + targetY);
 
         commandToMove(targetX, targetY);
-        transform.LookAt(_targetHero.transform);
+        if (_targetHero)
+        {
+            transform.LookAt(_targetHero.transform);
+        }
     }
     void moveNextToClosestHero()
     {
@@ -580,6 +583,26 @@ public class EnemiesController : MonoBehaviour
                         bestY = (int)point.y;
                         Debug.LogError("Had to appel to second layer of search");
                         return;
+                    }
+                }
+            }
+
+            //Double the search
+            foreach (var point in adjacentPositions)
+            {
+                List<Vector2> secondLayerAdjacentPoints = Utils.GetAdjacentPoints(point);
+                foreach (var deepoPoint in secondLayerAdjacentPoints)
+                {
+                    List<Vector2> thirdLayerAdjacentPoints = Utils.GetAdjacentPoints(deepoPoint);
+                    foreach (var ultraDeepPoint in thirdLayerAdjacentPoints)
+                    {
+                        if (TileManager.Instance.IsMovementValid((int)deepoPoint.x, (int)deepoPoint.y))
+                        {
+                            bestX = (int)deepoPoint.x;
+                            bestY = (int)deepoPoint.y;
+                            Debug.LogError("Had to appel to third layer of search");
+                            return;
+                        }
                     }
                 }
             }

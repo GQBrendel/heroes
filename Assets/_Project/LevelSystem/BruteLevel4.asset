@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1137f336af0d3344894d4e27a174c656, type: 3}
+  m_Name: BruteLevel4
+  m_EditorClassIdentifier: 
+  Level: 4
+  XPToNextLevel: 10000
+  HP: 100
+  Strength: 8
+  Dexterity: 4
+  Constitution: 8
+  Intelligence: 4
+  Speed: 2
+  Astral: 4
+  BasicAttack: 14
+  SpinAttack: 14
+  FrostShot: 0
+  PetSummon: 0
+  Heal: 0
+  Thunder: 0

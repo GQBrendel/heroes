@@ -123,7 +123,7 @@ public class CharacterInfo : MonoBehaviour
             {
                 _levelUpPanel.UpdateUI(previousCharacter, this, _skillLevel2);
             }
-            else if (Level == 3)
+            else if (Level == 4)
             {
                 _levelUpPanel.UpdateUI(previousCharacter, this, _skillLevel3);
             }

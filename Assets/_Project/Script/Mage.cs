@@ -120,7 +120,12 @@ public class Mage : HeroController
         AudioManager.Instance.Play("MageHeal");
         ActionSelector.FadeAction(HeroesActions.Heal, _healCounter);
         TileManager.Instance.HealingHero = null;
-        Heal(CurrentAlly, _healFactor);
+
+
+        int heal = _characterInfo.Astral + _characterInfo.Heal;
+      
+
+        Heal(CurrentAlly, heal);
     }
 
     public override void PerformDeathSpecifcsActions()

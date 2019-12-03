@@ -27,6 +27,9 @@ public class MainMenu : MonoBehaviour
     [Header("Credits")]
     [SerializeField] private GameObject _creditsPanel;
 
+    [Header("LevelSelection")]
+    [SerializeField] private GameObject _levelSelectionPanel;
+
 
     private void Awake()
     {
@@ -47,7 +50,10 @@ public class MainMenu : MonoBehaviour
         _optionButton.onClick.AddListener(HandleOptions);
         _creditsButton.onClick.AddListener(HandleCredits);
         _exitButton.onClick.AddListener(HandleExit);
-        _confirmButton.onClick.AddListener(EnterInGameScene);
+        _confirmButton.onClick.AddListener(() => {
+            PlayerPrefs.DeleteAll();
+            EnterInGameScene();
+        });
         _recuseButton.onClick.AddListener(HandleRecuse);
     }
 
@@ -55,7 +61,6 @@ public class MainMenu : MonoBehaviour
     {
         if (_hasSavedGame)
         {
-            PlayerPrefs.DeleteAll();
             _startNewGamePanel.SetActive(true);
             _uiBlocker.SetActive(true);
         }
@@ -71,7 +76,7 @@ public class MainMenu : MonoBehaviour
     }
     private void HandleContinue()
     {
-        EnterInGameScene();
+        _levelSelectionPanel.SetActive(true);
     }
     private void HandleOptions()
     {
@@ -102,20 +107,32 @@ public class MainMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 1);
-            PlayerPrefs.SetInt("Arya" + "Level", 1);
+            PlayerPrefs.SetInt("Lydia" + "Level", 1);
             PlayerPrefs.SetInt("Yanling" + "Level", 1);
         }
         else if (Input.GetKeyDown(KeyCode.F2))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 2);
-            PlayerPrefs.SetInt("Arya" + "Level", 2);
+            PlayerPrefs.SetInt("Lydia" + "Level", 2);
             PlayerPrefs.SetInt("Yanling" + "Level", 2);
         }
         else if (Input.GetKeyDown(KeyCode.F3))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 3);
-            PlayerPrefs.SetInt("Arya" + "Level", 3);
+            PlayerPrefs.SetInt("Lydia" + "Level", 3);
             PlayerPrefs.SetInt("Yanling" + "Level", 3);
+        }
+        else if (Input.GetKeyDown(KeyCode.F4))
+        {
+            PlayerPrefs.SetInt("Brute" + "Level", 4);
+            PlayerPrefs.SetInt("Lydia" + "Level", 4);
+            PlayerPrefs.SetInt("Yanling" + "Level", 4);
+        }
+        else if (Input.GetKeyDown(KeyCode.F5))
+        {
+            PlayerPrefs.SetInt("Brute" + "Level", 5);
+            PlayerPrefs.SetInt("Lydia" + "Level", 5);
+            PlayerPrefs.SetInt("Yanling" + "Level", 5);
         }
 
     }
