@@ -3,6 +3,7 @@ using Fungus;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,13 +14,29 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private Flowchart _flowChart;
     [SerializeField] private TileManagerTutorial _tileManager;
 
-   // private bool _tutorialSelect;
-   // private bool _enemiesTurn;
+    [SerializeField] private Button _nextSentenceButon;
+    [SerializeField] private TextMeshProUGUI[] _sentences;
+    public int _currentSentenceIndex = 0;
+
+    private void ShowNextSentence()
+    {
+        _sentences[_currentSentenceIndex].gameObject.SetActive(false);
+        _currentSentenceIndex++;
+        if(_currentSentenceIndex == _sentences.Length)
+        {
+            FinishIntro();
+        }
+        else
+        {
+            _sentences[_currentSentenceIndex].gameObject.SetActive(true);
+        }
+    }
 
     private void Awake()
     {
         _skipButton.onClick.AddListener(FinishIntro);
-
+        _nextSentenceButon.onClick.AddListener(ShowNextSentence);
+        _flowChart.SetStringVariable("PlayerName", PlayerPrefs.GetString("PlayerName", "Guardião"));
 
         if (PlayerPrefs.GetInt("HasSavedGame", 1) == 0)
         {

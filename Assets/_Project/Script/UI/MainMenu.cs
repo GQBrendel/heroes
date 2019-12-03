@@ -15,10 +15,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button _creditsButton;
     [SerializeField] private Button _exitButton;
 
-    [Header("Confirm new Game Menu")]
+    [Header("new Game Menu")]
+    [SerializeField] private TMPro.TMP_InputField _nameInputField;
+
     [SerializeField] private GameObject _startNewGamePanel;
+    [SerializeField] private GameObject _inputNamePanel;
+    
     [SerializeField] private Button _confirmButton;
     [SerializeField] private Button _recuseButton;
+
+    [SerializeField] private Button _confirmNameButton;
+    [SerializeField] private Button _cancelNameButton;
 
     [Header("Grayed Buttons")]
     [SerializeField] private GameObject _greyedContinueButton;
@@ -45,7 +52,11 @@ public class MainMenu : MonoBehaviour
             _continueButton.gameObject.SetActive(false);
         }
 
+        _nameInputField.characterLimit = 20;
+
         _newGameButton.onClick.AddListener(HandleNewGame);
+        _confirmNameButton.onClick.AddListener(HandleConfirmNameButtonClicked);
+        _cancelNameButton.onClick.AddListener(HandleCancelNameButtonClicked);
         _continueButton.onClick.AddListener(HandleContinue);
         _optionButton.onClick.AddListener(HandleOptions);
         _creditsButton.onClick.AddListener(HandleCredits);
@@ -66,8 +77,21 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            EnterInGameScene();
+            _inputNamePanel.SetActive(true);
+            _uiBlocker.SetActive(true);
         }
+    }
+    private void HandleConfirmNameButtonClicked()
+    {
+        if (_nameInputField.text != "")
+        {
+            PlayerPrefs.SetString("PlayerName", _nameInputField.text);
+        }
+        else
+        {
+            PlayerPrefs.SetString("PlayerName", "Guardião");
+        }
+        EnterInGameScene();
     }
     private void EnterInGameScene()
     {
@@ -90,6 +114,12 @@ public class MainMenu : MonoBehaviour
     {
         _uiBlocker.SetActive(false);
         _startNewGamePanel.SetActive(false);
+    }
+
+    private void HandleCancelNameButtonClicked()
+    {
+        _uiBlocker.SetActive(false);
+        _inputNamePanel.SetActive(false);
     }
 
     private void HandleExit()
