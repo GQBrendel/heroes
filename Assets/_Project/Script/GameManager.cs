@@ -181,6 +181,12 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Lydia" + "Level", 5);
             PlayerPrefs.SetInt("Yanling" + "Level", 5);
         }
+        else if (Input.GetKeyDown(KeyCode.F6))
+        {
+            PlayerPrefs.SetInt("Brute" + "Level", 1);
+            PlayerPrefs.SetInt("Lydia" + "Level", 2);
+            PlayerPrefs.SetInt("Yanling" + "Level", 1);
+        }
     }
 
     public void SaveGame(CharacterInfo character)
@@ -192,7 +198,7 @@ public class GameManager : MonoBehaviour
 
     private void Update ()
     {
-        LevelUpCheat();
+        //LevelUpCheat();
         if (!update)
         {
             return;
@@ -221,7 +227,14 @@ public class GameManager : MonoBehaviour
         string currentLevelToSet = "Level" + level + "Completed";
         PlayerPrefs.SetInt(currentLevelToSet, 0);
         yield return new WaitForSeconds(2f);
-        _canvasManager.ShowVictoryScreen();
+        if(_tileManager.CurrentLevel == 4)
+        {
+            SceneManager.LoadScene("Epilogue");
+        }
+        else
+        {
+            _canvasManager.ShowVictoryScreen();
+        }
     }
     private IEnumerator LevelFailed()
     {

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c3d64fa23e19a4b897d0d224b6c965, type: 3}
+  m_Name: IntroMessagesEpilogue
+  m_EditorClassIdentifier: 
+  Messages:
+  - "O Ex\xE9rcito das Sombras est\xE1 oficialmente de volta. A escurid\xE3o se espalhar\xE1
+    pelo reino se n\xE3o houver outra Irmandade capaz de parar o avan\xE7o. "
+  - "O destino colocou tr\xEAs guerreiros juntos para verem, pela primeira vez em
+    200 anos, o ressurgimento do Ex\xE9rcito, agora o futuro do reino est\xE1 nas
+    m\xE3os de BRUTE, YANLING, LYDIA e tamb\xE9m nas suas. Ser\xE3o voc\xEAs a nova
+    Irmandade capaz de destruir uma amea\xE7a que parece estar mais poderosa do que
+    da nunca?"
+  - "PARAB\xC9NS, VOC\xCA COMPLETOU O PRIMEIRO ATO DE \u201CIRMANDADE: VANGUARDA DAS
+    SOMBAS\u201D"

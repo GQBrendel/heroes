@@ -138,7 +138,7 @@ namespace AStar_2D.Demo
         {
             spawnActors();
             SetupNotWalkableTiles();
-            ShouldExecuteActions = true;
+            ShouldExecuteActions = false;
             OnEnemyEndTurn?.Invoke();
         }
 

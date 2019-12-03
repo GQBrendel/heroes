@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 3
   XPToNextLevel: 10000
-  HP: 60
+  HP: 50
   Strength: 2
   Dexterity: 2
   Constitution: 2

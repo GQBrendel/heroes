@@ -62,11 +62,17 @@ public class MainMenu : MonoBehaviour
         _creditsButton.onClick.AddListener(HandleCredits);
         _exitButton.onClick.AddListener(HandleExit);
         _confirmButton.onClick.AddListener(() => {
-            PlayerPrefs.DeleteAll();
-            EnterInGameScene();
+            _inputNamePanel.SetActive(true);
+            _startNewGamePanel.SetActive(false);
         });
         _recuseButton.onClick.AddListener(HandleRecuse);
     }
+
+    private void Start()
+    {
+        AudioManager.Instance.Play("MedievalIntroduction");
+    }
+
 
     private void HandleNewGame()
     {
@@ -83,6 +89,8 @@ public class MainMenu : MonoBehaviour
     }
     private void HandleConfirmNameButtonClicked()
     {
+        PlayerPrefs.DeleteAll();
+
         if (_nameInputField.text != "")
         {
             PlayerPrefs.SetString("PlayerName", _nameInputField.text);
@@ -129,7 +137,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        LevelUpCheat();
+        //LevelUpCheat();
     }
 
     private void LevelUpCheat()
@@ -163,6 +171,12 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("Brute" + "Level", 5);
             PlayerPrefs.SetInt("Lydia" + "Level", 5);
             PlayerPrefs.SetInt("Yanling" + "Level", 5);
+        }
+        else if (Input.GetKeyDown(KeyCode.F6))
+        {
+            PlayerPrefs.SetInt("Brute" + "Level", 1);
+            PlayerPrefs.SetInt("Lydia" + "Level", 2);
+            PlayerPrefs.SetInt("Yanling" + "Level", 1);
         }
 
     }

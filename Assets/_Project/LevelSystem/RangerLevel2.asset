@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: RangerLevel2
   m_EditorClassIdentifier: 
   Level: 2
-  XPToNextLevel: 800
-  HP: 10
-  Strength: 7
-  Dexterity: 8
-  Constitution: 6
-  Intelligence: 4
+  XPToNextLevel: 10000
+  HP: 50
+  Strength: 2
+  Dexterity: 4
+  Constitution: 2
+  Intelligence: 3
   Speed: 2
-  Astral: 5
+  Astral: 2
   BasicAttack: 10
   SpinAttack: 0
   FrostShot: 14

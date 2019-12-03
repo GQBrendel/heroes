@@ -16,7 +16,7 @@ MonoBehaviour:
   XPToNextLevel: 10000
   HP: 80
   Strength: 6
-  Dexterity: 2
+  Dexterity: 3
   Constitution: 6
   Intelligence: 2
   Speed: 2

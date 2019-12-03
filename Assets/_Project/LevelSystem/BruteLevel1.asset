@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 1
   XPToNextLevel: 80
-  HP: 10
-  Strength: 6
+  HP: 40
+  Strength: 2
   Dexterity: 2
-  Constitution: 5
-  Intelligence: 3
+  Constitution: 2
+  Intelligence: 1
   Speed: 2
-  Astral: 3
+  Astral: 1
   BasicAttack: 14
   SpinAttack: 14
   FrostShot: 0

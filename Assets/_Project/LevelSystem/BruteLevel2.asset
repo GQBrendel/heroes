@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: BruteLevel2
   m_EditorClassIdentifier: 
   Level: 2
-  XPToNextLevel: 80
-  HP: 15
-  Strength: 7
+  XPToNextLevel: 10000
+  HP: 60
+  Strength: 4
   Dexterity: 3
-  Constitution: 6
-  Intelligence: 3
+  Constitution: 4
+  Intelligence: 2
   Speed: 2
-  Astral: 3
+  Astral: 2
   BasicAttack: 14
   SpinAttack: 14
   FrostShot: 0

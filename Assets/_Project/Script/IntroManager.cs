@@ -16,6 +16,9 @@ public class IntroManager : MonoBehaviour
 
     [SerializeField] private Button _nextSentenceButon;
     [SerializeField] private TextMeshProUGUI[] _sentences;
+
+    [SerializeField] private IntroMessages _introMessages;
+
     public int _currentSentenceIndex = 0;
 
     private void ShowNextSentence()
@@ -43,6 +46,16 @@ public class IntroManager : MonoBehaviour
             _introPanel.SetActive(false);
             _tileManager.EndTutorial();
         }
+        SetMessages();
+    }
+
+    private void SetMessages()
+    {
+        for (int i = 0; i < _sentences.Length; i++)
+        {
+            _sentences[i].text = _introMessages.Messages[i];
+        }
+
     }
 
     public void LydiaSelected()

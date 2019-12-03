@@ -226,7 +226,7 @@ namespace AStar_2D.Demo
             }
             else
             {
-               // renderer.material = NOTkableMaterial;
+                //renderer.material = NOTkableMaterial;
             }
         }
 

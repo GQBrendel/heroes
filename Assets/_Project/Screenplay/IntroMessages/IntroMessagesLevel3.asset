@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c3d64fa23e19a4b897d0d224b6c965, type: 3}
+  m_Name: IntroMessagesLevel3
+  m_EditorClassIdentifier: 
+  Messages:
+  - "As introdu\xE7\xF5es foram devidamente feitas ap\xF3s a batalha. Os guerreiros
+    agora entendiam que, apesar dos objetivos diferentes, todos estavam sendo guiados
+    pela mesma voz de um dos Cavaleiros que travou a guerra"
+  - "O motivo era nebuloso, mas no fim sabiam que algo estranho estava acontecendo
+    j\xE1 que o cheiro de morte e a agressividade dos monstros vista at\xE9 aqui n\xE3o
+    era normal nos reinos. "
+  - "Um guerreiro motivado pelo dinheiro e liberdade, outra pelo conhecimento e, Lydia,
+    pela prova\xE7\xE3o de ser forte o suficiente para poder reinar."
+  - "- Voc\xEAs me lembram do meu passado \u2013 disse a voz enquanto adentravam outra
+    sala imensa \u2013 Estamos mais perto do fim, foco jovens guerreiros! \u2013 finalizou.\u201D"

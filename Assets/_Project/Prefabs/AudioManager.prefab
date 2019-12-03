@@ -147,9 +147,9 @@ MonoBehaviour:
   - name: SkeletonAttack
     clip: {fileID: 8300000, guid: 1797a0705a56740219aec41079bd4753, type: 3}
     volume: 1
-    volumeVariance: 0.288
+    volumeVariance: 0.378
     pitch: 0.8
-    pitchVariance: 0.049
+    pitchVariance: 0.463
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
       type: 2}
@@ -276,6 +276,36 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MageDeath
     clip: {fileID: 8300000, guid: 8ffda7dab5e462443adf40d7f54a94e1, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: BruteYes
+    clip: {fileID: 8300000, guid: acfccd8b291df81459e9f6dc52be34e3, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: BruteHellYeah
+    clip: {fileID: 8300000, guid: c1459c35af556e741acd6deffccb9c99, type: 3}
+    volume: 0.786
+    volumeVariance: 0.288
+    pitch: 1
+    pitchVariance: 0.049
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: BruteCountOnMe
+    clip: {fileID: 8300000, guid: a3f9ff68c249cf24ca5d07ab4f64691b, type: 3}
     volume: 0.786
     volumeVariance: 0.288
     pitch: 1
