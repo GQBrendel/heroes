@@ -217,6 +217,9 @@ public class GameManager : MonoBehaviour
         {
             SaveGame(character);
         }
+        int level = _tileManager.CurrentLevel + 1;
+        string currentLevelToSet = "Level" + level + "Completed";
+        PlayerPrefs.SetInt(currentLevelToSet, 0);
         yield return new WaitForSeconds(2f);
         _canvasManager.ShowVictoryScreen();
     }

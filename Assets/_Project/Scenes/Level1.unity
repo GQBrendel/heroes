@@ -7453,7 +7453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next
+  m_text: "Avan\xE7ar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -17733,7 +17733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Reiniciar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -28240,7 +28240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DEFEAT
+  m_text: DERROTA!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
@@ -33909,7 +33909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VICTORY
+  m_text: "VIT\xD3RIA!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
   m_sharedMaterial: {fileID: 1581387882641684519, guid: 831ef2451b75e7346b481ee2edd10ca1,
