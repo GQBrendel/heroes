@@ -3164,6 +3164,121 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465353980}
   m_CullTransparentMesh: 0
+--- !u!1001 &502793986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4020073896273343728, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03666401
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.227303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 146.94427
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343730, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].name
+      value: MedievalIntroduction
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 641f214c7ce9a1f4b821bdcca8ae3be5, type: 3}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].volume
+      value: 0.786
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].volumeVariance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].pitchVariance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].mixerGroup
+      value: 
+      objectReference: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+        type: 2}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[27].loop
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 520fb17ca7ca8734e8e8882333a440ff, type: 3}
 --- !u!1 &509254353
 GameObject:
   m_ObjectHideFlags: 0
@@ -6744,7 +6859,8 @@ MonoBehaviour:
     3D Skeleto: Fantasy Monster - Skeleton (https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy-monster-skeleton-35635)\n\nModelo
     3D Goblin - Heroic Fantasy Creatures Pack (https://assetstore.unity.com/packages/3d/characters/creatures/heroic-fantasy-creatures-full-pack-volume-1-5730)\n\nAnima\xE7\xF5es:
     Adobe Mixamo (https://www.mixamo.com)\n\nInterface: Simple Fantasy GUI (https://assetstore.unity.com/packages/2d/gui/simple-fantasy-gui-99451)\n\nMusica
-    de Batalha - Tavern Lively (LOOP), \"The Fantasy Music Collection STARTER\" (https://assetstore.unity.com/packages/audio/music/orchestral/the-fantasy-music-collection-starter-15901)\n\nEfeitos
+    de Batalha - Tavern Lively (LOOP), \"The Fantasy Music Collection STARTER\" (https://assetstore.unity.com/packages/audio/music/orchestral/the-fantasy-music-collection-starter-15901)\n\nMusica
+    \"Medieval Introduction\" por Tristan Lohengrin : https://www.tristanlohengrin.com/\n\nEfeitos
     Sonoros - Universal Sound FX (https://assetstore.unity.com/packages/audio/sound-fx/universal-sound-fx-17256)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831ef2451b75e7346b481ee2edd10ca1, type: 2}
