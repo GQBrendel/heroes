@@ -107,6 +107,13 @@ public class CharacterInfo : MonoBehaviour
         int xpExtra;
         CurrentXP += xPObtained;
 
+        if(Level == 5)
+        {
+            CurrentXP = XPToNextLevel;
+            UpdateLevelInfo();
+            return false;
+        }
+
         if(CurrentXP >= XPToNextLevel)
         {
             CharacterInfo previousCharacter = GetCharacterState();
@@ -114,7 +121,12 @@ public class CharacterInfo : MonoBehaviour
             xpExtra = CurrentXP - XPToNextLevel;
             CurrentXP = xpExtra;
             Level++;
-            XPToNextLevel = _characterLevels[Level-1].XPToNextLevel;     
+            XPToNextLevel = _characterLevels[Level-1].XPToNextLevel;
+
+            if(Level == 5)
+            {
+                CurrentXP = XPToNextLevel;
+            }
 
             UpdateLevelInfo();
 
@@ -131,6 +143,7 @@ public class CharacterInfo : MonoBehaviour
             {
                 _levelUpPanel.UpdateUI(previousCharacter, this);
             }
+
 
 
             StartCoroutine(DelayAndShowLevelUpPanel());

@@ -291,13 +291,11 @@ public class HeroController : Actor
     {
         if (tile.AttackMark == null)
         {
-            TileManager.Instance.ShowFeedbackMesage(tile, "Out of Range");
+            TileManager.Instance.ShowFeedbackMesage(tile, "Fora de Alcance");
             PlayOutOfRangeSound();
             return false;
         }
-//        if (EuclidianDistance(this, tile.tileActor) > checkRange)
-        {
-        }
+
         if (mainAction)
         {
             Debug.Log("Ja atacaou neste turno");

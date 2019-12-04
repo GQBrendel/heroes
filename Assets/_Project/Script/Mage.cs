@@ -137,7 +137,7 @@ public class Mage : HeroController
     {
         if (tile.tileActor.FullHealth())
         {
-            TileManager.Instance.ShowFeedbackMesage(tile, "Full Health");
+            TileManager.Instance.ShowFeedbackMesage(tile, "Vitalidade Completa");
             HideWays();
             ShowOptionsforActions(false);
             TileManager.Instance.HealingHero = null;

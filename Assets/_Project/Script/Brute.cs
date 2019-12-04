@@ -160,6 +160,11 @@ public class Brute : HeroController
         PlayRandomSelectionAudio();
     }
 
+    public override void PlayOutOfRangeSound()
+    {
+        AudioManager.Instance.Play("BruteFora");
+    }
+
     private void PlayRandomSelectionAudio()
     {
         int random = Random.Range(0, 3);

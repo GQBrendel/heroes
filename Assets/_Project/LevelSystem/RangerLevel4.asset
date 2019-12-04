@@ -24,6 +24,6 @@ MonoBehaviour:
   BasicAttack: 10
   SpinAttack: 0
   FrostShot: 14
-  PetSummon: 25
+  PetSummon: 40
   Heal: 0
   Thunder: 0

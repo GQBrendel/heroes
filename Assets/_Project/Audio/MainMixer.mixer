@@ -33,6 +33,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-5274487594361269682
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 384804c797d794b4dbe485f3a616d514
+  m_EffectName: Attenuation
+  m_MixLevel: fd941342ecc97574bb9598ce5ee77e0a
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-4826035666073269615
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -91,6 +105,7 @@ AudioMixerController:
     - fbcd6ab0126f8c94ab5616098ea6e6b7
     - d678b2f6815e83148ade9582baa677de
     - 6db8b28b315309a4fb7f88981960b216
+    - 1fb0b99bfb0cfaf4ca8513a01f74ff46
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -108,6 +123,7 @@ AudioMixerGroupController:
   - {fileID: -7166994498881461443}
   - {fileID: 8570082090239000252}
   - {fileID: -511788485657826568}
+  - {fileID: 3176279525823878437}
   m_Volume: aa6053885832415449eb8a389bbf89a0
   m_Pitch: 84958dfa514ff0844ad0dff9bad046a6
   m_Send: 00000000000000000000000000000000
@@ -141,9 +157,10 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e71b349ec55f28e4ca777ff54ce8011c
   m_FloatValues:
-    51b60c1629fa9f84592dcbea8e3d0927: -18.75731
+    51b60c1629fa9f84592dcbea8e3d0927: -29.718582
     aa6053885832415449eb8a389bbf89a0: 0.025578512
-    8be26b8ae6fcffc46aba623e068fa7d5: -20.782825
+    8be26b8ae6fcffc46aba623e068fa7d5: -24.346321
+    a7b9706d3c8ce2048bb56a0203755e2d: 9.925883
   m_TransitionOverrides: {}
 --- !u!244 &226379211857495222
 AudioMixerEffectController:
@@ -174,6 +191,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 6305424104922768064}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &3176279525823878437
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lydia
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1fb0b99bfb0cfaf4ca8513a01f74ff46
+  m_Children: []
+  m_Volume: a7b9706d3c8ce2048bb56a0203755e2d
+  m_Pitch: ee2ec3d6df9a46441b26c60f26dc6d2a
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -5274487594361269682}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

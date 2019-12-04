@@ -65,7 +65,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: MageYes
-    clip: {fileID: 8300000, guid: 4ada5b8a437bb9a468be6c06760564bf, type: 3}
+    clip: {fileID: 8300000, guid: 11b9b80742dce814392b1f43a00e575b, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1.1
@@ -75,7 +75,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: MageReady
-    clip: {fileID: 8300000, guid: 4b362db71498b6246ac651af433a4578, type: 3}
+    clip: {fileID: 8300000, guid: 1d07157c059632243adc58ef919584f0, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1.1
@@ -255,7 +255,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: MageOutOfRange
-    clip: {fileID: 8300000, guid: 2391e5c84ce7bc547b390fbda587c402, type: 3}
+    clip: {fileID: 8300000, guid: b5f1e1ea3760a9e4cbe03bacb98a9d0f, type: 3}
     volume: 0.786
     volumeVariance: 0.288
     pitch: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: MageHeal
-    clip: {fileID: 8300000, guid: 0cc0898c9699c9c4ca852c6bb4f6e671, type: 3}
+    clip: {fileID: 8300000, guid: 3056e412e5b953e4b93660d99a8a318e, type: 3}
     volume: 0.786
     volumeVariance: 0.288
     pitch: 1
@@ -322,5 +322,85 @@ MonoBehaviour:
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MedievalIntroduction
+    clip: {fileID: 8300000, guid: 641f214c7ce9a1f4b821bdcca8ae3be5, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 2090734325700558021, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: MouseOver
+    clip: {fileID: 8300000, guid: d4a908ac60d8c784fa673ca336046743, type: 3}
+    volume: 0.98
+    volumeVariance: 0.083
+    pitch: 1
+    pitchVariance: 0.087
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: LydiaAoSeuComando
+    clip: {fileID: 8300000, guid: 8c7db04af12c6c046ab324934adb8ed9, type: 3}
+    volume: 0.97
+    volumeVariance: 0.083
+    pitch: 1.11
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: LydiaEstouPronta
+    clip: {fileID: 8300000, guid: d93e04ae4e6c17b47b3aa8a5084cc164, type: 3}
+    volume: 0.97
+    volumeVariance: 0.083
+    pitch: 1.11
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: LydiaFora
+    clip: {fileID: 8300000, guid: 0caff6c775529be4eb7b94e5dc4289e1, type: 3}
+    volume: 0.97
+    volumeVariance: 0.083
+    pitch: 1.11
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: LydiaSim
+    clip: {fileID: 8300000, guid: 843106acab593f749889c53c494d6b91, type: 3}
+    volume: 0.97
+    volumeVariance: 0.083
+    pitch: 1.11
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: BruteFora
+    clip: {fileID: 8300000, guid: 20bd37476a50348468b15b5b50ea18c9, type: 3}
+    volume: 0.97
+    volumeVariance: 0.083
+    pitch: 0.921
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: LydiaVamosLa
+    clip: {fileID: 8300000, guid: 17a3eee859d6fed4096005fcc59d965f, type: 3}
+    volume: 0.97
+    volumeVariance: 0.083
+    pitch: 1.11
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
       type: 2}
     source: {fileID: 0}

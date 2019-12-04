@@ -184,6 +184,38 @@ public class Archer : HeroController
         }
     }
 
+    public override void SelectHero()
+    {
+        base.SelectHero();
+        PlayRandomSelectionAudio();
+    }
+
+    public override void PlayOutOfRangeSound()
+    {
+        AudioManager.Instance.Play("LydiaFora");
+    }
+
+    private void PlayRandomSelectionAudio()
+    {
+        int random = Random.Range(0, 4);
+
+        switch (random)
+        {
+            case 0:
+                AudioManager.Instance.Play("LydiaVamosLa");
+                break;
+            case 1:
+                AudioManager.Instance.Play("LydiaSim");
+                break;
+            case 2:
+                AudioManager.Instance.Play("LydiaEstouPronta");
+                break;
+            case 3:
+                AudioManager.Instance.Play("LydiaAoSeuComando");
+                break;
+        }
+    }
+
     protected override void BasicAttackFight(Actor opponent, Actor attackingActor)
     {
         int damage = _characterInfo.Dexterity + _characterInfo.BasicAttack;

@@ -68,6 +68,7 @@ public class MainMenu : MonoBehaviour
         _recuseButton.onClick.AddListener(HandleRecuse);
     }
 
+
     private void Start()
     {
         AudioManager.Instance.Play("MedievalIntroduction");

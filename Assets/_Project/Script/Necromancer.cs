@@ -34,6 +34,22 @@ public class Necromancer : Enemy
         setPos((int)tileDestino.getPos().x, (int)tileDestino.getPos().y);  
     }
 
+    public override void PlayDamageSound()
+    {
+        int random = Random.Range(0, 3);
+        if (random == 0)
+        {
+            AudioManager.Instance.Play("FemaleHit1");
+        }
+        else if (random == 1)
+        {
+            AudioManager.Instance.Play("FemaleHit2");
+        }
+        else if (random == 2)
+        {
+            AudioManager.Instance.Play("FemaleHit3");
+        }
+    }
 
     public void StartSummon()
     {

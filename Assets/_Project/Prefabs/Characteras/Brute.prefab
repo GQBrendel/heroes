@@ -3615,12 +3615,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PortraitImage: {fileID: 21300000, guid: 64ab0b04122b53240a9fdbf4797d8940, type: 3}
   m_CharacterName: Brute
-  m_CharacterClass: Barbarian
+  m_CharacterClass: "B\xE1rbaro"
   _characterLevels:
   - {fileID: 11400000, guid: 801762d4cbf6e0849a104387c7b31678, type: 2}
   - {fileID: 11400000, guid: 170923bb82a940b4cb4ce673fa381e77, type: 2}
   - {fileID: 11400000, guid: cc35364c4492a1241848a77bb3b9ad61, type: 2}
   - {fileID: 11400000, guid: 8120fa744a07cbf47af15364ab3edf5d, type: 2}
+  - {fileID: 11400000, guid: 93bce05194b358647bb0ed53cb1c02c3, type: 2}
   _skillLevel2: {fileID: 11400000, guid: ca36681b6b2b84845be82151aa950c33, type: 2}
   _skillLevel3: {fileID: 11400000, guid: 955ed86774b28b74b901db9cadddb29c, type: 2}
 --- !u!1001 &3470663851251467069
