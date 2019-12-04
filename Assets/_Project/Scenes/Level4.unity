@@ -44389,11 +44389,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 9161913715337055857, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9161913715337055869, guid: 54ec5b6345ca9a24c97560f5018a70fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -44515,58 +44510,55 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4058014417679618801, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4058014417679618801, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288538194002142203, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7288538194002142203, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1435061326819424731, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1435061326819424731, guid: 54ec5b6345ca9a24c97560f5018a70fc,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1346615368, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
-      propertyPath: _sentences.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1346615368, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
-      propertyPath: _flowChart
-      value: 
-      objectReference: {fileID: 1305733493}
-    - target: {fileID: 1346615368, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
-      propertyPath: _introMessages
-      value: 
-      objectReference: {fileID: 11400000, guid: 1478333529fcaf9458c13e0fa9d924da,
-        type: 2}
-    - target: {fileID: 1248391945, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1248391945, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1248391945, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 677186711, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 677186711, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463117151, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463117151, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055270031171443048, guid: 54ec5b6345ca9a24c97560f5018a70fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055270031171443048, guid: 54ec5b6345ca9a24c97560f5018a70fc,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183258675037631434, guid: 54ec5b6345ca9a24c97560f5018a70fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9183258675037631434, guid: 54ec5b6345ca9a24c97560f5018a70fc,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925373729, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925373729, guid: 54ec5b6345ca9a24c97560f5018a70fc, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}

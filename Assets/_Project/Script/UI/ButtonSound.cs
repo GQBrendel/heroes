@@ -7,6 +7,6 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler
 {
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        AudioManager.Instance.Play("MouseOver");
+        AudioManager.Instance.Play("MouseOver", true);
     }
 }
