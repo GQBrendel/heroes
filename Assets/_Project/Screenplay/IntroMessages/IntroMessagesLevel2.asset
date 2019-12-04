@@ -13,14 +13,9 @@ MonoBehaviour:
   m_Name: IntroMessagesLevel2
   m_EditorClassIdentifier: 
   Messages:
-  - "Lydia desce mais afundo nas masmorras enquanto tentava conversar com a misteriosa
-    voz que a auxiliou na batalha. Incr\xE9dula que quem vos falava era um dos Guerreiros
-    d Irmandade, guerreiros que deram sua vida na Grande Guerra e hoje vivem como
-    entidades em outro plano, ela apenas seguia seu caminho tentando ignorar o que
-    havia acontecido. O cheiro de morte se tornava mais forte, o lugar mais escuro
-    e o medo podia ser sentido na sua respira\xE7\xE3o."
-  - "A pr\xF3xima sala era imensa e ao entrar percebe que definitivamente n\xE3o est\xE1
-    sozinha. Um grande b\xE1rbaro segura um machado e olha ferozmente para Kobolds
-    armados. Ao lado dele uma maga os encara da mesma forma como se estivesse pronta
-    para a batalha"
-  - "- Lydia, se prepare, a irmandade n\xE3o vence sozinha \u2013 disse a voz"
+  - Lydia continua afundo nas masmorras enquanto tentava compreender como a misteriosa
+    voz poderia ser dos Guerreiros da Irmandade e porque a estava acompanhando.
+  - "O cheiro de morte se tornava mais forte, o lugar mais escuro e o medo podia ser
+    sentido na sua respira\xE7\xE3o."
+  - "- \u201CLydia, se prepare! A Irmandade n\xE3o vence sozinha.\u201D \u2013 disse
+    a voz"

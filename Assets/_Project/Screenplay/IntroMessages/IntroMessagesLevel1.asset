@@ -13,27 +13,23 @@ MonoBehaviour:
   m_Name: IntroMessagesLevel1
   m_EditorClassIdentifier: 
   Messages:
-  - "A cada quatro ver\xF5es o reino inteiro se junta para celebrar o fim da Grande
-    Guerra da Irmandade. Um festival que dura tr\xEAs dias e tr\xEAs noites onde o
-    povo plebeu se junta com os nobres para comemorar a paz que imperou quando tr\xEAs
-    guerreiros de reinos diferentes juntaram as suas for\xE7as para derrotar o Ex\xE9rcito
-    das Sombras..."
+  - "A cada quatro ver\xF5es, todo o reino se encontra para celebrar o fim da Grande
+    Guerra da Irmandade. Um festival de tr\xEAs dias e tr\xEAs noites, onde plebeus
+    e nobres comemoram a paz que imperou quando tr\xEAs guerreiros de reinos diferentes
+    uniram as suas for\xE7as para derrotar o Ex\xE9rcito das Sombras."
   - "A Irmandade, como eram conhecidos, lutou bravamente contra aqueles que engaram
-    o povo e trouxeram fome, morte e caos aos reinos. O Ex\xE9rcito foi recolhendo
-    fi\xE9is conforme se infiltrava no povo, transformando todos em guerreiros mortais
-    das piores formas poss\xEDveis, controlando a mente e o corpo dessas pessoas para
-    que elas pudessem derrubar, um a um, os reis que comandavam a terra e que o poder
-    deles pudesse ser imposto. Usando a f\xE9 como motim principal, quase conseguiram
-    dominar todos os povos do reino. A noite vinha mais cedo, plebeus atacavam uns
-    aos outros e o cheiro de morte e magia negra se espalhava por todos os locais...."
-  - "Ningu\xE9m sabe ao certo como tudo acabou, cada contador de hist\xF3rias conhece
-    pelo menos tr\xEAs vers\xF5es diferentes de can\xE7\xF5es que cantam sobre o fim
-    da Grande Guerra. Mas h\xE1 um ponto em que todas as vers\xF5es parecem convergir,
-    o Ex\xE9rcito das Sombras n\xE3o foi completamente derrotado, dizem at\xE9 hoje
-    que eles aguardam na sombra, reunindo for\xE7as para um novo ataque, quando a
-    hora chegasse, press\xE1gios de morte seriam sentidos pelos quatro cantos do mundo..."
-  - "200 anos depois algo estranho estava acontecendo e os reinos come\xE7aram a perceber
-    algo de estranho, primeiro o gado come\xE7ava a perecer nos campos, depois a peste
-    tomou conta da popula\xE7\xE3o, um cheiro estranho de morte infestava o ar. As
-    lendas da Grande Guerra da Irmandade come\xE7avam a se tornar verdade mais uma
-    vez e agora o destino de todos est\xE1 na m\xE3o de tr\xEAs improv\xE1veis her\xF3is."
+    o povo. O Ex\xE9rcito trouxe fome, morte e caos \xE0 popula\xE7\xE3o. Recrutou
+    fi\xE9is conforme se infiltrava nos feudos, transformando-os em guerreiros mortais,
+    controlando suas mentes e seus corpos para que eles pudessem destruir, um a um,
+    os reis que comandavam a Terra, fazendo com que o poder do Ex\xE9rcito das Sombras
+    pudesse imperar. A escurid\xE3o predominava, o povo lutava entre si, fazendo com
+    que o cheiro de morte e magia negra reinasse em todos os cantos."
+  - "Ningu\xE9m sabe ao certo como tudo acabou. Os bardos do reino cantam in\xFAmeras
+    vers\xF5es sobre o fim da Grande Guerra. Mas em todas elas, o Ex\xE9rcito das
+    Sombras n\xE3o foi completamente derrotado. Contam que at\xE9 hoje eles dormem
+    nas sombras, reunindo for\xE7as para um novo ataque."
+  - "Ap\xF3s 200 anos, \xE9 poss\xEDvel notar algo. O gado come\xE7ou a desaparecer
+    dos campos, a peste tomou conta da popula\xE7\xE3o e um cheiro de morte infestava
+    o ar. Mais uma vez, as lendas da Grande Guerra da Irmandade come\xE7avam a se
+    tornar realidade e agora o destino de todos est\xE1 nas m\xE3os de tr\xEAs improv\xE1veis
+    her\xF3is."

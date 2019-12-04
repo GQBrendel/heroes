@@ -96145,7 +96145,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1797180080}
   selectedCommands:
-  - {fileID: 1797180094}
+  - {fileID: 1797180085}
   variables:
   - {fileID: 1797180078}
   description: 
@@ -96200,7 +96200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 3
   indentLevel: 0
-  storyText: Vamos limpar esses monstros primeiro, conversamos depois!
+  storyText: Vamos eliminar estes monstros primeiro, conversamos mais depois!
   description: 
   character: {fileID: 1458391371}
   portrait: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}
@@ -96227,7 +96227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: "Ent\xE3o as lendas s\xE3o verdades mesmo. He-he."
+  storyText: "Ent\xE3o as lendas s\xE3o verdades mesmo..."
   description: 
   character: {fileID: 3253050852057062130}
   portrait: {fileID: 21300000, guid: 512be30dfc1f6a04d8c9af6a999df2f3, type: 3}
@@ -96254,9 +96254,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "Sim. Temos que descer at\xE9 o final esse cheiro, essa magia... \xC9
-    tudo familiar. {wc}\nO Ex\xE9rcito das Sombras certamente est\xE1 de volta. Depois
-    de 200 anos. Pens\xE1vamos que ap\xF3s aquela guerra tudo estaria acabado."
+  storyText: "Esse cheiro e a magia que estou sentido me fazem acreditar que sim.
+    Temos que descer at\xE9 o final para descobrir. {wc}\nO Ex\xE9rcito das Sombras
+    certamente est\xE1 de volta. Depois de 200 anos... Pens\xE1vamos que ap\xF3s a
+    guerra tudo estaria acabado.\n"
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -96283,7 +96284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: "{$PlayerName}, voc\xEA sabe quem est\xE1 respons\xE1vel por isso?"
+  storyText: "{$PlayerName}, voc\xEA sabe quem \xE9 o respons\xE1vel por isso?"
   description: 
   character: {fileID: 1458391371}
   portrait: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}
@@ -96310,7 +96311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "Eu vim s\xF3 pelo dinheiro, mas n\xE3o imaginava algo desse tipo."
+  storyText: "Eu vim pela possibilidade de encontrar alguns tesouros, mas n\xE3o imaginava
+    algo desse tipo."
   description: 
   character: {fileID: 3253050852057062130}
   portrait: {fileID: 21300000, guid: 512be30dfc1f6a04d8c9af6a999df2f3, type: 3}
@@ -96337,7 +96339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: "E o que n\xF3s temos com isso?"
+  storyText: E o que isso tem a ver com a gente?
   description: 
   character: {fileID: 1458391371}
   portrait: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}
@@ -96364,9 +96366,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: "Isso mesmo, YANLING. Como um dos guerreiros que ajudou a eliminar o
-    Ex\xE9rcito das Sombras guardo este lugar pois a amea\xE7a que aqui vivia claramente
-    voltou."
+  storyText: "Isso mesmo, Yanling. Como um dos guerreiros que ajudou a eliminar o
+    Ex\xE9rcito das Sombras, retornei a este local, pois a amea\xE7a que aqui vivia,
+    claramente voltou."
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -96393,7 +96395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: Se as lendas forem verdade... A irmandade travou grandes batalhas aqui.
+  storyText: Se as lendas forem verdade... A Irmandade travou grandes batalhas nesse
+    lugar.
   description: 
   character: {fileID: 1563180163}
   portrait: {fileID: 21300000, guid: 341ea488bcad3d84389a3f0f7292ccb3, type: 3}
@@ -96420,7 +96423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: "Cheguei at\xE9 aqui gra\xE7as a ela."
+  storyText: "Sim! Fomos guiados por ela at\xE9 aqui."
   description: 
   character: {fileID: 3253050852057062130}
   portrait: {fileID: 21300000, guid: 512be30dfc1f6a04d8c9af6a999df2f3, type: 3}
@@ -96447,8 +96450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: "N\xE3o sei quem voc\xEAs s\xE3o, mas voc\xEAs tamb\xE9m est\xE3o ouvindo
-    uma voz?"
+  storyText: "Quem s\xE3o voc\xEAs? Tamb\xE9m est\xE3o ouvindo esta voz?"
   description: 
   character: {fileID: 1458391371}
   portrait: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}

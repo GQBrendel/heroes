@@ -305,9 +305,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 460731862}
   selectedCommands:
-  - {fileID: 460731863}
+  - {fileID: 460731867}
   variables:
   - {fileID: 460731860}
   description: 
@@ -440,7 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "Esses calabou\xE7os n\xE3o mudaram nada."
+  storyText: "Esses calabou\xE7os n\xE3o mudaram nada..."
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -524,9 +525,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 4
   indentLevel: 0
-  storyText: "Medo n\xE3o seria a palavra certa. Mas tem uma voz falando no meio do
-    nada e um lugar que cheira a morte. Preferia estar numa taverna bebendo um belo
-    de um vinho."
+  storyText: "Medo n\xE3o seria a palavra certa... Mas tem uma voz estranha falando
+    com a gente e um lugar que cheira a morte. Preferia estar numa taverna, com um
+    caneco cheio de vinho."
   description: 
   character: {fileID: 3253050852057062130}
   portrait: {fileID: 21300000, guid: 512be30dfc1f6a04d8c9af6a999df2f3, type: 3}
@@ -608,8 +609,7 @@ MonoBehaviour:
   itemId: 6
   indentLevel: 0
   storyText: "Se voc\xEA vivesse numa abadia fechada, trancada todos os dias sem poder
-    usar seus poderes para nada voc\xEA entenderia que esse lugar aqui n\xE3o \xE9
-    t\xE3o ruim."
+    usar seus poderes, voc\xEA entenderia que esse lugar aqui n\xE3o \xE9 t\xE3o ruim."
   description: 
   character: {fileID: 1563180163}
   portrait: {fileID: 21300000, guid: 341ea488bcad3d84389a3f0f7292ccb3, type: 3}
@@ -636,8 +636,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: "Acho que nunca fiquei num lugar t\xE3o escuro e t\xE3o abaixo da terra
-    por tanto tempo."
+  storyText: "Esse cheiro... Acho que nunca fiquei num lugar t\xE3o escuro e t\xE3o
+    f\xE9tido por tanto tempo."
   description: 
   character: {fileID: 1458391371}
   portrait: {fileID: 21300000, guid: db92ed9719bc67649aa97c296a1c3301, type: 3}
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: "O cheiro de morte est\xE1 ficando cada vez mais forte..."
+  storyText: "O cheiro de morte est\xE1 ficando cada vez mais intenso..."
   description: 
   character: {fileID: 1563180163}
   portrait: {fileID: 21300000, guid: 341ea488bcad3d84389a3f0f7292ccb3, type: 3}
@@ -691,8 +691,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 12
   indentLevel: 0
-  storyText: "N\xE3o. Mas ser\xE1 mais complicado daqui pra frente. Esse poder que
-    eu sinto \xE9 muito maior do que de 200 anos atr\xE1s."
+  storyText: "N\xE3o. Mas ser\xE1 mais dif\xEDcil daqui pra frente. O poder que estou
+    sentindo me parece ser muito maior do que h\xE1 200 anos atr\xE1s."
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}

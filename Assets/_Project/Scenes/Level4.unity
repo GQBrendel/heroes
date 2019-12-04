@@ -59552,9 +59552,9 @@ MonoBehaviour:
   - {fileID: 1305733500}
   - {fileID: 1305733495}
   - {fileID: 1305733499}
+  - {fileID: 1305733498}
   - {fileID: 1305733489}
   - {fileID: 1305733497}
-  - {fileID: 1305733498}
 --- !u!114 &1305733493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59623,7 +59623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: "A irmandade n\xE3o morre, VIVAN e voc\xEA ser\xE1 detida aqui e agora!"
+  storyText: "A irmandade n\xE3o morre, Vivian! Voc\xEA ser\xE1 detida aqui e agora!"
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -59650,7 +59650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   indentLevel: 0
-  storyText: "Al\xE9m de morte o cheiro de magia emana desse lugar."
+  storyText: "Sinto a presen\xE7a de uma magia muito poderosa."
   description: 
   character: {fileID: 1563180163}
   portrait: {fileID: 21300000, guid: 341ea488bcad3d84389a3f0f7292ccb3, type: 3}
@@ -59704,7 +59704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: "Magia \xE9? Deixa comigo!"
+  storyText: Vamos acabar logo com isso!
   description: 
   character: {fileID: 1563180163}
   portrait: {fileID: 21300000, guid: 341ea488bcad3d84389a3f0f7292ccb3, type: 3}
@@ -59731,8 +59731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 11
   indentLevel: 0
-  storyText: "BRUTE, LYDIA, YANLING agora \xE9 a hora de limpar essa podrid\xE3o e
-    restaurar o equilibrio, cuidado com os poderes m\xE1gicos de VIVAN."
+  storyText: "Brute, Lydia, Yanling agora \xE9 a hora de limpar essa podrid\xE3o e
+    restaurar o equil\xEDbrio. "
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -59759,8 +59759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 7
   indentLevel: 0
-  storyText: "\xC9, e cad\xEA voc\xEA? Um esp\xEDrito vagante? Pat\xE9tico. {wc} Preimeiro
-    vou matar seus tr\xEAs pe\xF5es e voc\xEA ficar\xE1 aprisionado aqui."
+  storyText: "\xC9? E cad\xEA voc\xEA? Um esp\xEDrito vagante? Pat\xE9tico! Come\xE7arei
+    matando os seus her\xF3is e voc\xEA ficar\xE1 aprisionado aqui."
   description: 
   character: {fileID: 1429048211}
   portrait: {fileID: 21300000, guid: 6d55e85506e7f444eb7406b5b116c450, type: 3}
@@ -59787,8 +59787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: "S\xE3o 200 anos e eu n\xE3o deixarei voc\xEA voltar trazendo a morte
-    para o reino novamente!"
+  storyText: Tenha certeza de que eu farei de tudo para impedir seu plano nefasto!
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -59842,7 +59841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: "VIVAN, apare\xE7a!!"
+  storyText: "Vivian, apare\xE7a!!"
   description: 
   character: {fileID: 1372655440}
   portrait: {fileID: 0}
@@ -59869,7 +59868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: "parece que a partir daqui n\xE3o teremos mais para onde ir."
+  storyText: "Parece que a partir daqui n\xE3o teremos mais para onde ir..."
   description: 
   character: {fileID: 3253050852057062130}
   portrait: {fileID: 21300000, guid: 512be30dfc1f6a04d8c9af6a999df2f3, type: 3}
