@@ -1583,7 +1583,7 @@ MonoBehaviour:
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 2
-  XPValue: 100
+  XPValue: 50
   Movement: 2
   Strength: 0
   BasicAttackDamage: 24

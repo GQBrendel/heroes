@@ -526,6 +526,11 @@ namespace AStar_2D.Demo
             return tiles[x, y];
         }
 
+        public Tile getTileForSpawnSkelleton(int x, int y)
+        {
+            return tiles[x, y];
+        }
+
         public void setActorOnPosition(int x, int y, Actor obj)
         {
             tiles[x, y].tileActor = obj;

@@ -2689,7 +2689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5406023474236471112
 Transform:
   m_ObjectHideFlags: 0
@@ -3320,10 +3320,10 @@ MonoBehaviour:
   moveAction: 0
   mainAction: 0
   BasicAttackRange: 2
-  XPValue: 100
+  XPValue: 50
   Movement: 10
-  Strength: 5
-  BasicAttackDamage: 5
+  Strength: 0
+  BasicAttackDamage: 15
   Constitution: 5
   MaxHealth: 3
   Health: 0
@@ -3719,7 +3719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5406023474236483106
 Transform:
   m_ObjectHideFlags: 0

@@ -285,7 +285,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: BruteYes
-    clip: {fileID: 8300000, guid: acfccd8b291df81459e9f6dc52be34e3, type: 3}
+    clip: {fileID: 8300000, guid: e2513c6547e63334facd5cfcc2203f85, type: 3}
     volume: 0.786
     volumeVariance: 0.288
     pitch: 1
@@ -295,7 +295,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: BruteHellYeah
-    clip: {fileID: 8300000, guid: c1459c35af556e741acd6deffccb9c99, type: 3}
+    clip: {fileID: 8300000, guid: 24a98d3af371ae545ac3ed7fd98ea056, type: 3}
     volume: 0.786
     volumeVariance: 0.288
     pitch: 1
@@ -305,7 +305,7 @@ MonoBehaviour:
       type: 2}
     source: {fileID: 0}
   - name: BruteCountOnMe
-    clip: {fileID: 8300000, guid: a3f9ff68c249cf24ca5d07ab4f64691b, type: 3}
+    clip: {fileID: 8300000, guid: 4472234590fac50418ec144d4b303db6, type: 3}
     volume: 0.786
     volumeVariance: 0.288
     pitch: 1

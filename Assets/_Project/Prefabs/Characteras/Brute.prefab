@@ -1352,6 +1352,7 @@ GameObject:
   - component: {fileID: 5382403850761734476}
   - component: {fileID: 5871652156187343335}
   - component: {fileID: 6938404101776153058}
+  - component: {fileID: 2184532381688630658}
   m_Layer: 2
   m_Name: Camera
   m_TagString: MainCamera
@@ -1424,6 +1425,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3764545833898781125}
   m_Enabled: 1
+--- !u!114 &2184532381688630658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764545833898781125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: f84f4461512e35741a01de56efaf72a7, type: 2}
 --- !u!1 &3899287756917408137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,6 +2610,7 @@ GameObject:
   - component: {fileID: 7946356172256044362}
   - component: {fileID: 439710520612128671}
   - component: {fileID: 6773492987138854596}
+  - component: {fileID: 7535056433630349388}
   m_Layer: 2
   m_Name: SpinCamera
   m_TagString: MainCamera
@@ -2611,7 +2626,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7923016971148568081}
   m_LocalRotation: {x: 0.66117436, y: 0.0045012664, z: -0.0039670537, w: 0.7502083}
-  m_LocalPosition: {x: -0.094298735, y: 4.7965965, z: -0.21379516}
+  m_LocalPosition: {x: -0.094298735, y: 5.96, z: -0.21379516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5310389608896250740}
@@ -2668,6 +2683,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7923016971148568081}
   m_Enabled: 1
+--- !u!114 &7535056433630349388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923016971148568081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: f84f4461512e35741a01de56efaf72a7, type: 2}
 --- !u!1 &7941718103664939534
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,15 +3923,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d61d5260859180c4e93fe1f325c2bf0d, type: 3}
---- !u!198 &1570818515080305137 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5724752713711382617, guid: d61d5260859180c4e93fe1f325c2bf0d,
-    type: 3}
-  m_PrefabInstance: {fileID: 6538878521682405800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1671662072219849091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5587890246548715563, guid: d61d5260859180c4e93fe1f325c2bf0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6538878521682405800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1570818515080305137 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5724752713711382617, guid: d61d5260859180c4e93fe1f325c2bf0d,
     type: 3}
   m_PrefabInstance: {fileID: 6538878521682405800}
   m_PrefabAsset: {fileID: 0}

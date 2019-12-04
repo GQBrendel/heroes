@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
 
     private void Update ()
     {
-        //LevelUpCheat();
+        LevelUpCheat();
         if (!update)
         {
             return;

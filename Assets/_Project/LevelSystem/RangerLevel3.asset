@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RangerLevel3
   m_EditorClassIdentifier: 
   Level: 3
-  XPToNextLevel: 10000
+  XPToNextLevel: 200
   HP: 70
   Strength: 2
   Dexterity: 6

@@ -137,7 +137,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        //LevelUpCheat();
+        LevelUpCheat();
     }
 
     private void LevelUpCheat()

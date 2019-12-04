@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RangerLevel1
   m_EditorClassIdentifier: 
   Level: 1
-  XPToNextLevel: 80
+  XPToNextLevel: 30
   HP: 30
   Strength: 2
   Dexterity: 2
