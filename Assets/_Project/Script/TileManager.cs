@@ -431,10 +431,11 @@ namespace AStar_2D.Demo
 
             go.transform.SetParent(transform);
             Actor actor = go.GetComponent<Actor>();
-            actor.setPos(x, y);
+            actor.setPos(x, y);        
             actor.setCurrentTile(tiles[x, y]);
             tiles[x, y].toggleWalkable();
             tiles[x, y].tileActor = actor;
+          
         }
 
         void MoveTeste()
@@ -533,8 +534,14 @@ namespace AStar_2D.Demo
 
         public void setActorOnPosition(int x, int y, Actor obj)
         {
-            tiles[x, y].tileActor = obj;
-        }
+            try{
+                tiles[x, y].tileActor = obj;
+            }
+            catch
+            {
+                Debug.LogError("Failed To SetActorOnPosition");
+            }
+            }
         public int getLimitX()
         {
             return gridX * 2;

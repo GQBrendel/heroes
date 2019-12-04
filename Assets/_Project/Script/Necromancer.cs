@@ -60,7 +60,7 @@ public class Necromancer : Enemy
             randomX = Random.Range(posX - 4, posX + 4);
             randomY = Random.Range(posY - 4, posY + 4);
 
-            if (randomX > limitX)
+            if (randomX >= limitX)
             {
                 randomX = limitX-1;
             }
@@ -68,7 +68,7 @@ public class Necromancer : Enemy
             {
                 randomX = 0;
             }
-            if (randomY > limitY)
+            if (randomY >= limitY)
             {
                 randomY = limitY-1;
             }

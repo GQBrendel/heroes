@@ -46,6 +46,7 @@ public class Brute : HeroController
         HideWays();
         OnActorTaunt?.Invoke(this);
         anim.SetTrigger("Taunt");
+        AudioManager.Instance.Play("BruteBattleCry");
     }
 
     public override void SpinAttackHit()

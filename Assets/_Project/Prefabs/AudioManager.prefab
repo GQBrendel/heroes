@@ -286,30 +286,40 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BruteYes
     clip: {fileID: 8300000, guid: e2513c6547e63334facd5cfcc2203f85, type: 3}
-    volume: 0.786
+    volume: 1
     volumeVariance: 0.288
-    pitch: 1
-    pitchVariance: 0.049
+    pitch: 0.9
+    pitchVariance: 0.1
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
       type: 2}
     source: {fileID: 0}
   - name: BruteHellYeah
     clip: {fileID: 8300000, guid: 24a98d3af371ae545ac3ed7fd98ea056, type: 3}
-    volume: 0.786
-    volumeVariance: 0.288
-    pitch: 1
-    pitchVariance: 0.049
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.9
+    pitchVariance: 0.1
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
       type: 2}
     source: {fileID: 0}
   - name: BruteCountOnMe
     clip: {fileID: 8300000, guid: 4472234590fac50418ec144d4b303db6, type: 3}
-    volume: 0.786
-    volumeVariance: 0.288
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.915
+    pitchVariance: 0.1
+    loop: 0
+    mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
+      type: 2}
+    source: {fileID: 0}
+  - name: BruteBattleCry
+    clip: {fileID: 8300000, guid: 49cf12cbcde39d44dbaca892d46d0511, type: 3}
+    volume: 1
+    volumeVariance: 0
     pitch: 1
-    pitchVariance: 0.049
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
       type: 2}
