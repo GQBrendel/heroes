@@ -110,7 +110,6 @@ public class CharacterInfo : MonoBehaviour
         if(Level == 5)
         {
             CurrentXP = XPToNextLevel;
-            UpdateLevelInfo();
             return false;
         }
 

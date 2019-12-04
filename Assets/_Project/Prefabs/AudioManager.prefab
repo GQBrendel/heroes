@@ -56,7 +56,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DungeonMusic
     clip: {fileID: 8300000, guid: 7c601e21b7bc1404fa0ffa29deae1140, type: 3}
-    volume: 1
+    volume: 0.803
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 11b9b80742dce814392b1f43a00e575b, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 1.1
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
@@ -78,7 +78,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1d07157c059632243adc58ef919584f0, type: 3}
     volume: 1
     volumeVariance: 0
-    pitch: 1.1
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: -511788485657826568, guid: 8388808f39ec0994f9f2c0562663685f,
@@ -348,7 +348,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8c7db04af12c6c046ab324934adb8ed9, type: 3}
     volume: 0.97
     volumeVariance: 0.083
-    pitch: 1.11
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
@@ -358,7 +358,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d93e04ae4e6c17b47b3aa8a5084cc164, type: 3}
     volume: 0.97
     volumeVariance: 0.083
-    pitch: 1.11
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
@@ -368,7 +368,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 0caff6c775529be4eb7b94e5dc4289e1, type: 3}
     volume: 0.97
     volumeVariance: 0.083
-    pitch: 1.11
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
@@ -378,7 +378,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 843106acab593f749889c53c494d6b91, type: 3}
     volume: 0.97
     volumeVariance: 0.083
-    pitch: 1.11
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,
@@ -398,7 +398,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 17a3eee859d6fed4096005fcc59d965f, type: 3}
     volume: 0.97
     volumeVariance: 0.083
-    pitch: 1.11
+    pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 3176279525823878437, guid: 8388808f39ec0994f9f2c0562663685f,

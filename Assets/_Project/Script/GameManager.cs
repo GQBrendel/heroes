@@ -151,6 +151,8 @@ public class GameManager : MonoBehaviour
     }
     private void LevelUpCheat()
     {
+#if UNITY_EDITOR
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             PlayerPrefs.SetInt("Brute" + "Level", 1);
@@ -187,6 +189,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Lydia" + "Level", 2);
             PlayerPrefs.SetInt("Yanling" + "Level", 1);
         }
+#endif
     }
 
     public void SaveGame(CharacterInfo character)

@@ -236,7 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4f529da91b4d9409d6929ceb1056de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSpeed: 0.5
 --- !u!114 &138302697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +428,7 @@ MonoBehaviour:
   - {fileID: 460731861}
 --- !u!114 &460731863
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -484,7 +483,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &460731866
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -513,7 +512,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731867
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -526,8 +525,8 @@ MonoBehaviour:
   itemId: 4
   indentLevel: 0
   storyText: "Medo n\xE3o seria a palavra certa... Mas tem uma voz estranha falando
-    com a gente e um lugar que cheira a morte. Preferia estar numa taverna, com um
-    caneco cheio de vinho."
+    com a gente e um lugar que cheira a morte. {wc}Preferia estar numa taverna, com
+    um caneco cheio de vinho."
   description: 
   character: {fileID: 3253050852057062130}
   portrait: {fileID: 21300000, guid: 512be30dfc1f6a04d8c9af6a999df2f3, type: 3}
@@ -542,7 +541,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731868
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -569,7 +568,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731869
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -596,7 +595,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731870
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -624,7 +623,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731871
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -652,7 +651,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731872
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -679,7 +678,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731873
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -707,7 +706,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &460731874
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4232,6 +4231,27 @@ MonoBehaviour:
   - {x: 19, y: 13}
   - {x: 19, y: 14}
   - {x: 14, y: 13}
+  - {x: 14, y: 9}
+  - {x: 14, y: 9}
+  - {x: 14, y: 10}
+  - {x: 15, y: 9}
+  - {x: 15, y: 9}
+  - {x: 15, y: 10}
+  - {x: 16, y: 9}
+  - {x: 16, y: 9}
+  - {x: 16, y: 10}
+  - {x: 17, y: 9}
+  - {x: 17, y: 9}
+  - {x: 17, y: 10}
+  - {x: 17, y: 11}
+  - {x: 18, y: 9}
+  - {x: 18, y: 9}
+  - {x: 18, y: 10}
+  - {x: 18, y: 11}
+  - {x: 19, y: 9}
+  - {x: 19, y: 9}
+  - {x: 19, y: 10}
+  - {x: 19, y: 11}
 --- !u!1001 &2135301148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6603,6 +6623,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd0f7515c90082e48b2ee910adb3b08f, type: 3}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[35].pitch
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 520fb17ca7ca8734e8e8882333a440ff, type: 3}

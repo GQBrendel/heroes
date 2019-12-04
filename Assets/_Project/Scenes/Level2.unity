@@ -9630,7 +9630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4f529da91b4d9409d6929ceb1056de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSpeed: 0.5
 --- !u!114 &138302697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104587,6 +104586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020073896273343731, guid: 520fb17ca7ca8734e8e8882333a440ff,
+        type: 3}
+      propertyPath: sounds.Array.data[35].pitch
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 520fb17ca7ca8734e8e8882333a440ff, type: 3}

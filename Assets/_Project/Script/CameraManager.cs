@@ -5,7 +5,7 @@ using UnityEngine;
 using AStar_2D;
 public class CameraManager : MonoBehaviour {
 
-    public float camSpeed = 5;
+    private float camSpeed = 1.5f;
     Vector3 vecUp = new Vector3(0, 0, 1);
     Vector3 vecDown = new Vector3(0, 0, -1);
     void Update() {
