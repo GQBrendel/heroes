@@ -31,7 +31,6 @@ namespace AStar_2D.Demo
             }
         }
 
-
         protected override void onTileSelectedMouse(Tile tile, int mouseButton)
         {
             if (!ShouldExecuteActions)

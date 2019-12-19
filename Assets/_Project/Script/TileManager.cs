@@ -112,13 +112,8 @@ namespace AStar_2D.Demo
                     tiles[i, j].index = new Index(i, j);
 
                     // Add an event listener
-                    tiles[i, j].onTileSelected += onTileSelectedMouse;
-
-                    // Check for preview
-                    if (showPreviewPath == true)
-                    {
-                        tiles[i, j].onTileHover += onTileHover;
-                    }
+                    tiles[i, j].onTileSelected += onTileSelectedMouse;           
+                    tiles[i, j].onTileHover += onTileHover;                
                     tiles[i, j].onTileExitHover += OnTileExitHover;
                     tiles[i, j].ToggleHightLight();
 
@@ -384,10 +379,11 @@ namespace AStar_2D.Demo
 
         private void OnTileExitHover(Tile tile)
         {
+           // tile.DisableHightlight();
             tile.ToggleHightLight();
         }
 
-        private void onTileHover(Tile tile)
+        public virtual void onTileHover(Tile tile)
         {
             // Find the first agent
             Agent agent = Component.FindObjectOfType<Agent>();
@@ -403,9 +399,18 @@ namespace AStar_2D.Demo
                     // Do nothing
                 });
             }
-
             tile.ToggleHightLight();
-
+            /*            foreach (var t in tiles)
+                        {
+                            if(t == tile)
+                            {
+                                t.EnableHighlight();
+                            }
+                            else
+                            {
+                                t.DisableHightlight();
+                            }
+                        }*/
         }
 
         public void GenerateActor(GameObject UnitOfType, Vector2 spawnPos)

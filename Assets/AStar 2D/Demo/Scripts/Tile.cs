@@ -181,9 +181,17 @@ namespace AStar_2D.Demo
 
         public void ToggleHightLight()
         {
-            _hightLight.SetActive(!_hightLight.activeInHierarchy);
+           _hightLight.SetActive(!_hightLight.activeInHierarchy);
         }
-        
+      /*  public void EnableHighlight()
+        {
+            _hightLight.SetActive(true);
+        }
+        public void DisableHightlight()
+        {
+            _hightLight.SetActive(false);
+        }*/
+
         /// <summary>
         /// Called by Unity.
         /// </summary>

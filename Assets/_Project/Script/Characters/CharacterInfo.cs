@@ -62,6 +62,11 @@ public class CharacterInfo : MonoBehaviour
     {
         LinkWithInfoPanels();
         Level = PlayerPrefs.GetInt(Name + "Level", 1);
+
+        if(m_CharacterName == "Brute" || m_CharacterName == "Yanling")
+        {
+            Level = PlayerPrefs.GetInt(Name + "Level", 2);
+        }
         CurrentXP = PlayerPrefs.GetInt(Name + "CurrentXP", 0);
 
         MaxHP = _characterLevels[Level - 1].HP;
@@ -71,19 +76,6 @@ public class CharacterInfo : MonoBehaviour
     }
     private void LinkWithInfoPanels()
     {
-      //  var panels = Resources.FindObjectsOfTypeAll<MainInfoPanel>();
-     //   foreach (var panel in panels)
-        {
-       //     if (panel.name == Class + "InfoPanel")
-            {
-        //        _classInfoPanel = panel;
-            }
-          //  else if (panel.name == "MainInfoPanel_" + Name)
-            {
-               // _mainInfoPanel = panel;
-            }
-        }
-
         _classInfoPanel = InfoPanelManager.Instance.GetClassInfoPanel(this);
         _mainInfoPanel = InfoPanelManager.Instance.GetInfoPanel(this);
         var levelUp = Resources.FindObjectsOfTypeAll<LevelUpPanel>();
