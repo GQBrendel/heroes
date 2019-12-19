@@ -19,6 +19,7 @@ namespace AStar_2D.Demo
         //Vairaiveis nossas
         public int posX, posY;
         public Actor tileActor;
+        [SerializeField] private GameObject _hightLight;
 
         public void DisableVisibility()
         {
@@ -71,8 +72,9 @@ namespace AStar_2D.Demo
         /// Informs the tile manager so that a preview path can be shown.
         /// </summary>
         public event TileHoverDelegate onTileHover;
+        public event TileHoverDelegate onTileExitHover;
 
-		// Private
+        // Private
         [SerializeField]
         private bool walkable = true;
         private bool canSend = true;
@@ -175,10 +177,11 @@ namespace AStar_2D.Demo
                 }
                // print(hit.collider.name);
             }
+        }
 
-
-
-
+        public void ToggleHightLight()
+        {
+            _hightLight.SetActive(!_hightLight.activeInHierarchy);
         }
         
         /// <summary>
@@ -190,6 +193,15 @@ namespace AStar_2D.Demo
             {
                 canSend = true;
                 lastTime = Time.time;
+            }
+        }
+
+        public void OnMouseExit()
+        {
+            // Trigger the exit hover event
+            if (onTileExitHover != null)
+            {
+                onTileExitHover(this);
             }
         }
 

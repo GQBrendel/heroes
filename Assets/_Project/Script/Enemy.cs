@@ -1,9 +1,5 @@
 ﻿using AStar_2D.Demo;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Enemy : Actor
 {
@@ -29,7 +25,7 @@ public class Enemy : Actor
         Health = MaxHealth;
     }
 
-    void Update()
+    private void Update()
     {
         if (rotate && TargetToLookAt)
         {

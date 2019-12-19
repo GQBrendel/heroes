@@ -116,7 +116,11 @@ namespace AStar_2D.Demo
 
                     // Check for preview
                     if (showPreviewPath == true)
+                    {
                         tiles[i, j].onTileHover += onTileHover;
+                    }
+                    tiles[i, j].onTileExitHover += OnTileExitHover;
+                    tiles[i, j].ToggleHightLight();
 
                     // Add the tile as a child to keep the scene view clean
                     obj.transform.SetParent(transform);
@@ -378,6 +382,11 @@ namespace AStar_2D.Demo
             }
         }
 
+        private void OnTileExitHover(Tile tile)
+        {
+            tile.ToggleHightLight();
+        }
+
         private void onTileHover(Tile tile)
         {
             // Find the first agent
@@ -394,6 +403,9 @@ namespace AStar_2D.Demo
                     // Do nothing
                 });
             }
+
+            tile.ToggleHightLight();
+
         }
 
         public void GenerateActor(GameObject UnitOfType, Vector2 spawnPos)
